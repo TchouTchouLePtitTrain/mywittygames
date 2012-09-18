@@ -1,3 +1,7 @@
 project_accueil:
     pattern:   /
     defaults:  { _controller: WittyProjectBundle:Project:index }
+
+project_display:
+    pattern:   /{name}
+    defaults:  { _controller: WittyProjectBundle:Project:display }

@@ -11,16 +11,13 @@ class ProjectController extends Controller
     /**
      * @Template()
      */
-    public function indexAction($name = null)
+    public function indexAction()
     {
-		if ($name) //SI un projet en particulier est demandé
-			return $this->render('WittyProjectBundle:Project:project.html.twig', array());
-		else //Sinon la liste des projets est retournée
-			return $this->listProjectsAction();
+		return $this->render('WittyProjectBundle:Project:list_projects.html.twig', array());
     }
 	
-    public function listProjectsAction()
+    public function displayAction($name)
     {
-        return $this->render('WittyProjectBundle:Project:list_projects.html.twig', array());
+		return $this->render('WittyProjectBundle:Project:project.html.twig', array());
     }
 }
