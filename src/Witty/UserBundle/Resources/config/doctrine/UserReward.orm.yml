@@ -1,0 +1,32 @@
+Witty\UserBundle\Entity\UserReward:
+    type: entity
+    table: user_reward
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        rewardId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: reward_id
+        cancelled:
+            type: boolean
+            nullable: false
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        updateDate:
+            type: datetime
+            nullable: true
+            column: update_date
+    lifecycleCallbacks: {  }

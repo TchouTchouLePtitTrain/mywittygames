@@ -2,12 +2,31 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>{% block title %}My Witty Games{% endblock %}</title>
+		
+		{% stylesheets 
+			'../app/Resources/public/css/reset.css' 
+			'../app/Resources/public/css/*.css'
+		%}
+			<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+        {% block stylesheets %} {% endblock %}
+		
+		{% javascripts '../app/Resources/public/js/*' %}
+			<script src="{{ asset_url }}" type="text/javascript"></script>
+		{% endjavascripts %}
+		{# <script type="text/javascript">$.noConflict();</script> Si besoin est -> Ajout du mode no conflict de jquery pour garder la toolbar symfony #}
+		
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+		<header>
+			{% render "WittyBarBundle:Bar:display" %}
+		</header>
+        {% block content %}{% endblock %}
+		<footer>
+		</footer>
+        {% block javascripts %} {% endblock %}
     </body>
 </html>

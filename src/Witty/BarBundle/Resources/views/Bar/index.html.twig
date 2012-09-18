@@ -1,0 +1,58 @@
+{# ATTENTION ! Pour l'instant Assetic ne gère pas les notations : {% stylesheets '@WittyBarBundle/Resources/public/css/*' filter='cssrewrite' %} #}
+{# Il faut donc pointer directement sur le bundle ... c'est l'issue #53 sur github -> à surveiller #}
+{% stylesheets 'bundles/wittybar/css/*.css' filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+{% endstylesheets %}
+
+
+<div id="bandeauHaut">
+	<div id="menu_witty">
+	
+		<form method="POST" name="form_token" id="form_token">
+		{% if app.user %}
+			<input type="hidden" name="token" value="{{ app.user.token }}"/>
+		{% endif %}
+		</form>
+		<a id="lien_mwg" class="btn_mwg lien_mw" href="{{ url_mwg }}" ></a>
+		<a id="lien_mwn" class="btn_mwn lien_mw" href="{{ url_mwn }}/" onclick="javascript:return false;"></a>
+		<a id="lien_mws" class="btn_mws lien_mw" href="{{ url_mws }}/" onclick="javascript:return false;"></a>
+	</div>
+	<div id="espace_login">
+		{% if app.user %}
+			<a class="pseudo pseudo-connecte btn_deconnexion" href="{{ path('fos_user_security_logout') }}">x</a>
+			<a class="btn_profil" href="{{ url_mwg }}profile/edit">
+				<p class="img_profil"></p> 
+				<p class="pseudo pseudo-connecte">
+					{% if app.user.login %}
+						{{ app.user.login }}
+					{% else %}
+						{{ app.user.firstname }}
+					{% endif %}
+				</p>
+			</a>
+		{% else %}
+			<a class="iframe_login btn_sidentifier" href="{{ path('fos_user_security_login') }}"></a>
+			<a class="pseudo btn_sinscrire" href="{{ path('fos_user_registration_register') }}">
+				<span class="plus-pseudo">+</span>
+				<span class="txt-s-inscrire"> S'inscrire</span>
+			</a>
+		{% endif %}
+	</div>
+</div>
+
+<div id="bandeaulogo">
+	<a id="logo" href="<?php echo site_url(); ?>"></a>
+</div>
+
+<div id="bandeauMenu">
+
+<div id="filetMenu"></div>
+	<div id="menu">
+		<a href="{{ url_mwg }}" class="btn_home"></a>
+	</div>
+	<div id="accroche">Inscrivez-vous sur My Witty News et enregistrez vos préférences !</div>
+</div>
+
+{% javascripts 'bundles/wittybar/js/*.js' %}
+	<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts %}

@@ -9,6 +9,14 @@ parameters:
     mailer_host: localhost
     mailer_user: null
     mailer_password: null
-    locale: en
+    locale: fr
     secret: 5af99ad00cc4fc1389f9fbb4349f7c347c93448b
     database_path: null
+
+#Urls des sites Witty
+    url_mwg_dev: http://localhost/mywittygames/web/app_dev.php/
+    url_mwg_prod: http://www.mywittygames.com/
+    url_mwn_dev: http://localhost/mywittynews/
+    url_mwn_prod: http://www.mywittynews.fr/
+    url_mws_dev: http://localhost/mywittyshop/
+    url_mws_prod: http://www.mywittyshop.fr/

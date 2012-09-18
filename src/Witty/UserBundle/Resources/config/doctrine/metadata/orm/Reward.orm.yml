@@ -1,0 +1,44 @@
+Reward:
+    type: entity
+    table: reward
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        projectId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: project_id
+        pledgeAmount:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: pledge_amount
+        offset:
+            type: integer
+            unsigned: false
+            nullable: true
+        limit:
+            type: integer
+            unsigned: false
+            nullable: true
+        deliveryDate:
+            type: datetime
+            nullable: true
+            column: delivery_date
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        updateDate:
+            type: datetime
+            nullable: true
+            column: update_date
+        description:
+            type: text
+            nullable: false
+    lifecycleCallbacks: {  }

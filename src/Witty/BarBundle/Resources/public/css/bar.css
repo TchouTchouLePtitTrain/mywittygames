@@ -1,0 +1,278 @@
+/* WittyBar */
+
+#bandeauHaut{
+	background-image: url(../images/bandeau_haut.png);
+	height: 30px;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+#menu_witty{
+	float:left;
+	margin-left:15%;
+	position:relative;
+}
+
+#menu_witty form{
+	float:left;
+}
+#menu_witty submit{
+	text-decoration:none;
+}
+
+.btn_mwg{
+	display:block;
+	background-image: url(../images/btn_mwg_hover.png);
+ 	background-repeat: no-repeat;
+	width: 116px;
+  	height: 30px;
+	float:left;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-right:-1px;
+	cursor:pointer;
+}
+
+.btn_mwg:hover{
+	display:block;
+	background-image: url(../images/btn_mwg_normal.png);	
+}
+
+.btn_mwn{
+	display:block;
+	background-image: url(../images/btn_mwn_normal.png);
+ 	background-repeat: no-repeat;
+	width: 116px;
+  	height: 30px;
+	float:left;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	cursor:pointer;
+}
+
+.btn_mwn:hover{
+	display:block;
+	background-image: url(../images/btn_mwn_hover.png);	
+}
+
+.btn_mws{
+	display:block;
+	background-image: url(../images/btn_mws_normal.png);
+ 	background-repeat: no-repeat;
+	width: 116px;
+  	height: 30px;
+	float:left;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	cursor:pointer;
+}
+
+.btn_mws:hover{
+	display:block;
+	background-image: url(../images/btn_mws_hover.png);	
+}
+
+#espace_login{
+	float:right;
+	margin-right:15%;
+	position:relative;
+	width: 30%;
+}
+
+.btn_sidentifier{
+	display:block;
+	background-image: url(../images/btn_sidentifier_normal.png);
+ 	background-repeat: no-repeat;
+	width: 111px;
+  	height: 30px;
+	float:right;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right: auto;
+	position:relative;
+	cursor:pointer;
+}
+
+.btn_sidentifier:hover{
+	display:block;
+	background-image: url(../images/btn_sidentifier_hover.png);	
+}
+
+.plus-pseudo{
+	font-size:14px;
+	margin-right:1px;
+}
+
+.txt-s-inscrire{
+	float:right;
+}
+
+.btn_sinscrire{
+	display:block;
+  	height: 42px;
+	float:right;
+	margin-top:0px;
+	margin-left: auto;
+	margin-right:3%;
+	position:relative;
+	cursor:pointer;
+	color:white;
+	margin-top: 8px;
+}
+
+.btn_sinscrire:hover{
+	color:#D89000;
+}
+.orange{
+	background-color:#D88F0E;
+}
+.bleu{
+	background-color:#598EEE;
+}
+.btn_profil{
+	display:block;
+	/*background-color:#f6f6f6;*/
+	width:30%;
+	min-width: 111px;
+  	height: 22px;
+	float:right;
+	margin-top:0px;
+	margin-left:auto;
+	/*margin-right: 3%;*/
+	position:relative;
+	cursor:pointer;
+	padding:3px 7px 7px 7px;
+	/*color: #d88f0e;*/
+	color: white;
+}
+
+.btn_profil:hover{
+	color: white;
+	background-color:#D89000;
+/*
+	background-color:#d88f0e;
+	color: #FFF;*/
+}
+
+
+.btn_deconnexion{
+	display:block;
+	/*background-color:#f6f6f6;*/
+	width:100%
+	min-width: 111px;
+  	height: 22px;
+	float:right;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right: auto;
+	position:relative;
+	cursor:pointer;
+	padding: 3px 7px 7px 7px;
+	color:white;/*color: #d88f0e;*/
+}
+
+.btn_deconnexion:hover{
+	color:#D89000;
+}
+
+.img_profil{
+	display:block;
+	background-color:#000;
+	width: 23px;
+  	height: 23px;
+	float:left;
+	margin-right:7px;
+}
+
+.pseudo{
+	font-family:"Arial", Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	float:right;
+}
+.pseudo-connecte{
+	font-family:"Arial", Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	float:right;
+	margin-top:6px;
+}
+
+#menu_reseauSociaux{
+	float:right;
+	margin-right:15%;
+	position:relative;
+}
+
+.btn_facebook{
+	display:block;
+	float:right;
+	background-image: url(../images/wittybar/btn_header_facebook_normal.png);
+ 	background-repeat: no-repeat;
+	width: 116px;
+  	height: 30px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	cursor:pointer;
+}
+
+.facebook_connect {
+    margin-left: 1%;
+    padding: 5px 0 0;
+	float:right;
+}
+
+.btn_facebook:hover{
+	display:block;
+	background-image: url(../images/wittybar/btn_header_facebook_hover.png);	
+}
+
+.btn_twitter{
+	display:block;
+	float:right;
+	background-image: url(../images/wittybar/btn_header_twitter_normal.png);
+ 	background-repeat: no-repeat;
+	width: 116px;
+  	height: 30px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-left:-2px;
+	cursor:pointer;
+}
+
+.btn_twitter:hover{
+	display:block;
+	background-image: url(../images/wittybar/btn_header_twitter_hover.png);	
+}
+
+.btn_dailymotion{
+	display:block;
+	float:right;
+	background-image: url(../images/wittybar/btn_header_dailymotion_normal.png);
+ 	background-repeat: no-repeat;
+	width: 116px;
+  	height: 30px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-left:-1px;
+	cursor:pointer;
+}
+
+.btn_dailymotion:hover{
+	display:block;
+	background-image: url(../images/wittybar/btn_header_dailymotion_hover.png);	
+}

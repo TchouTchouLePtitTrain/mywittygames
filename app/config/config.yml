@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -26,7 +26,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    #bundles:        [ ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -45,7 +45,10 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
-
+        mapping_types: 
+            enum:       string
+            varbinary:  string
+            tinyblob:   text
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
@@ -57,3 +60,13 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+# FOSUser Configuration
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Witty\UserBundle\Entity\User
+    profile: 
+        form: 
+            type: witty_user_registration
+            handler: witty_user.form.handler.editing
