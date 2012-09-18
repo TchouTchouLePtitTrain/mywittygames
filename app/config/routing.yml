@@ -1,3 +1,8 @@
+witty_menu:
+    resource: "@WittyMenuBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 witty_mwg:
     resource:  "@WittyMwgBundle/Resources/config/routing.yml"
     prefix:    /
