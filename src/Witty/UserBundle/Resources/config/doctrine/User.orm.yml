@@ -1,5 +1,6 @@
 Witty\UserBundle\Entity\User:
     type: entity
+    repositoryClass: Witty\UserBundle\Repository\UserRepository
     table: user
     fields:
         id:

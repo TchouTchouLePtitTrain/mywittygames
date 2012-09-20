@@ -1,58 +1,82 @@
 <?php
 
-namespace Witty\UserBundle\Entity;
+namespace Witty\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Witty\UserBundle\Entity\Reward
+ * Witty\ProjectBundle\Entity\Reward
+ *
+ * @ORM\Table(name="reward")
+ * @ORM\Entity
  */
 class Reward
 {
     /**
      * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var integer $projectId
+     *
+     * @ORM\Column(name="project_id", type="integer", nullable=false)
      */
     private $projectId;
 
     /**
      * @var integer $pledgeAmount
+     *
+     * @ORM\Column(name="pledge_amount", type="integer", nullable=false)
      */
     private $pledgeAmount;
 
     /**
      * @var integer $offset
+     *
+     * @ORM\Column(name="offset", type="integer", nullable=true)
      */
     private $offset;
 
     /**
      * @var integer $limit
+     *
+     * @ORM\Column(name="limit", type="integer", nullable=true)
      */
     private $limit;
 
     /**
      * @var \DateTime $deliveryDate
+     *
+     * @ORM\Column(name="delivery_date", type="datetime", nullable=true)
      */
     private $deliveryDate;
 
     /**
      * @var \DateTime $creationDate
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
      */
     private $creationDate;
 
     /**
      * @var \DateTime $updateDate
+     *
+     * @ORM\Column(name="update_date", type="datetime", nullable=true)
      */
     private $updateDate;
 
     /**
      * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable=false)
      */
     private $description;
+
 
 
     /**

@@ -1,43 +1,54 @@
 <?php
 
-namespace Witty\UserBundle\Entity;
+namespace Witty\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Witty\UserBundle\Entity\UserReward
+ * Witty\ProjectBundle\Entity\ProjectComment
+ *
+ * @ORM\Table(name="project_comment")
+ * @ORM\Entity
  */
-class UserReward
+class ProjectComment
 {
     /**
      * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var integer $userId
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
     private $userId;
 
     /**
-     * @var integer $rewardId
+     * @var integer $projectId
+     *
+     * @ORM\Column(name="project_id", type="integer", nullable=false)
      */
-    private $rewardId;
-
-    /**
-     * @var boolean $cancelled
-     */
-    private $cancelled;
+    private $projectId;
 
     /**
      * @var \DateTime $creationDate
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
      */
     private $creationDate;
 
     /**
-     * @var \DateTime $updateDate
+     * @var string $content
+     *
+     * @ORM\Column(name="content", type="text", nullable=false)
      */
-    private $updateDate;
+    private $content;
+
 
 
     /**
@@ -54,7 +65,7 @@ class UserReward
      * Set userId
      *
      * @param integer $userId
-     * @return UserReward
+     * @return ProjectComment
      */
     public function setUserId($userId)
     {
@@ -74,56 +85,33 @@ class UserReward
     }
 
     /**
-     * Set rewardId
+     * Set projectId
      *
-     * @param integer $rewardId
-     * @return UserReward
+     * @param integer $projectId
+     * @return ProjectComment
      */
-    public function setRewardId($rewardId)
+    public function setProjectId($projectId)
     {
-        $this->rewardId = $rewardId;
+        $this->projectId = $projectId;
     
         return $this;
     }
 
     /**
-     * Get rewardId
+     * Get projectId
      *
      * @return integer 
      */
-    public function getRewardId()
+    public function getProjectId()
     {
-        return $this->rewardId;
-    }
-
-    /**
-     * Set cancelled
-     *
-     * @param boolean $cancelled
-     * @return UserReward
-     */
-    public function setCancelled($cancelled)
-    {
-        $this->cancelled = $cancelled;
-    
-        return $this;
-    }
-
-    /**
-     * Get cancelled
-     *
-     * @return boolean 
-     */
-    public function getCancelled()
-    {
-        return $this->cancelled;
+        return $this->projectId;
     }
 
     /**
      * Set creationDate
      *
      * @param \DateTime $creationDate
-     * @return UserReward
+     * @return ProjectComment
      */
     public function setCreationDate($creationDate)
     {
@@ -143,25 +131,25 @@ class UserReward
     }
 
     /**
-     * Set updateDate
+     * Set content
      *
-     * @param \DateTime $updateDate
-     * @return UserReward
+     * @param string $content
+     * @return ProjectComment
      */
-    public function setUpdateDate($updateDate)
+    public function setContent($content)
     {
-        $this->updateDate = $updateDate;
+        $this->content = $content;
     
         return $this;
     }
 
     /**
-     * Get updateDate
+     * Get content
      *
-     * @return \DateTime 
+     * @return string 
      */
-    public function getUpdateDate()
+    public function getContent()
     {
-        return $this->updateDate;
+        return $this->content;
     }
 }

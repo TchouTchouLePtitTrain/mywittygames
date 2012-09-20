@@ -1,0 +1,61 @@
+Project:
+    type: entity
+    table: project
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        creatorId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: creator_id
+        title:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        category:
+            type: boolean
+            nullable: false
+        funded:
+            type: boolean
+            nullable: false
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        updateDate:
+            type: datetime
+            nullable: true
+            column: update_date
+        startDate:
+            type: datetime
+            nullable: true
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            column: end_date
+        fundingGoal:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: funding_goal
+        image:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        video:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        description:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

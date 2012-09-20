@@ -16,8 +16,11 @@ class ProjectController extends Controller
 		return $this->render('WittyProjectBundle:Project:list_projects.html.twig', array());
     }
 	
-    public function displayAction($name)
+    public function displayAction($id)
     {
+		$edinautes = $this->getDoctrine()->getRepository('WittyUserBundle:User')->findEdinautesByProjectId($id);
+	
+echo '<pre>';print_r($edinautes);echo '</pre>';
 		return $this->render('WittyProjectBundle:Project:project.html.twig', array());
     }
 }
