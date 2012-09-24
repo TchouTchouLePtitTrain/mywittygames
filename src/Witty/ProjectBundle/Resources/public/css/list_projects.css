@@ -9,6 +9,19 @@
 
 /* --- Titre Page --- */
 
+.blocTitrePage{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.titrePage_projet{
+	color:#4270be;
+}
+
+.descriptionPage_projet{
+	color:#514846;
+}
+
 .infosPage{
 	font-family:Arial, Helvetica, sans-serif;
 	display:block;
@@ -23,12 +36,12 @@
 
 /* --- Bloc jeu --- */
 
-#bloc_jeu{
+.bloc_jeu{
 	display:block;
 	margin-left:10px;
 	margin-right:10px;
 	margin-bottom:20px;
-	width:290px;
+	width:310px;
 	height:1OO%;
 	background-color:#FFF;
 	border-radius:4px;
@@ -40,7 +53,6 @@
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 	
 	border: solid 1px #b7b7b7;
-	padding:10px;
 	float:left;
 }
 
@@ -51,7 +63,8 @@
 	width:100%;
 	height:170px;
 	background-color:#000;
-	border-radius:4px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
 	border: solid 1px #b7b7b7;
 	margin-bottom:16px;
 }
@@ -78,4 +91,84 @@
 	color:#514846;
 	text-align:center;
 	line-height: 1.2;
+	margin-bottom:10px;
+}
+
+.bloc_jeu_haut{
+	display:block;
+	width:290px;
+	height:1OO%;
+	background-color:#FFF;
+	padding:10px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+}
+
+.bloc_jeu_haut:hover{
+	background-color:#f7f7f7;
+}
+
+.bloc_jeu_bas{
+	display:block;
+	width:100%;
+	height:75px;
+	background-image: -moz-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
+	border-bottom_left-radius:4px;
+	border-bottom_right-radius:4px;
+	border-top: solid 1px #b7b7b7;
+}
+
+.bloc_caracteritiques{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:75px;
+	width:103px;
+	float:left;
+}
+
+.style_caracteritiques{
+	font-family: 'Crete Round', serif;
+	font-size:20px;
+	color:#514846;
+	text-align:center;
+}
+
+.img_user{
+	display:block;
+	background-image:url(../images/btn_user_petit.png);
+	width:41px;
+	height:35px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	opacity:0.7;
+	margin-top:5px;
+	margin-bottom:3px;
+}
+
+.img_piggy{
+	display:block;
+	background-image:url(../images/btn_piggy_petit.png);
+	width:41px;
+	height:35px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	opacity:0.7;
+	margin-top:5px;
+	margin-bottom:3px;
+}
+
+.img_clock{
+	display:block;
+	background-image:url(../images/btn_clock_petit.png);
+	width:41px;
+	height:35px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	opacity:0.7;
+	margin-top:5px;
+	margin-bottom:3px;
 }

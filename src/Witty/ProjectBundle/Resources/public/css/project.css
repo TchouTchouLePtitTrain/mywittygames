@@ -7,6 +7,19 @@
 	width:1000px;
 }
 
+.blocTitrePage{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.titrePage_projet{
+	color:#4270be;
+}
+
+.descriptionPage_projet{
+	color:#514846;
+}
+
 /* --- Sous-menu --- */
 
 #onglets{

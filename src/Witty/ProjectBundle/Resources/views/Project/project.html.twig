@@ -3,8 +3,9 @@
 {% block stylesheets %}
     {% stylesheets 'bundles/wittyproject/css/*.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-        <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
     {% endstylesheets %}
+    
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block content %}
@@ -12,8 +13,8 @@
 <div id="container">
 
 	<div class="blocTitrePage">
-    	<p class="titrePage">Temple</p>
-        <p class="descriptionPage">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension à la boîte de base.</p>
+    	<p class="titrePage titrePage_projet">Temple</p>
+        <p class="descriptionPage descriptionPage_projet">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension à la boîte de base.</p>
     </div>
     
  
