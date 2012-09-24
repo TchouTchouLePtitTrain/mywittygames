@@ -9,9 +9,15 @@
 	position: relative;
 }
 
+.container_bandeau{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
 #menu_witty{
 	float:left;
-	margin-left:15%;
 	position:relative;
 }
 
@@ -35,11 +41,6 @@
 	position:relative;
 	margin-right:-1px;
 	cursor:pointer;
-}
-
-.btn_mwg:hover{
-	display:block;
-	background-image: url(../images/btn_mwg_normal.png);	
 }
 
 .btn_mwn{
@@ -82,7 +83,6 @@
 
 #espace_login{
 	float:right;
-	margin-right:15%;
 	position:relative;
 	width: 30%;
 }
@@ -111,10 +111,6 @@
 	margin-right:1px;
 }
 
-.txt-s-inscrire{
-	float:right;
-}
-
 .btn_sinscrire{
 	display:block;
   	height: 42px;
@@ -125,11 +121,11 @@
 	position:relative;
 	cursor:pointer;
 	color:white;
-	margin-top: 8px;
+	margin-top: 10px;
 }
 
 .btn_sinscrire:hover{
-	color:#D89000;
+	color:#5c90e7;
 }
 .orange{
 	background-color:#D88F0E;

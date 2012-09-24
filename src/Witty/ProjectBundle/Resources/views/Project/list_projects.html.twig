@@ -1,5 +1,32 @@
 {% extends "WittyProjectBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {% stylesheets 'bundles/wittyproject/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
+    {% endstylesheets %}
+{% endblock %}
+
 {% block content %}
-BLI BLI
+
+<div id="container">
+
+	<div class="blocTitrePage">
+    	<a class="titrePage">Donner vie aux jeux</a>
+        <a class="descriptionPage">Participez au financement de jeux de société et recevez des récompenses exclusives.<br/>Si un projet n'atteint pas son objectif, vous êtes remboursé sans frais.</a>
+        <a class="infosPage">Actuellement 6 jeux ont été édité grâce aux édinautes. Rejoignez-les !</a>
+    </div>
+    
+    <div id="bloc_jeu">
+    	<a class="img_jeu"></a>
+        <a class="titreJeu">Temple</a>
+        <a class="descriptionJeu">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension <br/>à la boîte de base.</a>
+    	
+        <div class="spacer"></div>
+
+    </div>
+  
+    
+</div>
+
 {% endblock %}
