@@ -6,6 +6,9 @@
 
 
 <div id="bandeauHaut">
+
+<div class="container_bandeau">
+
 	<div id="menu_witty">
 	
 		<form method="POST" name="form_token" id="form_token">
@@ -31,13 +34,45 @@
 				</p>
 			</a>
 		{% else %}
-			<a class="iframe_login btn_sidentifier" href="{{ path('fos_user_security_login') }}"></a>
+			<a class="iframe_login btn_sidentifier popuplogin" href="{{ path('fos_user_security_login') }}" onclick="javascript:return false;"></a>
 			<a class="pseudo btn_sinscrire" href="{{ path('fos_user_registration_register') }}">
 				<span class="plus-pseudo">+</span>
 				<span class="txt-s-inscrire"> S'inscrire</span>
 			</a>
+            
+      
+            <div id="popup" class="popup_block">
+            	<div id="login_normal">
+                    <div id="haut_popup">
+                    <a class="titre_popup">Se connecter</a>
+                    <a class="close">x</a>
+                    </div>
+                    <div class="champs_inscription">
+                        <p class="texte_popuplogin">Email</p> 
+                        <INPUT class="texte_popup champspopup" type=text name="email">
+                        <p class="texte_popuplogin">Mot de passe</p> 
+                        <INPUT class="texte_popup champspopup" type=text name="mdp">
+                    </div>
+                    <div id="bas_popup_gauche">
+                        <INPUT class="checkbox" type="checkbox"><p class="texte_popuplogin2">Rester connecté</p>
+                        <p class="texte_popuplogin3">Mot de passe oublié ?</p>
+                    </div>
+                    <a class="btn_seconnecter"></a>
+                </div>
+                <div id="login_facebook">
+                	<div id="haut_popup2">
+                    <p class="texte_popuplogin4">Ou connecter vous avec Facebook</p>
+                    <p class="smiley">; )</p>
+                    </div>
+                </div>
+            </div>
+
+            
 		{% endif %}
 	</div>
+    
+</div>    
+    
 </div>
 
 {% render "WittyUserBundle:Registration:register" %}

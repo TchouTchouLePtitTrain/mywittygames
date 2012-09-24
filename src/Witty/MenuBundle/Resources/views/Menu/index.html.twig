@@ -1,1 +1,32 @@
-MENU
+{% stylesheets 'bundles/wittymenu/css/*.css' filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+{% endstylesheets %}
+
+<div id="bandeauMenu">
+
+<div class="container_bandeau">
+
+	<div id="logomenu">    
+		<a class="logo_mwg" href="/"> </a>
+        <div id="menu">
+        	<a class="btn_decouvrir" href="/"> </a>
+            <a class="btn_faq" href="/"> </a>       
+        </div>       
+    </div>
+    
+    <div class="recherche">
+        <form method="get" action="#">
+				<input type="text" name="rechercher" placeholder="Recherche"/>
+		</form>
+    </div>
+    
+    <div id="logosociaux">
+    	<a class="btn_facebook" href="/"> </a>
+        <a class="btn_twitter" href="/"> </a>
+        <a class="btn_dailymotion" href="/"> </a>
+    	         
+    </div>
+    
+</div>    
+
+</div>

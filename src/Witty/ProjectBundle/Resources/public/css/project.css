@@ -1,0 +1,636 @@
+/* --- WittyProject --- */
+
+#container{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
+.blocTitrePage{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.titrePage_projet{
+	color:#4270be;
+}
+
+.descriptionPage_projet{
+	color:#514846;
+}
+
+/* --- Sous-menu --- */
+
+#onglets{
+	display:block;
+	height:20px;
+	padding-left:20px;
+}
+
+#onglets li {
+	display:inline;
+    float:left;
+    margin-right: 50px ;
+	height:12px;	
+	cursor:pointer;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#888888;
+	z-index:1;
+}
+
+#onglets li:hover {
+	color:#514846;
+}
+
+#onglets .actif {
+	color:#514846;
+	z-index:10;
+}
+
+.flecheMenu{
+	display:block;
+	background-image: url(../images/fleche_menu.png);
+ 	background-repeat: no-repeat;
+	width: 30px;
+  	height: 16px;
+	margin-left:25px;
+	margin-right:auto;
+	position:relative;
+	margin-bottom:-1px;
+}
+
+/* --- Bloc contenu --- */
+
+#blocContenuJeu{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:960px;
+	height:1OO%;
+	background-color:#FFF;
+	border-radius:4px;
+	
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-o-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	
+	border: solid 1px #b7b7b7;
+	padding:20px;	
+}
+
+.texte{
+	font-family: 'Karla', sans-serif;
+	font-size:16px;
+	color:#666;
+	line-height: 1.5;
+	margin-bottom:10px;
+}
+
+.texte_bleu{
+	font-family: 'Karla', sans-serif;
+	font-size:16px;
+	line-height: 1.5;
+	margin-bottom:10px;
+	color:#4270be;
+}
+
+/* --- Colonne gauche --- */
+
+.item{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:660px;
+	height:auto;
+	float:left;
+}
+
+.video{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:660px;
+	height:400px;
+	background-color:#000;
+	margin-bottom:20px;
+}
+
+.soustitre{
+	font-family: 'Karla', sans-serif;
+	font-size:22px;
+	color:#666;
+	margin-bottom:10px;
+}
+
+.titre_edinautes{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	height:60px;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:20px;	
+}
+
+.edinaute{
+	display:block;
+	margin-left:auto;
+	margin-right:20px;
+	margin-bottom:20px;
+	width:310px;
+	height:80px;
+	float:left;
+}
+
+.nom_edinaute{
+	font-family: 'Karla', sans-serif;
+	font-size:16px;
+	color:#666;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+#champs_commentaire{
+	margin-left:auto;
+	background-color:#FFF;
+	width:620px;
+	float:left;
+	margin-bottom:10px;
+}
+
+#commenter{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:230px;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:20px;
+}
+
+.commentaire{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#514846;
+	font-weight:bold;
+}
+
+#champs_commentaire textarea{
+	display:block;
+	border: 10px solid #f6f6f6;
+	padding:10px;
+	margin:0;
+	height:100px;
+	width:620px;
+	background-color:#FFF;
+}
+
+.btn_commenter{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:35px;
+	width:134px;
+	background-image:url(../images/btn_commenter_normal.png);
+	float:right;
+	cursor:pointer;
+}
+
+.btn_commenter:hover{
+	background-image:url(../images/btn_commenter_hover.png);
+}
+
+.comm{
+	display:block;
+	margin-left:auto;
+	margin-bottom:20px;
+	width:660px;
+	height:auto;
+	float:left;
+	padding-bottom:20px;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:20px;
+}
+
+.date_comm{
+	font-family: 'Karla', sans-serif;
+	font-size:14px;
+	color:#a6a6a6;
+	font-weight:100;
+	margin-left:5px;
+}
+
+
+/* --- Colonne droite --- */
+
+#contenuJeuDroite{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:280px;
+	height:auto;
+	float:right;
+}
+
+.texte_comm{
+	font-family: 'Karla', sans-serif;
+	font-size:16px;
+	color:#888888;
+	line-height: 1.2;
+	margin-left:100px;
+}
+
+/* --- Bloc soutenir --- */
+
+#blocSoutenir{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:20px;
+	width:240px;
+	height:auto;
+	background-color:#edeff3;
+	border: solid 1px #dddbdb;
+	padding-bottom:20px;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+.caracteristiques{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	height:95px;
+	border-bottom: solid 1px #dddbdb;
+}
+
+.infos{
+	display:block;
+	width:220px;
+	float:left;
+}
+
+.styleNb{
+	display:block;
+	width:260px;
+	font-family: 'Crete Round', serif;
+	font-size:50px;
+	color:#514846;
+	line-height: normal;
+	margin-bottom:5px;
+}
+
+.styletexte{
+	font-family: 'Crete Round', serif;
+	font-size:14px;
+	color:#514846;
+}
+
+.btn_user{
+	display:block;
+	background-image: url(../images/btn_user.png);
+	width:54px;
+	height:47px;
+	float:right;
+	margin-top:25px;
+	opacity:0.7;
+	position:absolute;
+	margin-left:180px;
+}
+
+.btn_piggy{
+	display:block;
+	background-image: url(../images/btn_piggy.png);
+	width:54px;
+	height:47px;
+	float:right;
+	margin-top:25px;
+	opacity:0.7;
+	position:absolute;
+	margin-left:180px;
+}
+
+.btn_clock{
+	display:block;
+	background-image: url(../images/btn_clock.png);
+	width:54px;
+	height:47px;
+	float:right;
+	margin-top:25px;
+	opacity:0.7;
+	position:absolute;
+	margin-left:180px;
+}
+
+.btn_soutenir{
+	display:block;
+	background-image: url(../images/btn_soutenir_normal.png);
+	width:240px;
+	height:51px;
+	margin-top:15px;
+	cursor:pointer;
+}
+
+.btn_soutenir:hover{
+	display:block;
+	background-image: url(../images/btn_soutenir_hover.png);
+}
+
+/* --- Bloc Éditeur --- */
+
+#blocEditeur{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:20px;
+	width:240px;
+	height:100%;
+	background-color:#ebf3fc;
+	border: solid 1px #dddbdb;
+	padding:20px;
+}
+
+#img_nom{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	border-bottom: solid 1px #dddbdb;
+	height:100px;
+	margin-bottom:20px;
+}
+
+.img_profil2{
+	display:block;
+	float:left;
+	margin-left:auto;
+	margin-right:20px;
+	height:80px;
+	width:80px;
+	background-color:#000;
+}
+
+.texte_editeur{
+	display:block;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333;
+}
+
+.nom_editeur{
+	display:block;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#333;
+	font-weight:bold;
+	margin-top:8px;
+}
+
+/* --- Bloc Reward --- */
+
+.blocReward{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:-1px;
+	width:240px;
+	height:auto;
+	background-color:#f3f3f1;
+	border: solid 1px #dddbdb;
+	padding:20px;
+	cursor:pointer;
+}
+
+.blocReward:hover{
+	background-color:#FFF;
+}
+
+.titre_reward{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	border-bottom: solid 1px #dddbdb;
+	height:30px;
+	margin-bottom:10px;
+}
+
+.titreReward{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:16px;
+	color:#514846;
+}
+
+.edinautesReward{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	float:right;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:16px;
+	color:#4575c7;
+}
+
+.icon_coeur{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	float:right;
+	background-image: url(../images/coeur.png);
+	width:19px;
+	height:16px;
+	margin-left:5px;
+}
+
+.caracteristiques_reward{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#514846;
+	line-height: 1.5;
+}
+
+/* --- POP UP Reward --- */
+
+
+#fade { /*--Masque opaque noir de fond--*/
+	display: none; /*--masqué par défaut--*/
+	background: #000;
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	opacity: .80;
+	z-index: 9999;
+}
+
+.popup_block{
+	display: none; /*--masqué par défaut--*/
+	background: #fff;
+	padding: 20px;
+	float: left;
+	font-size: 1.2em;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	/*--Les différentes définitions de Box Shadow en CSS3--*/
+	-webkit-box-shadow: 0 0 10px 4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 10px 4px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 0 10px 4px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0 0 10px 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 10px 4px rgba(0,0,0,0.5);
+	/*--Coins arrondis en CSS3--*/
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+	border: 10px solid rgba(0,0,0,0.1);
+}
+
+img.btn_close {
+	float: right;
+	margin: -55px -55px 0 0;
+}
+
+/*--Gérer la position fixed pour IE6--*/
+*html #fade {
+position: absolute;
+}
+*html .popup_block {
+position: absolute;
+}
+
+#haut_popup{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:25px;
+	width:100%;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:15px;
+}
+
+.titre_popup{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#4575c7;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+.close{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#CCC;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:10px;
+	float:right;
+	cursor:pointer;
+}
+
+.close:hover{
+	color:#666;
+}
+
+.infos_popup{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:2px;
+	height:auto;
+	background-color:#f6f6f6;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+	
+	padding-top:10px;
+	padding-bottom:20px;
+	padding-right:20px;
+	padding-left:20px;
+}
+
+.texte_popup1{
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:#514846;
+	font-size:16px;
+	float:left;
+	margin-top:20px;
+}
+
+.texte_popup2{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#514846;
+	font-size:12px;
+	margin-top:20px;
+	margin-left:150px;
+	line-height: 1.5;
+}
+
+#champs_somme{
+	margin-left:150px;
+	background-color:#FFF;
+	width:120px;
+}
+
+.somme{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	color:#514846;
+	font-weight:bold;
+}
+
+#champs_somme form{
+	display:block;
+	border: 1px solid #e6e5e5;
+	padding:10px;
+	margin:0;
+	height:30px;
+	width:120px;
+	background-color:#FFF;
+}
+
+#champs_somme form input{
+	border:none;
+	height:30px;
+	outline:none;
+	color:#000;
+	padding-left:10px;
+	width:120px;
+}
+
+#champs_somme form input:focus{
+	color:#000;
+	width:120px;
+}
+
+.btn_continuer{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:35px;
+	width:134px;
+	background-image:url(../images/btn_continuer_normal.png);
+	margin-top:10px;
+	float:right;
+	cursor:pointer;
+}
+
+.btn_continuer:hover{
+	background-image:url(../images/btn_continuer_hover.png);
+}

@@ -9,9 +9,15 @@
 	position: relative;
 }
 
+.container_bandeau{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
 #menu_witty{
 	float:left;
-	margin-left:15%;
 	position:relative;
 }
 
@@ -35,11 +41,6 @@
 	position:relative;
 	margin-right:-1px;
 	cursor:pointer;
-}
-
-.btn_mwg:hover{
-	display:block;
-	background-image: url(../images/btn_mwg_normal.png);	
 }
 
 .btn_mwn{
@@ -82,7 +83,6 @@
 
 #espace_login{
 	float:right;
-	margin-right:15%;
 	position:relative;
 	width: 30%;
 }
@@ -111,10 +111,6 @@
 	margin-right:1px;
 }
 
-.txt-s-inscrire{
-	float:right;
-}
-
 .btn_sinscrire{
 	display:block;
   	height: 42px;
@@ -125,11 +121,11 @@
 	position:relative;
 	cursor:pointer;
 	color:white;
-	margin-top: 8px;
+	margin-top: 10px;
 }
 
 .btn_sinscrire:hover{
-	color:#D89000;
+	color:#5c90e7;
 }
 .orange{
 	background-color:#D88F0E;
@@ -276,3 +272,225 @@
 	display:block;
 	background-image: url(../images/wittybar/btn_header_dailymotion_hover.png);	
 }
+
+/* --- POP UP Reward --- */
+
+
+#fade { /*--Masque opaque noir de fond--*/
+	display: none; /*--masqué par défaut--*/
+	background: #000;
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	opacity: .50;
+	z-index: 9999;
+}
+
+.popup_block{
+	display: none; /*--masqué par défaut--*/
+	background: #fff;
+	float: left;
+	font-size: 1.2em;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	/*--Les différentes définitions de Box Shadow en CSS3--*/
+	-webkit-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	/*--Coins arrondis en CSS3--*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+}
+
+img.btn_close {
+	float: right;
+	margin: -55px -55px 0 0;
+}
+
+/*--Gérer la position fixed pour IE6--*/
+*html #fade {
+position: absolute;
+}
+*html .popup_block {
+position: absolute;
+}
+
+#haut_popup{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:25px;
+	width:100%;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:15px;
+}
+
+.titre_popup{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#4575c7;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+.close{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#CCC;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:10px;
+	float:right;
+	cursor:pointer;
+}
+
+.close:hover{
+	color:#666;
+}
+
+.btn_seconnecter{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:35px;
+	width:165px;
+	background-image:url(../images/btn_seconnecter_normal.png);
+	margin-top:10px;
+	float:right;
+	cursor:pointer;
+}
+
+.btn_seconnecter:hover{
+	background-image:url(../images/btn_seconnecter_hover.png);
+}
+
+#bas_popup_gauche{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:50px;
+	width:130px;
+	float:left;
+	margin-top:5px;
+}
+
+.texte_popup{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#514846;
+	font-weight:bold;
+}
+
+.champs_inscription{
+	display:block;
+	width:300px;
+}
+
+.champspopup{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:20px;
+	width:340px;
+	background-color:#FFF;
+	margin-bottom:15px;
+	
+	border-radius:4px;
+}
+
+.champspopup:focus{
+	-webkit-box-shadow: 0px 0px 5px rgba(94,137,217,0.1);
+	-moz-box-shadow: 0px 0px 5px rgba(94,137,217,0.1);
+	-o-box-shadow: 0px 0px 5px rgba(94,137,217,0.1);
+	-ms-box-shadow: 0px 0px 5px rgba(94,137,217,0.1);
+	box-shadow: 0px 0px 5px rgba(94,137,217,0.3);
+}
+
+.texte_popuplogin{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	color:#514846;
+	margin-bottom:10px;
+}
+
+.texte_popuplogin2{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#514846;
+	margin-bottom:10px;
+	margin-top:5px;
+}
+
+.texte_popuplogin3{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#CCC;
+	margin-bottom:10px;
+	text-decoration:underline; 
+	cursor:pointer;
+}
+
+.texte_popuplogin4{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:10px;
+	color:#FFF;
+	float:left;
+}
+
+.texte_popuplogin3:hover{
+	color:#ababab;
+}
+
+.checkbox{
+	float:left;
+	margin-right:10px;
+	margin-bottom:10px;
+	margin-left:-1px;
+}
+
+#login_facebook{
+	display:block;
+	width:350px;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:50px;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	background-color:#3B62B2;
+	padding:20px;
+}
+
+#haut_popup2{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:25px;
+	width:100%;
+	border-bottom: solid 1px #FFF;
+	margin-bottom:15px;
+}
+
+#login_normal{
+	display:block;
+	padding: 20px;
+}
+
+.smiley{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFF;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:10px;
+	float:right;
+	cursor:pointer;
+}
+

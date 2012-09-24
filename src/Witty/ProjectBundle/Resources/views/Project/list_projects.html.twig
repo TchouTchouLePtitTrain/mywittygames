@@ -1,5 +1,50 @@
 {% extends "WittyProjectBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {% stylesheets 'bundles/wittyproject/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
+{% endblock %}
+
 {% block content %}
-BLI BLI
+
+<div id="container">
+
+	<div class="blocTitrePage">
+    	<p class="titrePage titrePage_projet">Donner vie aux jeux</p>
+        <p class="descriptionPage descriptionPage_projet">Participez au financement de jeux de société et recevez des récompenses exclusives.<br/>Si un projet n'atteint pas son objectif, vous êtes remboursé sans frais.</p>
+        <p class="infosPage">Actuellement 6 jeux ont été édité grâce aux édinautes. Rejoignez-les !</p>
+    </div>
+    
+    <a href="" class="bloc_jeu">
+    	<div class="bloc_jeu_haut">
+    		<img class="img_jeu" src="" alt=""/>
+        	<p class="titreJeu" href="">Temple</p>
+        	<p class="descriptionJeu">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension <br/>à la boîte de base.</p>
+    	</div>
+        <div class="bloc_jeu_bas">
+        	<div class="bloc_caracteritiques">
+            	<img class="img_user"/>
+            	<p class="style_caracteritiques">234</p>
+            </div>
+            <div class="bloc_caracteritiques">
+            	<img class="img_piggy"/>
+            	<p class="style_caracteritiques">6 700 €</p>
+            </div>
+            <div class="bloc_caracteritiques">
+            	<img class="img_clock"/>
+            	<p class="style_caracteritiques">31</p>
+            </div>
+        </div>
+        
+        <div class="spacer"></div>
+
+    </a>
+
+
+    
+</div>
+
 {% endblock %}

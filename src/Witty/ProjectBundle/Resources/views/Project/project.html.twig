@@ -1,5 +1,196 @@
 {% extends "WittyProjectBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {% stylesheets 'bundles/wittyproject/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
+{% endblock %}
+
 {% block content %}
-BLA BLA
+
+<div id="container">
+
+	<div class="blocTitrePage">
+    	<p class="titrePage titrePage_projet">Temple</p>
+        <p class="descriptionPage descriptionPage_projet">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension à la boîte de base.</p>
+    </div>
+    
+ 
+      <ul id="onglets">
+        <li class="actif">Accueil</li>
+        <li>News</li>
+        <li>Édinautes</li> 
+        <li>Commentaires</li>
+      </ul>   
+
+    	<span class="flecheMenu"></span>
+
+    <div id="blocContenuJeu">
+    
+    	<section class="item">
+        	<video class="video"></video>
+            <p class="soustitre">Description du jeu </p>
+            <p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
+
+Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
+
+Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
+
+Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
+
+Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
+<p class="soustitre">Description du jeu </p>
+            <p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
+
+Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
+
+Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
+
+Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
+
+Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
+        </section>
+        
+        <section class="item">
+            <p class="soustitre">News 1 </p>
+            <p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
+
+Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
+
+Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
+
+Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
+
+Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
+<p class="soustitre">News 2 </p>
+            <p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
+
+Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
+
+Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
+
+Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
+
+Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
+        </section>
+        
+        <section class="item">
+            <p class="texte titre_edinautes">Voici la liste des édinautes qui soutiennent ce projet. <br/>
+Vous désirez les rejoindre ? Cliquez sur le bouton "<a class="texte_bleu">Je soutiens ce jeu</a>" !</p>
+            <div class="edinaute">
+            	<img class="img_profil2" src="" alt=""/>
+                <p class="nom_edinaute">Benjamin Lafaurie</p>
+                <p class="texte">a soutenu 4 jeux</p>
+            </div>
+        </section>
+        
+        <section class="item">
+            <div id="commenter">
+                <p class="texte">Publier votre commentaire</p>
+                <div id="champs_commentaire">
+                	<textarea class="commentaire"></textarea>
+                </div>
+                <a class="btn_commenter"></a>
+            </div>
+            <div class="comm">
+            	<img class="img_profil2" src="" alt=""/>
+                <p class="nom_edinaute">Benjamin Lafaurie<a class="date_comm">il y a 3 heures</a></p>
+                <p class="texte_comm">J'attend avec impatience d'avoir cette extension entre mes mains ;) </p>
+            </div>
+        </section>
+        
+        <section id="contenuJeuDroite">
+        
+        	<div id="blocSoutenir">
+            	<div class="caracteristiques">
+                	<div class="infos">
+                	<p class="styleNb">234</p>
+                    <p class="styletexte">édinautes soutiennent ce jeu</p>
+                    </div>
+                    <a class="btn_user"></a>
+                </div>
+                <div class="caracteristiques">
+                	<div class="infos">
+                	<p class="styleNb">6 700 €</p>
+                    <p class="styletexte">récolté sur 9 000 € demandé</p>
+                    </div>
+                    <a class="btn_piggy"></a>
+                </div>
+                <div class="caracteristiques">
+                	<div class="infos">
+                	<p class="styleNb">17</p>
+                    <p class="styletexte">jours restants</p>
+                    </div>
+                    <a class="btn_clock"></a>
+                </div>
+                <a class="btn_soutenir"></a>   
+            </div>
+            
+            <div id="blocEditeur">
+            	<div id="img_nom">
+                    <img class="img_profil2" src="" alt=""/>
+                    <p class="texte_editeur">Un jeu de<a class="nom_editeur">Witty Éditions</a><br/>Adresse : <br/><br/>Téléphone :</p>
+                </div>
+                <p class="texte_editeur">Site :<br/><br/>Facebook : <br/><br/>Twitter :</p>
+                <div class="spacer"></div>
+            </div>
+            
+            <a class="blocReward">
+            	<div class="titre_reward">
+                	<p class="poplight titreReward">Pour 5 € et +</p>
+                    <p class="icon_coeur"></p>
+                    <p class="edinautesReward">12</p>
+                </div>
+                <div class="caracteristiques_reward">
+                	<p>Accès aux colis édinaute (poster + flyers)</p>
+                    <p>Accès aux Witty Packs</p>
+                    <p>Accès à l'espace membre et à son contenu</p>
+                </div>
+            </a> 
+                                 
+            <!--           
+            <div id="popup" class="popup_block">
+            	<div id="haut_popup">
+            	<a class="titre_popup">SOUTENIR CE PROJET</a>
+                <a class="close">x</a>
+                </div>
+                <div class="infos_popup">
+                	<a class="texte_popup1">Montant</a>
+                    <div id="champs_somme">
+                        <form method="get" action="#">
+                            <input class="somme" type="text" name="somme" placeholder="€ 5.00"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="infos_popup" >
+                	<p class="texte_popup1">Récompenses</p>
+                    <div class="texte_popup2">
+                    	<p>Accès aux colis édinaute (poster + flyers)</p>
+                    	<p>Accès aux Witty Packs</p>
+                    	<p>Accès à l'espace membre et à son contenu</p>
+                    </div>
+                </div>
+                <a class="btn_continuer"></a>
+            </div>
+            -->
+
+ 
+        </section>
+        <div class="spacer"></div>
+
+    
+    </div>
+    
+    
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts 'bundles/wittyproject/js/onglets.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
 {% endblock %}
