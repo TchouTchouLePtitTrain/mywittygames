@@ -22,18 +22,16 @@ class UserReward
     private $id;
 
     /**
-     * @var integer $userId
-     *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+	 * @ORM\ManyToOne(targetEntity="Witty\UserBundle\Entity\User", inversedBy="userRewards")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $userId;
+    private $user;
 
     /**
-     * @var integer $rewardId
-     *
-     * @ORM\Column(name="reward_id", type="integer", nullable=false)
+	 * @ORM\ManyToOne(targetEntity="Reward", inversedBy="userRewards")
+     * @ORM\JoinColumn(name="reward_id", referencedColumnName="id")
      */
-    private $rewardId;
+    private $reward;
 
     /**
      * @var boolean $cancelled
@@ -181,5 +179,51 @@ class UserReward
     public function getUpdateDate()
     {
         return $this->updateDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Witty\UserBundle\Entity\User $user
+     * @return UserReward
+     */
+    public function setUser(\Witty\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Witty\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set reward
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $reward
+     * @return UserReward
+     */
+    public function setReward(\Witty\ProjectBundle\Entity\Reward $reward = null)
+    {
+        $this->reward = $reward;
+    
+        return $this;
+    }
+
+    /**
+     * Get reward
+     *
+     * @return Witty\ProjectBundle\Entity\Reward 
+     */
+    public function getReward()
+    {
+        return $this->reward;
     }
 }

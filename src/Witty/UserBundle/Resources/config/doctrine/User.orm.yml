@@ -97,11 +97,6 @@ Witty\UserBundle\Entity\User:
             fixed: false
             nullable: true
             column: country
-        fbId:
-            type: integer
-            unsigned: false
-            nullable: true
-            column: fb_id
         loginDp:
             type: string
             length: 16
@@ -130,4 +125,10 @@ Witty\UserBundle\Entity\User:
             length: 20
             fixed: false
             nullable: true
+        facebookId:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: facebook_id
     lifecycleCallbacks: {  }

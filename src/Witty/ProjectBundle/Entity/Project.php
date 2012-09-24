@@ -22,11 +22,10 @@ class Project
     private $id;
 
     /**
-     * @var integer $creatorId
-     *
-     * @ORM\Column(name="creator_id", type="integer", nullable=false)
+	 * @ORM\ManyToOne(targetEntity="\Witty\UserBundle\Entity\User", inversedBy="projects")
+     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
      */
-    private $creatorId;
+    private $creator;
 
     /**
      * @var string $title
@@ -105,8 +104,12 @@ class Project
      */
     private $description;
 
-
-
+    /**
+     * @ORM\OneToMany(targetEntity="Reward", mappedBy="project")
+     */
+    protected $rewards;
+	
+	
     /**
      * Get id
      *
@@ -392,35 +395,67 @@ class Project
     {
         return $this->description;
     }
-	
-	
-	
-	
-/*
-	public function getEdinautes()
-	{
-		$query = $this->getDoctrine()->getEntityManager()
-			->createQuery('
-				SELECT u FROM WittyProjectBundle:Reward r
-				INNER JOIN WittyProjectBundle:UserReward u_r
-				INNER JOIN WittyUserBundle:User u
-				WHERE r.project_id = :id 
-				AND u_r.reward_id = r.reward_id
-				AND u.id = u_r.user_id'
-			)->setParameter('id', $id);
-		try {
-			return $query->getSingleResult();
-		} catch (\Doctrine\ORM\NoResultException $e) {
-			return null;
-		}
-	}
-*/
-	
-	
-	
-	
-	
-	
-	
-	
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add rewards
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $rewards
+     * @return Project
+     */
+    public function addReward(\Witty\ProjectBundle\Entity\Reward $rewards)
+    {
+        $this->rewards[] = $rewards;
+    
+        return $this;
+    }
+
+    /**
+     * Remove rewards
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $rewards
+     */
+    public function removeReward(\Witty\ProjectBundle\Entity\Reward $rewards)
+    {
+        $this->rewards->removeElement($rewards);
+    }
+
+    /**
+     * Get rewards
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRewards()
+    {
+        return $this->rewards;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param Witty\UserBundle\Entity\User $creator
+     * @return Project
+     */
+    public function setCreator(\Witty\UserBundle\Entity\User $creator = null)
+    {
+        $this->creator = $creator;
+    
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return Witty\UserBundle\Entity\User 
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
 }

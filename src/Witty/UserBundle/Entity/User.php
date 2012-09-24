@@ -18,6 +18,16 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="UserReward", mappedBy="user")
+     */
+    protected $userRewards;
+	
+    /**
+     * @ORM\OneToMany(targetEntity="Projects", mappedBy="creator")
+     */
+    protected $projects;
+	
+    /**
      * @var \DateTime $createdAt
      */
     private $createdAt;
@@ -147,6 +157,14 @@ class User extends BaseUser
      */
     private $old_password;	
 	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="facebookId", type="string", length=255)
+     */
+    protected $facebookId;
+	
+	
     /**
      * Cet attribut n'est pas mappé
      */
@@ -159,6 +177,22 @@ class User extends BaseUser
 
 	
 	
+	public function __construct(){
+	
+		parent::__construct();
+		$this->createdAt = new \Datetime();
+	}
+	
+	public function serialize()
+    {
+        return serialize(array($this->facebookId, parent::serialize()));
+    }
+
+    public function unserialize($data)
+    {
+        list($this->facebookId, $parentData) = unserialize($data);
+        parent::unserialize($parentData);
+    }	
 	
 	
     /**
@@ -689,29 +723,6 @@ class User extends BaseUser
     {
         return $this->origine;
     }
-
-    /**
-     * Set level
-     *
-     * @param Witty\UserBundle\Entity\UserLevel $level
-     * @return User
-     */
-    public function setLevel(\Witty\UserBundle\Entity\UserLevel $level = null)
-    {
-        $this->level = $level;
-    
-        return $this;
-    }
-
-    /**
-     * Get level
-     *
-     * @return Witty\UserBundle\Entity\UserLevel 
-     */
-    public function getLevel()
-    {
-        return $this->level;
-    }
 	
     /**
      * Set newsletter
@@ -739,10 +750,9 @@ class User extends BaseUser
     /**
      * Set token
      *
-     * @param Witty\UserBundle\Entity\UserLevel $level
      * @return User
      */
-    public function setToken(\Witty\UserBundle\Entity\UserLevel $level = null)
+    public function setToken()
     {
         $this->token = $this->password.$this->id;
     
@@ -750,9 +760,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get level
+     * Get token
      *
-     * @return Witty\UserBundle\Entity\UserLevel 
+     * @return string
      */
     public function getToken()
     {
@@ -814,5 +824,51 @@ class User extends BaseUser
     public function getPhone()
     {
         return $this->phone;
+    }
+
+
+    /**
+     * Set facebookId
+     *
+     * @param string $facebookId
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+    
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string 
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+	
+		
+	
+	/**
+     * @param Array
+     */
+    public function setFBData($fbdata)
+    {
+        if (isset($fbdata['id'])) {
+            $this->setFacebookId($fbdata['id']);
+            $this->addRole('ROLE_FACEBOOK');
+        }
+        if (isset($fbdata['first_name'])) {
+            $this->setFirstname($fbdata['first_name']);
+        }
+        if (isset($fbdata['last_name'])) {
+            $this->setLastname($fbdata['last_name']);
+        }
+        if (isset($fbdata['email'])) {
+            $this->setEmail($fbdata['email']);
+        }
     }
 }

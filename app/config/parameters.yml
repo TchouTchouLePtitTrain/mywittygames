@@ -7,7 +7,7 @@ parameters:
     database_password: null
     mailer_transport: smtp
     mailer_host: localhost
-    mailer_user: null
+    mailer_user: contact@mywittygames.com
     mailer_password: null
     locale: fr
     secret: 5af99ad00cc4fc1389f9fbb4349f7c347c93448b

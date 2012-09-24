@@ -1,6 +1,15 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    
+services:
+    my.facebook.user:
+        class: Witty\UserBundle\Security\Provider\FacebookProvider
+        arguments:
+            facebook: "@fos_facebook.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"
+            container: "@service_container"
 
 framework:
     #esi:             ~
@@ -66,7 +75,27 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Witty\UserBundle\Entity\User
+    from_email:
+        address:        contact@mywittygames.com
+        sender_name:    no-reply
     profile: 
         form: 
+            type: witty_user_profile
+            handler: witty_user.profile.form.handler
+    registration: 
+        form: 
             type: witty_user_registration
-            handler: witty_user.form.handler.editing
+        confirmation:
+            from_email: # Use this node only if you don't want the global email address for the confirmation email
+                address: inscriptions@mywittygames.com
+                sender_name: no-reply
+            enabled: false # change to true for required email confirmation
+            template:   FOSUserBundle:Registration:email.txt.twig
+
+fos_facebook:
+    file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
+    alias:  facebook
+    app_id: 212621892102168
+    secret: e6f2e33b87ff8154600659c8565f68bb
+    cookie: true
+    permissions: [email, user_birthday, user_location]

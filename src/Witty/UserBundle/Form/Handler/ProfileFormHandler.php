@@ -10,7 +10,6 @@ class ProfileFormHandler extends BaseHandler
     //public function buildForm(FormBuilder $builder, array $options)
 	public function buildUserForm(FormBuilder $builder, array $options)
     {
-die('ok');
         //parent::buildForm($builder, $options);
 		parent::buildUserForm($builder, $options);
 	
@@ -27,16 +26,9 @@ die('ok');
         $builder->add('newsletter');
 
     }
-
-    //public function buildForm(FormBuilder $builder, array $options)
-	public function buildForm(FormBuilder $builder, array $options)
-    {
-die('ok');
-
-    }
 	
     public function getName()
     {
-        return 'witty_user_editing';
+        return 'witty_user_profile';
     }
 }

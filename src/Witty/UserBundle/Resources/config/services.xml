@@ -15,7 +15,11 @@
             <tag name="form.type" alias="witty_user_registration" />
             <argument>%fos_user.model.user.class%</argument>
         </service>
-		<service id="witty_user.form.handler.editing" class="Witty\UserBundle\Form\Handler\ProfileFormHandler" scope="request" public="false">
+		<service id="witty_user.profile.form.type" class="Witty\UserBundle\Form\Type\ProfileFormType">
+            <tag name="form.type" alias="witty_user_profile" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+		<service id="witty_user.profile.form.handler" class="Witty\UserBundle\Form\Handler\ProfileFormHandler" scope="request" public="false">
             <argument type="service" id="fos_user.profile.form" />
             <argument type="service" id="request" />
             <argument type="service" id="fos_user.user_manager" />

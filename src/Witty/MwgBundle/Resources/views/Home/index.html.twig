@@ -3,5 +3,5 @@
 {% block title %}{{ parent() }} - L'édition participative{% endblock %}
 
 {% block content %}
-    Commencement de l'intégration
+	{{ facebook_login_button({'autologoutlink': true}) }}
 {% endblock %}

@@ -13,6 +13,15 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+	/*
+$message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('send@example.com')
+        ->setTo('TchouTchouLePtitTrain@gmail.com')
+        ->setBody('ok')
+    ;
+    $this->get('mailer')->send($message);
+	*/
         return $this->render('WittyMwgBundle:Home:index.html.twig', array());
     }
 }

@@ -40,6 +40,8 @@
 	</div>
 </div>
 
+{% render "WittyUserBundle:Registration:register" %}
+{% render "FOSUserBundle:Security:login" %}
 
 {% javascripts 'bundles/wittybar/js/*.js' %}
 	<script src="{{ asset_url }}" type="text/javascript"></script>

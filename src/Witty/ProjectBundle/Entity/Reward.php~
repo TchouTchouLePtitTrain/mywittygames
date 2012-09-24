@@ -22,12 +22,16 @@ class Reward
     private $id;
 
     /**
-     * @var integer $projectId
-     *
-     * @ORM\Column(name="project_id", type="integer", nullable=false)
+	 * @ORM\ManyToOne(targetEntity="Project", inversedBy="rewards")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      */
-    private $projectId;
+    private $project;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UserReward", mappedBy="reward")
+     */
+    protected $userRewards;
+	
     /**
      * @var integer $pledgeAmount
      *
@@ -87,29 +91,6 @@ class Reward
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set projectId
-     *
-     * @param integer $projectId
-     * @return Reward
-     */
-    public function setProjectId($projectId)
-    {
-        $this->projectId = $projectId;
-    
-        return $this;
-    }
-
-    /**
-     * Get projectId
-     *
-     * @return integer 
-     */
-    public function getProjectId()
-    {
-        return $this->projectId;
     }
 
     /**
@@ -271,5 +252,68 @@ class Reward
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set project
+     *
+     * @param Witty\ProjectBundle\Entity\Project $project
+     * @return Reward
+     */
+    public function setProject(\Witty\ProjectBundle\Entity\Project $project = null)
+    {
+        $this->project = $project;
+    
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return Witty\ProjectBundle\Entity\Project 
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->userRewards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add userRewards
+     *
+     * @param Witty\ProjectBundle\Entity\UserReward $userRewards
+     * @return Reward
+     */
+    public function addUserReward(\Witty\ProjectBundle\Entity\UserReward $userRewards)
+    {
+        $this->userRewards[] = $userRewards;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userRewards
+     *
+     * @param Witty\ProjectBundle\Entity\UserReward $userRewards
+     */
+    public function removeUserReward(\Witty\ProjectBundle\Entity\UserReward $userRewards)
+    {
+        $this->userRewards->removeElement($userRewards);
+    }
+
+    /**
+     * Get userRewards
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUserRewards()
+    {
+        return $this->userRewards;
     }
 }

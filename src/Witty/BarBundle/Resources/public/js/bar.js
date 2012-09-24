@@ -10,4 +10,13 @@ $(document).ready(function(){
 		$('#form_token').attr('action', event.target.href);
 		$('#form_token').submit();
 	});
+	
+	/*
+	$('.btn_deconnexion').click(function()
+	{
+		FB.Connect.logout(function() 
+		{ 
+			window.location = 'logout'; 
+		});return false;
+	});*/
 });

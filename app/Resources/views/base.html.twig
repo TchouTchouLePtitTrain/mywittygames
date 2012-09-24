@@ -20,7 +20,26 @@
 		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+	
+		<!-- Intégration de l'authentification facebook -->
+		<script>
+			//Script pour gérer la réponse de facebook à l'authentification
+			function goLogIn(){
+			  window.location = "{{ path('_security_check') }}";
+			}
 
+			function onFbInit() {
+			  if (typeof(FB) != 'undefined' && FB != null ) {
+				  FB.Event.subscribe('auth.statusChange', function(response) {
+					  setTimeout(goLogIn, 500);
+				  });
+			  }
+			}
+		</script>
+		{{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
+		<!-- Fin de l'intégration facebook -->
+		
+		
 		<header>
 			{% render "WittyBarBundle:Bar:display" %}
 			{% render "WittyMenuBundle:Menu:display" %}
@@ -28,6 +47,7 @@
         {% block content %}{% endblock %}
 		<footer>
 		</footer>
+
         {% block javascripts %} {% endblock %}
     </body>
 </html>

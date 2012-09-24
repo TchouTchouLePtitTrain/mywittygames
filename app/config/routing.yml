@@ -37,3 +37,10 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+#FOSFacebookBundle
+_security_check:
+    pattern:  /login_check_fb
+
+_security_logout:
+    pattern:  /logout_fb
