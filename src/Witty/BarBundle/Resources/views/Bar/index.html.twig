@@ -35,7 +35,7 @@
 			</a>
 		{% else %}
 			<a class="iframe_login btn_sidentifier popuplogin" href="{{ path('fos_user_security_login') }}" onclick="javascript:return false;"></a>
-			<a class="pseudo btn_sinscrire" href="{{ path('fos_user_registration_register') }}">
+			<a class="pseudo btn_sinscrire popupsignin" href="{{ path('fos_user_registration_register') }}" onclick="javascript:return false;">
 				<span class="plus-pseudo">+</span>
 				<span class="txt-s-inscrire"> S'inscrire</span>
 			</a>
@@ -61,10 +61,14 @@
                 </div>
                 <div id="login_facebook">
                 	<div id="haut_popup2">
-                    <p class="texte_popuplogin4">Ou connecter vous avec Facebook</p>
-                    <p class="smiley">; )</p>
+                    <p class="texte_popuplogin4">Ou connectez-vous avec Facebook</p>
+                    <p class="jaime"></p>
                     </div>
                 </div>
+            </div>
+            
+            <div id="popup2" class="popup_block2">
+            	
             </div>
 
             

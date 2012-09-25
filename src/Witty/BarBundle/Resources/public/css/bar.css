@@ -273,7 +273,7 @@
 	background-image: url(../images/wittybar/btn_header_dailymotion_hover.png);	
 }
 
-/* --- POP UP Reward --- */
+/* --- POP UP Login --- */
 
 
 #fade { /*--Masque opaque noir de fond--*/
@@ -430,7 +430,7 @@ position: absolute;
 .texte_popuplogin3{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
-	color:#CCC;
+	color:#ababab;
 	margin-bottom:10px;
 	text-decoration:underline; 
 	cursor:pointer;
@@ -446,7 +446,7 @@ position: absolute;
 }
 
 .texte_popuplogin3:hover{
-	color:#ababab;
+	color:#514846;
 }
 
 .checkbox{
@@ -484,13 +484,37 @@ position: absolute;
 	padding: 20px;
 }
 
-.smiley{
-	font-family:Arial, Helvetica, sans-serif;
-	color:#FFF;
-	font-size:16px;
-	font-weight:bold;
+.jaime{
 	margin-bottom:10px;
 	float:right;
-	cursor:pointer;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/jaime.png);
+	height:15px;
+	width:17px;
 }
 
+/* --- POP UP Login --- */
+
+.popup_block2{
+	display: none; /*--masqué par défaut--*/
+	background: #fff;
+	float: left;
+	font-size: 1.2em;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	/*--Les différentes définitions de Box Shadow en CSS3--*/
+	-webkit-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	/*--Coins arrondis en CSS3--*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+}
