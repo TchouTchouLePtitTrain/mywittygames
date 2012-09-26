@@ -1,0 +1,204 @@
+/* WittyMenu */
+
+#bandeauMenu{
+	background-color:#FFF;
+	height: 69px;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	border-bottom: solid 3px #4270be;
+}
+
+.container_bandeau{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
+#logomenu{
+	float:left;
+	position:relative;
+}
+
+.logo_mwg{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/logo_mwg.png);
+ 	background-repeat: no-repeat;
+	width: 317px;
+  	height: 46px;
+	float:left;
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-right:29px;
+	cursor:pointer;
+}
+
+#menu{
+	float:left;
+	margin-left:0px;
+	position:relative;
+}
+
+.btn_decouvrir{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_decouvrir_normal.png);
+ 	background-repeat: no-repeat;
+	width: 111px;
+  	height: 70px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-right:-1px;
+	cursor:pointer;
+	float:left;
+}
+
+.btn_decouvrir:hover{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_decouvrir_hover.png);
+}
+
+.btn_faq{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_faq_normal.png);
+ 	background-repeat: no-repeat;
+	width: 107px;
+  	height: 70px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	cursor:pointer;
+	float:left;
+}
+
+.btn_faq:hover{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_faq_hover.png);
+}
+
+.recherche{
+	float:left;
+	margin-left:30px;
+}
+
+.recherche form{
+	display:block;
+	border: 1px solid #CCC;
+	border-radius:50px;
+	background:-webkit-linear-gradient(top, #FFF 0%, #F5F5F5 100%);
+	padding:0;
+	margin:0;
+	height:22px;
+}
+
+.recherche form input{
+	border-radius:50px;
+	border:none;
+	height:22px;
+	outline:none;
+	padding:0px 5px 0px 23px;
+	background:url(../../bundles/wittymenu/images/loupe.png)  no-repeat scroll 7px #FFFFFF; 
+	color:#CCC;
+	text-shadow:0px 1px 0px #FFF;
+	width:100px;
+	
+	-webkit-transition:0,1s;
+	-moz-transition:0,1s;
+	-o-transition:0,1s;
+	-ms-transition:0,1s;
+	transition:0,1s;
+	
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+	-o-box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+	-ms-box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
+
+.recherche form input:focus{
+	background:url(../../bundles/wittymenu/images/loupe.png)  no-repeat scroll 7px #FFFFFF; 
+	width:200px;
+	color:#000;
+	text-shadow:0px 1px 0px #FFF;
+	
+	-webkit-box-shadow: 0px 0px 5px rgba(66,112,190,1);
+	-moz-box-shadow: 0px 0px 5px rgba(66,112,190,1);
+	-o-box-shadow: 0px 0px 5px rgba(66,112,190,1);
+	-ms-box-shadow: 0px 0px 5px rgba(66,112,190,1);
+	box-shadow: 0px 0px 5px rgba(66,112,190,1);
+}
+
+#logosociaux{
+	position:relative;
+	float:right;
+	position:relative;
+	border-left: 1px solid #F2F0EF;
+	width:130px;
+	height:54px;
+	top:-22px;
+	padding-top:15px;
+	padding-left:20px;
+}
+
+.btn_dailymotion{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_dailymotion_normal.png);
+ 	background-repeat: no-repeat;
+	width: 32px;
+  	height: 35px;
+	float:left;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-right:10px;
+	cursor:pointer;
+}
+
+.btn_dailymotion:hover{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_dailymotion_hover.png);
+}
+
+.btn_twitter{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_twitter_normal.png);
+ 	background-repeat: no-repeat;
+	width: 32px;
+  	height: 35px;
+	float:left;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-right:10px;
+	cursor:pointer;
+}
+
+.btn_twitter:hover{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_twitter_hover.png);
+}
+
+.btn_facebook{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_facebook_normal.png);
+ 	background-repeat: no-repeat;
+	width: 32px;
+  	height: 35px;
+	float:left;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	margin-right:10px;
+	cursor:pointer;
+}
+
+.btn_facebook:hover{
+	display:block;
+	background-image: url(../../bundles/wittymenu/images/btn_facebook_hover.png);
+}

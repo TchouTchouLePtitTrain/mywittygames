@@ -9,10 +9,23 @@
 	position: relative;
 }
 
+.container_bandeau{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
 #menu_witty{
 	float:left;
-	margin-left:15%;
 	position:relative;
+}
+
+#menu_witty form{
+	float:left;
+}
+#menu_witty submit{
+	text-decoration:none;
 }
 
 .btn_mwg{
@@ -28,11 +41,6 @@
 	position:relative;
 	margin-right:-1px;
 	cursor:pointer;
-}
-
-.btn_mwg:hover{
-	display:block;
-	background-image: url(../../bundles/wittybar/images/btn_mwg_normal.png);	
 }
 
 .btn_mwn{
@@ -75,7 +83,6 @@
 
 #espace_login{
 	float:right;
-	margin-right:15%;
 	position:relative;
 	width: 30%;
 }
@@ -85,7 +92,7 @@
 	background-image: url(../../bundles/wittybar/images/btn_sidentifier_normal.png);
  	background-repeat: no-repeat;
 	width: 111px;
-  	height: 42px;
+  	height: 30px;
 	float:right;
 	margin-top:0px;
 	margin-left:auto;
@@ -104,10 +111,6 @@
 	margin-right:1px;
 }
 
-.txt-s-inscrire{
-	float:right;
-}
-
 .btn_sinscrire{
 	display:block;
   	height: 42px;
@@ -118,11 +121,11 @@
 	position:relative;
 	cursor:pointer;
 	color:white;
-	margin-top: 8px;
+	margin-top: 10px;
 }
 
 .btn_sinscrire:hover{
-	color:#D89000;
+	color:#5c90e7;
 }
 .orange{
 	background-color:#D88F0E;
@@ -269,3 +272,4 @@
 	display:block;
 	background-image: url(../../bundles/wittybar/images/wittybar/btn_header_dailymotion_hover.png);	
 }
+

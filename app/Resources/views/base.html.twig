@@ -20,7 +20,7 @@
 		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-	
+
 		<!-- Intégration de l'authentification facebook -->
 		<script>
 			//Script pour gérer la réponse de facebook à l'authentification
@@ -47,7 +47,49 @@
         {% block content %}{% endblock %}
 		<footer>
 		</footer>
+    
+    
+    
+        
+        <div id="popup" class="popup_block">
+            	<div id="login_normal">
+                    <div id="haut_popup">
+                    <a class="titre_popup">Se connecter</a>
+                    <a class="close">x</a>
+                    </div>
+                    <div class="champs_inscription">
+           			{% render "FOSUserBundle:Security:login" %}
+                    </div>
+                    <a class="texte_popuplogin3">Mot de passe oublié ?</a>
+                </div>
+                <div id="login_facebook">
+                	<div id="haut_popup2">
+                    <p class="texte_popuplogin4">Ou connectez-vous avec Facebook</p>
+                    	{{ facebook_login_button({'autologoutlink': true}) }}
 
-        {% block javascripts %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+            
+            <div id="popup2" class="popup_block2">
+            	<div id="login_normal">
+                    <div id="haut_popup">
+                        <a class="titre_popup">S'inscrire</a>
+                        <a class="close">x</a>
+                    </div>
+                    {% render "WittyUserBundle:Registration:register" %}
+                    <p class="texte_popuplogin5">En vous inscrivant, vous acceptez<br/> nos <a class="conditions">conditions d'utilisation</a></p>
+                </div>
+                <div id="login_facebook2">
+                	<div id="haut_popup2">
+                    <p class="texte_popuplogin4">Ou connectez-vous avec Facebook</p>
+                    	{{ facebook_login_button({'autologoutlink': true}) }}
+
+                    </div>
+                </div>
+            </div>
+
     </body>
+    
+    
 </html>

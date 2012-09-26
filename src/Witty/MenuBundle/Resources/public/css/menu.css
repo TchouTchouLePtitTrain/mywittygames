@@ -8,6 +8,7 @@
 	margin-right: auto;
 	position: relative;
 	border-bottom: solid 3px #4270be;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
 .container_bandeau{
