@@ -75,6 +75,13 @@ class Reward
     private $updateDate;
 
     /**
+     * @var string $title
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     */
+    private $title;
+	
+    /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="text", nullable=false)
@@ -315,5 +322,28 @@ class Reward
     public function getUserRewards()
     {
         return $this->userRewards;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Reward
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }

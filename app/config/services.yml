@@ -1,0 +1,16 @@
+parameters:
+    witty.fs.class: Witty\Model\Filesystem
+    witty.s3.adapter.class: Witty\Adapter\AmazonS3Adapter
+    witty.s3.class: AmazonS3
+    witty.s3.options: 
+        key: AKIAICH4QGFKNEHOOZAA
+        secret: 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
+    witty.s3.bucket: mywittygames
+
+#Urls des sites Witty
+    url_mwg_dev: http://localhost/mywittygames/web/app_dev.php/
+    url_mwg_prod: http://www.mywittygames.com/
+    url_mwn_dev: http://localhost/mywittynews/
+    url_mwn_prod: http://www.mywittynews.fr/
+    url_mws_dev: http://localhost/mywittyshop/
+    url_mws_prod: http://www.mywittyshop.fr/

@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
     
 services:
     my.facebook.user:
@@ -10,6 +11,19 @@ services:
             userManager: "@fos_user.user_manager"
             validator: "@validator"
             container: "@service_container"
+    witty.s3:
+        class: %witty.s3.class%
+        arguments:
+            parameter: %witty.s3.options%
+    witty.s3.adapter:
+        class: %witty.s3.adapter.class%
+        arguments:
+            service: @witty.s3
+            parameter: %witty.s3.bucket%
+    witty.fs:
+        class: %witty.fs.class%
+        arguments:
+            service: @witty.s3.adapter
 
 framework:
     #esi:             ~
@@ -99,3 +113,9 @@ fos_facebook:
     secret: e6f2e33b87ff8154600659c8565f68bb
     cookie: true
     permissions: [email, user_birthday, user_location]
+
+knp_gaufrette:
+    adapters:
+        AmazonS3:
+            service:
+                id: witty.s3.adapter

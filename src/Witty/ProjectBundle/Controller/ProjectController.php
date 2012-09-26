@@ -13,20 +13,31 @@ class ProjectController extends Controller
      */
     public function indexAction()
     {
-		return $this->render('WittyProjectBundle:Project:list_projects.html.twig', array());
+		return $this->displayProjectsList();
     }
 	
-    public function displayAction($project_id)
+	//L'argument "slug" peut être un slug ou un id
+    public function displayAction($slug)
     {
 		$em = $this->getDoctrine()->getEntityManager();
 		
-		$project = $em->getRepository('WittyProjectBundle:Project')->findOneById($project_id);
-		$edinautes = $em->getRepository('WittyUserBundle:User')->findEdinautesByProjectId($project_id);
+		if (gettype($slug) == 'string')
+			$project = $em->getRepository('WittyProjectBundle:Project')->findOneBySlug($slug);
+		elseif (gettype($slug) == 'integer')
+			$project = $em->getRepository('WittyProjectBundle:Project')->findOneById($slug);
 
 		return $this->render('WittyProjectBundle:Project:project.html.twig', 
 			array(
-				'project' => $project, 
-				'edinautes' => $edinautes
+				'project' => $project
 			));
+    }
+	
+    public function displayProjectsList()
+    {
+		$em = $this->getDoctrine()->getEntityManager();
+		
+		$projects = $em->getRepository('WittyProjectBundle:Project')->findAll();
+			
+		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projects' => $projects));
     }
 }

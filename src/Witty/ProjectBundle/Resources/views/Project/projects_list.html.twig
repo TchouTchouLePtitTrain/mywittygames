@@ -18,32 +18,34 @@
         <p class="infosPage">Actuellement 6 jeux ont été édité grâce aux édinautes. Rejoignez-les !</p>
     </div>
     
-    <a href="" class="bloc_jeu">
-    	<div class="bloc_jeu_haut">
-    		<img class="img_jeu" src="" alt=""/>
-        	<p class="titreJeu" href="">Temple</p>
-        	<p class="descriptionJeu">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension <br/>à la boîte de base.</p>
-    	</div>
-        <div class="bloc_jeu_bas">
-        	<div class="bloc_caracteritiques">
-            	<img class="img_user"/>
-            	<p class="style_caracteritiques">234</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_piggy"/>
-            	<p class="style_caracteritiques">6 700 €</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_clock"/>
-            	<p class="style_caracteritiques">31</p>
-            </div>
-        </div>
-        
-        <div class="spacer"></div>
+	{% for project in projects %}
+	
+		<a href="" class="bloc_jeu">
+			<div class="bloc_jeu_haut">
+				<img class="img_jeu" src="{{ project.getImage() }}" alt=""/>
+				<p class="titreJeu" href="">Temple</p>
+				<p class="descriptionJeu">{{ project.getShortDescription() }}</p>
+			</div>
+			<div class="bloc_jeu_bas">
+				<div class="bloc_caracteritiques">
+					<img class="img_user"/>
+					<p class="style_caracteritiques">{{ project.getEdinautes()|length }}</p>
+				</div>
+				<div class="bloc_caracteritiques">
+					<img class="img_piggy"/>
+					<p class="style_caracteritiques">{{ project.getInvestment() }}</p>
+				</div>
+				<div class="bloc_caracteritiques">
+					<img class="img_clock"/>
+					<p class="style_caracteritiques">{{ project.getDaysLeft() }}</p>
+				</div>
+			</div>
+			
+			<div class="spacer"></div>
 
-    </a>
+		</a>
 
-
+	{% endfor %}
     
 </div>
 

@@ -4,6 +4,8 @@ namespace Witty\UserBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Gaufrette\Filesystem;
+use Gaufrette\Adapter\AmazonS3 as AmazonS3Adapter;
 
 /**
  * Witty\UserBundle\Entity\User
@@ -91,6 +93,11 @@ class User extends BaseUser
      * @var string $avatar
      */
     private $avatar;
+    
+    /**
+     * @var string $avatarFile
+     */
+    public $avatarFile;
 
     /**
      * @var string $activationCode
@@ -158,9 +165,8 @@ class User extends BaseUser
     private $old_password;	
 	
 	/**
-     * @var string
+     * @var string $facebookId
      *
-     * @ORM\Column(name="facebookId", type="string", length=255)
      */
     protected $facebookId;
 	
@@ -173,7 +179,13 @@ class User extends BaseUser
     /**
      * Cet attribut n'est pas mappé
      */
-    private $token_mws;
+    private $token_mws;	
+	
+    /**
+     * Cet attribut n'est pas mappé
+	 * Array de Project
+     */
+    private $projectsFunded;
 
 	
 	
@@ -850,7 +862,78 @@ class User extends BaseUser
         return $this->facebookId;
     }
 	
+
+    /**
+     * Get projectsFunded
+     *
+     * @return Array 
+     */
+    public function setProjectsFunded()
+    {
+		$projectsFunded = array();
 		
+		if ($this->getUserRewards())
+		{
+			foreach($this->getUserRewards() as $userReward)
+			{
+				if ($userReward->getReward())
+				{
+					foreach ($userReward->getReward() as $reward)
+					{
+						$project = $reward->getProject();
+						if (!in_array($project, $projectsFunded)) $projectsFunded[] = $projectsFunded; //Si le projet n'est pas déjà dans la liste, on l'ajoute
+					}
+				}
+			}
+		}
+		
+		$this->projectsFunded = $projectsFunded;
+    }
+	
+    /**
+     * Get projectsFunded
+     *
+     * @return Array 
+     */
+    public function getProjectsFunded()
+    {
+		if (!isset($this->projectsFunded)) $this->setProjectsFunded();
+        return $this->projectsFunded;
+    }	
+		
+    /**
+     * Add userReward
+     *
+     * @param Witty\ProjectBundle\Entity\UserReward $userReward
+     * @return User
+     */
+    public function addUserReward(\Witty\ProjectBundle\Entity\UserReward $userReward)
+    {
+        $this->userRewards[] = $userReward;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userReward
+     *
+     * @param Witty\ProjectBundle\Entity\UserReward $userReward
+     */
+    public function removeUserReward(\Witty\ProjectBundle\Entity\UserReward $userReward)
+    {
+        $this->userRewards->removeElement($userReward);
+    }
+
+    /**
+     * Get userRewards
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUserRewards()
+    {
+        return $this->userRewards;
+    }
+
 	
 	/**
      * @param Array
@@ -870,5 +953,31 @@ class User extends BaseUser
         if (isset($fbdata['email'])) {
             $this->setEmail($fbdata['email']);
         }
+    }
+	
+	//Renvoie le texte qui doit apparaître pour identifier l'internaute
+	public function getLabel($affectueux = false)
+	{
+		if (isset($this->username)) return $this->username;
+		elseif (isset($this->firstname)) return $this->firstname.($affectueux ? $this->lastname : "");
+		else return $this->email;
+	}
+    
+    //Renvoie l'avatarFile
+    public function getAvatarFile()
+    {
+        return $this->avatarFile;
+    }
+	
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+	 *
+	 * Méthode déclenchée lorsque l'on va persister l'user
+     */
+    public function preUpload()
+    {
+        if (null !== $this->avatarFile) 
+			$this->avatar = $this->avatarFile->getClientOriginalName();
     }
 }

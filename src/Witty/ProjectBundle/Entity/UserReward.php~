@@ -53,6 +53,13 @@ class UserReward
      * @ORM\Column(name="update_date", type="datetime", nullable=true)
      */
     private $updateDate;
+	
+    /**
+     * @var integer $paidAmount
+     *
+     * @ORM\Column(name="paid_amount", type="integer")
+     */
+    private $paidAmount;
 
 
 
@@ -64,52 +71,6 @@ class UserReward
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return UserReward
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * Set rewardId
-     *
-     * @param integer $rewardId
-     * @return UserReward
-     */
-    public function setRewardId($rewardId)
-    {
-        $this->rewardId = $rewardId;
-    
-        return $this;
-    }
-
-    /**
-     * Get rewardId
-     *
-     * @return integer 
-     */
-    public function getRewardId()
-    {
-        return $this->rewardId;
     }
 
     /**
@@ -225,5 +186,28 @@ class UserReward
     public function getReward()
     {
         return $this->reward;
+    }
+
+    /**
+     * Set paidAmount
+     *
+     * @param integer $paidAmount
+     * @return UserReward
+     */
+    public function setPaidAmount($paidAmount)
+    {
+        $this->paidAmount = $paidAmount;
+    
+        return $this;
+    }
+
+    /**
+     * Get paidAmount
+     *
+     * @return integer 
+     */
+    public function getPaidAmount()
+    {
+        return $this->paidAmount;
     }
 }

@@ -3,5 +3,5 @@ project_accueil:
     defaults:  { _controller: WittyProjectBundle:Project:index }
 
 project_display:
-    pattern:   /{project_id}
+    pattern:   /{slug}
     defaults:  { _controller: WittyProjectBundle:Project:display }

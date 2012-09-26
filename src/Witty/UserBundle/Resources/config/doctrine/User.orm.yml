@@ -93,7 +93,7 @@ Witty\UserBundle\Entity\User:
             column: default_locale
         country:
             type: string
-            length: 3
+            length: 255
             fixed: false
             nullable: true
             column: country
@@ -131,4 +131,7 @@ Witty\UserBundle\Entity\User:
             fixed: false
             nullable: true
             column: facebook_id
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+        prePersist: [ preUpload ]
+        preUpdate: [ preUpload ]
+

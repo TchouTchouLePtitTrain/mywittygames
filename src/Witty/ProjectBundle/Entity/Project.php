@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Witty\ProjectBundle\Entity\Project
  *
- * @ORM\Table(name="project")
+ * @ORM\Table(name="project", uniqueConstraints={@ORM\UniqueConstraint(name="project_slug", columns={"slug"})}))
  * @ORM\Entity
  */
 class Project
@@ -27,6 +27,22 @@ class Project
      */
     private $creator;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Reward", mappedBy="project")
+     */
+    protected $rewards;
+	
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="project")
+     */
+    protected $comments;
+	
+    /**
+     * @ORM\OneToMany(targetEntity="News", mappedBy="project")
+     */
+    protected $news;
+	
+	
     /**
      * @var string $title
      *
@@ -103,11 +119,32 @@ class Project
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
-
+	
     /**
-     * @ORM\OneToMany(targetEntity="Reward", mappedBy="project")
+     * @var string $shortDescription
+     *
+     * @ORM\Column(name="short_description", type="string", length=255)
      */
-    protected $rewards;
+    private $shortDescription;
+	
+    /**
+     * @var string $slug
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    protected $slug;
+	
+    /**
+     * non mappé
+	 * Array des édinautes du projet
+     */
+    protected $edinautes;
+	
+    /**
+     * non mappé
+	 * Integer : montant total investi sur le projet
+     */
+    protected $funding;
 	
 	
     /**
@@ -457,5 +494,231 @@ class Project
     public function getCreator()
     {
         return $this->creator;
+    }
+	
+	/**
+     * Get Edinautes
+     *
+     * @return Array
+     */
+	public function getEdinautes()
+	{
+		if (!$this->edinautes) $this->setEdinautes();
+		return $this->edinautes;
+	}
+	
+	
+	/**
+     * Set Edinautes
+     *
+     */
+	public function setEdinautes()
+	{
+		$edinautes = array();
+		
+		if ($this->getRewards())
+		{
+			foreach($this->getRewards() as $reward)
+			{
+				if ($reward->getUserRewards())
+				{
+					foreach ($reward->getUserRewards() as $userReward)
+					{
+						$user = $userReward->getUser();
+						if (!in_array($user, $edinautes)) $edinautes[] = $user; //Si l'édinaute n'est pas déjà dans la liste, on l'ajoute
+					}
+				}
+			}
+		}
+		
+		$this->edinautes = $edinautes;
+	}
+	
+	
+	
+	
+	/**
+     * Set Funding
+     *
+     */
+	public function setFunding()
+	{
+		$funding = 0;
+		
+		if ($this->getRewards())
+		{
+			foreach($this->getRewards() as $reward)
+			{
+				if ($reward->getUserRewards())
+				{
+					foreach ($reward->getUserRewards() as $userReward)
+					{
+						$funding += $userReward->getPaidAmount();
+					}
+				}
+			}
+		}
+		
+		$this->funding = $funding;
+	}
+	
+	
+	/**
+     * Get Funding
+     *
+     * @return integer
+     */
+	public function getFunding()
+	{
+		if (!isset($this->funding)) $this->setFunding();
+		return $this->funding;
+	}	
+	
+	
+	/**
+     * Get DaysLeft
+     *
+     * @return integer
+     */
+	public function getDaysLeft()
+	{
+		return $this->getEndDate()->diff(new \DateTime())->format('%d');
+	}
+	
+	
+
+    /**
+     * Set shortDescription
+     *
+     * @param string $shortDescription
+     * @return Project
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+    
+        return $this;
+    }
+
+    /**
+     * Get shortDescription
+     *
+     * @return string 
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Project
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param Witty\ProjectBundle\Entity\Comment $comments
+     * @return Project
+     */
+    public function addComment(\Witty\ProjectBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+    
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param Witty\ProjectBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Witty\ProjectBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add news
+     *
+     * @param Witty\ProjectBundle\Entity\News $news
+     * @return Project
+     */
+    public function addNews(\Witty\ProjectBundle\Entity\News $news)
+    {
+        $this->news[] = $news;
+    
+        return $this;
+    }
+
+    /**
+     * Remove news
+     *
+     * @param Witty\ProjectBundle\Entity\News $news
+     */
+    public function removeNews(\Witty\ProjectBundle\Entity\News $news)
+    {
+        $this->news->removeElement($news);
+    }
+
+    /**
+     * Get news
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getNews()
+    {
+        return $this->news;
+    }
+
+    /**
+     * Add news
+     *
+     * @param Witty\ProjectBundle\Entity\News $news
+     * @return Project
+     */
+    public function addNew(\Witty\ProjectBundle\Entity\News $news)
+    {
+        $this->news[] = $news;
+    
+        return $this;
+    }
+
+    /**
+     * Remove news
+     *
+     * @param Witty\ProjectBundle\Entity\News $news
+     */
+    public function removeNew(\Witty\ProjectBundle\Entity\News $news)
+    {
+        $this->news->removeElement($news);
     }
 }

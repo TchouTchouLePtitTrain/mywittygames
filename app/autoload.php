@@ -11,6 +11,9 @@ if (!function_exists('intl_get_error_code')) {
     $loader->add('', __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/stubs');
 }
 
+//Autoload du sdk AWS
+require_once __DIR__.'/../vendor/amazonwebservices/aws-sdk-for-php/sdk.class.php';
+
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 return $loader;
