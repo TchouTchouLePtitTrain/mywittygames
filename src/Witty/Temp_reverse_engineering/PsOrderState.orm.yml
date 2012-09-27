@@ -1,0 +1,46 @@
+PsOrderState:
+    type: entity
+    table: ps_order_state
+    fields:
+        idOrderState:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order_state
+            generator:
+                strategy: IDENTITY
+        invoice:
+            type: boolean
+            nullable: true
+        sendEmail:
+            type: boolean
+            nullable: false
+            column: send_email
+        color:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+        unremovable:
+            type: boolean
+            nullable: false
+        hidden:
+            type: boolean
+            nullable: false
+        logable:
+            type: boolean
+            nullable: false
+        delivery:
+            type: boolean
+            nullable: false
+        shipped:
+            type: boolean
+            nullable: false
+        paid:
+            type: boolean
+            nullable: false
+        deleted:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

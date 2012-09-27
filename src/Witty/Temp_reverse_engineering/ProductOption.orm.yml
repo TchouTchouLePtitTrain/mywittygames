@@ -1,0 +1,32 @@
+ProductOption:
+    type: entity
+    table: product_option
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        position:
+            type: boolean
+            nullable: true
+        isRequired:
+            type: boolean
+            nullable: true
+            column: is_required
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

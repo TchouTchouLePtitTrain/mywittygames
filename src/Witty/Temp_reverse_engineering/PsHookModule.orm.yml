@@ -1,0 +1,29 @@
+PsHookModule:
+    type: entity
+    table: ps_hook_module
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idModule:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_module
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idHook:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_hook
+        position:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,52 @@
+PhpbbBbcodes:
+    type: entity
+    table: phpbb_bbcodes
+    fields:
+        bbcodeId:
+            id: true
+            type: boolean
+            nullable: false
+            column: bbcode_id
+            generator:
+                strategy: IDENTITY
+        bbcodeTag:
+            type: string
+            length: 16
+            fixed: false
+            nullable: false
+            column: bbcode_tag
+        bbcodeHelpline:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: bbcode_helpline
+        displayOnPosting:
+            type: boolean
+            nullable: false
+            column: display_on_posting
+        bbcodeMatch:
+            type: text
+            nullable: false
+            column: bbcode_match
+        bbcodeTpl:
+            type: text
+            nullable: false
+            column: bbcode_tpl
+        firstPassMatch:
+            type: text
+            nullable: false
+            column: first_pass_match
+        firstPassReplace:
+            type: text
+            nullable: false
+            column: first_pass_replace
+        secondPassMatch:
+            type: text
+            nullable: false
+            column: second_pass_match
+        secondPassReplace:
+            type: text
+            nullable: false
+            column: second_pass_replace
+    lifecycleCallbacks: {  }

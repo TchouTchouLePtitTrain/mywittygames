@@ -1,0 +1,94 @@
+PsSupplyOrder:
+    type: entity
+    table: ps_supply_order
+    fields:
+        idSupplyOrder:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_supply_order
+            generator:
+                strategy: IDENTITY
+        idSupplier:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_supplier
+        supplierName:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+            column: supplier_name
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        idWarehouse:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_warehouse
+        idSupplyOrderState:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_supply_order_state
+        idCurrency:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_currency
+        idRefCurrency:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_ref_currency
+        reference:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+        dateUpd:
+            type: datetime
+            nullable: false
+            column: date_upd
+        dateDeliveryExpected:
+            type: datetime
+            nullable: true
+            column: date_delivery_expected
+        totalTe:
+            type: decimal
+            nullable: true
+            column: total_te
+        totalWithDiscountTe:
+            type: decimal
+            nullable: true
+            column: total_with_discount_te
+        totalTax:
+            type: decimal
+            nullable: true
+            column: total_tax
+        totalTi:
+            type: decimal
+            nullable: true
+            column: total_ti
+        discountRate:
+            type: decimal
+            nullable: true
+            column: discount_rate
+        discountValueTe:
+            type: decimal
+            nullable: true
+            column: discount_value_te
+        isTemplate:
+            type: boolean
+            nullable: true
+            column: is_template
+    lifecycleCallbacks: {  }

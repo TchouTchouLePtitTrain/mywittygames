@@ -132,7 +132,20 @@ class Project
      *
      * @ORM\Column(name="slug", type="string", length=255)
      */
-    protected $slug;
+    protected $slug;	
+	
+    /**
+     * @var integer $priority
+     *
+     * @ORM\Column(name="priority", type="integer", nullable=false)
+     */
+    protected $priority = 100;
+	
+    /**
+     * non mappé
+	 * Array des UserRewards du projet
+     */
+    protected $userRewards;	
 	
     /**
      * non mappé
@@ -515,23 +528,45 @@ class Project
 	public function setEdinautes()
 	{
 		$edinautes = array();
-		
-		if ($this->getRewards())
+
+		foreach($this->getUserRewards() as $userReward)
 		{
-			foreach($this->getRewards() as $reward)
-			{
-				if ($reward->getUserRewards())
-				{
-					foreach ($reward->getUserRewards() as $userReward)
-					{
-						$user = $userReward->getUser();
-						if (!in_array($user, $edinautes)) $edinautes[] = $user; //Si l'édinaute n'est pas déjà dans la liste, on l'ajoute
-					}
-				}
-			}
+			if (!in_array($userReward->getUser(), $edinautes)) $edinautes[] = $userReward->getUser(); //Si l'édinaute n'est pas déjà dans la liste, on l'ajoute
 		}
 		
 		$this->edinautes = $edinautes;
+	}
+		
+		
+	/**
+     * Get userRewards
+     *
+     * @return Array
+     */
+	public function getUserRewards()
+	{
+		if (!$this->userRewards) $this->setUserRewards();
+		return $this->userRewards;
+	}
+	
+	
+	/**
+     * Set userRewards
+     *
+     */
+	public function setUserRewards()
+	{
+		$userRewards = new \Doctrine\Common\Collections\ArrayCollection();
+
+		foreach($this->getRewards() as $reward)
+		{
+			foreach($reward->getUserRewards() as $userReward)
+			{
+				$userRewards->add($userReward);
+			}
+		}
+		
+		$this->userRewards = $userRewards;
 	}
 	
 	
@@ -545,18 +580,9 @@ class Project
 	{
 		$funding = 0;
 		
-		if ($this->getRewards())
+		foreach($this->getUserRewards() as $userReward)
 		{
-			foreach($this->getRewards() as $reward)
-			{
-				if ($reward->getUserRewards())
-				{
-					foreach ($reward->getUserRewards() as $userReward)
-					{
-						$funding += $userReward->getPaidAmount();
-					}
-				}
-			}
+			$funding += $userReward->getPaidAmount();
 		}
 		
 		$this->funding = $funding;
@@ -721,4 +747,23 @@ class Project
     {
         $this->news->removeElement($news);
     }
+	
+	
+		
+    /**
+     * Get rewardsByUserId
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUserRewardsByUserId($userId)
+    {
+		$function = function($id) //La closure pour pouvoir utiliser l'userId
+			{
+				return function($x) use ($id) { return ($x->getUser()->getId() == $id) && (!$x->getCancelled()); };
+			};
+			
+        return $this->getUserRewards()->filter($function($userId));
+    }
+	
+	
 }

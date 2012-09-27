@@ -1,0 +1,30 @@
+PsCms:
+    type: entity
+    table: ps_cms
+    fields:
+        idCms:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cms
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idCmsCategory:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cms_category
+        position:
+            type: integer
+            unsigned: true
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

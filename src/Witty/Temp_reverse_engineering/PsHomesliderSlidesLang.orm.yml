@@ -1,0 +1,44 @@
+PsHomesliderSlidesLang:
+    type: entity
+    table: ps_homeslider_slides_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idHomesliderSlides:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_homeslider_slides
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        title:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        description:
+            type: text
+            nullable: false
+        legend:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        url:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        image:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

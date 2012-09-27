@@ -1,0 +1,26 @@
+PsFeatureLang:
+    type: entity
+    table: ps_feature_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idFeature:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_feature
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

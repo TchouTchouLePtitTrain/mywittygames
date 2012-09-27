@@ -1,0 +1,18 @@
+PropertyBasic:
+    type: entity
+    table: property_basic
+    fields:
+        name:
+            id: true
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        value:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

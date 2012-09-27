@@ -1,0 +1,25 @@
+PsImportMatch:
+    type: entity
+    table: ps_import_match
+    fields:
+        idImportMatch:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_import_match
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        match:
+            type: text
+            nullable: false
+        skip:
+            type: integer
+            unsigned: false
+            nullable: false
+    lifecycleCallbacks: {  }

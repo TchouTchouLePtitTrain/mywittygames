@@ -1,0 +1,108 @@
+PhpbbGroups:
+    type: entity
+    table: phpbb_groups
+    fields:
+        groupId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_id
+            generator:
+                strategy: IDENTITY
+        groupType:
+            type: boolean
+            nullable: false
+            column: group_type
+        groupFounderManage:
+            type: boolean
+            nullable: false
+            column: group_founder_manage
+        groupSkipAuth:
+            type: boolean
+            nullable: false
+            column: group_skip_auth
+        groupName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: group_name
+        groupDesc:
+            type: text
+            nullable: false
+            column: group_desc
+        groupDescBitfield:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: group_desc_bitfield
+        groupDescOptions:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_desc_options
+        groupDescUid:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+            column: group_desc_uid
+        groupDisplay:
+            type: boolean
+            nullable: false
+            column: group_display
+        groupAvatar:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: group_avatar
+        groupAvatarType:
+            type: boolean
+            nullable: false
+            column: group_avatar_type
+        groupAvatarWidth:
+            type: smallint
+            nullable: false
+            column: group_avatar_width
+        groupAvatarHeight:
+            type: smallint
+            nullable: false
+            column: group_avatar_height
+        groupRank:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_rank
+        groupColour:
+            type: string
+            length: 6
+            fixed: false
+            nullable: false
+            column: group_colour
+        groupSigChars:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_sig_chars
+        groupReceivePm:
+            type: boolean
+            nullable: false
+            column: group_receive_pm
+        groupMessageLimit:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_message_limit
+        groupMaxRecipients:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_max_recipients
+        groupLegend:
+            type: boolean
+            nullable: false
+            column: group_legend
+    lifecycleCallbacks: {  }

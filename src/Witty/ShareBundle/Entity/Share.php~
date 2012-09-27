@@ -1,0 +1,124 @@
+<?php
+
+namespace Witty\ShareBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Witty\ShareBundle\Entity\Share
+ */
+class Share
+{
+    /**
+     * @var integer $id
+     */
+    private $id;
+
+    /**
+	 * @ORM\ManyToOne(targetEntity="Witty\UserBundle\Entity\User", inversedBy="shares")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+	 * @ORM\ManyToOne(targetEntity="Witty\ShareBundle\Entity\Game", inversedBy="shares")
+     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     */
+    private $game;
+
+    /**
+     * @var \DateTime $createdAt
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime $updatedAt
+     */
+    private $updatedAt;
+
+    /**
+     * @var boolean $isCancelled
+     */
+    private $isCancelled;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Share
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Share
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set isCancelled
+     *
+     * @param boolean $isCancelled
+     * @return Share
+     */
+    public function setIsCancelled($isCancelled)
+    {
+        $this->isCancelled = $isCancelled;
+    
+        return $this;
+    }
+
+    /**
+     * Get isCancelled
+     *
+     * @return boolean 
+     */
+    public function getIsCancelled()
+    {
+        return $this->isCancelled;
+    }
+
+}

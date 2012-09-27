@@ -1,0 +1,26 @@
+PsAlias:
+    type: entity
+    table: ps_alias
+    fields:
+        idAlias:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_alias
+            generator:
+                strategy: IDENTITY
+        alias:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        search:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

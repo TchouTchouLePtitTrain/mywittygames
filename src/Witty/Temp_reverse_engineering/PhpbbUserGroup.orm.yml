@@ -1,0 +1,29 @@
+PhpbbUserGroup:
+    type: entity
+    table: phpbb_user_group
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        groupId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_id
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        groupLeader:
+            type: boolean
+            nullable: false
+            column: group_leader
+        userPending:
+            type: boolean
+            nullable: false
+            column: user_pending
+    lifecycleCallbacks: {  }

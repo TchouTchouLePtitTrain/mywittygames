@@ -1,0 +1,55 @@
+PsReferrerShop:
+    type: entity
+    table: ps_referrer_shop
+    fields:
+        idReferrer:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_referrer
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        cacheVisitors:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: cache_visitors
+        cacheVisits:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: cache_visits
+        cachePages:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: cache_pages
+        cacheRegistrations:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: cache_registrations
+        cacheOrders:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: cache_orders
+        cacheSales:
+            type: decimal
+            nullable: true
+            column: cache_sales
+        cacheRegRate:
+            type: decimal
+            nullable: true
+            column: cache_reg_rate
+        cacheOrderRate:
+            type: decimal
+            nullable: true
+            column: cache_order_rate
+    lifecycleCallbacks: {  }

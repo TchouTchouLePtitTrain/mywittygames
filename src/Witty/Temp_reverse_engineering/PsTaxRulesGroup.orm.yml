@@ -1,0 +1,22 @@
+PsTaxRulesGroup:
+    type: entity
+    table: ps_tax_rules_group
+    fields:
+        idTaxRulesGroup:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_tax_rules_group
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 50
+            fixed: false
+            nullable: false
+        active:
+            type: integer
+            unsigned: false
+            nullable: false
+    lifecycleCallbacks: {  }

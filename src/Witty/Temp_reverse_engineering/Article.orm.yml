@@ -1,0 +1,48 @@
+Article:
+    type: entity
+    table: article
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        mediaName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: media_name
+        mediaType:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: media_type
+        author:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        link:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        description:
+            type: text
+            nullable: true
+        date:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,27 @@
+PsModuleAccess:
+    type: entity
+    table: ps_module_access
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idProfile:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_profile
+        idModule:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_module
+        view:
+            type: boolean
+            nullable: false
+        configure:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

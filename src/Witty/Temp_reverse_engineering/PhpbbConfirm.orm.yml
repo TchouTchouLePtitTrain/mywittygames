@@ -1,0 +1,40 @@
+PhpbbConfirm:
+    type: entity
+    table: phpbb_confirm
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        confirmId:
+            type: string
+            length: 32
+            fixed: true
+            nullable: false
+            column: confirm_id
+        sessionId:
+            type: string
+            length: 32
+            fixed: true
+            nullable: false
+            column: session_id
+        confirmType:
+            type: boolean
+            nullable: false
+            column: confirm_type
+        code:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+        seed:
+            type: integer
+            unsigned: true
+            nullable: false
+        attempts:
+            type: integer
+            unsigned: true
+            nullable: false
+    lifecycleCallbacks: {  }

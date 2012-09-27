@@ -1,0 +1,19 @@
+PhpbbDisallow:
+    type: entity
+    table: phpbb_disallow
+    fields:
+        disallowId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: disallow_id
+            generator:
+                strategy: IDENTITY
+        disallowUsername:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: disallow_username
+    lifecycleCallbacks: {  }

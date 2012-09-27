@@ -1,0 +1,35 @@
+PsPageViewed:
+    type: entity
+    table: ps_page_viewed
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idPage:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_page
+        idShopGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop_group
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idDateRange:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_date_range
+        counter:
+            type: integer
+            unsigned: true
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -18,16 +18,6 @@ class User extends BaseUser
      * @var integer $id
      */
     protected $id;
-
-    /**
-     * @ORM\OneToMany(targetEntity="UserReward", mappedBy="user")
-     */
-    protected $userRewards;
-	
-    /**
-     * @ORM\OneToMany(targetEntity="Projects", mappedBy="creator")
-     */
-    protected $projects;
 	
     /**
      * @var \DateTime $createdAt
@@ -963,5 +953,102 @@ class User extends BaseUser
 		else return $this->email;
 	}
     
+    //Renvoie l'avatarFile
+    public function getAvatarFile()
+    {
+        return $this->avatarFile;
+    }
+	
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+	 *
+	 * Méthode déclenchée lorsque l'on va persister l'user
+     */
+    public function preUpload()
+    {
+        if (null !== $this->avatarFile) 
+			$this->avatar = $this->avatarFile->getClientOriginalName();
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $shares;
 
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $userRewards;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $projects;
+
+
+    /**
+     * Add shares
+     *
+     * @param Witty\ShareBundle\Entity\Share $shares
+     * @return User
+     */
+    public function addShare(\Witty\ShareBundle\Entity\Share $shares)
+    {
+        $this->shares[] = $shares;
+    
+        return $this;
+    }
+
+    /**
+     * Remove shares
+     *
+     * @param Witty\ShareBundle\Entity\Share $shares
+     */
+    public function removeShare(\Witty\ShareBundle\Entity\Share $shares)
+    {
+        $this->shares->removeElement($shares);
+    }
+
+    /**
+     * Get shares
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getShares()
+    {
+        return $this->shares;
+    }
+
+    /**
+     * Add projects
+     *
+     * @param Witty\ProjectBundle\Entity\Project $projects
+     * @return User
+     */
+    public function addProject(\Witty\ProjectBundle\Entity\Project $projects)
+    {
+        $this->projects[] = $projects;
+    
+        return $this;
+    }
+
+    /**
+     * Remove projects
+     *
+     * @param Witty\ProjectBundle\Entity\Project $projects
+     */
+    public function removeProject(\Witty\ProjectBundle\Entity\Project $projects)
+    {
+        $this->projects->removeElement($projects);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
 }

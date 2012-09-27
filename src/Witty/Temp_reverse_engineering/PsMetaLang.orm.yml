@@ -1,0 +1,47 @@
+PsMetaLang:
+    type: entity
+    table: ps_meta_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idMeta:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_meta
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        title:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+        description:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        keywords:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        urlRewrite:
+            type: string
+            length: 254
+            fixed: false
+            nullable: false
+            column: url_rewrite
+    lifecycleCallbacks: {  }

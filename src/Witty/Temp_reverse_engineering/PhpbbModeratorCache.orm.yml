@@ -1,0 +1,41 @@
+PhpbbModeratorCache:
+    type: entity
+    table: phpbb_moderator_cache
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        forumId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_id
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        username:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        groupId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: group_id
+        groupName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: group_name
+        displayOnIndex:
+            type: boolean
+            nullable: false
+            column: display_on_index
+    lifecycleCallbacks: {  }

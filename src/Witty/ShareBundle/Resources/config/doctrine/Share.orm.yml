@@ -1,0 +1,31 @@
+Witty\ShareBundle\Entity\Share:
+    type: entity
+    table: game_share
+    manyToOne:
+        user:
+            targetEntity: Witty\UserBundle\Entity\User
+            inversedBy: shares
+        game:
+            targetEntity: Witty\ShareBundle\Entity\Game
+            inversedBy: shares
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        isCancelled:
+            type: boolean
+            nullable: true
+            column: is_cancelled
+    lifecycleCallbacks: {  }

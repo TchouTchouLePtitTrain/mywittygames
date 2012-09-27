@@ -1,0 +1,113 @@
+PhpbbPrivmsgs:
+    type: entity
+    table: phpbb_privmsgs
+    fields:
+        msgId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: msg_id
+            generator:
+                strategy: IDENTITY
+        rootLevel:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: root_level
+        authorId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: author_id
+        iconId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: icon_id
+        authorIp:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+            column: author_ip
+        messageTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: message_time
+        enableBbcode:
+            type: boolean
+            nullable: false
+            column: enable_bbcode
+        enableSmilies:
+            type: boolean
+            nullable: false
+            column: enable_smilies
+        enableMagicUrl:
+            type: boolean
+            nullable: false
+            column: enable_magic_url
+        enableSig:
+            type: boolean
+            nullable: false
+            column: enable_sig
+        messageSubject:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: message_subject
+        messageText:
+            type: text
+            nullable: false
+            column: message_text
+        messageEditReason:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: message_edit_reason
+        messageEditUser:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: message_edit_user
+        messageAttachment:
+            type: boolean
+            nullable: false
+            column: message_attachment
+        bbcodeBitfield:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: bbcode_bitfield
+        bbcodeUid:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+            column: bbcode_uid
+        messageEditTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: message_edit_time
+        messageEditCount:
+            type: smallint
+            nullable: false
+            column: message_edit_count
+        toAddress:
+            type: text
+            nullable: false
+            column: to_address
+        bccAddress:
+            type: text
+            nullable: false
+            column: bcc_address
+        messageReported:
+            type: boolean
+            nullable: false
+            column: message_reported
+    lifecycleCallbacks: {  }

@@ -2,6 +2,16 @@ Witty\UserBundle\Entity\User:
     type: entity
     repositoryClass: Witty\UserBundle\Repository\UserRepository
     table: user
+    oneToMany:
+        shares:
+            targetEntity: Witty\ShareBundle\Entity\Share
+            mappedBy: user
+        userRewards:
+            targetEntity: Witty\ProjectBundle\Entity\UserReward
+            mappedBy: user
+        projects:
+            targetEntity: Witty\ProjectBundle\Entity\Project
+            mappedBy: creator
     fields:
         id:
             id: true

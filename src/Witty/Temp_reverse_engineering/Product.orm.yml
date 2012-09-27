@@ -1,0 +1,99 @@
+Product:
+    type: entity
+    table: product
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        slug:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        ref:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        catchPhrase:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: catch_phrase
+        shortDescription:
+            type: text
+            nullable: false
+            column: short_description
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        priceHtPart:
+            type: decimal
+            nullable: true
+            column: price_ht_part
+        priceHtShop:
+            type: decimal
+            nullable: false
+            column: price_ht_shop
+        colisageShop:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: colisage_shop
+        priceHtWitty:
+            type: decimal
+            nullable: false
+            column: price_ht_witty
+        portWitty:
+            type: decimal
+            nullable: false
+            column: port_witty
+        freePortPart:
+            type: decimal
+            nullable: false
+            column: free_port_part
+        freePortShop:
+            type: decimal
+            nullable: false
+            column: free_port_shop
+        tva:
+            type: decimal
+            nullable: false
+        weight:
+            type: decimal
+            nullable: false
+        qteStock:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: qte_stock
+        gameId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: game_id
+        catId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: cat_id
+        isPublish:
+            type: boolean
+            nullable: false
+            column: is_publish
+    lifecycleCallbacks: {  }

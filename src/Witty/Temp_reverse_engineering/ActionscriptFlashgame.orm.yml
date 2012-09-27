@@ -1,0 +1,40 @@
+ActionscriptFlashgame:
+    type: entity
+    table: actionscript_flashgame
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        name:
+            type: string
+            length: 50
+            fixed: false
+            nullable: false
+        filename:
+            type: string
+            length: 50
+            fixed: false
+            nullable: false
+        fileWidth:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: file_width
+        fileHeight:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: file_height
+    lifecycleCallbacks: {  }

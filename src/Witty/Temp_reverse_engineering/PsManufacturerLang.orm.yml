@@ -1,0 +1,48 @@
+PsManufacturerLang:
+    type: entity
+    table: ps_manufacturer_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idManufacturer:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_manufacturer
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        description:
+            type: text
+            nullable: true
+        shortDescription:
+            type: string
+            length: 254
+            fixed: false
+            nullable: true
+            column: short_description
+        metaTitle:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+            column: meta_title
+        metaKeywords:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: meta_keywords
+        metaDescription:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: meta_description
+    lifecycleCallbacks: {  }

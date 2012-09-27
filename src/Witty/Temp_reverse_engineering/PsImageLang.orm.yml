@@ -1,0 +1,26 @@
+PsImageLang:
+    type: entity
+    table: ps_image_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idImage:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_image
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        legend:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

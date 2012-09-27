@@ -1,0 +1,32 @@
+PsGroup:
+    type: entity
+    table: ps_group
+    fields:
+        idGroup:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_group
+            generator:
+                strategy: IDENTITY
+        reduction:
+            type: decimal
+            nullable: false
+        priceDisplayMethod:
+            type: boolean
+            nullable: false
+            column: price_display_method
+        showPrices:
+            type: boolean
+            nullable: false
+            column: show_prices
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+        dateUpd:
+            type: datetime
+            nullable: false
+            column: date_upd
+    lifecycleCallbacks: {  }

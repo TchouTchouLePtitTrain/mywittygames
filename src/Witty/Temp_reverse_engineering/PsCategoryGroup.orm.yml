@@ -1,0 +1,21 @@
+PsCategoryGroup:
+    type: entity
+    table: ps_category_group
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCategory:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_category
+        idGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_group
+    lifecycleCallbacks: {  }

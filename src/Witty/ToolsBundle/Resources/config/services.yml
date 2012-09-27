@@ -1,0 +1,8 @@
+services:
+    witty.url_manager:
+        class: %witty.url_manager.class%
+        arguments:
+            - %witty.url_mwg%
+            - %witty.s3.endpoint%
+        tags:
+            - { name: twig.extension }

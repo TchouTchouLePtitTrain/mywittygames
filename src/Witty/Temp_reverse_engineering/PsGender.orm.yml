@@ -1,0 +1,16 @@
+PsGender:
+    type: entity
+    table: ps_gender
+    fields:
+        idGender:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_gender
+            generator:
+                strategy: IDENTITY
+        type:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

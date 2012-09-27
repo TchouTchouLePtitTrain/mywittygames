@@ -1,0 +1,23 @@
+PsSpecificPricePriority:
+    type: entity
+    table: ps_specific_price_priority
+    fields:
+        idSpecificPricePriority:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_specific_price_priority
+            generator:
+                strategy: IDENTITY
+        idProduct:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_product
+        priority:
+            type: string
+            length: 80
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

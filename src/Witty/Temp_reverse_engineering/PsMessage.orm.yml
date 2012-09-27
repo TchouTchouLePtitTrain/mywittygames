@@ -1,0 +1,43 @@
+PsMessage:
+    type: entity
+    table: ps_message
+    fields:
+        idMessage:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_message
+            generator:
+                strategy: IDENTITY
+        idCart:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_cart
+        idCustomer:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_customer
+        idEmployee:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_employee
+        idOrder:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order
+        message:
+            type: text
+            nullable: false
+        private:
+            type: boolean
+            nullable: false
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+    lifecycleCallbacks: {  }

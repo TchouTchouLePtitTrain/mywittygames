@@ -1,0 +1,21 @@
+PsImageShop:
+    type: entity
+    table: ps_image_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idImage:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_image
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

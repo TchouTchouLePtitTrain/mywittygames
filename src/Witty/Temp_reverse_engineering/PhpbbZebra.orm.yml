@@ -1,0 +1,27 @@
+PhpbbZebra:
+    type: entity
+    table: phpbb_zebra
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        zebraId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: zebra_id
+        friend:
+            type: boolean
+            nullable: false
+        foe:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

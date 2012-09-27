@@ -1,0 +1,21 @@
+UserRequest:
+    type: entity
+    table: user_request
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        requestUserId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: request_user_id
+    lifecycleCallbacks: {  }

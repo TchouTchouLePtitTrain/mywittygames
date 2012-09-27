@@ -1,0 +1,24 @@
+PsSearchIndex:
+    type: entity
+    table: ps_search_index
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idProduct:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product
+        idWord:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_word
+        weight:
+            type: smallint
+            nullable: false
+    lifecycleCallbacks: {  }

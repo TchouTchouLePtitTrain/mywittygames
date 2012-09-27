@@ -1,0 +1,44 @@
+PhpbbStylesImagesetData:
+    type: entity
+    table: phpbb_styles_imageset_data
+    fields:
+        imageId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: image_id
+            generator:
+                strategy: IDENTITY
+        imageName:
+            type: string
+            length: 200
+            fixed: false
+            nullable: false
+            column: image_name
+        imageFilename:
+            type: string
+            length: 200
+            fixed: false
+            nullable: false
+            column: image_filename
+        imageLang:
+            type: string
+            length: 30
+            fixed: false
+            nullable: false
+            column: image_lang
+        imageHeight:
+            type: smallint
+            nullable: false
+            column: image_height
+        imageWidth:
+            type: smallint
+            nullable: false
+            column: image_width
+        imagesetId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: imageset_id
+    lifecycleCallbacks: {  }

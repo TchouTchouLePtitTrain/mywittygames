@@ -1,0 +1,36 @@
+PsShopGroup:
+    type: entity
+    table: ps_shop_group
+    fields:
+        idShopGroup:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop_group
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        shareCustomer:
+            type: boolean
+            nullable: false
+            column: share_customer
+        shareOrder:
+            type: boolean
+            nullable: false
+            column: share_order
+        shareStock:
+            type: boolean
+            nullable: false
+            column: share_stock
+        active:
+            type: boolean
+            nullable: false
+        deleted:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

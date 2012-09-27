@@ -1,0 +1,26 @@
+PsProductSale:
+    type: entity
+    table: ps_product_sale
+    fields:
+        idProduct:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product
+            generator:
+                strategy: IDENTITY
+        quantity:
+            type: integer
+            unsigned: true
+            nullable: false
+        saleNbr:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: sale_nbr
+        dateUpd:
+            type: date
+            nullable: false
+            column: date_upd
+    lifecycleCallbacks: {  }

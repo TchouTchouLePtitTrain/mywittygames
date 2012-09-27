@@ -1,0 +1,203 @@
+User:
+    type: entity
+    table: user
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        login:
+            type: string
+            length: 64
+            fixed: false
+            nullable: true
+        password:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        email:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        firstname:
+            type: string
+            length: 31
+            fixed: false
+            nullable: true
+        lastname:
+            type: string
+            length: 31
+            fixed: false
+            nullable: true
+        address:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        address2:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: address_2
+        city:
+            type: string
+            length: 63
+            fixed: false
+            nullable: true
+        postcode:
+            type: string
+            length: 5
+            fixed: false
+            nullable: true
+        description:
+            type: text
+            nullable: true
+        balance:
+            type: decimal
+            nullable: true
+        sex:
+            type: boolean
+            nullable: true
+        avatar:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        activationCode:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+            column: activation_code
+        birthdate:
+            type: datetime
+            nullable: true
+        isEditor:
+            type: boolean
+            nullable: true
+            column: is_editor
+        isAuthor:
+            type: boolean
+            nullable: true
+            column: is_author
+        defaultLocale:
+            type: string
+            length: 2
+            fixed: false
+            nullable: false
+            column: default_locale
+        country:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        facebookId:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: facebook_id
+        loginDp:
+            type: string
+            length: 16
+            fixed: false
+            nullable: true
+            column: login_dp
+        passwordDp:
+            type: string
+            length: 16
+            fixed: false
+            nullable: true
+            column: password_dp
+        origine:
+            type: boolean
+            nullable: true
+        username:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        usernameCanonical:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: username_canonical
+        emailCanonical:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: email_canonical
+        enabled:
+            type: boolean
+            nullable: false
+        salt:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        lastLogin:
+            type: datetime
+            nullable: true
+            column: last_login
+        locked:
+            type: boolean
+            nullable: false
+        expired:
+            type: boolean
+            nullable: false
+        expiresAt:
+            type: datetime
+            nullable: true
+            column: expires_at
+        confirmationToken:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: confirmation_token
+        passwordRequestedAt:
+            type: datetime
+            nullable: true
+            column: password_requested_at
+        roles:
+            type: array
+            nullable: false
+        credentialsExpired:
+            type: boolean
+            nullable: false
+            column: credentials_expired
+        credentialsExpireAt:
+            type: datetime
+            nullable: true
+            column: credentials_expire_at
+        oldPassword:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: old_password
+        newsletter:
+            type: boolean
+            nullable: true
+        phone:
+            type: string
+            length: 20
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

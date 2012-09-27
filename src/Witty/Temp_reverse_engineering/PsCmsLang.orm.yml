@@ -1,0 +1,48 @@
+PsCmsLang:
+    type: entity
+    table: ps_cms_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCms:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cms
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        metaTitle:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+            column: meta_title
+        metaDescription:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: meta_description
+        metaKeywords:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: meta_keywords
+        content:
+            type: text
+            nullable: true
+        linkRewrite:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+            column: link_rewrite
+    lifecycleCallbacks: {  }

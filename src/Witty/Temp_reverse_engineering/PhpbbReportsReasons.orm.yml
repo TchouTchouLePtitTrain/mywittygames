@@ -1,0 +1,26 @@
+PhpbbReportsReasons:
+    type: entity
+    table: phpbb_reports_reasons
+    fields:
+        reasonId:
+            id: true
+            type: smallint
+            nullable: false
+            column: reason_id
+            generator:
+                strategy: IDENTITY
+        reasonTitle:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: reason_title
+        reasonDescription:
+            type: text
+            nullable: false
+            column: reason_description
+        reasonOrder:
+            type: smallint
+            nullable: false
+            column: reason_order
+    lifecycleCallbacks: {  }

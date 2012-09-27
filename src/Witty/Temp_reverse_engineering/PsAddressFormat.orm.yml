@@ -1,0 +1,18 @@
+PsAddressFormat:
+    type: entity
+    table: ps_address_format
+    fields:
+        idCountry:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_country
+            generator:
+                strategy: IDENTITY
+        format:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

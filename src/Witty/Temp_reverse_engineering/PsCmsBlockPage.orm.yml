@@ -1,0 +1,27 @@
+PsCmsBlockPage:
+    type: entity
+    table: ps_cms_block_page
+    fields:
+        idCmsBlockPage:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cms_block_page
+            generator:
+                strategy: IDENTITY
+        idCmsBlock:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cms_block
+        idCms:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cms
+        isCategory:
+            type: boolean
+            nullable: false
+            column: is_category
+    lifecycleCallbacks: {  }

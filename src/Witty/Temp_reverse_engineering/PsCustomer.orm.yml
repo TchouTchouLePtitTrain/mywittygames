@@ -1,0 +1,141 @@
+PsCustomer:
+    type: entity
+    table: ps_customer
+    fields:
+        idCustomer:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_customer
+            generator:
+                strategy: IDENTITY
+        idShopGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop_group
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idGender:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_gender
+        idDefaultGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_default_group
+        idRisk:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_risk
+        company:
+            type: string
+            length: 64
+            fixed: false
+            nullable: true
+        siret:
+            type: string
+            length: 14
+            fixed: false
+            nullable: true
+        ape:
+            type: string
+            length: 5
+            fixed: false
+            nullable: true
+        firstname:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        lastname:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        email:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+        passwd:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        lastPasswdGen:
+            type: datetime
+            nullable: false
+            column: last_passwd_gen
+        birthday:
+            type: date
+            nullable: true
+        newsletter:
+            type: boolean
+            nullable: false
+        ipRegistrationNewsletter:
+            type: string
+            length: 15
+            fixed: false
+            nullable: true
+            column: ip_registration_newsletter
+        newsletterDateAdd:
+            type: datetime
+            nullable: true
+            column: newsletter_date_add
+        optin:
+            type: boolean
+            nullable: false
+        website:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+        outstandingAllowAmount:
+            type: decimal
+            nullable: false
+            column: outstanding_allow_amount
+        showPublicPrices:
+            type: boolean
+            nullable: false
+            column: show_public_prices
+        maxPaymentDays:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: max_payment_days
+        secureKey:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+            column: secure_key
+        note:
+            type: text
+            nullable: true
+        active:
+            type: boolean
+            nullable: false
+        isGuest:
+            type: boolean
+            nullable: false
+            column: is_guest
+        deleted:
+            type: boolean
+            nullable: false
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+        dateUpd:
+            type: datetime
+            nullable: false
+            column: date_upd
+    lifecycleCallbacks: {  }

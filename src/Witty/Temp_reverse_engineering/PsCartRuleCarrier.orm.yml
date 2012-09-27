@@ -1,0 +1,21 @@
+PsCartRuleCarrier:
+    type: entity
+    table: ps_cart_rule_carrier
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCartRule:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cart_rule
+        idCarrier:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_carrier
+    lifecycleCallbacks: {  }

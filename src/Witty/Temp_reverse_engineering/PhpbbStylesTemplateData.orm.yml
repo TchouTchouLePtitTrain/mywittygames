@@ -1,0 +1,35 @@
+PhpbbStylesTemplateData:
+    type: entity
+    table: phpbb_styles_template_data
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        templateId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: template_id
+        templateFilename:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+            column: template_filename
+        templateIncluded:
+            type: text
+            nullable: false
+            column: template_included
+        templateMtime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: template_mtime
+        templateData:
+            type: text
+            nullable: false
+            column: template_data
+    lifecycleCallbacks: {  }

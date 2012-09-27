@@ -1,0 +1,26 @@
+PsCarrierTaxRulesGroupShop:
+    type: entity
+    table: ps_carrier_tax_rules_group_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCarrier:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_carrier
+        idTaxRulesGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_tax_rules_group
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

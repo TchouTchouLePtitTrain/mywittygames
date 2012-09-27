@@ -1,0 +1,59 @@
+RefundNotifications:
+    type: entity
+    table: refund_notifications
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        gameId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: game_id
+        credit:
+            type: integer
+            unsigned: false
+            nullable: false
+        firstNotification:
+            type: datetime
+            nullable: false
+            column: first_notification
+        lastNotification:
+            type: datetime
+            nullable: true
+            column: last_notification
+        wantRefund:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: want_refund
+        dateWant:
+            type: datetime
+            nullable: true
+            column: date_want
+        refund:
+            type: integer
+            unsigned: false
+            nullable: false
+        dateRefund:
+            type: datetime
+            nullable: true
+            column: date_refund
+    lifecycleCallbacks: {  }

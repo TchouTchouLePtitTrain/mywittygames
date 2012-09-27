@@ -1,0 +1,21 @@
+ProductVersionOption:
+    type: entity
+    table: product_version_option
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        productVersionId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: product_version_id
+        optionChoiceId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: option_choice_id
+    lifecycleCallbacks: {  }

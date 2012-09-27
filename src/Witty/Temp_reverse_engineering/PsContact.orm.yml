@@ -1,0 +1,25 @@
+PsContact:
+    type: entity
+    table: ps_contact
+    fields:
+        idContact:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_contact
+            generator:
+                strategy: IDENTITY
+        email:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+        customerService:
+            type: boolean
+            nullable: false
+            column: customer_service
+        position:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

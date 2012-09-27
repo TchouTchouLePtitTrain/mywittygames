@@ -1,0 +1,21 @@
+PsCarrierShop:
+    type: entity
+    table: ps_carrier_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCarrier:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_carrier
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

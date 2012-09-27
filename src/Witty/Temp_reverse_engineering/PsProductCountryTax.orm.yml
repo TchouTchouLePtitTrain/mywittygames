@@ -1,0 +1,26 @@
+PsProductCountryTax:
+    type: entity
+    table: ps_product_country_tax
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idProduct:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_product
+        idCountry:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_country
+        idTax:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_tax
+    lifecycleCallbacks: {  }

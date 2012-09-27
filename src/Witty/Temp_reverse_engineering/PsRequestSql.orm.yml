@@ -1,0 +1,21 @@
+PsRequestSql:
+    type: entity
+    table: ps_request_sql
+    fields:
+        idRequestSql:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_request_sql
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 200
+            fixed: false
+            nullable: false
+        sql:
+            type: text
+            nullable: false
+    lifecycleCallbacks: {  }

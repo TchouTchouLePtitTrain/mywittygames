@@ -1,0 +1,26 @@
+PsQuickAccessLang:
+    type: entity
+    table: ps_quick_access_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idQuickAccess:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_quick_access
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

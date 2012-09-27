@@ -1,0 +1,47 @@
+PsWarehouse:
+    type: entity
+    table: ps_warehouse
+    fields:
+        idWarehouse:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_warehouse
+            generator:
+                strategy: IDENTITY
+        idCurrency:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_currency
+        idAddress:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_address
+        idEmployee:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_employee
+        reference:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+        name:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
+        managementType:
+            type: string
+            length: null
+            fixed: false
+            nullable: false
+            column: management_type
+        deleted:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

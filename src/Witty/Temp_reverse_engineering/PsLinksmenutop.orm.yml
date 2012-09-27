@@ -1,0 +1,22 @@
+PsLinksmenutop:
+    type: entity
+    table: ps_linksmenutop
+    fields:
+        idLinksmenutop:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_linksmenutop
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        newWindow:
+            type: boolean
+            nullable: false
+            column: new_window
+    lifecycleCallbacks: {  }

@@ -1,0 +1,76 @@
+PsStockMvt:
+    type: entity
+    table: ps_stock_mvt
+    fields:
+        idStockMvt:
+            id: true
+            type: bigint
+            nullable: false
+            column: id_stock_mvt
+            generator:
+                strategy: IDENTITY
+        idStock:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_stock
+        idOrder:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_order
+        idSupplyOrder:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_supply_order
+        idStockMvtReason:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_stock_mvt_reason
+        idEmployee:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_employee
+        employeeLastname:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+            column: employee_lastname
+        employeeFirstname:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+            column: employee_firstname
+        physicalQuantity:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: physical_quantity
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+        sign:
+            type: boolean
+            nullable: false
+        priceTe:
+            type: decimal
+            nullable: true
+            column: price_te
+        lastWa:
+            type: decimal
+            nullable: true
+            column: last_wa
+        currentWa:
+            type: decimal
+            nullable: true
+            column: current_wa
+        referer:
+            type: bigint
+            nullable: true
+    lifecycleCallbacks: {  }

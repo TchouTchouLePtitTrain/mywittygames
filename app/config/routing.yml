@@ -1,16 +1,9 @@
-witty_menu:
-    resource: "@WittyMenuBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 witty_mwg:
     resource:  "@WittyMwgBundle/Resources/config/routing.yml"
     prefix:    /
 
 witty_project:
     resource: "@WittyProjectBundle/Resources/config/routing.yml"
-#    resource: "@WittyProjectBundle/Controller/"
-#    type:     annotation
     prefix:   /project
 
 # Internal routing configuration to handle ESI
@@ -23,7 +16,7 @@ fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
 fos_user_profile:
-    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    resource: "@WittyUserBundle/Resources/config/routing/profile.xml"
     prefix: /profile
 
 fos_user_register:

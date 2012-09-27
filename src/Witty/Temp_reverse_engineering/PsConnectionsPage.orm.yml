@@ -1,0 +1,29 @@
+PsConnectionsPage:
+    type: entity
+    table: ps_connections_page
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idConnections:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_connections
+        idPage:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_page
+        timeStart:
+            type: datetime
+            nullable: false
+            column: time_start
+        timeEnd:
+            type: datetime
+            nullable: true
+            column: time_end
+    lifecycleCallbacks: {  }

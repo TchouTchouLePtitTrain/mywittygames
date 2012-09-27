@@ -1,0 +1,21 @@
+PsAttributeShop:
+    type: entity
+    table: ps_attribute_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idAttribute:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attribute
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

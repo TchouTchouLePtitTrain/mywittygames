@@ -1,0 +1,21 @@
+PsCarrierZone:
+    type: entity
+    table: ps_carrier_zone
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCarrier:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_carrier
+        idZone:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_zone
+    lifecycleCallbacks: {  }

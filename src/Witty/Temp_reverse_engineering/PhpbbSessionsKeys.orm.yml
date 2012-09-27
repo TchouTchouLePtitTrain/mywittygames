@@ -1,0 +1,33 @@
+PhpbbSessionsKeys:
+    type: entity
+    table: phpbb_sessions_keys
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        keyId:
+            type: string
+            length: 32
+            fixed: true
+            nullable: false
+            column: key_id
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        lastIp:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+            column: last_ip
+        lastLogin:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: last_login
+    lifecycleCallbacks: {  }

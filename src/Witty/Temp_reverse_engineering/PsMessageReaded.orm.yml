@@ -1,0 +1,25 @@
+PsMessageReaded:
+    type: entity
+    table: ps_message_readed
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idMessage:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_message
+        idEmployee:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_employee
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+    lifecycleCallbacks: {  }

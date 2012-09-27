@@ -1,0 +1,33 @@
+ActionscriptScore:
+    type: entity
+    table: actionscript_score
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        gameId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: game_id
+        score:
+            type: decimal
+            nullable: false
+    lifecycleCallbacks: {  }

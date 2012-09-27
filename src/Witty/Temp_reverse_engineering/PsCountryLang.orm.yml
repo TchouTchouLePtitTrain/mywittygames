@@ -1,0 +1,26 @@
+PsCountryLang:
+    type: entity
+    table: ps_country_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCountry:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_country
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,17 @@
+GameLevel:
+    type: entity
+    table: game_level
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 15
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

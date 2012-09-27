@@ -1,0 +1,27 @@
+PsAttributeGroup:
+    type: entity
+    table: ps_attribute_group
+    fields:
+        idAttributeGroup:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attribute_group
+            generator:
+                strategy: IDENTITY
+        isColorGroup:
+            type: boolean
+            nullable: false
+            column: is_color_group
+        groupType:
+            type: string
+            length: null
+            fixed: false
+            nullable: false
+            column: group_type
+        position:
+            type: integer
+            unsigned: true
+            nullable: false
+    lifecycleCallbacks: {  }

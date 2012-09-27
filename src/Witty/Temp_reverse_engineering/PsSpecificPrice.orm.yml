@@ -1,0 +1,86 @@
+PsSpecificPrice:
+    type: entity
+    table: ps_specific_price
+    fields:
+        idSpecificPrice:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_specific_price
+            generator:
+                strategy: IDENTITY
+        idSpecificPriceRule:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_specific_price_rule
+        idCart:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cart
+        idProduct:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idShopGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop_group
+        idCurrency:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_currency
+        idCountry:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_country
+        idGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_group
+        idCustomer:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_customer
+        idProductAttribute:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_attribute
+        price:
+            type: decimal
+            nullable: false
+        fromQuantity:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: from_quantity
+        reduction:
+            type: decimal
+            nullable: false
+        reductionType:
+            type: string
+            length: null
+            fixed: false
+            nullable: false
+            column: reduction_type
+        from:
+            type: datetime
+            nullable: false
+        to:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }

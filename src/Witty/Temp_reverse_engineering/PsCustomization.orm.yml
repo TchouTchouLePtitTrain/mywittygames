@@ -1,0 +1,51 @@
+PsCustomization:
+    type: entity
+    table: ps_customization
+    fields:
+        idCustomization:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_customization
+            generator:
+                strategy: IDENTITY
+        idProductAttribute:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_attribute
+        idAddressDelivery:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_address_delivery
+        idCart:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cart
+        idProduct:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_product
+        quantity:
+            type: integer
+            unsigned: false
+            nullable: false
+        quantityRefunded:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: quantity_refunded
+        quantityReturned:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: quantity_returned
+        inCart:
+            type: boolean
+            nullable: false
+            column: in_cart
+    lifecycleCallbacks: {  }

@@ -1,0 +1,17 @@
+PsFeature:
+    type: entity
+    table: ps_feature
+    fields:
+        idFeature:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_feature
+            generator:
+                strategy: IDENTITY
+        position:
+            type: integer
+            unsigned: true
+            nullable: false
+    lifecycleCallbacks: {  }

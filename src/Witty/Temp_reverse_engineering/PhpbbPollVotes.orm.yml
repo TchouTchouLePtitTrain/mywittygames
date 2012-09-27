@@ -1,0 +1,31 @@
+PhpbbPollVotes:
+    type: entity
+    table: phpbb_poll_votes
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        topicId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_id
+        pollOptionId:
+            type: boolean
+            nullable: false
+            column: poll_option_id
+        voteUserId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: vote_user_id
+        voteUserIp:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+            column: vote_user_ip
+    lifecycleCallbacks: {  }

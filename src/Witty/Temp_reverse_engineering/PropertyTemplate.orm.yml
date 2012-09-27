@@ -1,0 +1,30 @@
+PropertyTemplate:
+    type: entity
+    table: property_template
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        localeCode:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: locale_code
+        title:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        value:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

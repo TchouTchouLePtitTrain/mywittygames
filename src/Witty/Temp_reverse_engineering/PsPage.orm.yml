@@ -1,0 +1,23 @@
+PsPage:
+    type: entity
+    table: ps_page
+    fields:
+        idPage:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_page
+            generator:
+                strategy: IDENTITY
+        idPageType:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_page_type
+        idObject:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_object
+    lifecycleCallbacks: {  }

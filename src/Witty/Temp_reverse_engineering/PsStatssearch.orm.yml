@@ -1,0 +1,36 @@
+PsStatssearch:
+    type: entity
+    table: ps_statssearch
+    fields:
+        idStatssearch:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_statssearch
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idShopGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop_group
+        keywords:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        results:
+            type: integer
+            unsigned: false
+            nullable: false
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+    lifecycleCallbacks: {  }

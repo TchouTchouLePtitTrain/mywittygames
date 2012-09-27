@@ -1,0 +1,27 @@
+PhpbbSearchResults:
+    type: entity
+    table: phpbb_search_results
+    fields:
+        searchKey:
+            id: true
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+            column: search_key
+            generator:
+                strategy: IDENTITY
+        searchTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: search_time
+        searchKeywords:
+            type: text
+            nullable: false
+            column: search_keywords
+        searchAuthors:
+            type: text
+            nullable: false
+            column: search_authors
+    lifecycleCallbacks: {  }

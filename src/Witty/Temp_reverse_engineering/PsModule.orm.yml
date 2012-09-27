@@ -1,0 +1,26 @@
+PsModule:
+    type: entity
+    table: ps_module
+    fields:
+        idModule:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_module
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+        version:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

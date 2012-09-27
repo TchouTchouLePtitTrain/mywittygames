@@ -1,0 +1,29 @@
+PsModulePreference:
+    type: entity
+    table: ps_module_preference
+    fields:
+        idModulePreference:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_module_preference
+            generator:
+                strategy: IDENTITY
+        idEmployee:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_employee
+        module:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        interest:
+            type: boolean
+            nullable: true
+        favorite:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

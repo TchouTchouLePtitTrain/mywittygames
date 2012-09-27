@@ -1,0 +1,21 @@
+PsFeatureShop:
+    type: entity
+    table: ps_feature_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idFeature:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_feature
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

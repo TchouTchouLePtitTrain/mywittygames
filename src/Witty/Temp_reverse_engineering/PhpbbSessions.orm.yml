@@ -1,0 +1,75 @@
+PhpbbSessions:
+    type: entity
+    table: phpbb_sessions
+    fields:
+        sessionId:
+            id: true
+            type: string
+            length: 32
+            fixed: true
+            nullable: false
+            column: session_id
+            generator:
+                strategy: IDENTITY
+        sessionUserId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: session_user_id
+        sessionForumId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: session_forum_id
+        sessionLastVisit:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: session_last_visit
+        sessionStart:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: session_start
+        sessionTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: session_time
+        sessionIp:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+            column: session_ip
+        sessionBrowser:
+            type: string
+            length: 150
+            fixed: false
+            nullable: false
+            column: session_browser
+        sessionForwardedFor:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: session_forwarded_for
+        sessionPage:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: session_page
+        sessionViewonline:
+            type: boolean
+            nullable: false
+            column: session_viewonline
+        sessionAutologin:
+            type: boolean
+            nullable: false
+            column: session_autologin
+        sessionAdmin:
+            type: boolean
+            nullable: false
+            column: session_admin
+    lifecycleCallbacks: {  }

@@ -1,0 +1,44 @@
+PsImageType:
+    type: entity
+    table: ps_image_type
+    fields:
+        idImageType:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_image_type
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 16
+            fixed: false
+            nullable: false
+        width:
+            type: integer
+            unsigned: true
+            nullable: false
+        height:
+            type: integer
+            unsigned: true
+            nullable: false
+        products:
+            type: boolean
+            nullable: false
+        categories:
+            type: boolean
+            nullable: false
+        manufacturers:
+            type: boolean
+            nullable: false
+        suppliers:
+            type: boolean
+            nullable: false
+        scenes:
+            type: boolean
+            nullable: false
+        stores:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

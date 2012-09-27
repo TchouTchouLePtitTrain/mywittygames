@@ -1,0 +1,46 @@
+AcpBack:
+    type: entity
+    table: acp_back
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        section:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        canRead:
+            type: boolean
+            nullable: false
+            column: can_read
+        canAdd:
+            type: boolean
+            nullable: false
+            column: can_add
+        canWrite:
+            type: boolean
+            nullable: false
+            column: can_write
+        canRemove:
+            type: boolean
+            nullable: false
+            column: can_remove
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

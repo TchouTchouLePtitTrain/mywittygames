@@ -1,0 +1,54 @@
+PsCurrency:
+    type: entity
+    table: ps_currency
+    fields:
+        idCurrency:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_currency
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        isoCode:
+            type: string
+            length: 3
+            fixed: false
+            nullable: false
+            column: iso_code
+        isoCodeNum:
+            type: string
+            length: 3
+            fixed: false
+            nullable: false
+            column: iso_code_num
+        sign:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+        blank:
+            type: boolean
+            nullable: false
+        format:
+            type: boolean
+            nullable: false
+        decimals:
+            type: boolean
+            nullable: false
+        conversionRate:
+            type: decimal
+            nullable: false
+            column: conversion_rate
+        deleted:
+            type: boolean
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

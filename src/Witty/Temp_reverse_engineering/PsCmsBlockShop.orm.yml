@@ -1,0 +1,18 @@
+PsCmsBlockShop:
+    type: entity
+    table: ps_cms_block_shop
+    fields:
+        idCmsBlock:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cms_block
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

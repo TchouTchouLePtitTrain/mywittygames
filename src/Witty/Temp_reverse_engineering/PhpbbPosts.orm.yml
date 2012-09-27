@@ -1,0 +1,134 @@
+PhpbbPosts:
+    type: entity
+    table: phpbb_posts
+    fields:
+        postId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: post_id
+            generator:
+                strategy: IDENTITY
+        topicId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_id
+        forumId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_id
+        posterId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: poster_id
+        iconId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: icon_id
+        posterIp:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+            column: poster_ip
+        postTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: post_time
+        postApproved:
+            type: boolean
+            nullable: false
+            column: post_approved
+        postReported:
+            type: boolean
+            nullable: false
+            column: post_reported
+        enableBbcode:
+            type: boolean
+            nullable: false
+            column: enable_bbcode
+        enableSmilies:
+            type: boolean
+            nullable: false
+            column: enable_smilies
+        enableMagicUrl:
+            type: boolean
+            nullable: false
+            column: enable_magic_url
+        enableSig:
+            type: boolean
+            nullable: false
+            column: enable_sig
+        postUsername:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: post_username
+        postSubject:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: post_subject
+        postText:
+            type: text
+            nullable: false
+            column: post_text
+        postChecksum:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+            column: post_checksum
+        postAttachment:
+            type: boolean
+            nullable: false
+            column: post_attachment
+        bbcodeBitfield:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: bbcode_bitfield
+        bbcodeUid:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+            column: bbcode_uid
+        postPostcount:
+            type: boolean
+            nullable: false
+            column: post_postcount
+        postEditTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: post_edit_time
+        postEditReason:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: post_edit_reason
+        postEditUser:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: post_edit_user
+        postEditCount:
+            type: smallint
+            nullable: false
+            column: post_edit_count
+        postEditLocked:
+            type: boolean
+            nullable: false
+            column: post_edit_locked
+    lifecycleCallbacks: {  }

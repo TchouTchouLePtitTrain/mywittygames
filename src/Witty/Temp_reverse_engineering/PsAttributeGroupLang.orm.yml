@@ -1,0 +1,32 @@
+PsAttributeGroupLang:
+    type: entity
+    table: ps_attribute_group_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idAttributeGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attribute_group
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+        publicName:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+            column: public_name
+    lifecycleCallbacks: {  }

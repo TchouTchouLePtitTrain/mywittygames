@@ -1,0 +1,21 @@
+PsCountryShop:
+    type: entity
+    table: ps_country_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idCountry:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_country
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

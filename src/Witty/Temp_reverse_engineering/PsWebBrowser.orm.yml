@@ -1,0 +1,18 @@
+PsWebBrowser:
+    type: entity
+    table: ps_web_browser
+    fields:
+        idWebBrowser:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_web_browser
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 64
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

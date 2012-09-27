@@ -1,0 +1,17 @@
+PsCustomerMessageSyncImap:
+    type: entity
+    table: ps_customer_message_sync_imap
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        md5Header:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+            column: md5_header
+    lifecycleCallbacks: {  }

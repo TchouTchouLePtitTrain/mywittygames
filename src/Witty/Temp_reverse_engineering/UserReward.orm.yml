@@ -1,0 +1,46 @@
+UserReward:
+    type: entity
+    table: user_reward
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        cancelled:
+            type: boolean
+            nullable: false
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        updateDate:
+            type: datetime
+            nullable: true
+            column: update_date
+        paidAmount:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: paid_amount
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        reward:
+            targetEntity: Reward
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                reward_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,29 @@
+PsAttachment:
+    type: entity
+    table: ps_attachment
+    fields:
+        idAttachment:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attachment
+            generator:
+                strategy: IDENTITY
+        file:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+        fileName:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+            column: file_name
+        mime:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

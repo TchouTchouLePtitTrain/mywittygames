@@ -1,0 +1,22 @@
+PsTax:
+    type: entity
+    table: ps_tax
+    fields:
+        idTax:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_tax
+            generator:
+                strategy: IDENTITY
+        rate:
+            type: decimal
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+        deleted:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

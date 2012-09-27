@@ -1,0 +1,29 @@
+PsContactLang:
+    type: entity
+    table: ps_contact_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idContact:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_contact
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        description:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

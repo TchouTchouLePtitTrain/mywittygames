@@ -1,0 +1,42 @@
+ProductVersion:
+    type: entity
+    table: product_version
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        productId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: product_id
+        ref:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        supplement:
+            type: decimal
+            nullable: true
+        qteStock:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: qte_stock
+        isDefault:
+            type: boolean
+            nullable: false
+            column: is_default
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

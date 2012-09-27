@@ -1,0 +1,73 @@
+PsGuest:
+    type: entity
+    table: ps_guest
+    fields:
+        idGuest:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_guest
+            generator:
+                strategy: IDENTITY
+        idOperatingSystem:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_operating_system
+        idWebBrowser:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_web_browser
+        idCustomer:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_customer
+        javascript:
+            type: boolean
+            nullable: true
+        screenResolutionX:
+            type: smallint
+            nullable: true
+            column: screen_resolution_x
+        screenResolutionY:
+            type: smallint
+            nullable: true
+            column: screen_resolution_y
+        screenColor:
+            type: boolean
+            nullable: true
+            column: screen_color
+        sunJava:
+            type: boolean
+            nullable: true
+            column: sun_java
+        adobeFlash:
+            type: boolean
+            nullable: true
+            column: adobe_flash
+        adobeDirector:
+            type: boolean
+            nullable: true
+            column: adobe_director
+        appleQuicktime:
+            type: boolean
+            nullable: true
+            column: apple_quicktime
+        realPlayer:
+            type: boolean
+            nullable: true
+            column: real_player
+        windowsMedia:
+            type: boolean
+            nullable: true
+            column: windows_media
+        acceptLanguage:
+            type: string
+            length: 8
+            fixed: false
+            nullable: true
+            column: accept_language
+    lifecycleCallbacks: {  }

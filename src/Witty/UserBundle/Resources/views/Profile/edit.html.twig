@@ -1,8 +1,35 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
-    </div>
-</form>
+{% block fos_user_content %}
+	<figure>
+		<img src="{{ url('avatar', user.id, user.avatar) }}"/>
+	</figure>
+		
+	<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+		{{ form_widget(form) }}
+		<div>
+			<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+		</div>
+	</form>
+	{% if user.games|length > 0 %}
+		Les projets que vous avez soutenus :
+		
+		{% for project in user.projectsFunded %}
+			{{ project.title }} => 
+				{% for userReward in user.userRewards() %}
+					{{ userReward.reward.title }} : {{ userReward.reward.description }}
+				{% endfor %}
+		{% endfor %}
+	{% endif %}
+
+	{% if user.games|length > 0 %}
+		Les jeux de la saison 2 auxquels vous avez participé
+		{% for game in user.games %}
+			{{game.name}} => {{ game.sharesByUserId(user.id)|length }}
+		{% endfor %}
+	{% endif %}
+	{% if user.balance > 0 %}
+		Votre crédit : {{ user.balance }} €
+	{% endif %}
+	
+{% endblock fos_user_content %}

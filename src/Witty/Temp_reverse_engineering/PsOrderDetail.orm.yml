@@ -1,0 +1,197 @@
+PsOrderDetail:
+    type: entity
+    table: ps_order_detail
+    fields:
+        idOrderDetail:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order_detail
+            generator:
+                strategy: IDENTITY
+        idOrder:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order
+        idOrderInvoice:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: id_order_invoice
+        idWarehouse:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_warehouse
+        productId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: product_id
+        productAttributeId:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: product_attribute_id
+        productName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: product_name
+        productQuantity:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: product_quantity
+        productQuantityInStock:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: product_quantity_in_stock
+        productQuantityRefunded:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: product_quantity_refunded
+        productQuantityReturn:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: product_quantity_return
+        productQuantityReinjected:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: product_quantity_reinjected
+        productPrice:
+            type: decimal
+            nullable: false
+            column: product_price
+        reductionPercent:
+            type: decimal
+            nullable: false
+            column: reduction_percent
+        reductionAmount:
+            type: decimal
+            nullable: false
+            column: reduction_amount
+        reductionAmountTaxIncl:
+            type: decimal
+            nullable: false
+            column: reduction_amount_tax_incl
+        reductionAmountTaxExcl:
+            type: decimal
+            nullable: false
+            column: reduction_amount_tax_excl
+        groupReduction:
+            type: decimal
+            nullable: false
+            column: group_reduction
+        productQuantityDiscount:
+            type: decimal
+            nullable: false
+            column: product_quantity_discount
+        productEan13:
+            type: string
+            length: 13
+            fixed: false
+            nullable: true
+            column: product_ean13
+        productUpc:
+            type: string
+            length: 12
+            fixed: false
+            nullable: true
+            column: product_upc
+        productReference:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+            column: product_reference
+        productSupplierReference:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+            column: product_supplier_reference
+        productWeight:
+            type: float
+            nullable: false
+            column: product_weight
+        taxComputationMethod:
+            type: boolean
+            nullable: false
+            column: tax_computation_method
+        taxName:
+            type: string
+            length: 16
+            fixed: false
+            nullable: false
+            column: tax_name
+        taxRate:
+            type: decimal
+            nullable: false
+            column: tax_rate
+        ecotax:
+            type: decimal
+            nullable: false
+        ecotaxTaxRate:
+            type: decimal
+            nullable: false
+            column: ecotax_tax_rate
+        discountQuantityApplied:
+            type: boolean
+            nullable: false
+            column: discount_quantity_applied
+        downloadHash:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: download_hash
+        downloadNb:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: download_nb
+        downloadDeadline:
+            type: datetime
+            nullable: true
+            column: download_deadline
+        totalPriceTaxIncl:
+            type: decimal
+            nullable: false
+            column: total_price_tax_incl
+        totalPriceTaxExcl:
+            type: decimal
+            nullable: false
+            column: total_price_tax_excl
+        unitPriceTaxIncl:
+            type: decimal
+            nullable: false
+            column: unit_price_tax_incl
+        unitPriceTaxExcl:
+            type: decimal
+            nullable: false
+            column: unit_price_tax_excl
+        totalShippingPriceTaxIncl:
+            type: decimal
+            nullable: false
+            column: total_shipping_price_tax_incl
+        totalShippingPriceTaxExcl:
+            type: decimal
+            nullable: false
+            column: total_shipping_price_tax_excl
+        purchaseSupplierPrice:
+            type: decimal
+            nullable: false
+            column: purchase_supplier_price
+        originalProductPrice:
+            type: decimal
+            nullable: false
+            column: original_product_price
+    lifecycleCallbacks: {  }

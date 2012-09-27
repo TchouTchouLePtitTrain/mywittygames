@@ -1,0 +1,43 @@
+PsProductSupplier:
+    type: entity
+    table: ps_product_supplier
+    fields:
+        idProductSupplier:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_supplier
+            generator:
+                strategy: IDENTITY
+        idProduct:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product
+        idProductAttribute:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_attribute
+        idSupplier:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_supplier
+        productSupplierReference:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+            column: product_supplier_reference
+        productSupplierPriceTe:
+            type: decimal
+            nullable: false
+            column: product_supplier_price_te
+        idCurrency:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_currency
+    lifecycleCallbacks: {  }

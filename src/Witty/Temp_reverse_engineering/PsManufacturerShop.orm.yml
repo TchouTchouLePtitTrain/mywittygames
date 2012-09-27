@@ -1,0 +1,21 @@
+PsManufacturerShop:
+    type: entity
+    table: ps_manufacturer_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idManufacturer:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_manufacturer
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

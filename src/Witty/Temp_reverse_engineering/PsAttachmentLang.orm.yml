@@ -1,0 +1,26 @@
+PsAttachmentLang:
+    type: entity
+    table: ps_attachment_lang
+    fields:
+        idAttachment:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attachment
+            generator:
+                strategy: IDENTITY
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+        description:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

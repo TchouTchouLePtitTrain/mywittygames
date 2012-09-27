@@ -1,0 +1,33 @@
+UserComment:
+    type: entity
+    table: user_comment
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        senderId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: sender_id
+        receiverId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: receiver_id
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        content:
+            type: text
+            nullable: false
+    lifecycleCallbacks: {  }

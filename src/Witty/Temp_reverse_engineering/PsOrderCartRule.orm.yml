@@ -1,0 +1,40 @@
+PsOrderCartRule:
+    type: entity
+    table: ps_order_cart_rule
+    fields:
+        idOrderCartRule:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order_cart_rule
+            generator:
+                strategy: IDENTITY
+        idOrder:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order
+        idCartRule:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_cart_rule
+        idOrderInvoice:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_order_invoice
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        value:
+            type: decimal
+            nullable: false
+        valueTaxExcl:
+            type: decimal
+            nullable: false
+            column: value_tax_excl
+    lifecycleCallbacks: {  }

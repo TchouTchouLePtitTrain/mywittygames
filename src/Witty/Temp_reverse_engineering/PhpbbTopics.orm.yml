@@ -1,0 +1,183 @@
+PhpbbTopics:
+    type: entity
+    table: phpbb_topics
+    fields:
+        topicId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_id
+            generator:
+                strategy: IDENTITY
+        forumId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_id
+        iconId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: icon_id
+        topicAttachment:
+            type: boolean
+            nullable: false
+            column: topic_attachment
+        topicApproved:
+            type: boolean
+            nullable: false
+            column: topic_approved
+        topicReported:
+            type: boolean
+            nullable: false
+            column: topic_reported
+        topicTitle:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: topic_title
+        topicPoster:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_poster
+        topicTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_time
+        topicTimeLimit:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_time_limit
+        topicViews:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_views
+        topicReplies:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_replies
+        topicRepliesReal:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_replies_real
+        topicStatus:
+            type: boolean
+            nullable: false
+            column: topic_status
+        topicType:
+            type: boolean
+            nullable: false
+            column: topic_type
+        topicFirstPostId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_first_post_id
+        topicFirstPosterName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: topic_first_poster_name
+        topicFirstPosterColour:
+            type: string
+            length: 6
+            fixed: false
+            nullable: false
+            column: topic_first_poster_colour
+        topicLastPostId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_last_post_id
+        topicLastPosterId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_last_poster_id
+        topicLastPosterName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: topic_last_poster_name
+        topicLastPosterColour:
+            type: string
+            length: 6
+            fixed: false
+            nullable: false
+            column: topic_last_poster_colour
+        topicLastPostSubject:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: topic_last_post_subject
+        topicLastPostTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_last_post_time
+        topicLastViewTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_last_view_time
+        topicMovedId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_moved_id
+        topicBumped:
+            type: boolean
+            nullable: false
+            column: topic_bumped
+        topicBumper:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_bumper
+        pollTitle:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: poll_title
+        pollStart:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: poll_start
+        pollLength:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: poll_length
+        pollMaxOptions:
+            type: boolean
+            nullable: false
+            column: poll_max_options
+        pollLastVote:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: poll_last_vote
+        pollVoteChange:
+            type: boolean
+            nullable: false
+            column: poll_vote_change
+        topicUrl:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: topic_url
+    lifecycleCallbacks: {  }

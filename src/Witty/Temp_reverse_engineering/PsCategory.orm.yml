@@ -1,0 +1,49 @@
+PsCategory:
+    type: entity
+    table: ps_category
+    fields:
+        idCategory:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_category
+            generator:
+                strategy: IDENTITY
+        idParent:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_parent
+        levelDepth:
+            type: boolean
+            nullable: false
+            column: level_depth
+        nleft:
+            type: integer
+            unsigned: true
+            nullable: false
+        nright:
+            type: integer
+            unsigned: true
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+        dateUpd:
+            type: datetime
+            nullable: false
+            column: date_upd
+        position:
+            type: integer
+            unsigned: true
+            nullable: false
+        isRootCategory:
+            type: boolean
+            nullable: false
+            column: is_root_category
+    lifecycleCallbacks: {  }

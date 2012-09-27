@@ -1,0 +1,49 @@
+PsLang:
+    type: entity
+    table: ps_lang
+    fields:
+        idLang:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+        isoCode:
+            type: string
+            length: 2
+            fixed: true
+            nullable: false
+            column: iso_code
+        languageCode:
+            type: string
+            length: 5
+            fixed: true
+            nullable: false
+            column: language_code
+        dateFormatLite:
+            type: string
+            length: 32
+            fixed: true
+            nullable: false
+            column: date_format_lite
+        dateFormatFull:
+            type: string
+            length: 32
+            fixed: true
+            nullable: false
+            column: date_format_full
+        isRtl:
+            type: boolean
+            nullable: false
+            column: is_rtl
+    lifecycleCallbacks: {  }

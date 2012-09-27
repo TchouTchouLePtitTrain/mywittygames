@@ -1,0 +1,24 @@
+PsProductGroupReductionCache:
+    type: entity
+    table: ps_product_group_reduction_cache
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idProduct:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product
+        idGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_group
+        reduction:
+            type: decimal
+            nullable: false
+    lifecycleCallbacks: {  }

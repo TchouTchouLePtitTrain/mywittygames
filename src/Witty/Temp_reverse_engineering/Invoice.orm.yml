@@ -1,0 +1,53 @@
+Invoice:
+    type: entity
+    table: invoice
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+        gameId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: game_id
+        date:
+            type: datetime
+            nullable: false
+        nbShare:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nb_share
+        nbInvestmentVouchers:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nb_investment_vouchers
+        isPaid:
+            type: boolean
+            nullable: false
+            column: is_paid
+        numInvoice:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: num_invoice
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

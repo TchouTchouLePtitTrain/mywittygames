@@ -1,0 +1,21 @@
+PsDateRange:
+    type: entity
+    table: ps_date_range
+    fields:
+        idDateRange:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_date_range
+            generator:
+                strategy: IDENTITY
+        timeStart:
+            type: datetime
+            nullable: false
+            column: time_start
+        timeEnd:
+            type: datetime
+            nullable: false
+            column: time_end
+    lifecycleCallbacks: {  }

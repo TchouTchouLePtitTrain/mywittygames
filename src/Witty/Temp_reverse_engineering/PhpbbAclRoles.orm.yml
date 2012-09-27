@@ -1,0 +1,33 @@
+PhpbbAclRoles:
+    type: entity
+    table: phpbb_acl_roles
+    fields:
+        roleId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: role_id
+            generator:
+                strategy: IDENTITY
+        roleName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: role_name
+        roleDescription:
+            type: text
+            nullable: false
+            column: role_description
+        roleType:
+            type: string
+            length: 10
+            fixed: false
+            nullable: false
+            column: role_type
+        roleOrder:
+            type: smallint
+            nullable: false
+            column: role_order
+    lifecycleCallbacks: {  }

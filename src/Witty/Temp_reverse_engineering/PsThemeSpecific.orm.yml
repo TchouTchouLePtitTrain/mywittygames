@@ -1,0 +1,30 @@
+PsThemeSpecific:
+    type: entity
+    table: ps_theme_specific
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idTheme:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_theme
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        entity:
+            type: integer
+            unsigned: true
+            nullable: false
+        idObject:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_object
+    lifecycleCallbacks: {  }

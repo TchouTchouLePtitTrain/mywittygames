@@ -1,0 +1,72 @@
+BlogPost:
+    type: entity
+    table: blog_post
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        levelId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: level_id
+        blogId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: blog_id
+        userId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: user_id
+        gameId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: game_id
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        title:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        content:
+            type: text
+            nullable: true
+        avatar:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        localeCode:
+            type: string
+            length: 2
+            fixed: false
+            nullable: false
+            column: locale_code
+        url:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        isPublish:
+            type: boolean
+            nullable: false
+            column: is_publish
+        dateEvent:
+            type: datetime
+            nullable: false
+            column: date_event
+    lifecycleCallbacks: {  }

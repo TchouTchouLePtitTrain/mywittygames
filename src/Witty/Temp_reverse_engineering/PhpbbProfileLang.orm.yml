@@ -1,0 +1,37 @@
+PhpbbProfileLang:
+    type: entity
+    table: phpbb_profile_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        fieldId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: field_id
+        langId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: lang_id
+        langName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: lang_name
+        langExplain:
+            type: text
+            nullable: false
+            column: lang_explain
+        langDefaultValue:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: lang_default_value
+    lifecycleCallbacks: {  }

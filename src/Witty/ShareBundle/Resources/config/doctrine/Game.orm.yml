@@ -1,0 +1,128 @@
+Witty\ShareBundle\Entity\Game:
+    type: entity
+    table: game
+    oneToMany:
+        shares:
+            targetEntity: Witty\ShareBundle\Entity\Share
+            mappedBy: game
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        levelId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: level_id
+        typeId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: type_id
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        name:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        slug:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        catchPhrase:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: catch_phrase
+        totalInvestmentValue:
+            type: decimal
+            nullable: true
+            column: total_investment_value
+        partInvestmentValue:
+            type: decimal
+            nullable: true
+            column: part_investment_value
+        miniDescription:
+            type: text
+            nullable: true
+            column: mini_description
+        shortDescription:
+            type: text
+            nullable: true
+            column: short_description
+        rules:
+            type: text
+            nullable: true
+        duration:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        playerNumbers:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: player_numbers
+        rulesUrl:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: rules_url
+        prototype:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        videoPresentation:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: video_presentation
+        videoExplipartie:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: video_explipartie
+        defaultLocale:
+            type: string
+            length: 2
+            fixed: false
+            nullable: false
+            column: default_locale
+        copyright:
+            type: boolean
+            nullable: true
+        deadline:
+            type: datetime
+            nullable: true
+        isPublish:
+            type: boolean
+            nullable: false
+            column: is_publish
+        jauge:
+            type: boolean
+            nullable: true
+        urlFacebook:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: url_facebook
+    lifecycleCallbacks: {  }

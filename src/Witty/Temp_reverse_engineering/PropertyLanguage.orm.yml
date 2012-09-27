@@ -1,0 +1,27 @@
+PropertyLanguage:
+    type: entity
+    table: property_language
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        localeCode:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: locale_code
+        name:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        value:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

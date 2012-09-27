@@ -1,0 +1,73 @@
+ItemFlux:
+    type: entity
+    table: item_flux
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        fluxId:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: flux_id
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        author:
+            type: text
+            nullable: true
+        category:
+            type: text
+            nullable: true
+        comments:
+            type: text
+            nullable: true
+        description:
+            type: text
+            nullable: true
+        enclosure:
+            type: text
+            nullable: true
+        guid:
+            type: text
+            nullable: true
+        link:
+            type: text
+            nullable: true
+        pubdate:
+            type: text
+            nullable: true
+            column: pubDate
+        source:
+            type: text
+            nullable: true
+        title:
+            type: text
+            nullable: true
+        avatar:
+            type: text
+            nullable: true
+        md5Guid:
+            type: text
+            nullable: true
+            column: md5_guid
+        md5Title:
+            type: text
+            nullable: true
+            column: md5_title
+        image:
+            type: text
+            nullable: true
+        accroche:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

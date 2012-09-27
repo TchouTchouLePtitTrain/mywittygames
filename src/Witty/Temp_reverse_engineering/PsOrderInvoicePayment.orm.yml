@@ -1,0 +1,26 @@
+PsOrderInvoicePayment:
+    type: entity
+    table: ps_order_invoice_payment
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idOrderInvoice:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order_invoice
+        idOrderPayment:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order_payment
+        idOrder:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order
+    lifecycleCallbacks: {  }

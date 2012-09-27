@@ -1,0 +1,57 @@
+PsStock:
+    type: entity
+    table: ps_stock
+    fields:
+        idStock:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_stock
+            generator:
+                strategy: IDENTITY
+        idWarehouse:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_warehouse
+        idProduct:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product
+        idProductAttribute:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_attribute
+        reference:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        ean13:
+            type: string
+            length: 13
+            fixed: false
+            nullable: true
+        upc:
+            type: string
+            length: 12
+            fixed: false
+            nullable: true
+        physicalQuantity:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: physical_quantity
+        usableQuantity:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: usable_quantity
+        priceTe:
+            type: decimal
+            nullable: true
+            column: price_te
+    lifecycleCallbacks: {  }

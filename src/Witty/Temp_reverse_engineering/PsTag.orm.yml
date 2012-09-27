@@ -1,0 +1,23 @@
+PsTag:
+    type: entity
+    table: ps_tag
+    fields:
+        idTag:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_tag
+            generator:
+                strategy: IDENTITY
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

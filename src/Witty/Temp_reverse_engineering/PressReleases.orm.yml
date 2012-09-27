@@ -1,0 +1,42 @@
+PressReleases:
+    type: entity
+    table: press_releases
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        titre:
+            type: string
+            length: 120
+            fixed: false
+            nullable: false
+        lienphoto:
+            type: text
+            nullable: false
+            column: lienPhoto
+        texte:
+            type: text
+            nullable: false
+        lienprincipal:
+            type: string
+            length: 120
+            fixed: false
+            nullable: false
+            column: lienPrincipal
+        listeliens:
+            type: text
+            nullable: false
+            column: listeLiens
+    lifecycleCallbacks: {  }

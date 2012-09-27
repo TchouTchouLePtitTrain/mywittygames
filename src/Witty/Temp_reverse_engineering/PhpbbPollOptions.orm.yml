@@ -1,0 +1,29 @@
+PhpbbPollOptions:
+    type: entity
+    table: phpbb_poll_options
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        pollOptionId:
+            type: boolean
+            nullable: false
+            column: poll_option_id
+        topicId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_id
+        pollOptionText:
+            type: text
+            nullable: false
+            column: poll_option_text
+        pollOptionTotal:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: poll_option_total
+    lifecycleCallbacks: {  }

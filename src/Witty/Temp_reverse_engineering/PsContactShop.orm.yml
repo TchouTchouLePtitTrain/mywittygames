@@ -1,0 +1,21 @@
+PsContactShop:
+    type: entity
+    table: ps_contact_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idContact:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_contact
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+    lifecycleCallbacks: {  }

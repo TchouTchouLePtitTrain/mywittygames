@@ -1,0 +1,28 @@
+PsConfigurationLang:
+    type: entity
+    table: ps_configuration_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idConfiguration:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_configuration
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        value:
+            type: text
+            nullable: true
+        dateUpd:
+            type: datetime
+            nullable: true
+            column: date_upd
+    lifecycleCallbacks: {  }

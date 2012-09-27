@@ -1,0 +1,25 @@
+PsPack:
+    type: entity
+    table: ps_pack
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idProductPack:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_pack
+        idProductItem:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_item
+        quantity:
+            type: integer
+            unsigned: true
+            nullable: false
+    lifecycleCallbacks: {  }

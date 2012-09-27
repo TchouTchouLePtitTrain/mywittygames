@@ -18,16 +18,21 @@ class User extends BaseUser
      * @var integer $id
      */
     protected $id;
-
-    /**
-     * @ORM\OneToMany(targetEntity="UserReward", mappedBy="user")
-     */
-    protected $userRewards;
 	
     /**
-     * @ORM\OneToMany(targetEntity="Projects", mappedBy="creator")
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    protected $projects;
+    private $shares;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $userRewards;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $projects;
 	
     /**
      * @var \DateTime $createdAt
@@ -186,6 +191,12 @@ class User extends BaseUser
 	 * Array de Project
      */
     private $projectsFunded;
+	
+    /**
+     * Cet attribut n'est pas mappé
+	 * Array de Game
+     */
+    private $games;
 
 	
 	
@@ -872,21 +883,11 @@ class User extends BaseUser
     {
 		$projectsFunded = array();
 		
-		if ($this->getUserRewards())
+		foreach($this->getUserRewards() as $userReward)
 		{
-			foreach($this->getUserRewards() as $userReward)
-			{
-				if ($userReward->getReward())
-				{
-					foreach ($userReward->getReward() as $reward)
-					{
-						$project = $reward->getProject();
-						if (!in_array($project, $projectsFunded)) $projectsFunded[] = $projectsFunded; //Si le projet n'est pas déjà dans la liste, on l'ajoute
-					}
-				}
-			}
+			if (!in_array($userReward->getReward()->getProject(), $projectsFunded)) $projectsFunded[] = $userReward->getReward()->getProject(); //Si le projet n'est pas déjà dans la liste, on l'ajoute
 		}
-		
+
 		$this->projectsFunded = $projectsFunded;
     }
 	
@@ -980,4 +981,103 @@ class User extends BaseUser
         if (null !== $this->avatarFile) 
 			$this->avatar = $this->avatarFile->getClientOriginalName();
     }
+
+
+    /**
+     * Add shares
+     *
+     * @param Witty\ShareBundle\Entity\Share $shares
+     * @return User
+     */
+    public function addShare(\Witty\ShareBundle\Entity\Share $shares)
+    {
+        $this->shares[] = $shares;
+    
+        return $this;
+    }
+
+    /**
+     * Remove shares
+     *
+     * @param Witty\ShareBundle\Entity\Share $shares
+     */
+    public function removeShare(\Witty\ShareBundle\Entity\Share $shares)
+    {
+        $this->shares->removeElement($shares);
+    }
+
+    /**
+     * Get shares
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getShares()
+    {
+        return $this->shares;
+    }
+
+    /**
+     * Add projects
+     *
+     * @param Witty\ProjectBundle\Entity\Project $projects
+     * @return User
+     */
+    public function addProject(\Witty\ProjectBundle\Entity\Project $projects)
+    {
+        $this->projects[] = $projects;
+    
+        return $this;
+    }
+
+    /**
+     * Remove projects
+     *
+     * @param Witty\ProjectBundle\Entity\Project $projects
+     */
+    public function removeProject(\Witty\ProjectBundle\Entity\Project $projects)
+    {
+        $this->projects->removeElement($projects);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+	
+    /**
+     * Get games
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */	
+	public function getGames()
+	{
+		if (!$this->games) $this->setGames();
+		return $this->games;
+	}
+	
+	
+	/**
+     * Set Games
+     *
+     */
+	public function setGames()
+	{
+		$games = array();
+		
+		if ($this->getShares())
+		{
+			foreach($this->getShares() as $share)
+			{
+				$game = $share->getGame();
+				if (!in_array($game, $games)) $games[] = $game;
+			}
+		}
+		
+		$this->games = $games;
+	}
 }

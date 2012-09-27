@@ -1,0 +1,18 @@
+PsCompare:
+    type: entity
+    table: ps_compare
+    fields:
+        idCompare:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_compare
+            generator:
+                strategy: IDENTITY
+        idCustomer:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_customer
+    lifecycleCallbacks: {  }

@@ -22,6 +22,13 @@ $message = \Swift_Message::newInstance()
     ;
     $this->get('mailer')->send($message);
 	*/
-        return $this->render('WittyMwgBundle:Home:index.html.twig', array());
+	
+		$projects = $this->getDoctrine()->getEntityManager()->getRepository('WittyProjectBundle:Project')->findAllOrderedByPriority();
+	
+        return $this->render('WittyMwgBundle:Home:index.html.twig', 
+			array(
+				'projects' => $projects
+			)
+		);
     }
 }

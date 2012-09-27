@@ -1,0 +1,25 @@
+PhpbbSearchWordmatch:
+    type: entity
+    table: phpbb_search_wordmatch
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        postId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: post_id
+        wordId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: word_id
+        titleMatch:
+            type: boolean
+            nullable: false
+            column: title_match
+    lifecycleCallbacks: {  }

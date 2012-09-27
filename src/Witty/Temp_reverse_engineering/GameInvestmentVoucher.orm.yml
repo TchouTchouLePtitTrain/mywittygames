@@ -1,0 +1,34 @@
+GameInvestmentVoucher:
+    type: entity
+    table: game_investment_voucher
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: user_id
+        gameId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: game_id
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        isCancelled:
+            type: boolean
+            nullable: true
+            column: is_cancelled
+    lifecycleCallbacks: {  }

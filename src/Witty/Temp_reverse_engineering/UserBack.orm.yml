@@ -1,0 +1,30 @@
+UserBack:
+    type: entity
+    table: user_back
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        login:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        password:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    lifecycleCallbacks: {  }

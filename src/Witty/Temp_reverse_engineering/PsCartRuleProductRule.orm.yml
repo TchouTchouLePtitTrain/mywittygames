@@ -1,0 +1,23 @@
+PsCartRuleProductRule:
+    type: entity
+    table: ps_cart_rule_product_rule
+    fields:
+        idProductRule:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_rule
+            generator:
+                strategy: IDENTITY
+        idProductRuleGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_rule_group
+        type:
+            type: string
+            length: null
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

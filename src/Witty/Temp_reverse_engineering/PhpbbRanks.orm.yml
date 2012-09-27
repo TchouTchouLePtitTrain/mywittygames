@@ -1,0 +1,34 @@
+PhpbbRanks:
+    type: entity
+    table: phpbb_ranks
+    fields:
+        rankId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: rank_id
+            generator:
+                strategy: IDENTITY
+        rankTitle:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: rank_title
+        rankMin:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: rank_min
+        rankSpecial:
+            type: boolean
+            nullable: false
+            column: rank_special
+        rankImage:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: rank_image
+    lifecycleCallbacks: {  }

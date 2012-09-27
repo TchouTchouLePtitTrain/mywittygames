@@ -1,0 +1,31 @@
+PsOrderStateLang:
+    type: entity
+    table: ps_order_state_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idOrderState:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_order_state
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        name:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        template:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

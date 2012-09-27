@@ -1,0 +1,33 @@
+PhpbbWarnings:
+    type: entity
+    table: phpbb_warnings
+    fields:
+        warningId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: warning_id
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        postId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: post_id
+        logId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: log_id
+        warningTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: warning_time
+    lifecycleCallbacks: {  }

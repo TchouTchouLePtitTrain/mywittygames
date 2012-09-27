@@ -1,0 +1,218 @@
+PhpbbForums:
+    type: entity
+    table: phpbb_forums
+    fields:
+        forumId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_id
+            generator:
+                strategy: IDENTITY
+        parentId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: parent_id
+        leftId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: left_id
+        rightId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: right_id
+        forumParents:
+            type: text
+            nullable: false
+            column: forum_parents
+        forumName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_name
+        forumDesc:
+            type: text
+            nullable: false
+            column: forum_desc
+        forumDescBitfield:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_desc_bitfield
+        forumDescOptions:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_desc_options
+        forumDescUid:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+            column: forum_desc_uid
+        forumLink:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_link
+        forumPassword:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+            column: forum_password
+        forumStyle:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_style
+        forumImage:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_image
+        forumRules:
+            type: text
+            nullable: false
+            column: forum_rules
+        forumRulesLink:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_rules_link
+        forumRulesBitfield:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_rules_bitfield
+        forumRulesOptions:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_rules_options
+        forumRulesUid:
+            type: string
+            length: 8
+            fixed: false
+            nullable: false
+            column: forum_rules_uid
+        forumTopicsPerPage:
+            type: boolean
+            nullable: false
+            column: forum_topics_per_page
+        forumType:
+            type: boolean
+            nullable: false
+            column: forum_type
+        forumStatus:
+            type: boolean
+            nullable: false
+            column: forum_status
+        forumPosts:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_posts
+        forumTopics:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_topics
+        forumTopicsReal:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_topics_real
+        forumLastPostId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_last_post_id
+        forumLastPosterId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_last_poster_id
+        forumLastPostSubject:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_last_post_subject
+        forumLastPostTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_last_post_time
+        forumLastPosterName:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: forum_last_poster_name
+        forumLastPosterColour:
+            type: string
+            length: 6
+            fixed: false
+            nullable: false
+            column: forum_last_poster_colour
+        forumFlags:
+            type: boolean
+            nullable: false
+            column: forum_flags
+        forumOptions:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_options
+        displaySubforumList:
+            type: boolean
+            nullable: false
+            column: display_subforum_list
+        displayOnIndex:
+            type: boolean
+            nullable: false
+            column: display_on_index
+        enableIndexing:
+            type: boolean
+            nullable: false
+            column: enable_indexing
+        enableIcons:
+            type: boolean
+            nullable: false
+            column: enable_icons
+        enablePrune:
+            type: boolean
+            nullable: false
+            column: enable_prune
+        pruneNext:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: prune_next
+        pruneDays:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: prune_days
+        pruneViewed:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: prune_viewed
+        pruneFreq:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: prune_freq
+    lifecycleCallbacks: {  }

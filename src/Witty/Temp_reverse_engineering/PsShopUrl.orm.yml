@@ -1,0 +1,47 @@
+PsShopUrl:
+    type: entity
+    table: ps_shop_url
+    fields:
+        idShopUrl:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop_url
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        domain:
+            type: string
+            length: 150
+            fixed: false
+            nullable: false
+        domainSsl:
+            type: string
+            length: 150
+            fixed: false
+            nullable: false
+            column: domain_ssl
+        physicalUri:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+            column: physical_uri
+        virtualUri:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+            column: virtual_uri
+        main:
+            type: boolean
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

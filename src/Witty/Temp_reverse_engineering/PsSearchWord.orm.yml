@@ -1,0 +1,28 @@
+PsSearchWord:
+    type: entity
+    table: ps_search_word
+    fields:
+        idWord:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_word
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idLang:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_lang
+        word:
+            type: string
+            length: 15
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

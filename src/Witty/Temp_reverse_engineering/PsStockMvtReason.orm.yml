@@ -1,0 +1,27 @@
+PsStockMvtReason:
+    type: entity
+    table: ps_stock_mvt_reason
+    fields:
+        idStockMvtReason:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_stock_mvt_reason
+            generator:
+                strategy: IDENTITY
+        sign:
+            type: boolean
+            nullable: false
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+        dateUpd:
+            type: datetime
+            nullable: false
+            column: date_upd
+        deleted:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

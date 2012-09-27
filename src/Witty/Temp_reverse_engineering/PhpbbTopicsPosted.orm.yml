@@ -1,0 +1,25 @@
+PhpbbTopicsPosted:
+    type: entity
+    table: phpbb_topics_posted
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        topicId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_id
+        topicPosted:
+            type: boolean
+            nullable: false
+            column: topic_posted
+    lifecycleCallbacks: {  }

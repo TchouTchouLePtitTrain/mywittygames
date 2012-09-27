@@ -1,0 +1,46 @@
+PsNewsletter:
+    type: entity
+    table: ps_newsletter
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idShopGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop_group
+        email:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        newsletterDateAdd:
+            type: datetime
+            nullable: true
+            column: newsletter_date_add
+        ipRegistrationNewsletter:
+            type: string
+            length: 15
+            fixed: false
+            nullable: false
+            column: ip_registration_newsletter
+        httpReferer:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: http_referer
+        active:
+            type: boolean
+            nullable: false
+    lifecycleCallbacks: {  }

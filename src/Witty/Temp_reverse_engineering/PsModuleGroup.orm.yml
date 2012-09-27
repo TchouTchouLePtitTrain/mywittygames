@@ -1,0 +1,26 @@
+PsModuleGroup:
+    type: entity
+    table: ps_module_group
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idModule:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_module
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_group
+    lifecycleCallbacks: {  }

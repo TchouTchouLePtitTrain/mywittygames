@@ -1,0 +1,26 @@
+PhpbbForumsTrack:
+    type: entity
+    table: phpbb_forums_track
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        forumId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_id
+        markTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: mark_time
+    lifecycleCallbacks: {  }

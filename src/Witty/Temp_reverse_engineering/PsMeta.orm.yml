@@ -1,0 +1,18 @@
+PsMeta:
+    type: entity
+    table: ps_meta
+    fields:
+        idMeta:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_meta
+            generator:
+                strategy: IDENTITY
+        page:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

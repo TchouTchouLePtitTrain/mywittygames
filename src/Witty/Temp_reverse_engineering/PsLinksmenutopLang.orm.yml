@@ -1,0 +1,36 @@
+PsLinksmenutopLang:
+    type: entity
+    table: ps_linksmenutop_lang
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idLinksmenutop:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_linksmenutop
+        idLang:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_lang
+        idShop:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_shop
+        label:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+        link:
+            type: string
+            length: 128
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

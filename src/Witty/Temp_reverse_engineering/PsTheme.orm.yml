@@ -1,0 +1,23 @@
+PsTheme:
+    type: entity
+    table: ps_theme
+    fields:
+        idTheme:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_theme
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+        directory:
+            type: string
+            length: 64
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

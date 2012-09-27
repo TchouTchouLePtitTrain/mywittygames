@@ -1,0 +1,13 @@
+PsProfile:
+    type: entity
+    table: ps_profile
+    fields:
+        idProfile:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_profile
+            generator:
+                strategy: IDENTITY
+    lifecycleCallbacks: {  }

@@ -1,0 +1,56 @@
+PhpbbLog:
+    type: entity
+    table: phpbb_log
+    fields:
+        logId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: log_id
+            generator:
+                strategy: IDENTITY
+        logType:
+            type: boolean
+            nullable: false
+            column: log_type
+        userId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: user_id
+        forumId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: forum_id
+        topicId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: topic_id
+        reporteeId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: reportee_id
+        logIp:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+            column: log_ip
+        logTime:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: log_time
+        logOperation:
+            type: text
+            nullable: false
+            column: log_operation
+        logData:
+            type: text
+            nullable: false
+            column: log_data
+    lifecycleCallbacks: {  }

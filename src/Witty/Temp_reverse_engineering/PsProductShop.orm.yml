@@ -1,0 +1,119 @@
+PsProductShop:
+    type: entity
+    table: ps_product_shop
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idProduct:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product
+        idShop:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_shop
+        idCategoryDefault:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: id_category_default
+        idTaxRulesGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_tax_rules_group
+        onSale:
+            type: boolean
+            nullable: false
+            column: on_sale
+        onlineOnly:
+            type: boolean
+            nullable: false
+            column: online_only
+        ecotax:
+            type: decimal
+            nullable: false
+        minimalQuantity:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: minimal_quantity
+        price:
+            type: decimal
+            nullable: false
+        wholesalePrice:
+            type: decimal
+            nullable: false
+            column: wholesale_price
+        unity:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        unitPriceRatio:
+            type: decimal
+            nullable: false
+            column: unit_price_ratio
+        additionalShippingCost:
+            type: decimal
+            nullable: false
+            column: additional_shipping_cost
+        customizable:
+            type: boolean
+            nullable: false
+        textFields:
+            type: boolean
+            nullable: false
+            column: text_fields
+        active:
+            type: boolean
+            nullable: false
+        availableForOrder:
+            type: boolean
+            nullable: false
+            column: available_for_order
+        availableDate:
+            type: date
+            nullable: false
+            column: available_date
+        condition:
+            type: string
+            length: null
+            fixed: false
+            nullable: false
+        showPrice:
+            type: boolean
+            nullable: false
+            column: show_price
+        indexed:
+            type: boolean
+            nullable: false
+        visibility:
+            type: string
+            length: null
+            fixed: false
+            nullable: false
+        cacheDefaultAttribute:
+            type: integer
+            unsigned: true
+            nullable: true
+            column: cache_default_attribute
+        advancedStockManagement:
+            type: boolean
+            nullable: false
+            column: advanced_stock_management
+        dateAdd:
+            type: datetime
+            nullable: false
+            column: date_add
+        dateUpd:
+            type: datetime
+            nullable: false
+            column: date_upd
+    lifecycleCallbacks: {  }

@@ -1,0 +1,21 @@
+PsReferrerCache:
+    type: entity
+    table: ps_referrer_cache
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idConnectionsSource:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_connections_source
+        idReferrer:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_referrer
+    lifecycleCallbacks: {  }

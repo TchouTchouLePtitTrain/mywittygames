@@ -1,0 +1,25 @@
+PhpbbAclRolesData:
+    type: entity
+    table: phpbb_acl_roles_data
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        roleId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: role_id
+        authOptionId:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: auth_option_id
+        authSetting:
+            type: boolean
+            nullable: false
+            column: auth_setting
+    lifecycleCallbacks: {  }

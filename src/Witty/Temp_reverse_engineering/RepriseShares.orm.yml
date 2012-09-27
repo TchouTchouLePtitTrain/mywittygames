@@ -1,0 +1,17 @@
+RepriseShares:
+    type: entity
+    table: reprise_shares
+    fields:
+        userId:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: user_id
+            generator:
+                strategy: IDENTITY
+        shares:
+            type: integer
+            unsigned: false
+            nullable: true
+    lifecycleCallbacks: {  }

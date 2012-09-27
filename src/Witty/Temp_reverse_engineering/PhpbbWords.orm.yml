@@ -1,0 +1,23 @@
+PhpbbWords:
+    type: entity
+    table: phpbb_words
+    fields:
+        wordId:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: word_id
+            generator:
+                strategy: IDENTITY
+        word:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        replacement:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,35 @@
+OpPictures:
+    type: entity
+    table: op_pictures
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+        type:
+            type: integer
+            unsigned: false
+            nullable: false
+        name:
+            type: string
+            length: 50
+            fixed: false
+            nullable: false
+        description:
+            type: text
+            nullable: false
+        path:
+            type: text
+            nullable: false
+    lifecycleCallbacks: {  }

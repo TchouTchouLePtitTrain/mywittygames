@@ -1,0 +1,28 @@
+PsSpecificPriceRuleCondition:
+    type: entity
+    table: ps_specific_price_rule_condition
+    fields:
+        idSpecificPriceRuleCondition:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_specific_price_rule_condition
+            generator:
+                strategy: IDENTITY
+        idSpecificPriceRuleConditionGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_specific_price_rule_condition_group
+        type:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        value:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

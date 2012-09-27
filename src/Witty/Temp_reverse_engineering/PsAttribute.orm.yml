@@ -1,0 +1,27 @@
+PsAttribute:
+    type: entity
+    table: ps_attribute
+    fields:
+        idAttribute:
+            id: true
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attribute
+            generator:
+                strategy: IDENTITY
+        idAttributeGroup:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attribute_group
+        color:
+            type: string
+            length: 32
+            fixed: false
+            nullable: true
+        position:
+            type: integer
+            unsigned: true
+            nullable: false
+    lifecycleCallbacks: {  }

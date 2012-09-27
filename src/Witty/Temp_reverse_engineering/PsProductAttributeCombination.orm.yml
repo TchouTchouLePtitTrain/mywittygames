@@ -1,0 +1,21 @@
+PsProductAttributeCombination:
+    type: entity
+    table: ps_product_attribute_combination
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idAttribute:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_attribute
+        idProductAttribute:
+            type: integer
+            unsigned: true
+            nullable: false
+            column: id_product_attribute
+    lifecycleCallbacks: {  }
