@@ -21,9 +21,9 @@ class ProjectController extends Controller
     {
 		$em = $this->getDoctrine()->getEntityManager();
 		
-		if (gettype($slug) == 'string')
+		if (!is_numeric($slug) == 'string')
 			$project = $em->getRepository('WittyProjectBundle:Project')->findOneBySlug($slug);
-		elseif (gettype($slug) == 'integer')
+		else
 			$project = $em->getRepository('WittyProjectBundle:Project')->findOneById($slug);
 
 		return $this->render('WittyProjectBundle:Project:project.html.twig', 
