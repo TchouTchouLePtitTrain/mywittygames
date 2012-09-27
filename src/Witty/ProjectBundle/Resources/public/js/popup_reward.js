@@ -1,5 +1,8 @@
 // JavaScript Document
 
+/*
+
+
 $(document).ready(function() {
 	
 	//Lorsque vous cliquez sur un lien de la classe poplight et que le href commence par #
@@ -42,3 +45,6 @@ $('a.close, #fade').live('click', function() { //Au clic sur le bouton ou sur le
 });
 	
 });
+
+
+*/

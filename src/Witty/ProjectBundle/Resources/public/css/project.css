@@ -20,6 +20,12 @@
 	color:#514846;
 }
 
+section{
+	display:block;
+	width:660px;
+}
+
+
 /* --- Sous-menu --- */
 
 #onglets{
@@ -252,7 +258,7 @@
 	margin-bottom:20px;
 	width:240px;
 	height:auto;
-	background-color:#edeff3;
+	background-color:#F6F6F6;
 	border: solid 1px #dddbdb;
 	padding-bottom:20px;
 	padding-left:20px;
@@ -264,7 +270,7 @@
 	margin-left:auto;
 	margin-right:auto;
 	width:100%;
-	height:95px;
+	height:103.5px;
 	border-bottom: solid 1px #dddbdb;
 }
 
@@ -278,7 +284,7 @@
 	display:block;
 	width:260px;
 	font-family: 'Crete Round', serif;
-	font-size:50px;
+	font-size:56px;
 	color:#514846;
 	line-height: normal;
 	margin-bottom:5px;
@@ -326,11 +332,23 @@
 	margin-left:180px;
 }
 
+.style_select{
+	border-top: 1px solid #DDDBDB;
+    color: #514846;
+    display: block;
+    font-family: 'Crete Round',serif;
+    font-size: 18px;
+    line-height: normal;
+    margin-bottom: 8px;
+    padding-top: 5px;
+    width: 282px;
+}
+
 .btn_soutenir{
 	display:block;
 	background-image: url(../images/btn_soutenir_normal.png);
 	width:240px;
-	height:51px;
+	height:50px;
 	margin-top:15px;
 	cursor:pointer;
 }
@@ -400,7 +418,7 @@
 	margin-bottom:-1px;
 	width:240px;
 	height:auto;
-	background-color:#f3f3f1;
+	background-color:#F6F6F6;
 	border: solid 1px #dddbdb;
 	padding:20px;
 	cursor:pointer;
