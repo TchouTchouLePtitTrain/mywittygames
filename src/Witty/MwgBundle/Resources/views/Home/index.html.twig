@@ -20,109 +20,59 @@
     </div>
     
 <div id="container">
-    
-    <a href="" class="bloc_jeu_grand">
-    <img class="img_jeu_grand" src="" alt=""/>
-    	<div class="bloc_jeu_haut_grand">
-        	<p class="titreJeu_grand" href="">COCORICO</p>
-        	<p class="descriptionJeu_grand">Soyez le premier à attraper le coq qui vous réveille tous les matins !</p>
-            <p class="texteJeu_grand">Non loin de la forêt de Fontainebleau, le paisible village de Chantecoq se réveille aux aurores...Un coq qui se prend pour un soprano de basse-cour vient de réveiller tout le monde ! Il va falloir le retrouver !</p>
-    	</div>
-        <div class="bloc_jeu_bas_grand">
-        	<div class="bloc_caracteritiques_grand">
-            	<p class="style_NBcaracteritiques_grand">234</p>
-                <p class="style_caracteritiques_grand">édinautes<br/>soutiennent le jeu</p>
-                <img class="img_user_grand"/>
-            </div>
-            <div class="bloc_caracteritiques_grand">
-            	<p class="style_NBcaracteritiques_grand">6 700 €</p>
-                <p class="style_caracteritiques_grand">sur 30 000 €<br/>demandé</p>
-                <img class="img_piggy_grand"/>
-            </div>
-            <div class="bloc_caracteritiques_grand">
-            	<p class="style_NBcaracteritiques_grand">31</p>
-                <p class="style_caracteritiques_grand">jours<br/>restants</p>
-                <img class="img_clock_grand"/>
-            </div>
-		</div>
-        
-        <div class="spacer"></div>
-    </a>
-    
-    
-    <a href="" class="bloc_jeu">
-    	<div class="bloc_jeu_haut">
-    		<img class="img_jeu" src="" alt=""/>
-        	<p class="titreJeu" href="">Temple</p>
-        	<p class="descriptionJeu">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension <br/>à la boîte de base.</p>
-    	</div>
-        <div class="bloc_jeu_bas">
-        	<div class="bloc_caracteritiques">
-            	<img class="img_user"/>
-            	<p class="style_caracteritiques">234</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_piggy"/>
-            	<p class="style_caracteritiques">6 700 €</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_clock"/>
-            	<p class="style_caracteritiques">31</p>
-            </div>
-        </div>
-        
-        <div class="spacer"></div>
 
-    </a>
-    <a href="" class="bloc_jeu">
-    	<div class="bloc_jeu_haut">
-    		<img class="img_jeu" src="" alt=""/>
-        	<p class="titreJeu" href="">Temple</p>
-        	<p class="descriptionJeu">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension <br/>à la boîte de base.</p>
-    	</div>
-        <div class="bloc_jeu_bas">
-        	<div class="bloc_caracteritiques">
-            	<img class="img_user"/>
-            	<p class="style_caracteritiques">234</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_piggy"/>
-            	<p class="style_caracteritiques">6 700 €</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_clock"/>
-            	<p class="style_caracteritiques">31</p>
-            </div>
-        </div>
-        
-        <div class="spacer"></div>
-
-    </a>
-    <a href="" class="bloc_jeu">
-    	<div class="bloc_jeu_haut">
-    		<img class="img_jeu" src="" alt=""/>
-        	<p class="titreJeu" href="">Temple</p>
-        	<p class="descriptionJeu">Temple est l'extension de Witty Chronos <br/>et donne une nouvelle dimension <br/>à la boîte de base.</p>
-    	</div>
-        <div class="bloc_jeu_bas">
-        	<div class="bloc_caracteritiques">
-            	<img class="img_user"/>
-            	<p class="style_caracteritiques">234</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_piggy"/>
-            	<p class="style_caracteritiques">6 700 €</p>
-            </div>
-            <div class="bloc_caracteritiques">
-            	<img class="img_clock"/>
-            	<p class="style_caracteritiques">31</p>
-            </div>
-        </div>
-        
-        <div class="spacer"></div>
-
-    </a>
-   
+	<!-- Petit Challenge ! -->
+	<!-- Modifications : Un seul bloc de code pour générer les différents projets -->
+	<!-- On différencie les styles à appliquer grâce à une seule classe : bloc_jeu ou bloc_jeu_grand -->
+	<!-- Dans le CSS, ça se traduit par des sélecteurs plus fins (2 classes pour chaque sélecteur) -->
+	<!-- La syntaxe de sélecteur CSS .classe1.classe2 veut dire "l'élément qui possède la classe1 et la classe2" -->
+	<!-- A ne pas confondre avec .classe1 .class2 qui veut dire "l'élément qui possède la class2 et qui est contenu dans un élément qui possède la classe1 -->
+	<!-- Tous les blocs sont donc composés des 3 mêmes éléments : image, bloc haut, description, bloc caracteristiques -->
+	<!-- Il faut terminer de les arranger en CSS + refactorer le code (mettre en commun toutes les propriétés qui peuvent l'être) : exemple les box-shadow de .bloc_jeu peuvent être mises dans -->
+	<!-- les règles CSS associées au sélecteur .bloc_jeu -->
+	<!-- De manière générale, quand les styles dépendent complètement d'un bloc, ça doit se refléter dans la CSS -->
+	<!-- Ca fait pas mal de trucs à lire et un peu à refaire mais c'est très formateur -->
+	
+	{% for project in projects %}
+	 
+		<a href="{{ path('project_display' , {'slug': project.slug} ) }}" class="bloc_jeu {% if loop.first %}grand{% else %}petit{% endif %}">
+			{% if loop.first %}
+				<img class="img_jeu" src="{{ projects|first.image }}" alt=""/>
+			{% endif %}
+			<div class="bloc_jeu_haut">
+				<p class="titreJeu">{{ project.title }}</p>
+				<p class="descriptionJeu">{{ project.shortDescription }}</p>
+				<p class="texteJeu">{{ project.mediumDescription }}</p>
+			</div>
+			<div class="bloc_jeu_bas">
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
+					{% if loop.first %}
+						<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
+					{% endif %}
+					<img class="img_user"/>
+				</div>
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.funding }}</p>
+					{% if loop.first %}
+						<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
+					{% endif %}
+					<img class="img_piggy"/>
+				</div>
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
+					{% if loop.first %}					
+						<p class="style_caracteristiques">jours<br/>restants</p>
+					{% endif %}
+					<img class="img_clock"/>
+				</div>
+			</div>
+			
+			<div class="spacer"></div>
+		</a>
+	
+	{% endfor %}
+	
 </div>
    
    

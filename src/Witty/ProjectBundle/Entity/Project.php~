@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Witty\ProjectBundle\Entity\Project
  *
  * @ORM\Table(name="project", uniqueConstraints={@ORM\UniqueConstraint(name="project_slug", columns={"slug"})}))
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Witty\ProjectBundle\Repository\ProjectRepository")
  */
 class Project
 {
@@ -125,7 +125,14 @@ class Project
      *
      * @ORM\Column(name="short_description", type="string", length=255)
      */
-    private $shortDescription;
+    private $shortDescription;	
+	
+    /**
+     * @var string $mediumDescription
+     *
+     * @ORM\Column(name="medium_description", type="string", length=510)
+     */
+    private $mediumDescription;
 	
     /**
      * @var string $slug
@@ -137,7 +144,7 @@ class Project
     /**
      * @var integer $priority
      *
-     * @ORM\Column(name="priority", type="integer", nullable=false)
+     * @ORM\Column(name="priority", type="integer", nullable=true)
      */
     protected $priority = 100;
 	
@@ -766,4 +773,27 @@ class Project
     }
 	
 	
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     * @return Project
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer 
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
 }

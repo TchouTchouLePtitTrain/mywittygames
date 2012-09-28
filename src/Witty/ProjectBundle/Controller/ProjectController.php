@@ -36,7 +36,7 @@ class ProjectController extends Controller
     {
 		$em = $this->getDoctrine()->getEntityManager();
 		
-		$projects = $em->getRepository('WittyProjectBundle:Project')->->findAllOrderedByPriority();
+		$projects = $em->getRepository('WittyProjectBundle:Project')->findAllOrderedByPriority();
 			
 		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projects' => $projects));
     }

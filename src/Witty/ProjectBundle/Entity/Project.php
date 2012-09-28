@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Witty\ProjectBundle\Entity\Project
  *
  * @ORM\Table(name="project", uniqueConstraints={@ORM\UniqueConstraint(name="project_slug", columns={"slug"})}))
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Witty\ProjectBundle\Repository\ProjectRepository")
  */
 class Project
 {
@@ -125,7 +125,14 @@ class Project
      *
      * @ORM\Column(name="short_description", type="string", length=255)
      */
-    private $shortDescription;
+    private $shortDescription;	
+	
+    /**
+     * @var string $mediumDescription
+     *
+     * @ORM\Column(name="medium_description", type="string", length=510)
+     */
+    private $mediumDescription;
 	
     /**
      * @var string $slug
@@ -788,5 +795,28 @@ class Project
     public function getPriority()
     {
         return $this->priority;
+    }
+
+    /**
+     * Set mediumDescription
+     *
+     * @param string $mediumDescription
+     * @return Project
+     */
+    public function setMediumDescription($mediumDescription)
+    {
+        $this->mediumDescription = $mediumDescription;
+    
+        return $this;
+    }
+
+    /**
+     * Get mediumDescription
+     *
+     * @return string 
+     */
+    public function getMediumDescription()
+    {
+        return $this->mediumDescription;
     }
 }

@@ -1,8 +1,16 @@
 services:
-    witty.url_manager:
-        class: %witty.url_manager.class%
+    witty.twig.url_manager:
+        class: %witty.twig.url_manager.class%
         arguments:
             - %witty.url_mwg%
             - %witty.s3.endpoint%
+        tags:
+            - { name: twig.extension }
+    witty.twig.entity_manager:
+        class: %witty.twig.entity_manager.class%
+        tags:
+            - { name: twig.extension }
+    witty.twig.custom_filters:
+        class: %witty.twig.custom_filters.class%
         tags:
             - { name: twig.extension }

@@ -7,4 +7,6 @@ parameters:
         secret: 9mmcfa0+EC3KUelde6q8emeiBZO6lh7wRFS0Ak5j
     witty.s3.bucket: mywittygames
     witty.s3.endpoint: https://s3-eu-west-1.amazonaws.com/mywittygames/
-    witty.url_manager.class: Witty\ToolsBundle\Service\Twig\Extension\UrlManager
+    witty.twig.url_manager.class: Witty\ToolsBundle\Service\Twig\Extension\UrlManager
+    witty.twig.entity_manager.class: Witty\ToolsBundle\Service\Twig\Extension\EntityManager
+    witty.twig.custom_filters.class: Witty\ToolsBundle\Service\Twig\Extension\CustomFilters
