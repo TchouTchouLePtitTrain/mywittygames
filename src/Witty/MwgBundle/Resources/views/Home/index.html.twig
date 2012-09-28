@@ -36,14 +36,14 @@
 	{% for project in projects %}
 	 
 		<a href="{{ path('project_display' , {'slug': project.slug} ) }}" class="bloc_jeu {% if loop.first %}grand{% else %}petit{% endif %}">
-			{% if loop.first %}
-				<img class="img_jeu" src="{{ projects|first.image }}" alt=""/>
-			{% endif %}
+			<img class="img_jeu" src="{{ project.image }}" alt=""/>
 			<div class="bloc_jeu_haut">
 				<p class="titreJeu">{{ project.title }}</p>
 				<p class="descriptionJeu">{{ project.shortDescription }}</p>
-				<p class="texteJeu">{{ project.mediumDescription }}</p>
-			</div>
+                {% if loop.first %}
+					<p class="texteJeu">{{ project.mediumDescription }}</p>
+				{% endif %}
+            </div>
 			<div class="bloc_jeu_bas">
 				<div class="bloc_caracteristiques">
 					<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
