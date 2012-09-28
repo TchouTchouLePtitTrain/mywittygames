@@ -1,0 +1,16 @@
+{% extends "WittyProjectBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div id="container">
+
+	<div class="blocTitrePage">
+    	<p class="titrePage titrePage_projet">Donner vie aux jeux</p>
+        <p class="descriptionPage descriptionPage_projet">Participez au financement de jeux de société et recevez des récompenses exclusives.<br/>Si un projet n'atteint pas son objectif, vous êtes remboursé sans frais.</p>
+        <p class="infosPage">Actuellement 6 jeux ont été édité grâce aux édinautes. Rejoignez-les !</p>
+    </div>
+
+	{% render "WittyProjectBundle:Project:projectsList" with {'mode_affichage': mode_affichage} %}
+</div>
+
+{% endblock %}

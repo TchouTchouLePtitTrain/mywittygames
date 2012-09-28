@@ -2,14 +2,6 @@
 
 {% block title %}{{ parent() }} - L'édition participative{% endblock %}
 
-{% block stylesheets %}
-    {% stylesheets 'bundles/wittymwg/css/*.css' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-    {% endstylesheets %}
-    
-    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
-{% endblock %}
-
 {% block content %}
   
    <div class="blocTitreHome">
@@ -32,46 +24,8 @@
 	<!-- les règles CSS associées au sélecteur .bloc_jeu -->
 	<!-- De manière générale, quand les styles dépendent complètement d'un bloc, ça doit se refléter dans la CSS -->
 	<!-- Ca fait pas mal de trucs à lire et un peu à refaire mais c'est très formateur -->
-	
-	{% for project in projects %}
-	 
-		<a href="{{ path('project_display' , {'slug': project.slug} ) }}" class="bloc_jeu {% if loop.first %}grand{% else %}petit{% endif %}">
-			<img class="img_jeu" src="{{ project.image }}" alt=""/>
-			<div class="bloc_jeu_haut">
-				<p class="titreJeu">{{ project.title }}</p>
-				<p class="descriptionJeu">{{ project.shortDescription }}</p>
-                {% if loop.first %}
-					<p class="texteJeu">{{ project.mediumDescription }}</p>
-				{% endif %}
-            </div>
-			<div class="bloc_jeu_bas">
-				<div class="bloc_caracteristiques">
-					<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
-					{% if loop.first %}
-						<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
-					{% endif %}
-					<img class="img_user"/>
-				</div>
-				<div class="bloc_caracteristiques">
-					<p class="style_NBcaracteritiques">{{ project.funding }}</p>
-					{% if loop.first %}
-						<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
-					{% endif %}
-					<img class="img_piggy"/>
-				</div>
-				<div class="bloc_caracteristiques">
-					<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
-					{% if loop.first %}					
-						<p class="style_caracteristiques">jours<br/>restants</p>
-					{% endif %}
-					<img class="img_clock"/>
-				</div>
-			</div>
-			
-			<div class="spacer"></div>
-		</a>
-	
-	{% endfor %}
+
+	{% render "WittyProjectBundle:Project:projectsList" with {'mode_affichage': mode_affichage} %}
 	
 </div>
    

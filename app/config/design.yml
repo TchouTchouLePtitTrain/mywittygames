@@ -1,0 +1,3 @@
+parameters:
+    witty.design.home.mode_affichage: "all_projects_big"
+    witty.design.project.list.mode_affichage: "focus_one_project"

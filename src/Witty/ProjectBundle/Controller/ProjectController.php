@@ -11,9 +11,13 @@ class ProjectController extends Controller
     /**
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($mode_affichage = 'focus_one_project')
     {
-		return $this->displayProjectsList();
+		return $this->render('WittyProjectBundle:Project:projects.html.twig', 
+			array(
+				'mode_affichage' => $this->container->getParameter('witty.design.project.list.mode_affichage')
+			)
+		);
     }
 	
 	//L'argument "slug" peut être un slug ou un id
@@ -32,12 +36,11 @@ class ProjectController extends Controller
 			));
     }
 	
-    public function displayProjectsList()
+    public function projectsListAction($mode_affichage = 'focus_one_project')
     {
 		$em = $this->getDoctrine()->getEntityManager();
-		
 		$projects = $em->getRepository('WittyProjectBundle:Project')->findAllOrderedByPriority();
 			
-		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projects' => $projects));
+		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projects' => $projects, 'mode_affichage' => $mode_affichage));
     }
 }

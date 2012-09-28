@@ -1,52 +1,52 @@
-{% extends "WittyProjectBundle::layout.html.twig" %}
+{% stylesheets 'bundles/wittyproject/css/*.css' filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+{% endstylesheets %}
 
-{% block stylesheets %}
-    {% stylesheets 'bundles/wittyproject/css/*.css' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-    {% endstylesheets %}
-    
-    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
-{% endblock %}
+<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
 
-{% block content %}
 
-<div id="container">
+{% for project in projects %}
 
-	<div class="blocTitrePage">
-    	<p class="titrePage titrePage_projet">Donner vie aux jeux</p>
-        <p class="descriptionPage descriptionPage_projet">Participez au financement de jeux de société et recevez des récompenses exclusives.<br/>Si un projet n'atteint pas son objectif, vous êtes remboursé sans frais.</p>
-        <p class="infosPage">Actuellement 6 jeux ont été édité grâce aux édinautes. Rejoignez-les !</p>
-    </div>
-    
-	{% for project in projects %}
-	
-		<a href="{{ path('project_display', {'slug': project.slug}) }}" class="bloc_jeu">
-			<div class="bloc_jeu_haut">
-				<img class="img_jeu" src="{{ project.image }}" alt=""/>
-				<p class="titreJeu" href="">{{ project.title }}</p>
-				<p class="descriptionJeu">{{ project.shortDescription }}</p>
+	{% if ((mode_affichage == 'focus_one_project' and loop.first) or (mode_affichage == 'all_projects_big')) and (not(mode_affichage == 'all_projects_small')) %}
+		{% set affichage = 'grand' %}
+	{% else %}
+		{% set affichage = 'petit' %}
+	{% endif %}
+ 
+ 
+	<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
+		class="bloc_jeu {{affichage}}">
+		<img class="img_jeu" src="{{ project.image }}" alt=""/>
+		<div class="bloc_jeu_haut">
+			<p class="titreJeu">{{ project.title }}</p>
+			<p class="descriptionJeu">{{ project.shortDescription }}</p>
+			<p class="texteJeu">{{ project.mediumDescription }}</p>
+		</div>
+		<div class="bloc_jeu_bas">
+			<div class="bloc_caracteristiques">
+				<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
+				{% if affichage == 'grand' %}
+					<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
+				{% endif %}
+				<img class="img_user"/>
 			</div>
-			<div class="bloc_jeu_bas">
-				<div class="bloc_caracteritiques">
-					<img class="img_user"/>
-					<p class="style_caracteritiques">{{ project.edinautes|length }}</p>
-				</div>
-				<div class="bloc_caracteritiques">
-					<img class="img_piggy"/>
-					<p class="style_caracteritiques">{{ project.funding }}</p>
-				</div>
-				<div class="bloc_caracteritiques">
-					<img class="img_clock"/>
-					<p class="style_caracteritiques">{{ project.daysLeft }}</p>
-				</div>
+			<div class="bloc_caracteristiques">
+				<p class="style_NBcaracteritiques">{{ project.funding }}</p>
+				{% if affichage == 'grand' %}
+					<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
+				{% endif %}
+				<img class="img_piggy"/>
 			</div>
-			
-			<div class="spacer"></div>
+			<div class="bloc_caracteristiques">
+				<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
+				{% if affichage == 'grand' %}					
+					<p class="style_caracteristiques">jours<br/>restants</p>
+				{% endif %}
+				<img class="img_clock"/>
+			</div>
+		</div>
+		
+		<div class="spacer"></div>
+	</a>
 
-		</a>
-
-	{% endfor %}
-    
-</div>
-
-{% endblock %}
+{% endfor %}

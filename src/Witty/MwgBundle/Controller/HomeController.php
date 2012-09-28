@@ -13,11 +13,9 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-		$projects = $this->getDoctrine()->getEntityManager()->getRepository('WittyProjectBundle:Project')->findAllOrderedByPriority();
-	
         return $this->render('WittyMwgBundle:Home:index.html.twig', 
 			array(
-				'projects' => $projects
+				'mode_affichage' => $this->container->getParameter('witty.design.home.mode_affichage')
 			)
 		);
     }
