@@ -1,5 +1,11 @@
 {% extends "WittyMwgBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {% stylesheets 'bundles/wittymwg/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block title %}{{ parent() }} - L'édition participative{% endblock %}
 
 {% block content %}
