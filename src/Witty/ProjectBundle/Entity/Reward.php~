@@ -33,11 +33,17 @@ class Reward
     protected $userRewards;
 	
     /**
-     * @var integer $pledgeAmount
-     *
-     * @ORM\Column(name="pledge_amount", type="integer", nullable=false)
+     * @ORM\ManyToMany(targetEntity="RewardOption", inversedBy="rewards")
+     * @ORM\JoinTable(name="reward_rewardoption")
      */
-    private $pledgeAmount;
+    private $options;
+	
+    /**
+     * @var integer $cost
+     *
+     * @ORM\Column(name="cost", type="integer", nullable=false)
+     */
+    private $cost;
 
     /**
      * @var integer $offset
@@ -345,5 +351,38 @@ class Reward
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Add options
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $options
+     * @return Reward
+     */
+    public function addOption(\Witty\ProjectBundle\Entity\RewardOption $options)
+    {
+        $this->options[] = $options;
+    
+        return $this;
+    }
+
+    /**
+     * Remove options
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $options
+     */
+    public function removeOption(\Witty\ProjectBundle\Entity\RewardOption $options)
+    {
+        $this->options->removeElement($options);
+    }
+
+    /**
+     * Get options
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 }

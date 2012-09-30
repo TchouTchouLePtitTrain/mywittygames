@@ -1,4 +1,5 @@
 imports:
+    - { resource: parameters_dev.yml }
     - { resource: config.yml }
 
 framework:
@@ -24,9 +25,3 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
-
-twig:
-    globals:
-        url_mwg: %url_mwg_dev%
-        url_mwn: %url_mwn_dev%
-        url_mws: %url_mws_dev%

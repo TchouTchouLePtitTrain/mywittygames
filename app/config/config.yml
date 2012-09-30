@@ -45,6 +45,10 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        url_mwg: %witty.url_mwg%
+        url_mwn: %witty.url_mwn%
+        url_mws: %witty.url_mws%
 
 # Assetic Configuration
 assetic:

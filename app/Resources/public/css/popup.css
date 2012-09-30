@@ -10,7 +10,7 @@
 	z-index: 9999;
 }
 
-.popup_block{
+.popup.login{
 	display: none; /*--masqué par défaut--*/
 	background: #fff;
 	float: left;
@@ -40,7 +40,7 @@ img.btn_close {
 *html #fade {
 position: absolute;
 }
-*html .popup_block {
+*html .popup.login {
 position: absolute;
 }
 
@@ -373,7 +373,7 @@ label{
 
 /* --- POP UP Login --- */
 
-.popup_block2{
+.popup.register{
 	display: none; /*--masqué par défaut--*/
 	background: #fff;
 	float: left;

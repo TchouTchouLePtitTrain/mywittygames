@@ -5,3 +5,9 @@ project_accueil:
 project_display:
     pattern:   /{slug}
     defaults:  { _controller: WittyProjectBundle:Project:display }
+    
+project_confirmation:
+    pattern:   /soutien/{id}
+    defaults:  { _controller: WittyProjectBundle:Project:confirmation }
+    requirements:
+        page:  \d+

@@ -5,6 +5,7 @@ namespace Witty\ProjectBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class ProjectController extends Controller
 {
@@ -42,5 +43,16 @@ class ProjectController extends Controller
 		$projects = $em->getRepository('WittyProjectBundle:Project')->findAllOrderedByPriority();
 			
 		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projects' => $projects, 'mode_affichage' => $mode_affichage));
+    }	
+	
+	/**
+     * @Secure(roles="ROLE_USER")
+     */
+    public function confirmationAction($id)
+    {
+		$em = $this->getDoctrine()->getEntityManager();
+		$reward = $em->getRepository('WittyProjectBundle:Reward')->findOneById($id);
+	
+		return $this->render('WittyProjectBundle:Project:confirmation.html.twig', array('reward' => $reward, 'paypal_fees' => (float) $this->container->getParameter('witty.paypal.fees')));
     }
 }

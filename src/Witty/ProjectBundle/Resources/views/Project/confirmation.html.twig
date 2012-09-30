@@ -1,0 +1,130 @@
+{% extends "WittyProjectBundle::layout.html.twig" %}
+
+{% block content %}
+
+{{ app.user.label }}, merci de soutenir {{ reward.project.title }}.
+<br/>
+Voici la contrepartie que vous allez acquérir :
+
+{{ reward.title }}
+<br/>
+
+<form id="confirmation_form" action="https://www.paypal.com/cgi-bin/webscr{# path('transaction_confirmation') #}" method="post" target="paypal">
+
+
+	{# Champs obligatoires pour paypal #}
+	<input type="hidden" name="net_amount" value="{{ reward.cost }}"/>
+	<input type="hidden" name="fees" value="{{ reward.cost * paypal_fees }}"/>
+	<input type="hidden" name="amount" value="{{ reward.cost * (1 + paypal_fees) }}"/>
+	<input type="hidden" value="EUR" name="currency_code">
+	
+	
+	{# Champs pour la configuration de paypal #}
+	<input type="hidden" value="1" name="no_note"> {# pas de commentaire lors de l'achat #}
+	<input type="hidden" value="1" name="no_shipping"> {# pas de frais de port #}
+	<input type="hidden" value="FR" name="lc"> {# locale #}
+	<input type="hidden" value="2" name="rm"> {# retour par post #}
+	<input type="hidden" value="_xclick" name="cmd"> {# bouton buy now #}
+	<input type="hidden" value="mywittygames@gmail.com" name="business"> {# adresse notification #}
+	<input type="hidden" value="credit" name="item_name"> {# libelle qui apparait sur paypal #}
+	<input type="hidden" value="Retourner sur MyWittyGames.com" name="cbt"> {# texte du bouton de fin de commande #}
+	
+	{# Champs pour l'auto-remplissage des informations sur paypal #}
+	<input type="hidden" value="professor@mywittygames.com" name="email">
+	<input type="hidden" value="WittyTown" name="city">
+	<input type="hidden" value="E=MC2" name="zip">
+	<input type="hidden" value="Witty" name="first_name">
+	<input type="hidden" value="Professor" name="last_name">
+	<input type="hidden" value="Witty University" name="address1">
+	<input type="hidden" value="" name="address2">
+	
+	{# Champs pour le traitement de la réponse #}
+	<input type="hidden" name="reward_id" value="{{ reward.id }}"/>
+
+	<input type="hidden" value="1" name="custom"> {# a verifier -> qu est-ce qu'on recupere dans la table IPN ? Le champ net_amount n'est pas non plus present dans la description des champs 
+	https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_Appx_websitestandard_htmlvariables#id08A6HH00W2J #}
+	
+	<input type="hidden" value="game_id" name="on0"> {# les on et os sont affichés lors du paiement !! ne pas mettre game_id mais projet et dans os0 mettre l'id du projet #}
+	<input type="hidden" value="45" name="os0"> 
+	<input type="hidden" value="shares" name="on1">
+	<input id="os1" type="hidden" value="6" name="os1">
+	<input type="hidden" value="box" name="on2">
+	<input id="os2" type="hidden" value="19" name="os2">
+	<input type="hidden" value="http://www.mywittygames.com/account/paypal" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="PP-ShopCartBF:btn_cart_LG.gif:NonHosted" name="bn"> {# optionnel on s'en fout #}
+
+	<input class="transaction_fees_number" type="hidden" value="0.029" name="transaction_fees_number"> {# idem que pour net_amount #}
+	<input id="net_amount" class="amount_to_credit_number" type="hidden" value="120" name="net_amount">	{# je l'ai deja cree plus haut #}
+
+	ajoute return et cancel_return ? #}
+	
+{% if reward.options %}
+
+	Vous pouvez choisir des options pour cette contrepartie :
+	<br/>
+	
+	{% for option in reward.options %}
+		<input type='checkbox' id='option_{{ option.id }}' name="options[]" value='{{ option.id }}' checked="0"/>
+		<label for="chkbox_{{ option.id }}">{{ option.title }} ({{ option.cost }} €)</label>
+		<input type='hidden' id='option_value_{{ option.id }}' name="options[]" value='{{ option.cost }}' checked="0"/>
+		<br/>
+	{% endfor%}
+
+{% endif %}
+	
+	Montant de votre soutien : <output type='number' id='sous_total' name='sous_total'/>{{ reward.cost }}</output> €
+	<br/>	
+	Frais de gestion Paypal : <output type='number' id='frais_gestion' name='frais_gestion'>{{ reward.cost * paypal_fees }}</output> €
+	<br/>
+	Total : <output type='number' id='total' name='total'>{{ reward.cost * (1 + paypal_fees) }}</output> €
+	<br/>
+	
+	<input type='submit' name='submit'/>
+	<!-- <input name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" /> -->
+	{# http://www.lafermeduweb.net/billet/tutorial-integrer-paypal-a-son-site-web-en-php-partie-2-276.html #}
+</form>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	
+	<script>
+	
+		$(document).ready(function()
+		{
+			calculTotaux();
+		
+			//Gestion des checkboxes
+			$('input[type="checkbox"][id*="option_"]').on('click', function(event)
+			{
+				calculTotaux();
+			});
+		
+		
+		});
+	
+	
+		function calculTotaux()
+		{
+			//Calcul du sous_total
+			var sous_total = {{ reward.cost }};
+			
+				//Ajout des options
+			$('input[type="checkbox"][id*="option_"]:checked').each(function(key, value)
+			{
+				sous_total += parseInt($('input[type="hidden"][id*="option_value_'+$(this).attr("value")+'"]').attr("value"));
+			});
+			
+			//Mise à jour des totaux
+			paypal_fees = Math.ceil( (sous_total * {{ paypal_fees }}).toPrecision(2) * 100) / 100; //On prend 2 décimales, arrondies au supérieur
+			total = sous_total + paypal_fees;
+			
+			$('#sous_total').html(sous_total);
+			$('#frais_gestion').html(paypal_fees);
+			$('#total').html(total);
+		}
+
+	</script>
+
+{% endblock %}

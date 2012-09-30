@@ -1,0 +1,9 @@
+services:
+    witty.adapter.paypal:
+        class: %witty.adapter.paypal.class%
+        arguments:
+            - %witty.paypal.url%
+    witty.service.payment_manager:
+        class: %witty.service.payment_manager.class%
+        arguments:
+            service: @witty.adapter.paypal

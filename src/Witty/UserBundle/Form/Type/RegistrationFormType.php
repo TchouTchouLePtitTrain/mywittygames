@@ -14,17 +14,34 @@ class RegistrationFormType extends BaseType
 		parent::buildForm($builder, $options);
 
         $builder
+			->remove('email')
 			->remove('username')
 			->remove('plainPassword')
-			/*
-			->add('email', 'repeated', array(
-                'type' => 'email',
-                'options' => array('translation_domain' => 'FOSUserBundle', 'required' => true),
-                'first_options' => array('label' => 'form.email'),
-                'second_options' => array('label' => 'form.email_confirmation'),
-            ))*/
-			->add('plainPassword', 'password', array('translation_domain' => 'FOSUserBundle', 'required' => true, 'label' => 'form.password'))
-			->add('username', 'text', array('label' => 'Pseudo', 'required' => false))
+			->add('email', 'email', array(
+					'label' => 'form.email', 
+					'translation_domain' => 'FOSUserBundle', 
+					'attr' => array(
+						'placeholder' => 'monmail@mail.com',
+						)
+					)
+				)
+			->add('plainPassword', 'password', array(
+					'translation_domain' => 'FOSUserBundle', 
+					'required' => true, 
+					'label' => 'form.password', 
+					'attr' => array(
+						'placeholder' => 'mon mot de passe',
+						)
+					)
+				)
+			->add('username', 'text', array(
+					'label' => 'Pseudo', 
+					'required' => false, 
+					'attr' => array(
+						'placeholder' => 'mon pseudo',
+						)
+					)
+				)
         ;
     }
 

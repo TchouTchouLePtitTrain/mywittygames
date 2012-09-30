@@ -136,49 +136,18 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
             <p class="style_select">Sélectionnez votre contrepartie</p>
             
 			{% for reward in project.rewards %}
-				<a class="blocReward">
-						<div class="titre_reward">
-							<p class="poplight titreReward">{{ reward.title }}</p>
-							<p class="icon_coeur"></p>
-							<p class="edinautesReward">{{ reward.userRewards|length }}</p>
-						</div>
-						<div class="caracteristiques_reward">
-							{{ reward.description }}
-							<!--<p>Accès aux colis édinaute (poster + flyers)</p>
-							<p>Accès aux Witty Packs</p>
-							<p>Accès à l'espace membre et à son contenu</p>-->
-						</div>
-					
+				<a class="blocReward" href="{{ path('project_confirmation', {'id': reward.id}) }}">
+					<div class="titre_reward">
+						<p class="poplight titreReward">{{ reward.title }}</p>
+						<p class="icon_coeur"></p>
+						<p class="edinautesReward">{{ reward.userRewards|length }}</p>
+					</div>
+					<div class="caracteristiques_reward">
+						{{ reward.description }}
+					</div>
 				</a>
 			{% endfor %}
-                                 
-            <!--           
-            <div id="popup" class="popup_block">
-            	<div id="haut_popup">
-            	<a class="titre_popup">SOUTENIR CE PROJET</a>
-                <a class="close">x</a>
-                </div>
-                <div class="infos_popup">
-                	<a class="texte_popup1">Montant</a>
-                    <div id="champs_somme">
-                        <form method="get" action="#">
-                            <input class="somme" type="text" name="somme" placeholder="€ 5.00"/>
-                        </form>
-                    </div>
-                </div>
-                <div class="infos_popup" >
-                	<p class="texte_popup1">Récompenses</p>
-                    <div class="texte_popup2">
-                    	<p>Accès aux colis édinaute (poster + flyers)</p>
-                    	<p>Accès aux Witty Packs</p>
-                    	<p>Accès à l'espace membre et à son contenu</p>
-                    </div>
-                </div>
-                <a class="btn_continuer"></a>
-            </div>
-            -->
-
- 
+			
         </section>
         <div class="spacer"></div>
 

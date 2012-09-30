@@ -796,4 +796,27 @@ class Project
     {
         return $this->priority;
     }
+
+    /**
+     * Set mediumDescription
+     *
+     * @param string $mediumDescription
+     * @return Project
+     */
+    public function setMediumDescription($mediumDescription)
+    {
+        $this->mediumDescription = $mediumDescription;
+    
+        return $this;
+    }
+
+    /**
+     * Get mediumDescription
+     *
+     * @return string 
+     */
+    public function getMediumDescription()
+    {
+        return $this->mediumDescription;
+    }
 }

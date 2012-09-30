@@ -4,7 +4,12 @@ witty_mwg:
 
 witty_project:
     resource: "@WittyProjectBundle/Resources/config/routing.yml"
-    prefix:   /project
+    prefix:   /projet
+    
+witty_transaction:
+    resource: "@WittyTransactionBundle/Controller"
+    type:     annotation
+    prefix:   /transaction
 
 # Internal routing configuration to handle ESI
 #_internal:
