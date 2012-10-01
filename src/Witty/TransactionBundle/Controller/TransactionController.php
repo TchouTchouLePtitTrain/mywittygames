@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class TransactionController extends Controller
 {
@@ -30,6 +32,7 @@ class TransactionController extends Controller
 		
         return array();
     }
+
 	
 	//Initie la transaction du User
     public function beginTransaction($request)
@@ -67,5 +70,29 @@ class TransactionController extends Controller
 	
     }	
 	
+	
+    /**
+     * @Route("/success", name="transaction_success")
+     */
+    public function successAction()
+    {
+		$logger = new Logger('paypalSuccessLogger');
+		$logger->pushHandler(new StreamHandler($this->container->getParameter('witty.paypal.log.success.path'), Logger::INFO));
 
+		$logger->info('IPN reçu le '.date('d/m/y à G:i:s'));
+		
+		//Traitement de l'IPN
+		$request = $this->getRequest();
+		
+		if (!$request->getMethod() == 'POST')
+			throw new \Exception('Erreur');
+			
+		$custom = $request->get('custom');
+		
+		$logger->info($custom);
+		
+		
+		return new \Symfony\Component\HttpFoundation\Response('ok');
+	}
+	
 }

@@ -17,23 +17,13 @@
         <img class="btn_sinscrireNow"/>
     </div>
     
-<div id="container">
-
-	<!-- Petit Challenge ! -->
-	<!-- Modifications : Un seul bloc de code pour générer les différents projets -->
-	<!-- On différencie les styles à appliquer grâce à une seule classe : bloc_jeu ou bloc_jeu_grand -->
-	<!-- Dans le CSS, ça se traduit par des sélecteurs plus fins (2 classes pour chaque sélecteur) -->
-	<!-- La syntaxe de sélecteur CSS .classe1.classe2 veut dire "l'élément qui possède la classe1 et la classe2" -->
-	<!-- A ne pas confondre avec .classe1 .class2 qui veut dire "l'élément qui possède la class2 et qui est contenu dans un élément qui possède la classe1 -->
-	<!-- Tous les blocs sont donc composés des 3 mêmes éléments : image, bloc haut, description, bloc caracteristiques -->
-	<!-- Il faut terminer de les arranger en CSS + refactorer le code (mettre en commun toutes les propriétés qui peuvent l'être) : exemple les box-shadow de .bloc_jeu peuvent être mises dans -->
-	<!-- les règles CSS associées au sélecteur .bloc_jeu -->
-	<!-- De manière générale, quand les styles dépendent complètement d'un bloc, ça doit se refléter dans la CSS -->
-	<!-- Ca fait pas mal de trucs à lire et un peu à refaire mais c'est très formateur -->
-
-	{% render "WittyProjectBundle:Project:projectsList" with {'mode_affichage': mode_affichage} %}
+	<form action="http://localhost/mywittygames/web/app_dev.php/transaction/success" method="post" target="_blank">
+		<input type="submit" name="submit">
+	</form>
 	
-</div>
+	<div id="container">
+		{% render "WittyProjectBundle:Project:projectsList" with {'mode_affichage': mode_affichage} %}
+	</div>
    
    
 {% endblock %}

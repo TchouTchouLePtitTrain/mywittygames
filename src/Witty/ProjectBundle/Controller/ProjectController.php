@@ -56,7 +56,11 @@ class ProjectController extends Controller
 		return $this->render('WittyProjectBundle:Project:confirmation.html.twig', array(
 					'reward' => $reward, 
 					'paypal_fees' => (float) $this->container->getParameter('witty.paypal.fees'), 
-					'email_businees' => $this->container->getParameter('witty.paypal.email_business')
+					'email_business' => $this->container->getParameter('witty.paypal.email_business'),
+					'url_paypal' => $this->container->getParameter('witty.paypal.url'),
+					'notify_url' => $this->container->getParameter('witty.paypal.notify_url'),
+					'cancel_url' => $this->container->getParameter('witty.paypal.cancel_url'),
+					'return_url' => $this->container->getParameter('witty.paypal.return_url')
 					)
 				);
     }

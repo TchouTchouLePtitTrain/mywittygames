@@ -1,0 +1,11 @@
+transaction_success:
+    pattern:   /success
+    defaults:  { _controller: WittyTransactionBundle:Transaction:success }
+    
+transaction_cancel:
+    pattern:   /cancel
+    defaults:  { _controller: WittyTransactionBundle:Transaction:cancel }
+        
+transaction_return:
+    pattern:   /return
+    defaults:  { _controller: WittyTransactionBundle:Transaction:return }
