@@ -297,13 +297,13 @@ label{
 	height:30px;
 	width:330px;
 	background-color:#FFF;
-	margin-top:10px;
+	margin-top:15px;
 	margin-bottom:20px;
 	border-radius:4px;
 	padding-left:15px;
 	font-style:italic;
-	color:#999;
-	font-size:15px;
+	color:#CCC;
+	font-size:16px;
 }
 
 #fos_user_registration_form_email:focus{
@@ -319,13 +319,13 @@ label{
 	height:30px;
 	width:330px;
 	background-color:#FFF;
-	margin-top:10px;
+	margin-top:15px;
 	margin-bottom:20px;
 	border-radius:4px;
 	padding-left:15px;
 	font-style:italic;
-	color:#999;
-	font-size:15px;
+	color:#CCC;
+	font-size:16px;
 }
 
 #fos_user_registration_form_plainPassword:focus{
@@ -341,13 +341,13 @@ label{
 	height:30px;
 	width:330px;
 	background-color:#FFF;
-	margin-top:10px;
+	margin-top:15px;
 	margin-bottom:20px;
 	border-radius:4px;
 	padding-left:15px;
 	font-style:italic;
-	color:#999;
-	font-size:15px;
+	color:#CCC;
+	font-size:16px;
 }
 
 #fos_user_registration_form_username:focus{
