@@ -53,6 +53,11 @@ class ProjectController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$reward = $em->getRepository('WittyProjectBundle:Reward')->findOneById($id);
 	
-		return $this->render('WittyProjectBundle:Project:confirmation.html.twig', array('reward' => $reward, 'paypal_fees' => (float) $this->container->getParameter('witty.paypal.fees')));
+		return $this->render('WittyProjectBundle:Project:confirmation.html.twig', array(
+					'reward' => $reward, 
+					'paypal_fees' => (float) $this->container->getParameter('witty.paypal.fees'), 
+					'email_businees' => $this->container->getParameter('witty.paypal.email_business')
+					)
+				);
     }
 }

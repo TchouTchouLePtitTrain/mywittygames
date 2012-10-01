@@ -25,5 +25,6 @@ parameters:
         key: AKIAICH4QGFKNEHOOZAA
         secret: 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
         
-    witty.paypal.url: 'http://'
+    witty.paypal.url: http://
     witty.paypal.fees: 0.03
+    witty.paypal.email_business: mywittygames@gmail.com

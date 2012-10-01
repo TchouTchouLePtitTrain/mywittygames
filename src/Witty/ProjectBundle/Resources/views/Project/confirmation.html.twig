@@ -18,45 +18,41 @@ Voici la contrepartie que vous allez acquérir :
 	<input type="hidden" name="amount" value="{{ reward.cost * (1 + paypal_fees) }}"/>
 	<input type="hidden" value="EUR" name="currency_code">
 	
-	
 	{# Champs pour la configuration de paypal #}
 	<input type="hidden" value="1" name="no_note"> {# pas de commentaire lors de l'achat #}
 	<input type="hidden" value="1" name="no_shipping"> {# pas de frais de port #}
 	<input type="hidden" value="FR" name="lc"> {# locale #}
 	<input type="hidden" value="2" name="rm"> {# retour par post #}
 	<input type="hidden" value="_xclick" name="cmd"> {# bouton buy now #}
-	<input type="hidden" value="mywittygames@gmail.com" name="business"> {# adresse notification #}
-	<input type="hidden" value="credit" name="item_name"> {# libelle qui apparait sur paypal #}
+	<input type="hidden" value="{{ email_businees }}" name="business"> {# adresse notification #}
+	<input type="hidden" value="Paiement" name="item_name"> {# libelle qui apparait sur paypal #}
 	<input type="hidden" value="Retourner sur MyWittyGames.com" name="cbt"> {# texte du bouton de fin de commande #}
 	
 	{# Champs pour l'auto-remplissage des informations sur paypal #}
-	<input type="hidden" value="professor@mywittygames.com" name="email">
-	<input type="hidden" value="WittyTown" name="city">
-	<input type="hidden" value="E=MC2" name="zip">
-	<input type="hidden" value="Witty" name="first_name">
-	<input type="hidden" value="Professor" name="last_name">
-	<input type="hidden" value="Witty University" name="address1">
-	<input type="hidden" value="" name="address2">
+	<input type="hidden" value="{{ app.user.email }}" name="email">
+	<input type="hidden" value="{{ app.user.city }}" name="city">
+	<input type="hidden" value="{{ app.user.postcode }}" name="zip">
+	<input type="hidden" value="{{ app.user.firstname }}" name="first_name">
+	<input type="hidden" value="{{ app.user.lastname }}" name="last_name">
+	<input type="hidden" value="{{ app.user.address }}" name="address1">
+	<input type="hidden" value="{{ app.user.address2 }}" name="address2">
 	
 	{# Champs pour le traitement de la réponse #}
+	<input type="hidden" value="{{ reward.id }}" name="custom">
 	<input type="hidden" name="reward_id" value="{{ reward.id }}"/>
 
-	<input type="hidden" value="1" name="custom"> {# a verifier -> qu est-ce qu'on recupere dans la table IPN ? Le champ net_amount n'est pas non plus present dans la description des champs 
+	 {# a verifier -> qu est-ce qu'on recupere dans la table IPN ? Le champ net_amount n'est pas non plus present dans la description des champs 
 	https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_Appx_websitestandard_htmlvariables#id08A6HH00W2J #}
 	
-	<input type="hidden" value="game_id" name="on0"> {# les on et os sont affichés lors du paiement !! ne pas mettre game_id mais projet et dans os0 mettre l'id du projet #}
-	<input type="hidden" value="45" name="os0"> 
-	<input type="hidden" value="shares" name="on1">
-	<input id="os1" type="hidden" value="6" name="os1">
-	<input type="hidden" value="box" name="on2">
-	<input id="os2" type="hidden" value="19" name="os2">
+	<input type="hidden" value="Projet" name="on0"> {# les on et os sont affichés lors du paiement !! ne pas mettre game_id mais projet et dans os0 mettre l'id du projet #}
+	<input type="hidden" value="{{ reward.project.title }}" name="os0"> 
 	<input type="hidden" value="http://www.mywittygames.com/account/paypal" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
 	<input type="hidden" value="PP-ShopCartBF:btn_cart_LG.gif:NonHosted" name="bn"> {# optionnel on s'en fout #}
 
 	<input class="transaction_fees_number" type="hidden" value="0.029" name="transaction_fees_number"> {# idem que pour net_amount #}
 	<input id="net_amount" class="amount_to_credit_number" type="hidden" value="120" name="net_amount">	{# je l'ai deja cree plus haut #}
 
-	ajoute return et cancel_return ? #}
+	{# ajoute return et cancel_return ? #}
 	
 {% if reward.options %}
 
@@ -109,11 +105,23 @@ Voici la contrepartie que vous allez acquérir :
 		{
 			//Calcul du sous_total
 			var sous_total = {{ reward.cost }};
+			var custom = 'reward_id={{ reward.id }}';
 			
-				//Ajout des options
+			//Ajout des options
+			custom += '&options_id=';
+			var options_id = "";			
 			$('input[type="checkbox"][id*="option_"]:checked').each(function(key, value)
 			{
 				sous_total += parseInt($('input[type="hidden"][id*="option_value_'+$(this).attr("value")+'"]').attr("value"));
+				if (options_id == "") //Mise à jour du champ "custom"
+				{
+					custom += $(this).attr("value"); 
+				}
+				else
+				{
+					custom += ','+$(this).attr("value");
+				}
+				
 			});
 			
 			//Mise à jour des totaux

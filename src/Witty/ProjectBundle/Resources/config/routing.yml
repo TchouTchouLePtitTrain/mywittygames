@@ -1,13 +1,13 @@
 project_accueil:
     pattern:   /
     defaults:  { _controller: WittyProjectBundle:Project:index }
-
-project_display:
-    pattern:   /{slug}
-    defaults:  { _controller: WittyProjectBundle:Project:display }
     
 project_confirmation:
     pattern:   /soutien/{id}
     defaults:  { _controller: WittyProjectBundle:Project:confirmation }
     requirements:
         page:  \d+
+        
+project_display:
+    pattern:   /{slug}
+    defaults:  { _controller: WittyProjectBundle:Project:display }
