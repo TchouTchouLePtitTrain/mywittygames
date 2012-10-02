@@ -20,6 +20,26 @@ class User extends BaseUser
     protected $id;
 	
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $shares;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $userRewards;
+	
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $rewardOptions;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $projects;
+	
+    /**
      * @var \DateTime $createdAt
      */
     private $createdAt;
@@ -161,6 +181,8 @@ class User extends BaseUser
     protected $facebookId;
 	
 	
+	
+	
     /**
      * Cet attribut n'est pas mappé
      */
@@ -176,6 +198,12 @@ class User extends BaseUser
 	 * Array de Project
      */
     private $projectsFunded;
+	
+    /**
+     * Cet attribut n'est pas mappé
+	 * Array de Game
+     */
+    private $games;
 
 	
 	
@@ -862,21 +890,11 @@ class User extends BaseUser
     {
 		$projectsFunded = array();
 		
-		if ($this->getUserRewards())
+		foreach($this->getUserRewards() as $userReward)
 		{
-			foreach($this->getUserRewards() as $userReward)
-			{
-				if ($userReward->getReward())
-				{
-					foreach ($userReward->getReward() as $reward)
-					{
-						$project = $reward->getProject();
-						if (!in_array($project, $projectsFunded)) $projectsFunded[] = $projectsFunded; //Si le projet n'est pas déjà dans la liste, on l'ajoute
-					}
-				}
-			}
+			if (!in_array($userReward->getReward()->getProject(), $projectsFunded)) $projectsFunded[] = $userReward->getReward()->getProject(); //Si le projet n'est pas déjà dans la liste, on l'ajoute
 		}
-		
+
 		$this->projectsFunded = $projectsFunded;
     }
 	
@@ -970,20 +988,6 @@ class User extends BaseUser
         if (null !== $this->avatarFile) 
 			$this->avatar = $this->avatarFile->getClientOriginalName();
     }
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $shares;
-
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $userRewards;
-
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $projects;
 
 
     /**
@@ -1050,5 +1054,70 @@ class User extends BaseUser
     public function getProjects()
     {
         return $this->projects;
+    }
+	
+    /**
+     * Get games
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */	
+	public function getGames()
+	{
+		if (!$this->games) $this->setGames();
+		return $this->games;
+	}
+	
+	
+	/**
+     * Set Games
+     *
+     */
+	public function setGames()
+	{
+		$games = array();
+		
+		if ($this->getShares())
+		{
+			foreach($this->getShares() as $share)
+			{
+				$game = $share->getGame();
+				if (!in_array($game, $games)) $games[] = $game;
+			}
+		}
+		
+		$this->games = $games;
+	}
+
+    /**
+     * Add rewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOptions
+     * @return User
+     */
+    public function addRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOptions)
+    {
+        $this->rewardOptions[] = $rewardOptions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove rewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOptions
+     */
+    public function removeRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOptions)
+    {
+        $this->rewardOptions->removeElement($rewardOptions);
+    }
+
+    /**
+     * Get rewardOptions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRewardOptions()
+    {
+        return $this->rewardOptions;
     }
 }

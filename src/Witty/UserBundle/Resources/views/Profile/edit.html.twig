@@ -2,7 +2,7 @@
 
 {% block fos_user_content %}
 	<figure>
-		<img src="{{ url('avatar', user.id, user.avatar) }}"/>
+		<img src="{{ url_asset('avatar', user.id, user.avatar) }}"/>
 	</figure>
 		
 	<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
@@ -28,8 +28,8 @@
 			{{game.name}} => {{ game.sharesByUserId(user.id)|length }}
 		{% endfor %}
 	{% endif %}
-	{% if user.balance > 0 %}
-		Votre crédit : {{ user.balance }} €
+	{% if user.credit > 0 %}
+		Votre crédit : {{ user.credit }} €
 	{% endif %}
 	
 {% endblock fos_user_content %}

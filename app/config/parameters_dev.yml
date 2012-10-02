@@ -17,6 +17,7 @@ parameters:
     witty.url_mwg: http://localhost/mywittygames/web/app_dev.php/
     witty.url_mwn: http://localhost/mywittynews/
     witty.url_mws: http://localhost/mywittyshop/
+    witty.public_url_mwg: http://87.91.25.164
     
 #Paramètres des services
     witty.s3.bucket: mywittygames
@@ -25,6 +26,7 @@ parameters:
         key: AKIAICH4QGFKNEHOOZAA
         secret: 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
         
+    witty.paypal.ssl: ssl://www.sandbox.paypal.com
     witty.paypal.url: https://www.sandbox.paypal.com/cgi-bin/webscr
     witty.paypal.notify_url: transaction/success
     witty.paypal.cancel_url: transaction/cancel

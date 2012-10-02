@@ -25,6 +25,11 @@ class RewardOption
      * @ORM\ManyToMany(targetEntity="Reward", mappedBy="options")
      */
     private $rewards;
+	
+	/**
+     * @ORM\ManyToMany(targetEntity="Witty\UserBundle\Entity\User", mappedBy="rewardOptions")
+     */
+    private $users;
 
     /**
      * @var integer $cost
@@ -46,9 +51,11 @@ class RewardOption
      * @ORM\Column(name="description", type="string", length=510, nullable=true)
      */
     private $description;
+	
     /**
      * Constructor
      */
+	 
     public function __construct()
     {
         $this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
@@ -164,5 +171,38 @@ class RewardOption
     public function getRewards()
     {
         return $this->rewards;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Witty\UserBundle\Entity\User $users
+     * @return RewardOption
+     */
+    public function addUser(\Witty\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param Witty\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Witty\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

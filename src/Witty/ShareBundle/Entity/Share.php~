@@ -15,14 +15,12 @@ class Share
     private $id;
 
     /**
-	 * @ORM\ManyToOne(targetEntity="Witty\UserBundle\Entity\User", inversedBy="shares")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private $user;
 
     /**
-	 * @ORM\ManyToOne(targetEntity="Witty\ShareBundle\Entity\Game", inversedBy="shares")
-     * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private $game;
 
@@ -121,4 +119,50 @@ class Share
         return $this->isCancelled;
     }
 
+
+    /**
+     * Set user
+     *
+     * @param Witty\UserBundle\Entity\User $user
+     * @return Share
+     */
+    public function setUser(\Witty\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Witty\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set game
+     *
+     * @param Witty\ShareBundle\Entity\Game $game
+     * @return Share
+     */
+    public function setGame(\Witty\ShareBundle\Entity\Game $game = null)
+    {
+        $this->game = $game;
+    
+        return $this;
+    }
+
+    /**
+     * Get game
+     *
+     * @return Witty\ShareBundle\Entity\Game 
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
 }

@@ -589,7 +589,7 @@ class Project
 		
 		foreach($this->getUserRewards() as $userReward)
 		{
-			$funding += $userReward->getPaidAmount();
+			$funding += $userReward->getReward()->getCost();
 		}
 		
 		$this->funding = $funding;

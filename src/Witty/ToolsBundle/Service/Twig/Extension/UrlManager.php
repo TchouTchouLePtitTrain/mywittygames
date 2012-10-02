@@ -30,7 +30,7 @@ class UrlManager extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'url' => new \Twig_Function_Method($this, 'url') 
+            'url_asset' => new \Twig_Function_Method($this, 'url_asset') 
         );
     }
 
@@ -40,7 +40,7 @@ class UrlManager extends \Twig_Extension
      * 
      * @param string $name
      */
-    public function url($type, $id, $filename = "")
+    public function url_asset($type, $id, $filename = "")
     {
 		switch ($type)
 		{

@@ -28,6 +28,11 @@ class User extends BaseUser
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private $userRewards;
+	
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $rewardOptions;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -85,9 +90,9 @@ class User extends BaseUser
     private $description;
 
     /**
-     * @var float $balance
+     * @var float $credit
      */
-    private $balance;
+    private $credit;
 
     /**
      * @var string $sex
@@ -176,6 +181,8 @@ class User extends BaseUser
     protected $facebookId;
 	
 	
+	
+	
     /**
      * Cet attribut n'est pas mappé
      */
@@ -204,6 +211,7 @@ class User extends BaseUser
 	
 		parent::__construct();
 		$this->createdAt = new \Datetime();
+		$this->credit = 0;
 	}
 	
 	public function serialize()
@@ -449,26 +457,26 @@ class User extends BaseUser
     }
 
     /**
-     * Set balance
+     * Set credit
      *
-     * @param float $balance
+     * @param float $credit
      * @return User
      */
-    public function setBalance($balance)
+    public function setCredit($credit)
     {
-        $this->balance = $balance;
+        $this->credit = $credit;
     
         return $this;
     }
 
     /**
-     * Get balance
+     * Get credit
      *
      * @return float 
      */
-    public function getBalance()
+    public function getCredit()
     {
-        return $this->balance;
+        return $this->credit;
     }
 
     /**
@@ -1080,4 +1088,37 @@ class User extends BaseUser
 		
 		$this->games = $games;
 	}
+
+    /**
+     * Add rewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOptions
+     * @return User
+     */
+    public function addRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOptions)
+    {
+        $this->rewardOptions[] = $rewardOptions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove rewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOptions
+     */
+    public function removeRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOptions)
+    {
+        $this->rewardOptions->removeElement($rewardOptions);
+    }
+
+    /**
+     * Get rewardOptions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRewardOptions()
+    {
+        return $this->rewardOptions;
+    }
 }

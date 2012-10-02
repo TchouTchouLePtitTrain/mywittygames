@@ -8,10 +8,24 @@ Witty\UserBundle\Entity\User:
             mappedBy: user
         userRewards:
             targetEntity: Witty\ProjectBundle\Entity\UserReward
+            cascade: ["persist"]
             mappedBy: user
         projects:
             targetEntity: Witty\ProjectBundle\Entity\Project
             mappedBy: creator
+    manyToMany:            
+        rewardOptions:
+            targetEntity: Witty\ProjectBundle\Entity\RewardOption
+            cascade: ["persist"]
+            inversedBy: users
+            joinTable:
+                name: user_rewardoption
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    rewardoption_id:
+                        referencedColumnName: id
     fields:
         id:
             id: true
@@ -67,9 +81,9 @@ Witty\UserBundle\Entity\User:
         description:
             type: text
             nullable: true
-        balance:
+        credit:
             type: decimal
-            nullable: true
+            nullable: false
         sex:
             type: boolean
             nullable: true

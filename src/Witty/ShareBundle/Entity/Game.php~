@@ -15,7 +15,7 @@ class Game
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Share", mappedBy="game")
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $shares;
 	
@@ -701,4 +701,60 @@ class Game
     {
         return $this->urlFacebook;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->shares = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add shares
+     *
+     * @param Witty\ShareBundle\Entity\Share $shares
+     * @return Game
+     */
+    public function addShare(\Witty\ShareBundle\Entity\Share $shares)
+    {
+        $this->shares[] = $shares;
+    
+        return $this;
+    }
+
+    /**
+     * Remove shares
+     *
+     * @param Witty\ShareBundle\Entity\Share $shares
+     */
+    public function removeShare(\Witty\ShareBundle\Entity\Share $shares)
+    {
+        $this->shares->removeElement($shares);
+    }
+
+    /**
+     * Get shares
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getShares()
+    {
+        return $this->shares;
+    }
+	
+    /**
+     * Get sharesByUserId
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSharesByUserId($userId)
+    {
+		$function = function($id) //La closure pour pouvoir utiliser l'userId
+			{
+				return function($x) use ($id) { return ($x->getUser()->getId() == $id) && (!$x->getIsCancelled()); };
+			};
+	
+        return $this->getShares()->filter($function($userId));
+    }
+	
 }

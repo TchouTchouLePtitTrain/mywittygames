@@ -13,12 +13,12 @@ Voici la contrepartie que vous allez acquérir :
 
 
 	{# Champs obligatoires pour paypal #}
-	<input type="hidden" name="fees" value="{{ reward.cost * paypal_fees }}"/>
-	<input type="hidden" name="amount" value="{{ reward.cost * (1 + paypal_fees) }}"/>
+	<input type="hidden" name="fees" value="{{ (reward.cost - app.user.credit) * paypal_fees }}"/>
+	<input type="hidden" name="amount" value="{{ (reward.cost - app.user.credit) * (1 + paypal_fees) }}"/>
 	<input type="hidden" value="EUR" name="currency_code">
-	<input type="hidden" value="{{ notify_url }}" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
-	<input type="hidden" value="{{ cancel_url }}" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
-	<input type="hidden" value="{{ return_url }}" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_success') }}" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_cancel') }}" name="cancel_url"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_return') }}" name="return_url"> {# adresse de retour des IPN -> transaction/sendback #}
 	
 	{# Champs pour la configuration de paypal #}
 	<input type="hidden" value="1" name="no_note"> {# pas de commentaire lors de l'achat #}
@@ -29,8 +29,6 @@ Voici la contrepartie que vous allez acquérir :
 	<input type="hidden" value="{{ email_business }}" name="business"> {# adresse notification #}
 	<input type="hidden" value="Paiement" name="item_name"> {# libelle qui apparait sur paypal #}
 	<input type="hidden" value="Retourner sur MyWittyGames.com" name="cbt"> {# texte du bouton de fin de commande #}
-	<input type="hidden" value="Projet" name="on0"> {# les on et os sont affichés lors du paiement #}
-	<input type="hidden" value="{{ reward.project.title }}" name="os0"> 
 	<input type="hidden" value="PP-ShopCartBF:btn_cart_LG.gif:NonHosted" name="bn"> {# optionnel on s'en fout #}
 	
 	{# Champs pour l'auto-remplissage des informations sur paypal #}
@@ -43,7 +41,7 @@ Voici la contrepartie que vous allez acquérir :
 	<input type="hidden" value="{{ app.user.address2 }}" name="address2">
 	
 	{# Champs pour le traitement de la réponse #}
-	<input type="hidden" value="rw={{ reward.id }}" name="custom"> ajouter le net_amount, amount et fees
+	<input type="hidden" value="u={{ app.user.id }}&rw={{ reward.id }}" name="custom">
 
 	
 	{% if reward.options %}
@@ -61,10 +59,12 @@ Voici la contrepartie que vous allez acquérir :
 	{% endif %}
 	
 	Montant de votre soutien : <output type='number' id='sous_total' name='sous_total'/>{{ reward.cost }}</output> €
-	<br/>	
-	Frais de gestion Paypal : <output type='number' id='frais_gestion' name='frais_gestion'>{{ reward.cost * paypal_fees }}</output> €
 	<br/>
-	Total : <output type='number' id='total' name='total'>{{ reward.cost * (1 + paypal_fees) }}</output> €
+	Votre crédit restant : <output type='number' id='credit' name='credit'/>{{ app.user.credit }}</output> €
+	<br/>
+	Frais de gestion Paypal : <output type='number' id='frais_gestion' name='frais_gestion'>{{ (reward.cost - app.user.credit) * paypal_fees }}</output> €
+	<br/>
+	Total : <output type='number' id='total' name='total'>{{ (reward.cost - app.user.credit) * (1 + paypal_fees) }}</output> €
 	<br/>
 	
 	<input type='submit' name='submit'/>
@@ -84,12 +84,10 @@ Voici la contrepartie que vous allez acquérir :
 			calculTotaux();
 		
 			//Gestion des checkboxes
-			$('input[type="checkbox"][id*="option_"]').on('click', function(event)
+			$('input[type="checkbox"][id*="option_"]').click(function(event)
 			{
 				calculTotaux();
 			});
-		
-		
 		});
 	
 	
@@ -97,7 +95,8 @@ Voici la contrepartie que vous allez acquérir :
 		{
 			//Calcul du sous_total
 			var sous_total = {{ reward.cost }};
-			var custom = 'rw={{ reward.id }}';
+			var credit = {{ app.user.credit }};
+			var custom = 'u={{ app.user.id }}&rw={{ reward.id }}';
 			
 			//Ajout des options
 			custom += '&opt=';
@@ -117,15 +116,23 @@ Voici la contrepartie que vous allez acquérir :
 			});
 			
 			//Mise à jour des totaux
-			paypal_fees = Math.ceil( (sous_total * {{ paypal_fees }}).toPrecision(2) * 100) / 100; //On prend 2 décimales, arrondies au supérieur
+			var credit_utilise = Math.min({{ app.user.credit }}, sous_total); // Calcul du crédit utilisé
+			sous_total = sous_total - credit_utilise; //Décrémentation du crédit que l'user possède
+			credit = credit - credit_utilise; //Décrémentation du crédit que l'user possède
+			paypal_fees = Math.ceil( (sous_total * {{ paypal_fees }}).toPrecision(3) * 100) / 100; //On prend 2 décimales, arrondies au supérieur
 			total = sous_total + paypal_fees;
+			
+			$('#sous_total').html(sous_total);
+			$('#credit').html(credit);
+			$('#frais_gestion').html(paypal_fees);
+			$('#total').html(total);
+			
+			//Mise à jour du formulaire
+			if (sous_total <= 0) $('#confirmation_form').attr('action', "{{ path('transaction_success') }}"); //Si l'utilisateur a assez de crédit, la transaction est directement un succès
+			else $('#confirmation_form').attr('action', '{{ url_paypal }}');
 			
 			//Mise à jour du champ custom
 			$('input[type="hidden"][name="custom"]').attr('value', custom+options_ids);
-			
-			$('#sous_total').html(sous_total);
-			$('#frais_gestion').html(paypal_fees);
-			$('#total').html(total);
 		}
 
 	</script>

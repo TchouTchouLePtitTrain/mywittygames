@@ -49,6 +49,7 @@ twig:
         url_mwg: %witty.url_mwg%
         url_mwn: %witty.url_mwn%
         url_mws: %witty.url_mws%
+        public_url_mwg: %witty.public_url_mwg%
 
 # Assetic Configuration
 assetic:

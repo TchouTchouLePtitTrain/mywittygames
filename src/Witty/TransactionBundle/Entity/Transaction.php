@@ -22,7 +22,7 @@ class Transaction
     private $id;
 
 	/**
-     * @ORM\OneToOne(targetEntity="\Witty\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="\Witty\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -71,7 +71,14 @@ class Transaction
      *
      * @ORM\Column(name="amount", type="decimal", precision=8, scale=2, nullable=false)
      */
-    private $amount;
+    private $amount;	
+	
+    /**
+     * @var decimal $creditUsed
+     *
+     * @ORM\Column(name="credit_used", type="decimal", precision=8, scale=2, nullable=false)
+     */
+    private $creditUsed;
 	
     /**
      * @var decimal $fees
@@ -116,6 +123,9 @@ class Transaction
         $this->creationDate = new \DateTime();
 		$this->completed = false;
 		$this->feesPercentage = $feesPercentage;
+		$this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->options = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->creditUsed = 0;
     }
 
     /**
@@ -436,14 +446,43 @@ class Transaction
 	{
 		$amount = 0;
 	
-		foreach($this->rewards as $reward)
+		foreach($this->getRewards() as $reward)
 			$amount += $reward->getCost();
-			
-		foreach($this->options as $option)
+		
+		foreach($this->getOptions() as $option)
 			$amount += $option->getCost();
 			
+		if($this->user)
+		{
+			$this->creditUsed = min($this->user->getCredit(), $amount);
+			$amount -= $this->creditUsed;
+		}
+	
 		$this->amount = $amount;
 		$this->fees = ceil($amount * $this->feesPercentage * 100) / 100;
 		$this->totalAmount = $this->amount + $this->fees;
 	}
+
+    /**
+     * Set creditUsed
+     *
+     * @param float $creditUsed
+     * @return Transaction
+     */
+    public function setCreditUsed($creditUsed)
+    {
+        $this->creditUsed = $creditUsed;
+    
+        return $this;
+    }
+
+    /**
+     * Get creditUsed
+     *
+     * @return float 
+     */
+    public function getCreditUsed()
+    {
+        return $this->creditUsed;
+    }
 }

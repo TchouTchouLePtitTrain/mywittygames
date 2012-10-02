@@ -53,16 +53,15 @@ class UserReward
      * @ORM\Column(name="update_date", type="datetime", nullable=true)
      */
     private $updateDate;
+
+
+	public function __construct()
+	{
+		$this->creationDate = new \DateTime();
+		$this->cancelled = false;
+	}
 	
-    /**
-     * @var integer $paidAmount
-     *
-     * @ORM\Column(name="paid_amount", type="integer")
-     */
-    private $paidAmount;
-
-
-
+	
     /**
      * Get id
      *
@@ -186,28 +185,5 @@ class UserReward
     public function getReward()
     {
         return $this->reward;
-    }
-
-    /**
-     * Set paidAmount
-     *
-     * @param integer $paidAmount
-     * @return UserReward
-     */
-    public function setPaidAmount($paidAmount)
-    {
-        $this->paidAmount = $paidAmount;
-    
-        return $this;
-    }
-
-    /**
-     * Get paidAmount
-     *
-     * @return integer 
-     */
-    public function getPaidAmount()
-    {
-        return $this->paidAmount;
     }
 }
