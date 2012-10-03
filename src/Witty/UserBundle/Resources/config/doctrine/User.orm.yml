@@ -10,22 +10,13 @@ Witty\UserBundle\Entity\User:
             targetEntity: Witty\ProjectBundle\Entity\UserReward
             cascade: ["persist"]
             mappedBy: user
+        userRewardOptions:
+            targetEntity: Witty\ProjectBundle\Entity\UserRewardOption
+            cascade: ["persist"]
+            mappedBy: user
         projects:
             targetEntity: Witty\ProjectBundle\Entity\Project
             mappedBy: creator
-    manyToMany:            
-        rewardOptions:
-            targetEntity: Witty\ProjectBundle\Entity\RewardOption
-            cascade: ["persist"]
-            inversedBy: users
-            joinTable:
-                name: user_rewardoption
-                joinColumns:
-                    user_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    rewardoption_id:
-                        referencedColumnName: id
     fields:
         id:
             id: true

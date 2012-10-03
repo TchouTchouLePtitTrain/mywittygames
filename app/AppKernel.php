@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Witty\ShareBundle\WittyShareBundle(),
             new Witty\ToolsBundle\WittyToolsBundle(),
             new Witty\TransactionBundle\WittyTransactionBundle(),
+            new Witty\FooterBundle\WittyFooterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

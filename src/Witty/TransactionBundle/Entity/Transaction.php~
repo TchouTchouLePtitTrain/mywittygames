@@ -441,7 +441,7 @@ class Transaction
     }
 	
 	
-	//Calcule le montant de 
+	//Calcule le montant de la transaction
 	private function calculateAmount()
 	{
 		$amount = 0;
@@ -451,10 +451,10 @@ class Transaction
 		
 		foreach($this->getOptions() as $option)
 			$amount += $option->getCost();
-			
+
 		if($this->user)
 		{
-			$this->creditUsed = min($this->user->getBalance(), $amount);
+			$this->creditUsed = min($this->user->getCredit() + $this->user->getCreditRecuperable($this->getRewards()->first()->getProject()->getId()), $amount);
 			$amount -= $this->creditUsed;
 		}
 	

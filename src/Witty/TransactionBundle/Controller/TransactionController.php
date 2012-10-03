@@ -30,7 +30,7 @@ class TransactionController extends Controller
 		$request = $this->getRequest();
 		
 		//Fausse requête pour simuler un IPN (pour les tests en dev uniquement)
-		//$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => '5487', 'mc_gross' => '60.77', 'custom' => 'u=3&rw=1&opt=1,2'));		
+		$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => '5487', 'mc_gross' => '0', 'custom' => 'u=3&rw=1&opt=1,2'));		
 
 		if (!$request->getMethod() == 'POST')
 			throw new \Exception('Erreur');
@@ -185,10 +185,10 @@ class TransactionController extends Controller
 		}
 	
 		//Vérification des montants
-		if (!(abs($transaction->getTotalAmount() - $request->get('mc_gross')) <= 0.05)) //Si la différence entre le montant envoyé par Paypal et celui que l'on a recalculé sur la base des rewards et des options dépasse les erreurs d'arrondi
+		if ( $request->get('txn_id') && !(abs($transaction->getTotalAmount() - $request->get('mc_gross')) <= 0.05)) //Si la différence entre le montant envoyé par Paypal et celui que l'on a recalculé sur la base des rewards et des options dépasse les erreurs d'arrondi
 		{
 			$logger->err("Montant Paypal incorrect -> Montant de la transaction :".$transaction->getTotalAmount().", Montant envoyé par Paypal:".$request->get('mc_gross'));
-			$logger->info("Transaction KO");	
+			$logger->info("Transaction KO");
 			
 			throw new \Exception("Erreur de montant paypal");
 		}
@@ -202,18 +202,29 @@ class TransactionController extends Controller
 	{
 		$em = $this->getDoctrine()->getEntityManager();
 		
+		//Annulation des anciens Rewards du User (le crédit est mis à jour)
+		$transaction->getUser()->cancelRewardsByProjectId($transaction->getRewards()->first()->getProject()->getId());
+		
+		$logger->info("Rewards annulés, nouveau crédit: ".$transaction->getUser()->getCredit());
+		
 		//Ajout des rewards et options achetés au User
 		$userReward = new UserReward();
 		$userReward->setUser($transaction->getUser());
 		$userReward->setReward($transaction->getRewards()->first());
 		$transaction->getUser()->addUserReward($userReward);
+
+		$logger->info("Reward ajouté");
 		
 		foreach($transaction->getOptions() as $option)
 			$transaction->getUser()->addRewardOption($option);
 		
+		$logger->info("Options ajoutées");
+		
 		//Décrémentation du crédit du user du montant utilisé
 		$transaction->getUser()->setCredit($transaction->getUser()->getCredit() - $transaction->getCreditUsed());
 		
+		$logger->info("Crédit décrémenté, nouveau crédit: ".$transaction->getUser()->getCredit());
+//var_dump($transaction->getUser());die('ok');
 		$em->persist($transaction->getUser());
 		$em->flush();
 		

@@ -1,0 +1,70 @@
+<?php
+
+namespace Witty\ProjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Witty\ProjectBundle\Entity\UserRewardOption
+ *
+ * @ORM\Table(name="user_reward_option")
+ * @ORM\Entity
+ */
+class UserRewardOption
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+	 * @ORM\ManyToOne(targetEntity="Witty\UserBundle\Entity\User", inversedBy="userRewardsOptions")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+	 * @ORM\ManyToOne(targetEntity="Reward", inversedBy="userRewards")
+     * @ORM\JoinColumn(name="reward_id", referencedColumnName="id")
+     */
+    private $reward;
+	
+    /**
+	 * @ORM\ManyToMany(targetEntity="RewardOption", inversedBy="userRewardOptions")
+     * @ORM\JoinColumn(name="option_id", referencedColumnName="id")
+     */
+    private $options;
+	
+    /**
+     * @var boolean $cancelled
+     *
+     * @ORM\Column(name="cancelled", type="boolean", nullable=false)
+     */
+    private $cancelled;
+
+    /**
+     * @var \DateTime $creationDate
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
+     */
+    private $creationDate;
+
+    /**
+     * @var \DateTime $updateDate
+     *
+     * @ORM\Column(name="update_date", type="datetime", nullable=true)
+     */
+    private $updateDate;
+
+
+	public function __construct()
+	{
+		$this->creationDate = new \DateTime();
+		$this->cancelled = false;
+		$this->options = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+}

@@ -22,14 +22,9 @@ class RewardOption
     private $id;
 
 	/**
-     * @ORM\ManyToMany(targetEntity="Reward", mappedBy="options")
+     * @ORM\ManyToMany(targetEntity="UserRewardOption", mappedBy="options")
      */
-    private $rewards;
-	
-	/**
-     * @ORM\ManyToMany(targetEntity="Witty\UserBundle\Entity\User", mappedBy="rewardOptions")
-     */
-    private $users;
+    private $userRewardOptions;
 
     /**
      * @var integer $cost
@@ -52,13 +47,13 @@ class RewardOption
      */
     private $description;
 	
+	
     /**
      * Constructor
      */
-	 
     public function __construct()
     {
-        $this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userRewardOptions = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -204,5 +199,38 @@ class RewardOption
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add userRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
+     * @return RewardOption
+     */
+    public function addUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    {
+        $this->userRewardOptions[] = $userRewardOptions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
+     */
+    public function removeUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    {
+        $this->userRewardOptions->removeElement($userRewardOptions);
+    }
+
+    /**
+     * Get userRewardOptions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUserRewardOptions()
+    {
+        return $this->userRewardOptions;
     }
 }

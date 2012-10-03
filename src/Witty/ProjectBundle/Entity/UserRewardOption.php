@@ -5,12 +5,12 @@ namespace Witty\ProjectBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Witty\ProjectBundle\Entity\UserReward
+ * Witty\ProjectBundle\Entity\UserRewardOption
  *
- * @ORM\Table(name="user_reward")
+ * @ORM\Table(name="user_reward_option")
  * @ORM\Entity
  */
-class UserReward
+class UserRewardOption
 {
     /**
      * @var integer $id
@@ -22,7 +22,7 @@ class UserReward
     private $id;
 
     /**
-	 * @ORM\ManyToOne(targetEntity="Witty\UserBundle\Entity\User", inversedBy="userRewards")
+	 * @ORM\ManyToOne(targetEntity="Witty\UserBundle\Entity\User", inversedBy="userRewardsOptions")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -32,7 +32,13 @@ class UserReward
      * @ORM\JoinColumn(name="reward_id", referencedColumnName="id")
      */
     private $reward;
-
+	
+    /**
+	 * @ORM\ManyToMany(targetEntity="RewardOption", inversedBy="userRewardOptions")
+     * @ORM\JoinColumn(name="option_id", referencedColumnName="id")
+     */
+    private $options;
+	
     /**
      * @var boolean $cancelled
      *
@@ -59,9 +65,9 @@ class UserReward
 	{
 		$this->creationDate = new \DateTime();
 		$this->cancelled = false;
+		$this->options = new \Doctrine\Common\Collections\ArrayCollection();
 	}
-	
-	
+
     /**
      * Get id
      *
@@ -76,7 +82,7 @@ class UserReward
      * Set cancelled
      *
      * @param boolean $cancelled
-     * @return UserReward
+     * @return UserRewardOption
      */
     public function setCancelled($cancelled)
     {
@@ -99,7 +105,7 @@ class UserReward
      * Set creationDate
      *
      * @param \DateTime $creationDate
-     * @return UserReward
+     * @return UserRewardOption
      */
     public function setCreationDate($creationDate)
     {
@@ -122,7 +128,7 @@ class UserReward
      * Set updateDate
      *
      * @param \DateTime $updateDate
-     * @return UserReward
+     * @return UserRewardOption
      */
     public function setUpdateDate($updateDate)
     {
@@ -145,7 +151,7 @@ class UserReward
      * Set user
      *
      * @param Witty\UserBundle\Entity\User $user
-     * @return UserReward
+     * @return UserRewardOption
      */
     public function setUser(\Witty\UserBundle\Entity\User $user = null)
     {
@@ -168,7 +174,7 @@ class UserReward
      * Set reward
      *
      * @param Witty\ProjectBundle\Entity\Reward $reward
-     * @return UserReward
+     * @return UserRewardOption
      */
     public function setReward(\Witty\ProjectBundle\Entity\Reward $reward = null)
     {
@@ -185,5 +191,38 @@ class UserReward
     public function getReward()
     {
         return $this->reward;
+    }
+
+    /**
+     * Add options
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $options
+     * @return UserRewardOption
+     */
+    public function addOption(\Witty\ProjectBundle\Entity\RewardOption $options)
+    {
+        $this->options[] = $options;
+    
+        return $this;
+    }
+
+    /**
+     * Remove options
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $options
+     */
+    public function removeOption(\Witty\ProjectBundle\Entity\RewardOption $options)
+    {
+        $this->options->removeElement($options);
+    }
+
+    /**
+     * Get options
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 }

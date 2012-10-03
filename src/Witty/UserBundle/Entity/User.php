@@ -32,7 +32,7 @@ class User extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    private $rewardOptions;
+    private $userRewardOptions;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -212,6 +212,10 @@ class User extends BaseUser
 		parent::__construct();
 		$this->createdAt = new \Datetime();
 		$this->credit = 0;
+		$this->shares = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->userRewards = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->userRewardOptions = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->projects = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 	
 	public function serialize()
@@ -931,6 +935,7 @@ class User extends BaseUser
     public function removeUserReward(\Witty\ProjectBundle\Entity\UserReward $userReward)
     {
         $this->userRewards->removeElement($userReward);
+		$this->credit += $userReward->getReward()->getCost();
     }
 
     /**
@@ -1090,26 +1095,27 @@ class User extends BaseUser
 	}
 
     /**
-     * Add rewardOptions
+     * Add rewardOption
      *
-     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOptions
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOption
      * @return User
      */
-    public function addRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOptions)
+    public function addRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOption)
     {
-        $this->rewardOptions[] = $rewardOptions;
+        $this->rewardOptions[] = $rewardOption;
     
         return $this;
     }
 
     /**
-     * Remove rewardOptions
+     * Remove rewardOption
      *
-     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOptions
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOption
      */
-    public function removeRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOptions)
+    public function removeRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOption)
     {
-        $this->rewardOptions->removeElement($rewardOptions);
+        $this->rewardOptions->removeElement($rewardOption);
+		$this->credit += $rewardOption->getCost();
     }
 
     /**
@@ -1120,5 +1126,91 @@ class User extends BaseUser
     public function getRewardOptions()
     {
         return $this->rewardOptions;
+    }
+	
+	//Renvoi la liste des rewards du User pour un projet donné
+	public function getUserRewardsByProjectId($projectId)
+	{
+		$filter = function($projectId)
+				{
+					return function($x) use ($projectId) { return $x->getReward()->getProject()->getId() == $projectId; };
+				};			
+
+		return $this->getUserRewards()->filter($filter($projectId));
+	}	
+	
+	//Renvoi la liste des options du User pour un reward donné
+	public function getRewardOptionsByRewardId($rewardId)
+	{
+		$filter = function($rewardId)
+				{
+					return function($x) use ($rewardId) { return $x->getReward()->getId() == $rewardId; };
+				};			
+	
+		return $this->getUserRewardOptions()->filter($filter($rewardId));
+	}
+	
+	
+	//Calcul des du crédit que récupérerait l'user en annulant ses reward sur un projet
+	public function getCreditRecuperable($projectId)
+	{
+		$creditRecuperable = 0;
+		foreach ($this->getUserRewardsByProjectId($projectId) as $userReward)
+		{
+			$creditRecuperable += $userReward->getReward()->getCost(); //Ajout du crédit gagné par la possible annulation du reward
+			foreach($this->getRewardOptionsByRewardId($userReward->getReward()->getId()) as $rewardOption) //Ajout du crédit gagné par l'annulation des options
+			{	
+				$creditRecuperable += $rewardOption->getCost();
+			}
+		}
+		
+		return $creditRecuperable;
+	}	
+	
+    /**
+     * Annule les UserReward sur un projet donné
+     *
+     */
+    public function cancelRewardsByProjectId($projectId)
+    {
+		$map = function($projectId)
+				{
+					return function($x) use ($projectId) { if ($x->getReward()->getProject()->getId() == $projectId) $this->removeUserReward($x); };
+				};			
+	
+        $this->userRewards = $this->getUserRewards()->map($map($projectId));
+    }
+
+    /**
+     * Add userRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
+     * @return User
+     */
+    public function addUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    {
+        $this->userRewardOptions[] = $userRewardOptions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
+     */
+    public function removeUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    {
+        $this->userRewardOptions->removeElement($userRewardOptions);
+    }
+
+    /**
+     * Get userRewardOptions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUserRewardOptions()
+    {
+        return $this->userRewardOptions;
     }
 }
