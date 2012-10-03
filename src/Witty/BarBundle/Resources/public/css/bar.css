@@ -19,6 +19,7 @@
 
 #menu_witty{
 	position:relative;
+	display:block;
 }
 
 #menu_witty form{

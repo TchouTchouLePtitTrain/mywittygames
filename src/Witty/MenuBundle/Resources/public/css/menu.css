@@ -38,9 +38,9 @@
 }
 
 #menu{
-	float:left;
 	margin-left:0px;
 	position:relative;
+	display:block;
 }
 
 .btn_decouvrir{

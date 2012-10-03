@@ -17,13 +17,14 @@
         <p class="descriptionPage descriptionPage_projet">{{ project.shortDescription }}</p>
     </div>
     
- 
-	<ul id="onglets">
-		<li class="actif">Accueil</li>
-		<li>News</li>
-		<li>Édinautes</li> 
-		<li>Commentaires</li>
-	</ul>   
+ 	<nav>
+		<ul id="onglets">
+			<li class="actif">Accueil</li>
+			<li>News</li>
+			<li>Édinautes</li> 
+			<li>Commentaires</li>
+		</ul>  
+	</nav> 
 
     <span class="flecheMenu"></span>
 
@@ -31,7 +32,20 @@
     
     	<section class="item">
         	<video class="video" src="{{ project.video }}" ></video>
-            <p class="soustitre">Description du jeu </p>
+        	<article>
+            	<p class="soustitre">Description du jeu </p>
+            	<p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
+
+Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
+
+Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
+
+Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
+
+Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
+		</article>
+		<article>
+			<p class="soustitre">Description du jeu </p>
             <p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
 
 Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
@@ -41,22 +55,15 @@ Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
 Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
 
 Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
-<p class="soustitre">Description du jeu </p>
-            <p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
-
-Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
-
-Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
-
-Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
-
-Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
+        </article>
         </section>
         
         <section class="item">
 			{% for news in project.news %}
-				<p class="soustitre">{{ news.title }}</p>
-				<p class="texte">{{ news.content}}</p>
+				<article>
+					<p class="soustitre">{{ news.title }}</p>
+					<p class="texte">{{ news.content}}</p>
+				</article>
 			{% endfor %}
 		</section>
         

@@ -8,17 +8,19 @@
 <div id="bandeauHaut">
 	<div class="container_bandeau">
 
-		<div id="menu_witty">
+		<nav id="menu_witty">
 		
 			<form method="POST" name="form_token" id="form_token">
 			{% if app.user %}
 				<input type="hidden" name="token" value="{{ app.user.token }}"/>
 			{% endif %}
 			</form>
-			<a id="lien_mwg" class="btn_mwg lien_mw" href="{{ url_mwg }}" ></a>
-			<a id="lien_mwn" class="btn_mwn lien_mw" href="{{ url_mwn }}" onclick="javascript:return false;"></a>
-			<a id="lien_mws" class="btn_mws lien_mw" href="{{ url_mws }}" onclick="javascript:return false;"></a>
-		</div>
+			<ul>
+				<li> <a id="lien_mwg" class="btn_mwg lien_mw" href="{{ url_mwg }}" ></a></li>
+				<li> <a id="lien_mwn" class="btn_mwn lien_mw" href="{{ url_mwn }}" onclick="javascript:return false;"></a></li>
+				<li> <a id="lien_mws" class="btn_mws lien_mw" href="{{ url_mws }}" onclick="javascript:return false;"></a></li>
+			</ul>
+		</nav>
 		<div id="espace_login">
 			{% if app.user %}
 				<a class="pseudo pseudo-connecte btn_deconnexion" href="{{ path('fos_user_security_logout') }}">x</a>
