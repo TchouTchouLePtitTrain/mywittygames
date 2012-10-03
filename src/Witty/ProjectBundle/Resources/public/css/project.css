@@ -41,7 +41,7 @@ section{
 	height:12px;	
 	cursor:pointer;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
+	font-size:0.875em;
 	color:#888888;
 	z-index:1;
 }
@@ -90,7 +90,7 @@ section{
 
 .texte{
 	font-family: 'Karla', sans-serif;
-	font-size:16px;
+	font-size:1em;
 	color:#666;
 	line-height: 1.5;
 	margin-bottom:10px;
@@ -98,7 +98,7 @@ section{
 
 .texte_bleu{
 	font-family: 'Karla', sans-serif;
-	font-size:16px;
+	font-size:1em;
 	line-height: 1.5;
 	margin-bottom:10px;
 	color:#4270be;
@@ -127,7 +127,7 @@ section{
 
 .soustitre{
 	font-family: 'Karla', sans-serif;
-	font-size:22px;
+	font-size:1.375em;
 	color:#666;
 	margin-bottom:10px;
 }
@@ -154,7 +154,7 @@ section{
 
 .nom_edinaute{
 	font-family: 'Karla', sans-serif;
-	font-size:16px;
+	font-size:1em;
 	color:#666;
 	font-weight:bold;
 	margin-bottom:10px;
@@ -179,7 +179,7 @@ section{
 
 .commentaire{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:0.750em;
 	color:#514846;
 	font-weight:bold;
 }
@@ -223,7 +223,7 @@ section{
 
 .date_comm{
 	font-family: 'Karla', sans-serif;
-	font-size:14px;
+	font-size:0.875em;
 	color:#a6a6a6;
 	font-weight:100;
 	margin-left:5px;
@@ -243,7 +243,7 @@ section{
 
 .texte_comm{
 	font-family: 'Karla', sans-serif;
-	font-size:16px;
+	font-size:1em;
 	color:#888888;
 	line-height: 1.2;
 	margin-left:100px;
@@ -284,7 +284,7 @@ section{
 	display:block;
 	width:260px;
 	font-family: 'Crete Round', serif;
-	font-size:56px;
+	font-size:3.500em;
 	color:#514846;
 	line-height: normal;
 	margin-bottom:5px;
@@ -292,7 +292,7 @@ section{
 
 .styletexte{
 	font-family: 'Crete Round', serif;
-	font-size:14px;
+	font-size:0.875em;
 	color:#514846;
 }
 
@@ -337,7 +337,7 @@ section{
     color: #514846;
     display: block;
     font-family: 'Crete Round',serif;
-    font-size: 18px;
+    font-size: 1.125em;
     line-height: normal;
     margin-bottom: 8px;
     padding-top: 5px;
@@ -396,14 +396,14 @@ section{
 	display:block;
 	float:left;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:0.750em;
 	color:#333;
 }
 
 .nom_editeur{
 	display:block;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
+	font-size:0.875em;
 	color:#333;
 	font-weight:bold;
 	margin-top:8px;
@@ -445,7 +445,7 @@ section{
 	float:left;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16px;
+	font-size:1em;
 	color:#514846;
 }
 
@@ -456,7 +456,7 @@ section{
 	float:right;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	font-size:16px;
+	font-size:1em;
 	color:#4575c7;
 }
 
@@ -476,7 +476,7 @@ section{
 	margin-left:auto;
 	margin-right:auto;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:0.750em;
 	color:#514846;
 	line-height: 1.5;
 }
@@ -549,7 +549,7 @@ position: absolute;
 .titre_popup{
 	font-family:Arial, Helvetica, sans-serif;
 	color:#4575c7;
-	font-size:16px;
+	font-size:1em;
 	font-weight:bold;
 	margin-bottom:10px;
 }
@@ -557,7 +557,7 @@ position: absolute;
 .close{
 	font-family:Arial, Helvetica, sans-serif;
 	color:#CCC;
-	font-size:16px;
+	font-size:1em;
 	font-weight:bold;
 	margin-bottom:10px;
 	float:right;
@@ -592,7 +592,7 @@ position: absolute;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	color:#514846;
-	font-size:16px;
+	font-size:1em;
 	float:left;
 	margin-top:20px;
 }
@@ -600,7 +600,7 @@ position: absolute;
 .texte_popup2{
 	font-family:Arial, Helvetica, sans-serif;
 	color:#514846;
-	font-size:12px;
+	font-size:0.750em;
 	margin-top:20px;
 	margin-left:150px;
 	line-height: 1.5;
@@ -614,7 +614,7 @@ position: absolute;
 
 .somme{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:20px;
+	font-size:1.125em;
 	color:#514846;
 	font-weight:bold;
 }

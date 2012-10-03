@@ -1,0 +1,169 @@
+/* --- Page de confirmation Reward --- */
+
+#container{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
+/* --- Bloc contenu --- */
+
+#blocContenuConfirmation{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:960px;
+	height:100%;
+	background-color:#FFF;
+	border-radius:4px;
+	
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-o-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	
+	border: solid 1px #b7b7b7;
+	padding:20px;	
+}
+
+.sousbloc{
+	display:block;
+	width:100%;
+	height:100%;
+	border-bottom: solid 1px #DDDBDB;
+}
+
+/* --- Partie gauche --- */
+
+.partieGauche{
+	height:500px;
+}
+
+.titreMerci{
+	display:block;
+	height:100%;
+	width:100%;
+	border-bottom: solid 1px #DDDBDB;
+	color:#4270BE;
+	font-family: 'Karla', sans-serif;
+	font-size:1.875em;
+	padding-bottom:10px;
+}
+
+.titreRecap{
+	display:block;
+	height:100%;
+	width:100%;
+	color:#514846;
+	font-family: 'Crete Round',serif;
+	font-size:1.375em;
+	margin-bottom:5px;
+}
+
+.texteRecap{
+	display:block;
+	height:100%;
+	width:100%;
+	color:#514846;
+	font-family: 'Crete Round',serif;
+	font-size: .875em;
+}
+
+/* --- Bloc récap reward --- */
+
+#blocRecap{
+	display:block;
+	height:100%;
+	width:93.5;
+	border: solid 1px #DDDBDB;
+	padding: 20px;
+}
+
+.sousTitre_recap{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:1em;
+	color:#514846;
+	font-weight:bold;
+	float:left;
+}
+
+.filet {
+	border:none; /* desactiver tous les contours */
+	border-top:solid 1px #DDDBDB; /* activer le contour du haut */
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.texte_droite{
+	float:right;
+	display:block;
+	width:350px;
+}
+
+.texte_droite label{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.750em;
+	color:#514846;
+	font-weight:normal;
+}
+
+.texte_droite input{
+	margin-bottom:10px;
+	margin-right:10px;
+}
+
+.paiement_recap{
+	float:right;
+	display:block;
+	width:400px;
+	height:100%;
+	border-radius:4px;
+	border: solid 10px #f7f7f7;
+}
+
+.img_merci{
+	display:block;
+	background-image: url(../images/img_merci.png);
+	width:122px;
+	height:198px;
+	float:left;
+}
+
+.paiement_recap_texte{
+	float:right;
+	width:238px;
+	margin:20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.875em;
+	color:#514846;
+	font-weight:bold;
+	line-height:1.5;
+}
+
+.euro{
+	float:right;
+}
+
+.filet2 {
+	border:none; /* desactiver tous les contours */
+	border-top:solid 1px #DDDBDB; /* activer le contour du haut */
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+#confirmation_form input[type=submit]{
+	display:block;
+	background-image: url(../images/btn_continuer_normal.png);
+	width:183px;
+	height:50px;
+	margin-top:15px;
+	cursor:pointer;
+	float:right;
+}
+
+#confirmation_form input[type=submit]:hover{
+	display:block;
+	background-image: url(../images/btn_continuer_hover.png);
+}

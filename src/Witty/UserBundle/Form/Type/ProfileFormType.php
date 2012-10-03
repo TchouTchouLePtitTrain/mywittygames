@@ -19,13 +19,6 @@ class ProfileFormType extends BaseType
         $builder
 			->remove('username')
 			->remove('plainPassword')
-            ->add('avatarFile', 'file', array('required' => false))/*
-			->add('plainPassword', 'repeated', array( //Override du champ password tel que défini dans le FOSUserBundle, pour qu'il ne soit plus 'required' et qu'il soit 'always_empty'
-                'type' => 'password',
-                'options' => array('translation_domain' => 'FOSUserBundle', 'required' => false, 'always_empty' => true),
-                'first_options' => array('label' => 'form.password'),
-                'second_options' => array('label' => 'form.password_confirmation'),
-            ))*/
             ->add('plainPassword', 'password', array( 'required' => false, 'always_empty' => true)) //Override du champ password tel que défini dans le FOSUserBundle, pour qu'il ne soit plus 'required' et qu'il soit 'always_empty'
             ->add('firstname', 'text', array('required' => false))
             ->add('lastname', 'text', array('required' => false))
@@ -35,8 +28,10 @@ class ProfileFormType extends BaseType
             ->add('address_2', 'text', array('required' => false))
             ->add('postcode', 'text', array('required' => false))
             ->add('city', 'text', array('required' => false))
-            ->add('country', 'country', array('required' => false))
+            ->add('country', 'text', array('required' => false))
+            //->add('country', 'country', array('required' => false))
             ->add('newsletter', 'checkbox', array('value' => 0, 'required' => false))
+            ->add('avatarFile', 'file', array('required' => false))
         ;
     }
 

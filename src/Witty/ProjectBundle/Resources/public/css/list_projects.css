@@ -55,7 +55,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size:30px;
+	font-size:1.875em;
 	color:#4270be;
 	margin-bottom:16px;
 }
@@ -66,7 +66,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size:16px;
+	font-size:1em;
 	color:#514846;
 	line-height: 1.2;
 	margin-bottom:10px;
@@ -79,7 +79,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size:14px;
+	font-size:0.875em;
 	color:#786e6c;
 	line-height: 1.2;
 	margin-bottom:10px;
@@ -91,6 +91,11 @@
 	width:400px;
 	height:133px;
 	background-image: -moz-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%);
+	background-image: -webkit-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%);
+	background-image: -moz-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%);
+	background-image: -o-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%);
+	background-image: -ms-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%);
+	background-image: linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%);	
 	border-top: solid 1px #b7b7b7;
 	border-bottom: solid 1px #b7b7b7;
 	float:left;
@@ -110,7 +115,7 @@
 
 .bloc_jeu.grand .style_NBcaracteritiques{
 	font-family: 'Crete Round', serif;
-	font-size:32px;
+	font-size:2em;
 	color:#514846;
 	text-align:center;
 	margin-bottom:10px;
@@ -118,7 +123,7 @@
 
 .bloc_jeu.grand .style_caracteristiques{
 	font-family: 'Crete Round', serif;
-	font-size:14px;
+	font-size:0.875em;
 	color:#514846;
 	text-align:center;
 	margin-bottom:15px;
@@ -196,7 +201,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size:26px;
+	font-size:1.625em;
 	color:#4270be;
 	text-align:center;
 	margin-bottom:16px;
@@ -208,7 +213,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size:14px;
+	font-size:0.875em;
 	color:#514846;
 	text-align:center;
 	line-height: 1.2;
@@ -253,7 +258,7 @@
 
 .bloc_jeu.petit .style_NBcaracteritiques{
 	font-family: 'Crete Round', serif;
-	font-size:22px;
+	font-size:1.375em;
 	color:#514846;
 	text-align:center;
 	margin-top:5px;

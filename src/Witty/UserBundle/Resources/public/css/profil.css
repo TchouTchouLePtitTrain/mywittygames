@@ -1,0 +1,61 @@
+/* --- Page profil --- */
+
+#container{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
+/* --- Titre page --- */
+
+.titrePageProfil{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color:#4270be;
+}
+
+/* --- Bloc contenu --- */
+
+#blocContenuProfil{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:960px;
+	height:1OO%;
+	background-color:#FFF;
+	border-radius:4px;
+	
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-o-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	
+	border: solid 1px #b7b7b7;
+	padding:20px;	
+}
+
+/* --- Contenu --- */
+
+#blocContenuProfil input[type=text]{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:30px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#blocContenuProfil input[type=text]:focus{
+	color:#999;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}

@@ -1,35 +1,51 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block fos_user_content %}
-	<figure>
-		<img src="{{ url_asset('avatar', user.id, user.avatar) }}"/>
-	</figure>
-		
-	<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-		{{ form_widget(form) }}
-		<div>
-			<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
-		</div>
-	</form>
-	{% if user.games|length > 0 %}
-		Les projets que vous avez soutenus :
-		
-		{% for project in user.projectsFunded %}
-			{{ project.title }} => 
-				{% for userReward in user.userRewards() %}
-					{{ userReward.reward.title }} : {{ userReward.reward.description }}
-				{% endfor %}
-		{% endfor %}
-	{% endif %}
+{% block stylesheets %}
+    {% stylesheets 'bundles/wittyuser/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
+{% endblock %}
 
-	{% if user.games|length > 0 %}
-		Les jeux de la saison 2 auxquels vous avez participé
-		{% for game in user.games %}
-			{{game.name}} => {{ game.sharesByUserId(user.id)|length }}
-		{% endfor %}
-	{% endif %}
-	{% if user.credit > 0 %}
-		Votre crédit : {{ user.credit }} €
-	{% endif %}
+{% block content %}
+
+<div id="container">
+
+	<p class="titrePage titrePageProfil">Mon profil</p>
+	<div id="blocContenuProfil">
+		<figure>
+			<img src="{{ url_asset('avatar', user.id, user.avatar) }}"/>
+		</figure>
+		
+		<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+			{{ form_widget(form) }}
+			<div>
+				<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+			</div>
+		</form>
+		{% if user.games|length > 0 %}
+			Les projets que vous avez soutenus :
+			
+			{% for project in user.projectsFunded %}
+				{{ project.title }} => 
+					{% for userReward in user.userRewards() %}
+						{{ userReward.reward.title }} : {{ userReward.reward.description }}
+					{% endfor %}
+			{% endfor %}
+		{% endif %}
+
+		{% if user.games|length > 0 %}
+			Les jeux de la saison 2 auxquels vous avez participé
+			{% for game in user.games %}
+				{{game.name}} => {{ game.sharesByUserId(user.id)|length }}
+			{% endfor %}
+		{% endif %}
+		{% if user.credit > 0 %}
+			Votre crédit : {{ user.credit }} €
+		{% endif %}
+	</div>
 	
-{% endblock fos_user_content %}
+</div>	
+	
+{% endblock content %}

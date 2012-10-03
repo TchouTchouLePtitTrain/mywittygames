@@ -67,14 +67,14 @@ position: absolute;
 .titre_popup{
 	font-family: 'Cabin Sketch',cursive;
 	color:#4575c7;
-	font-size:30px;
+	font-size:1.875em;
 	margin-bottom:10px;
 }
 
 .close{
 	font-family:Arial, Helvetica, sans-serif;
 	color:#CCC;
-	font-size:16px;
+	font-size:1em;
 	font-weight:bold;
 	margin-bottom:10px;
 	float:right;
@@ -103,7 +103,7 @@ position: absolute;
 
 label[for='remember_me']{
 	ont-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:0.750em;
 	color:#514846;
 	margin-bottom:10px;
 }
@@ -120,7 +120,7 @@ label[for='remember_me']{
 
 .texte_popup{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:0.750em;
 	color:#514846;
 	font-weight:bold;
 }
@@ -129,7 +129,7 @@ label[for='remember_me']{
 	display:block;
 	width:350px;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
+	font-size:0.875;
 	font-weight:bold;
 	color:#514846;
 	margin-bottom:10px;
@@ -150,7 +150,7 @@ label[for='remember_me']{
 
 .texte_popuplogin3{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:0.750em;
 	color:#ababab;
 	margin-bottom:10px;
 	text-decoration:underline; 
@@ -161,13 +161,13 @@ label[for='remember_me']{
 	float:left;	
 	font-family: 'Cabin Sketch',cursive;
 	color:#FFF;
-	font-size:24px;
+	font-size:1.500em;
 	margin-bottom:10px;
 }
 
 .texte_popuplogin5{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:0.750em;
 	color:#ababab;
 	margin-bottom:10px; 
 	cursor:pointer;
@@ -177,7 +177,7 @@ label[for='remember_me']{
 
 .conditions{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:1em;
 	color:#4270BE;
 	margin-bottom:10px; 
 	cursor:pointer;
@@ -239,7 +239,7 @@ label[for='remember_me']{
 
 label{
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:13px;
+	font-size:0.813em;
 	font-weight:bold;
 	color:#514846;
 	margin-bottom:10px;
@@ -259,11 +259,15 @@ label{
 	padding-left:15px;
 	font-style:italic;
 	color:#CCC;
-	font-size:16px;
+	font-size:1em;
 }
 
 #username:focus{
 	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
@@ -281,11 +285,15 @@ label{
 	padding-left:15px;
 	font-style:italic;
 	color:#CCC;
-	font-size:16px;
+	font-size:1em;
 }
 
 #password:focus{
 	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
@@ -303,11 +311,15 @@ label{
 	padding-left:15px;
 	font-style:italic;
 	color:#CCC;
-	font-size:16px;
+	font-size:1em;
 }
 
 #fos_user_registration_form_email:focus{
 	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
@@ -325,11 +337,15 @@ label{
 	padding-left:15px;
 	font-style:italic;
 	color:#CCC;
-	font-size:16px;
+	font-size:1em;
 }
 
 #fos_user_registration_form_plainPassword:focus{
 	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
@@ -347,11 +363,15 @@ label{
 	padding-left:15px;
 	font-style:italic;
 	color:#CCC;
-	font-size:16px;
+	font-size:1em;
 }
 
 #fos_user_registration_form_username:focus{
 	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
@@ -377,7 +397,6 @@ label{
 	display: none; /*--masqué par défaut--*/
 	background: #fff;
 	float: left;
-	font-size: 1.2em;
 	position: fixed;
 	top: 50%; left: 50%;
 	z-index: 99999;
