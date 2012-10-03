@@ -19,4 +19,12 @@ class HomeController extends Controller
 			)
 		);
     }
+    
+    /**
+     * @Template()
+     */
+    public function faqAction()
+    {
+        return $this->render('WittyMwgBundle:Home:faq.html.twig');
+    }
 }

@@ -1,3 +1,7 @@
 wittymwg_accueil:
     pattern:   /
     defaults:  { _controller: WittyMwgBundle:Home:index }
+    
+wittymwg_faq:
+    pattern:   /faq
+    defaults:  { _controller: WittyMwgBundle:Home:faq }

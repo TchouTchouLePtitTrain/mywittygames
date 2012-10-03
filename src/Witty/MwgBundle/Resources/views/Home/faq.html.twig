@@ -1,0 +1,82 @@
+{% extends "WittyMwgBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {% stylesheets 'bundles/wittymwg/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block title %}{{ parent() }} - L'édition participative{% endblock %}
+
+{% block content %}
+  
+   <div class="blocTitrePage">
+    	<p class="titrePage titrePage_faq">FAQ</p>
+    </div>
+    
+    <div id="container">
+    
+    	<div id="blocContenuFaq">
+    		
+    		<div class="faq_infos">
+    			<div class="partie1">
+    				<p class="texte_infos">Un problème ? Une question ?</p>
+    				<p class="texte_infos2">Nous sommes là pour vous. Profitez-en !</p>
+    			</div>
+    			<div class="partie2">
+    				<p class="texte_infos">01 43 43 41 68</p>
+    				<p class="texte_infos2">Coût d'un appel local</p>
+    			</div>
+    			<div class="partie3">
+    				<p class="texte_infos">contact@mywittygames.com</p>
+    				<p class="texte_infos2">Coût d'un mail local</p>
+    			</div>
+				<div class="spacer"></div>
+    		</div>
+    	
+		
+			<div class="faq_p">
+				<a class="faq_title_1" href="#" style="color: rgb(66, 112, 190);">1. Questions techniques</a>
+				<div class="faq_2" style="display: block;">
+					<div class="faq_2_p">
+						<a class="faq_title_2" href="#">1.1. Qu’est-ce que Mywittygames.com ?</a>
+						<div class="faq_3"> Mywittygames.com est la première plateforme d’édition communautaire de jeux de société. En vous inscrivant, vous pouvez investir dans les jeux que vous aimez et participer à leur édition. L’édition communautaire est un phénomène en plein essor sur de multiples secteurs (Musique, Cinéma, Livres, BD…) et aujourd’hui cette nouvelle tendance arrive dans l’univers des jeux de société grâce à Mywittygames.com ! 
+						</div>
+					</div>
+					<div class="faq_2_p">
+						<a class="faq_title_2" href="#">1.2. Pourquoi m’inscrire ?</a>
+						<div class="faq_3"> Mywittygames.com est une plateforme innovante où vous pourrez participer à l’édition de jeux nouveaux et être intéressé à leurs futurs gains financiers. En vous inscrivant, vous pouvez créer votre profil personnel, noter les jeux et acheter des parts et obtenir des tickets d’investissement (uniquement pour les personnes majeures) 
+						</div>
+					</div>
+				</div>	
+			</div>
+
+			<div class="faq_p">
+				<a class="faq_title_1" href="#" style="color: rgb(66, 112, 190);">2. Gérez votre espace personnel </a>
+				<div class="faq_2" style="display: block;">
+					<div class="faq_2_p">
+						<a class="faq_title_2" href="#">2.1. Qu’y-a-t-il dans mon espace personnel ? </a>
+						<div class="faq_3"> Vous retrouverez l’ensemble de vos informations personnelles, votre description, votre photo, le top devos jeux, vos liens préférés, vos investissements, votre messagerie personnelle. Bref c’est l’endroit où vous retrouver toutes les informations vous concernant.  
+						</div>
+					</div>
+					<div class="faq_2_p">
+						<a class="faq_title_2" href="#">2.2. Puis-je modifier mon login ? Mon mot de passe ? </a>
+						<div class="faq_3"> Oui, vous pouvez modifier votre login et votre mot de passe. Attention toutefois à ne pas les perdre ou les confondre. En cas de problème, vous pouvez nous contacter à l’adresse suivant : contact@mywittygames.com. En cas de litige, nous vous demanderons une pièce d’identité pour vérifier que vous êtes bien le bon propriétaire du compte et du solde disponible.  
+						</div>
+					</div>
+				</div>	
+			</div>
+
+    	</div>
+    
+    </div>
+   
+   
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts 'bundles/wittymwg/js/*.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+{% endblock %}
