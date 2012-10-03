@@ -34,10 +34,10 @@ class UserRewardOption
     private $reward;
 	
     /**
-	 * @ORM\ManyToMany(targetEntity="RewardOption", inversedBy="userRewardOptions")
+	 * @ORM\ManyToOne(targetEntity="RewardOption", inversedBy="userRewardOptions")
      * @ORM\JoinColumn(name="option_id", referencedColumnName="id")
      */
-    private $options;
+    private $option;
 	
     /**
      * @var boolean $cancelled
@@ -61,10 +61,170 @@ class UserRewardOption
     private $updateDate;
 
 
-	public function __construct()
+	public function __construct(\Witty\UserBundle\Entity\User $user, \Witty\ProjectBundle\Entity\Reward $reward, \Witty\ProjectBundle\Entity\RewardOption $rewardOption)
 	{
 		$this->creationDate = new \DateTime();
 		$this->cancelled = false;
-		$this->options = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->user = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->reward = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->rewardOption = new \Doctrine\Common\Collections\ArrayCollection();
 	}
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cancelled
+     *
+     * @param boolean $cancelled
+     * @return UserRewardOption
+     */
+    public function setCancelled($cancelled)
+    {
+        $this->cancelled = $cancelled;
+    
+        return $this;
+    }
+
+    /**
+     * Get cancelled
+     *
+     * @return boolean 
+     */
+    public function getCancelled()
+    {
+        return $this->cancelled;
+    }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     * @return UserRewardOption
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime 
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set updateDate
+     *
+     * @param \DateTime $updateDate
+     * @return UserRewardOption
+     */
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = $updateDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get updateDate
+     *
+     * @return \DateTime 
+     */
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Witty\UserBundle\Entity\User $user
+     * @return UserRewardOption
+     */
+    public function setUser(\Witty\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Witty\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set reward
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $reward
+     * @return UserRewardOption
+     */
+    public function setReward(\Witty\ProjectBundle\Entity\Reward $reward = null)
+    {
+        $this->reward = $reward;
+    
+        return $this;
+    }
+
+    /**
+     * Get reward
+     *
+     * @return Witty\ProjectBundle\Entity\Reward 
+     */
+    public function getReward()
+    {
+        return $this->reward;
+    }
+
+    /**
+     * Add options
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $options
+     * @return UserRewardOption
+     */
+    public function addOption(\Witty\ProjectBundle\Entity\RewardOption $options)
+    {
+        $this->options[] = $options;
+    
+        return $this;
+    }
+
+    /**
+     * Remove options
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $options
+     */
+    public function removeOption(\Witty\ProjectBundle\Entity\RewardOption $options)
+    {
+        $this->options->removeElement($options);
+    }
+
+    /**
+     * Get options
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
 }

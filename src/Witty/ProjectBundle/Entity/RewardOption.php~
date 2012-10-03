@@ -22,7 +22,7 @@ class RewardOption
     private $id;
 
 	/**
-     * @ORM\ManyToMany(targetEntity="UserRewardOption", mappedBy="options")
+     * @ORM\OneToMany(targetEntity="UserRewardOption", mappedBy="option")
      */
     private $userRewardOptions;
 
@@ -199,5 +199,38 @@ class RewardOption
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add userRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
+     * @return RewardOption
+     */
+    public function addUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    {
+        $this->userRewardOptions[] = $userRewardOptions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
+     */
+    public function removeUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    {
+        $this->userRewardOptions->removeElement($userRewardOptions);
+    }
+
+    /**
+     * Get userRewardOptions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUserRewardOptions()
+    {
+        return $this->userRewardOptions;
     }
 }

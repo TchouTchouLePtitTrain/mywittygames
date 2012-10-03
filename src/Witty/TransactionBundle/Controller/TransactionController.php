@@ -24,21 +24,21 @@ class TransactionController extends Controller
 		$logger = new Logger('paypalSuccessLogger');
 		$logger->pushHandler(new StreamHandler($this->container->getParameter('witty.paypal.log.success.path'), Logger::INFO));
 
-		$logger->info("IPN reçu le ".date('d/m/y à G:i:s'));
+		$logger->info("IPN reÃ§u le ".date('d/m/y Ã  G:i:s'));
 		
 		$em = $this->getDoctrine()->getEntityManager();
 		$request = $this->getRequest();
 		
-		//Fausse requête pour simuler un IPN (pour les tests en dev uniquement)
+		//Fausse requÃªte pour simuler un IPN (pour les tests en dev uniquement)
 		$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => '5487', 'mc_gross' => '0', 'custom' => 'u=3&rw=1&opt=1,2'));		
 
 		if (!$request->getMethod() == 'POST')
 			throw new \Exception('Erreur');
 			
-		if ($request->get('txn_id')) $this->processPaypal($request, $logger, $this->container->getParameter('witty.paypal.url')); //Si on vient de paypal, sauvegarde l'IPN reçu et renvoie la confirmation à Paypal
-		$transaction = $this->creerTransaction($request, $logger); //Crée la Transaction
+		if ($request->get('txn_id')) $this->processPaypal($request, $logger, $this->container->getParameter('witty.paypal.url')); //Si on vient de paypal, sauvegarde l'IPN reÃ§u et renvoie la confirmation Ã  Paypal
+		$transaction = $this->creerTransaction($request, $logger); //CrÃ©e la Transaction
 
-		if ($this->verifierTransaction($transaction, $logger, $request)) //Vérification de la validité de la transaction
+		if ($this->verifierTransaction($transaction, $logger, $request)) //VÃ©rification de la validitÃ© de la transaction
 		{
 			//Enregistrement de la transaction
 			$transaction->setCompletionDate(new \DateTime());
@@ -48,14 +48,14 @@ class TransactionController extends Controller
 			$logger->info("Transaction OK");
 
 			//Traitements post-transaction
-			$this->processPostTransaction($transaction, $logger); //Ajout des rewards et options achetés au User
+			$this->processPostTransaction($transaction, $logger); //Ajout des rewards et options achetÃ©s au User
 		}
 		
 		return new \Symfony\Component\HttpFoundation\Response('ok');
 	}
 	
 	
-	//Sauvegarde l'IPN reçu et renvoie la confirmation à Paypal
+	//Sauvegarde l'IPN reÃ§u et renvoie la confirmation Ã  Paypal
 	private function processPaypal($request, $logger, $urlPaypal)
 	{
 		$em = $this->getDoctrine()->getEntityManager();		
@@ -70,14 +70,14 @@ class TransactionController extends Controller
 			$var .= "$key = $value <br />";
 		}
 		
-		$logger->info("Requête : ".$req);
+		$logger->info("RequÃªte : ".$req);
 		
 		$ipn = new Ipn($req);
 		$em->persist($ipn);
 
-		$logger->info("IPN stocké : ".$ipn->getId());
+		$logger->info("IPN stockÃ© : ".$ipn->getId());
 		
-		//Renvoi à Paypal
+		//Renvoi Ã  Paypal
 		$header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
@@ -114,12 +114,12 @@ class TransactionController extends Controller
 	}
 	
 	
-	//Crée la Transaction
+	//CrÃ©e la Transaction
 	private function creerTransaction($request, $logger)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
 		
-		//Récupération des ids du reward et des options
+		//RÃ©cupÃ©ration des ids du reward et des options
 		$custom = $request->get('custom');
 
 		$logger->info("Custom : ".$custom);		
@@ -144,14 +144,14 @@ class TransactionController extends Controller
 			$optionsIdsString = substr($optionsIdsString, 2, strlen($optionsIdsString));
 		}
 		
-		//Récupération des acteurs de la transaction
+		//RÃ©cupÃ©ration des acteurs de la transaction
 		$user = $em->getRepository('WittyUserBundle:User')->find($userId);
 		$reward = $em->getRepository('WittyProjectBundle:Reward')->find($rewardId);
 		$options = $em->getRepository('WittyProjectBundle:RewardOption')->findBy(array('id' => $optionsIds));
 
-		$logger->info("Acteurs récupérés");			
+		$logger->info("Acteurs rÃ©cupÃ©rÃ©s");			
 		
-		//Création de la transaction
+		//CrÃ©ation de la transaction
 		$transaction = new Transaction($this->container->getParameter('witty.paypal.fees'));
 		$transaction->setPaypalId($request->get('txn_id'));
 		$transaction->setUser($user);
@@ -163,31 +163,31 @@ class TransactionController extends Controller
 		foreach($options as $option)
 			$transaction->addOption($option);
 	
-		$logger->info("Transaction créée");	
+		$logger->info("Transaction crÃ©Ã©e");	
 		
 		return $transaction;
 	}
 	
 	
 	
-	//Procède aux vérifications avant de créer une transaction
+	//ProcÃ¨de aux vÃ©rifications avant de crÃ©er une transaction
 	private function verifierTransaction(Transaction $transaction, $logger, $request)
 	{		
 		$em = $this->getDoctrine()->getEntityManager();
 	
-		//Vérification transaction déjà reçue ?
-		if ( $request->get('txn_id') && ($em->getRepository('WittyTransactionBundle:Transaction')->find($transaction->getPaypalId())) ) //Si la transaction vient de Paypal, la différence entre le montant envoyé par Paypal et celui que l'on a recalculé sur la base des rewards et des options dépasse les erreurs d'arrondi
+		//VÃ©rification transaction dÃ©jÃ  reÃ§ue ?
+		if ( $request->get('txn_id') && ($em->getRepository('WittyTransactionBundle:Transaction')->find($transaction->getPaypalId())) ) //Si la transaction vient de Paypal, la diffÃ©rence entre le montant envoyÃ© par Paypal et celui que l'on a recalculÃ© sur la base des rewards et des options dÃ©passe les erreurs d'arrondi
 		{
-			$logger->err('Transaction déjà reçue -> id: '.$transaction->getPaypalId());
+			$logger->err('Transaction dÃ©jÃ  reÃ§ue -> id: '.$transaction->getPaypalId());
 			$logger->info("Transaction KO");	
 			
-			throw new \Exception("Erreur: transaction déjà reçue");
+			throw new \Exception("Erreur: transaction dÃ©jÃ  reÃ§ue");
 		}
 	
-		//Vérification des montants
-		if ( $request->get('txn_id') && !(abs($transaction->getTotalAmount() - $request->get('mc_gross')) <= 0.05)) //Si la différence entre le montant envoyé par Paypal et celui que l'on a recalculé sur la base des rewards et des options dépasse les erreurs d'arrondi
+		//VÃ©rification des montants
+		if ( $request->get('txn_id') && !(abs($transaction->getTotalAmount() - $request->get('mc_gross')) <= 0.05)) //Si la diffÃ©rence entre le montant envoyÃ© par Paypal et celui que l'on a recalculÃ© sur la base des rewards et des options dÃ©passe les erreurs d'arrondi
 		{
-			$logger->err("Montant Paypal incorrect -> Montant de la transaction :".$transaction->getTotalAmount().", Montant envoyé par Paypal:".$request->get('mc_gross'));
+			$logger->err("Montant Paypal incorrect -> Montant de la transaction :".$transaction->getTotalAmount().", Montant envoyÃ© par Paypal:".$request->get('mc_gross'));
 			$logger->info("Transaction KO");
 			
 			throw new \Exception("Erreur de montant paypal");
@@ -202,29 +202,29 @@ class TransactionController extends Controller
 	{
 		$em = $this->getDoctrine()->getEntityManager();
 		
-		//Annulation des anciens Rewards du User (le crédit est mis à jour)
+		//Annulation des anciens Rewards du User (le crÃ©dit est mis Ã  jour)
 		$transaction->getUser()->cancelRewardsByProjectId($transaction->getRewards()->first()->getProject()->getId());
 		
-		$logger->info("Rewards annulés, nouveau crédit: ".$transaction->getUser()->getCredit());
+		$logger->info("Rewards annulÃ©s, nouveau crÃ©dit: ".$transaction->getUser()->getCredit());
 		
-		//Ajout des rewards et options achetés au User
+		//Ajout des rewards et options achetÃ©s au User
 		$userReward = new UserReward();
 		$userReward->setUser($transaction->getUser());
 		$userReward->setReward($transaction->getRewards()->first());
 		$transaction->getUser()->addUserReward($userReward);
 
-		$logger->info("Reward ajouté");
-		
+		$logger->info("Reward ajoutÃ©");
+
 		foreach($transaction->getOptions() as $option)
-			$transaction->getUser()->addRewardOption($option);
+			$transaction->getUser()->addUserRewardOption($userReward->getReward(), $option);
+
+		$logger->info("Options ajoutÃ©es");
 		
-		$logger->info("Options ajoutées");
-		
-		//Décrémentation du crédit du user du montant utilisé
+		//DÃ©crÃ©mentation du crÃ©dit du user du montant utilisÃ©
 		$transaction->getUser()->setCredit($transaction->getUser()->getCredit() - $transaction->getCreditUsed());
 		
-		$logger->info("Crédit décrémenté, nouveau crédit: ".$transaction->getUser()->getCredit());
-//var_dump($transaction->getUser());die('ok');
+		$logger->info("CrÃ©dit dÃ©crÃ©mentÃ©, nouveau crÃ©dit: ".$transaction->getUser()->getCredit());
+
 		$em->persist($transaction->getUser());
 		$em->flush();
 		

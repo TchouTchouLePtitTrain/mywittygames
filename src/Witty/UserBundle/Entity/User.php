@@ -934,7 +934,7 @@ class User extends BaseUser
      */
     public function removeUserReward(\Witty\ProjectBundle\Entity\UserReward $userReward)
     {
-        $this->userRewards->removeElement($userReward);
+        $this->userRewards->remove($userReward);
 		$this->credit += $userReward->getReward()->getCost();
     }
 
@@ -1093,40 +1093,6 @@ class User extends BaseUser
 		
 		$this->games = $games;
 	}
-
-    /**
-     * Add rewardOption
-     *
-     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOption
-     * @return User
-     */
-    public function addRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOption)
-    {
-        $this->rewardOptions[] = $rewardOption;
-    
-        return $this;
-    }
-
-    /**
-     * Remove rewardOption
-     *
-     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOption
-     */
-    public function removeRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOption)
-    {
-        $this->rewardOptions->removeElement($rewardOption);
-		$this->credit += $rewardOption->getCost();
-    }
-
-    /**
-     * Get rewardOptions
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getRewardOptions()
-    {
-        return $this->rewardOptions;
-    }
 	
 	//Renvoi la liste des rewards du User pour un projet donné
 	public function getUserRewardsByProjectId($projectId)
@@ -1173,12 +1139,12 @@ class User extends BaseUser
      */
     public function cancelRewardsByProjectId($projectId)
     {
-		$map = function($projectId)
+		$filter = function($projectId)
 				{
-					return function($x) use ($projectId) { if ($x->getReward()->getProject()->getId() == $projectId) $this->removeUserReward($x); };
-				};			
+					return function($x) use ($projectId) { return ($x->getReward()->getProject()->getId() != $projectId); };
+				};
 	
-        $this->userRewards = $this->getUserRewards()->map($map($projectId));
+        $this->userRewards = $this->userRewards->filter($filter($projectId));
     }
 
     /**
@@ -1187,11 +1153,11 @@ class User extends BaseUser
      * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
      * @return User
      */
-    public function addUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    public function addUserRewardOption(\Witty\ProjectBundle\Entity\Reward $reward, \Witty\ProjectBundle\Entity\RewardOption $rewardOption)
     {
-        $this->userRewardOptions[] = $userRewardOptions;
-    
-        return $this;
+        $this->userRewardOptions[] = new \Witty\ProjectBundle\Entity\UserRewardOption($this, $reward, $rewardOption);
+		
+		return $this;
     }
 
     /**
@@ -1199,9 +1165,9 @@ class User extends BaseUser
      *
      * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
      */
-    public function removeUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions)
+    public function removeUserRewardOption(\Witty\ProjectBundle\Entity\Reward $reward, \Witty\ProjectBundle\Entity\RewardOption $rewardOptions)
     {
-        $this->userRewardOptions->removeElement($userRewardOptions);
+        $this->userRewardOptions->remove($this, new \Witty\ProjectBundle\Entity\UserRewardOption($reward, $rewardOptions));
     }
 
     /**

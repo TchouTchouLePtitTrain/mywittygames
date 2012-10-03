@@ -22,7 +22,7 @@ class RewardOption
     private $id;
 
 	/**
-     * @ORM\ManyToMany(targetEntity="UserRewardOption", mappedBy="options")
+     * @ORM\OneToMany(targetEntity="UserRewardOption", mappedBy="option")
      */
     private $userRewardOptions;
 

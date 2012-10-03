@@ -34,10 +34,10 @@ class UserRewardOption
     private $reward;
 	
     /**
-	 * @ORM\ManyToMany(targetEntity="RewardOption", inversedBy="userRewardOptions")
+	 * @ORM\ManyToOne(targetEntity="RewardOption", inversedBy="userRewardOptions")
      * @ORM\JoinColumn(name="option_id", referencedColumnName="id")
      */
-    private $options;
+    private $option;
 	
     /**
      * @var boolean $cancelled
@@ -61,11 +61,13 @@ class UserRewardOption
     private $updateDate;
 
 
-	public function __construct()
+	public function __construct(\Witty\UserBundle\Entity\User $user, \Witty\ProjectBundle\Entity\Reward $reward, \Witty\ProjectBundle\Entity\RewardOption $rewardOption)
 	{
 		$this->creationDate = new \DateTime();
 		$this->cancelled = false;
-		$this->options = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->user = $user;
+		$this->reward = $reward;
+		$this->rewardOption = $rewardOption;
 	}
 
     /**
@@ -224,5 +226,28 @@ class UserRewardOption
     public function getOptions()
     {
         return $this->options;
+    }
+
+    /**
+     * Set option
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $option
+     * @return UserRewardOption
+     */
+    public function setOption(\Witty\ProjectBundle\Entity\RewardOption $option = null)
+    {
+        $this->option = $option;
+    
+        return $this;
+    }
+
+    /**
+     * Get option
+     *
+     * @return Witty\ProjectBundle\Entity\RewardOption 
+     */
+    public function getOption()
+    {
+        return $this->option;
     }
 }
