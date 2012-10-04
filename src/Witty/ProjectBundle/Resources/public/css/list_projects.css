@@ -12,6 +12,17 @@
 	margin-bottom:20px;
 }
 
+.ruban{
+	display:block;
+	background-image:url(../images/ruban2.png);
+	width:117px;
+	height:117px;
+	position:absolute;
+	margin-top:-8px;
+	margin-left:876px;
+	margin-right:auto;
+}
+
 /* --- Grand Bloc jeu --- */
 
 .bloc_jeu.grand{

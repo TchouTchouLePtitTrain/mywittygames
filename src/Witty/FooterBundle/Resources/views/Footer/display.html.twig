@@ -1,1 +1,7 @@
-TEST
+{% stylesheets 'bundles/wittyfooter/css/*.css' filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+{% endstylesheets %}
+
+<div id="footer">
+</div>
+test

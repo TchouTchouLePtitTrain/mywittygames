@@ -1,0 +1,12 @@
+/* Footer */
+
+#footer{
+	background-color:#FFF;
+	height: 69px;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	border-top: solid 3px #4270be;
+	margin-top:20px;
+}

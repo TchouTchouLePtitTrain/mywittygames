@@ -127,14 +127,14 @@
 	display:block;
 	background-image: url(../images/img_merci.png);
 	width:122px;
-	height:198px;
+	height:190px;
 	float:left;
 }
 
 .paiement_recap_texte{
 	float:right;
-	width:238px;
-	margin:20px;
+	width:248px;
+	margin:10px 15px 10px 15px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:0.875em;
 	color:#514846;
