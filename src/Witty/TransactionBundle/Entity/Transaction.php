@@ -227,6 +227,7 @@ class Transaction
      */
     public function getAmount()
     {
+		$this->calculateAmount();
         return $this->amount;
     }
 
@@ -250,6 +251,7 @@ class Transaction
      */
     public function getFees()
     {
+		$this->calculateAmount();
         return $this->fees;
     }
 
@@ -273,6 +275,7 @@ class Transaction
      */
     public function getTotalAmount()
     {
+		$this->calculateAmount();
         return $this->totalAmount;
     }
 
@@ -354,7 +357,6 @@ class Transaction
     public function addReward(\Witty\ProjectBundle\Entity\Reward $rewards)
     {
         $this->rewards[] = $rewards;
-		$this->calculateAmount();
 		
         return $this;
     }
@@ -367,7 +369,6 @@ class Transaction
     public function removeReward(\Witty\ProjectBundle\Entity\Reward $rewards)
     {
         $this->rewards->removeElement($rewards);
-		$this->calculateAmount();
     }
 
     /**
@@ -389,7 +390,6 @@ class Transaction
     public function addOption(\Witty\ProjectBundle\Entity\RewardOption $options)
     {
         $this->options[] = $options;
-		$this->calculateAmount();
     
         return $this;
     }
@@ -402,7 +402,6 @@ class Transaction
     public function removeOption(\Witty\ProjectBundle\Entity\RewardOption $options)
     {
         $this->options->removeElement($options);
-		$this->calculateAmount();
     }
 
     /**
@@ -425,7 +424,6 @@ class Transaction
     public function setFeesPercentage($feesPercentage)
     {
         $this->feesPercentage = $feesPercentage;
-		$this->calculateAmount();
     
         return $this;
     }
@@ -448,16 +446,16 @@ class Transaction
 	
 		foreach($this->getRewards() as $reward)
 			$amount += $reward->getCost();
-		
+	
 		foreach($this->getOptions() as $option)
 			$amount += $option->getCost();
 
 		if($this->user)
 		{
-			$this->creditUsed = min($this->user->getCredit() + $this->user->getCreditRecuperable($this->getRewards()->first()->getProject()->getId()), $amount);
+			$this->creditUsed = min($this->user->getCredit() + $this->user->getCreditRecuperable($this->getRewards()->first()->getProject()->getId()), $amount);	
 			$amount -= $this->creditUsed;
 		}
-	
+
 		$this->amount = $amount;
 		$this->fees = ceil($amount * $this->feesPercentage * 100) / 100;
 		$this->totalAmount = $this->amount + $this->fees;

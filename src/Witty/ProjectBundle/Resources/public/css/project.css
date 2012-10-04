@@ -424,7 +424,7 @@ section{
 	cursor:pointer;
 }
 
-.blocReward:hover{
+.blocReward:hover, .blocReward.selected{
 	background-color:#FFF;
 }
 

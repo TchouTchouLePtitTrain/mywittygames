@@ -24,7 +24,7 @@ class CustomFilters extends \Twig_Extension
      * 
      * @param Array $array
      */
-    public function firstFilter(Array $array)
+    public function firstFilter($array)
     {
         return ((isset($array)) && (!empty($array)) ) ? $array[0] : null;
     }

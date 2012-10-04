@@ -136,72 +136,6 @@ class RewardOption
     }
 
     /**
-     * Add rewards
-     *
-     * @param Witty\ProjectBundle\Entity\Reward $rewards
-     * @return RewardOption
-     */
-    public function addReward(\Witty\ProjectBundle\Entity\Reward $rewards)
-    {
-        $this->rewards[] = $rewards;
-    
-        return $this;
-    }
-
-    /**
-     * Remove rewards
-     *
-     * @param Witty\ProjectBundle\Entity\Reward $rewards
-     */
-    public function removeReward(\Witty\ProjectBundle\Entity\Reward $rewards)
-    {
-        $this->rewards->removeElement($rewards);
-    }
-
-    /**
-     * Get rewards
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getRewards()
-    {
-        return $this->rewards;
-    }
-
-    /**
-     * Add users
-     *
-     * @param Witty\UserBundle\Entity\User $users
-     * @return RewardOption
-     */
-    public function addUser(\Witty\UserBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-    
-        return $this;
-    }
-
-    /**
-     * Remove users
-     *
-     * @param Witty\UserBundle\Entity\User $users
-     */
-    public function removeUser(\Witty\UserBundle\Entity\User $users)
-    {
-        $this->users->removeElement($users);
-    }
-
-    /**
-     * Get users
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * Add userRewardOptions
      *
      * @param Witty\ProjectBundle\Entity\UserRewardOption $userRewardOptions
@@ -231,6 +165,6 @@ class RewardOption
      */
     public function getUserRewardOptions()
     {
-        return $this->userRewardOptions;
+        return $this->userRewardOptions->filter(function($x){ return $x->getCancelled();});
     }
 }

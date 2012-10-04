@@ -30,7 +30,7 @@ class TransactionController extends Controller
 		$request = $this->getRequest();
 		
 		//Fausse requête pour simuler un IPN (pour les tests en dev uniquement)
-		$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => '5487', 'mc_gross' => '0', 'custom' => 'u=3&rw=1&opt=1,2'));		
+		//$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => 'fdsfsfghdfsdf', 'mc_gross' => '11.33', 'custom' => 'u=3716&rw=1&opt=1,2'));		
 
 		if (!$request->getMethod() == 'POST')
 			throw new \Exception('Erreur');
@@ -128,10 +128,12 @@ class TransactionController extends Controller
 		$userId = (int) substr($chaine_temp_user, 0, min(strpos($chaine_temp_user, '&'), strlen($chaine_temp_user)));
 		
 		$chaine_temp_reward = substr($custom, strpos($custom, 'rw=') + strlen('rw='), strlen($custom) - (strpos($custom, 'rw=') + strlen('rw=')));
-		$rewardId = (int) substr($chaine_temp_reward, 0, min(strpos($chaine_temp_reward, '&'), strlen($chaine_temp_reward)));
+		if (strpos($chaine_temp_reward, '&') === false) $rewardId = (int) substr($chaine_temp_reward, 0, strlen($chaine_temp_reward));
+		else $rewardId = (int) substr($chaine_temp_reward, 0, strpos($chaine_temp_reward, '&'));
 	
-		$optionsIdsString = substr($custom, strpos($custom, 'opt=') + strlen('opt='), strlen($custom) - (strpos($custom, 'opt=') + strlen('opt=')));
-		
+		$optionsIdsString = "";
+		if (strpos($custom, 'opt=') !== false) $optionsIdsString = substr($custom, strpos($custom, 'opt=') + strlen('opt='), strlen($custom) - (strpos($custom, 'opt=') + strlen('opt=')));
+
 		$logger->info("userId : ".$userId);	
 		$logger->info("rewardId : ".$rewardId);	
 		$logger->info("optionsIdsString : ".$optionsIdsString);	
@@ -144,25 +146,23 @@ class TransactionController extends Controller
 			$optionsIdsString = substr($optionsIdsString, 2, strlen($optionsIdsString));
 		}
 		
-		//Récupération des acteurs de la transaction
-		$user = $em->getRepository('WittyUserBundle:User')->find($userId);
-		$reward = $em->getRepository('WittyProjectBundle:Reward')->find($rewardId);
-		$options = $em->getRepository('WittyProjectBundle:RewardOption')->findBy(array('id' => $optionsIds));
-
-		$logger->info("Acteurs récupérés");			
-		
 		//Création de la transaction
 		$transaction = new Transaction($this->container->getParameter('witty.paypal.fees'));
 		$transaction->setPaypalId($request->get('txn_id'));
-		$transaction->setUser($user);
+		
+			//Ajout du user
+		$transaction->setUser($em->getRepository('WittyUserBundle:User')->find($userId));
 		
 			//Ajout des rewards
-		$transaction->addReward($reward);
+		$transaction->addReward($em->getRepository('WittyProjectBundle:Reward')->find($rewardId));
 
 			//Ajout des options
-		foreach($options as $option)
-			$transaction->addOption($option);
-	
+		if (!empty($optionsIds)) 
+		{
+			foreach($em->getRepository('WittyProjectBundle:RewardOption')->findBy(array('id' => $optionsIds)) as $option)
+				$transaction->addOption($option);
+		}
+
 		$logger->info("Transaction créée");	
 		
 		return $transaction;
@@ -201,10 +201,12 @@ class TransactionController extends Controller
 	private function processPostTransaction(Transaction $transaction, $logger)
 	{
 		$em = $this->getDoctrine()->getEntityManager();
+
+		$logger->info("Crédit avant annulation des rewards: ".$transaction->getUser()->getCredit());
 		
 		//Annulation des anciens Rewards du User (le crédit est mis à jour)
-		$transaction->getUser()->cancelRewardsByProjectId($transaction->getRewards()->first()->getProject()->getId());
-		
+		$transaction->getUser()->cancelUserRewardsAndOptionsByProjectId($transaction->getRewards()->first()->getProject()->getId());
+
 		$logger->info("Rewards annulés, nouveau crédit: ".$transaction->getUser()->getCredit());
 		
 		//Ajout des rewards et options achetés au User
@@ -228,7 +230,7 @@ class TransactionController extends Controller
 		$em->persist($transaction->getUser());
 		$em->flush();
 		
-		$logger->info("Affectation de ses achats au User OK");
+		$logger->info("Affectation de ses achats au User OK. Transaction terminée avec succès.");
 	}
 	
 	
@@ -238,7 +240,7 @@ class TransactionController extends Controller
     public function cancelAction()
     {
 
-		return new \Symfony\Component\HttpFoundation\Response('ok');
+		return new \Symfony\Component\HttpFoundation\Response('annulation');
 	}		
 	
     /**
@@ -247,6 +249,6 @@ class TransactionController extends Controller
     public function returnAction()
     {
 
-		return new \Symfony\Component\HttpFoundation\Response('ok');
+		return new \Symfony\Component\HttpFoundation\Response('retour');
 	}	
 }

@@ -1,0 +1,31 @@
+<section id="bloc_contreparties">
+
+	<p class="style_select">Sélectionnez votre contrepartie</p>
+		
+	{% for reward in project.rewards %}
+		<a class="blocReward {% if (rewardId is defined) and (rewardId == reward.id) %}selected{% endif %}" id="lien_reward_{{ reward.id }}" {% if linking %} href="path('project_confirmation', {'id': reward.id})" {% endif%} >
+			<div class="titre_reward">
+				<p class="poplight titreReward">{{ reward.title }}</p>
+				<p class="icon_coeur"></p>
+				<p class="edinautesReward">{{ reward.userRewards|length }}</p>
+			</div>
+			<div class="caracteristiques_reward">
+				{{ reward.description }}
+			</div>
+		</a>
+	{% endfor %}
+
+	<div class="spacer"></div>
+</section>
+
+<script>
+	$(document).ready(function()
+	{
+		$('#bloc_contreparties a.blocReward').click(function()
+		{
+			$('#bloc_contreparties a.blocReward').removeClass("selected");
+			$(this).addClass("selected");
+		});
+	});
+
+</script>

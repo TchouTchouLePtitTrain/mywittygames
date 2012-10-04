@@ -50,6 +50,12 @@ twig:
         url_mwn: %witty.url_mwn%
         url_mws: %witty.url_mws%
         public_url_mwg: %witty.public_url_mwg%
+        witty_paypal_url: %witty.paypal.url%
+        witty_paypal_notify_url: %witty.paypal.notify_url%
+        witty_paypal_cancel_url: %witty.paypal.cancel_url%
+        witty_paypal_return_url: %witty.paypal.return_url%
+        witty_paypal_fees: %witty.paypal.fees%
+        witty_paypal_email_business: %witty.paypal.email_business%
 
 # Assetic Configuration
 assetic:

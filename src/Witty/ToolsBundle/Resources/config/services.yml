@@ -14,3 +14,7 @@ services:
         class: %witty.twig.custom_filters.class%
         tags:
             - { name: twig.extension }
+    witty.twig.custom_tags:
+        class: %witty.twig.custom_tags.class%
+        tags:
+            - { name: twig.extension }

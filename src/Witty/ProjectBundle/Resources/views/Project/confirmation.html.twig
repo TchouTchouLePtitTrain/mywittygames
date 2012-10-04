@@ -16,130 +16,28 @@
     	<p class="titrePage titrePage_projet">{{ reward.project.title }}</p>
         <p class="descriptionPage descriptionPage_projet">{{ reward.project.shortDescription }}</p>
     </div>
-    
-<div id="blocContenuConfirmation">
-
-	<section class="item">
 		
-		<p class="titreMerci">{{ app.user.label }}, merci de soutenir {{ reward.project.title }}.</p>
-		<br/>
-		<p class="titreRecap">Récapitulatif :</p>
-		<p class="texteRecap">( vous pouvez à tout moment changer de contrepartie dans la colonne de droite )</p>
-		<br/>
+	<div id="blocContenuConfirmation">
+
+		<section class="item">
+			
+			<p class="titreMerci">{{ app.user.label }}, merci de soutenir {{ reward.project.title }}.</p>
+			<br/>
+			<p class="titreRecap">Récapitulatif :</p>
+			<p class="texteRecap">( vous pouvez à tout moment changer de contrepartie dans la colonne de droite )</p>
+			<br/>
+			
+			<div id="blocRecap">
+				{% render "WittyProjectBundle:Project:blocRecapReward" with {'rewardId': reward.id} %}
+			</div>
 		
-		<div id="blocRecap">
-				
-				<p class="sousTitre_recap">{{ reward.title }}</p>
-				<br/>
+		<div class="spacer"></div>	
+		</section>
+		
+		{% render "WittyProjectBundle:Project:blocRewards" with {'project': reward.project, 'linking': false, 'rewardId': reward.id} %}
 
-				<form id="confirmation_form" action="{{ url_paypal }}" method="post" target="paypal">
-
-
-					{# Champs obligatoires pour paypal #}
-					<input type="hidden" name="fees" value="{{ (reward.cost - app.user.credit) * paypal_fees }}"/>
-					<input type="hidden" name="amount" value="{{ (reward.cost - app.user.credit) * (1 + paypal_fees) }}"/>
-					<input type="hidden" value="EUR" name="currency_code">
-					<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_success') }}" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
-					<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_cancel') }}" name="cancel_url"> {# adresse de retour des IPN -> transaction/sendback #}
-					<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_return') }}" name="return_url"> {# adresse de retour des IPN -> transaction/sendback #}
-	
-					{# Champs pour la configuration de paypal #}
-					<input type="hidden" value="1" name="no_note"> {# pas de commentaire lors de l'achat #}
-					<input type="hidden" value="1" name="no_shipping"> {# pas de frais de port #}
-					<input type="hidden" value="FR" name="lc"> {# locale #}
-					<input type="hidden" value="2" name="rm"> {# retour par post #}
-					<input type="hidden" value="_xclick" name="cmd"> {# bouton buy now #}
-					<input type="hidden" value="{{ email_business }}" name="business"> {# adresse notification #}
-					<input type="hidden" value="Paiement" name="item_name"> {# libelle qui apparait sur paypal #}
-					<input type="hidden" value="Retourner sur MyWittyGames.com" name="cbt"> {# texte du bouton de fin de commande #}
-					<input type="hidden" value="PP-ShopCartBF:btn_cart_LG.gif:NonHosted" name="bn"> {# optionnel on s'en fout #}
-	
-					{# Champs pour l'auto-remplissage des informations sur paypal #}
-					<input type="hidden" value="{{ app.user.email }}" name="email">
-					<input type="hidden" value="{{ app.user.city }}" name="city">
-					<input type="hidden" value="{{ app.user.postcode }}" name="zip">
-					<input type="hidden" value="{{ app.user.firstname }}" name="first_name">
-					<input type="hidden" value="{{ app.user.lastname }}" name="last_name">
-					<input type="hidden" value="{{ app.user.address }}" name="address1">
-					<input type="hidden" value="{{ app.user.address2 }}" name="address2">
-	
-					{# Champs pour le traitement de la réponse #}
-					<input type="hidden" value="u={{ app.user.id }}&rw={{ reward.id }}" name="custom">
-
-				<hr class="filet"/>
-
-				{% if reward.options %}
-
-					<p class="sousTitre_recap">Options disponibles</p>
-					
-					<div class="texte_droite">
-					{% for option in reward.options %}
-						<input type='checkbox' id='option_{{ option.id }}' name="options[]" value='{{ option.id }}' checked="0"/>
-						<label for="chkbox_{{ option.id }}">{{ option.title }} <p class="euro"> + {{ option.cost }} €</label></p>
-						<input type='hidden' id='option_value_{{ option.id }}' name="options[]" value='{{ option.cost }}' checked="0"/>
-						<br/>
-					{% endfor%}
-					</div>
-
-				{% endif %}
-				<div class="spacer"></div>
-				
-				<hr class="filet"/>
-				
-				<p class="sousTitre_recap">Coût total</p>
-				
-				<div class="paiement_recap">
-					<img class="img_merci" alt=""/>
-					<div class="paiement_recap_texte">
-						Montant de votre soutien
-						<p class="euro"> <output type='number' id='sous_total' name='sous_total'/>{{ reward.cost }}</output> €</p>
-						<br/>
-						Votre crédit restant
-						<p class="euro"> <output type='number' id='credit' name='credit'/>{{ app.user.credit }}</output> €</p>
-						<hr class="filet2"/>
-						Frais de gestion Paypal
-						<p class="euro"> <output type='number' id='frais_gestion' name='frais_gestion'>{{ (reward.cost - app.user.credit) * paypal_fees }}</output> €</p>
-						<hr class="filet2"/>
-						Total :
-						<p class="euro"> <output type='number' id='total' name='total'>{{ (reward.cost - app.user.credit) * (1 + paypal_fees) }}</output> €</p>
-						<br/>
-					</div>
-				</div>
-				
-				<div class="spacer"></div>
-	
-				<input type='submit' name='submit'/>
-				<!-- <input name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" /> -->
-				{# http://www.lafermeduweb.net/billet/tutorial-integrer-paypal-a-son-site-web-en-php-partie-2-276.html #}
-			</form>
-			<div class="spacer"></div>
-		</div>
-	
-	<div class="spacer"></div>	
-	</section>
-	
-	 <section id="contenuJeuDroite">
-	 
-	 	<p class="style_select">Sélectionnez votre contrepartie</p>
-            
-			{% for reward in reward.project.rewards %}
-				<a class="blocReward" href="{{ path('project_confirmation', {'id': reward.id}) }}">
-					<div class="titre_reward">
-						<p class="poplight titreReward">{{ reward.title }}</p>
-						<p class="icon_coeur"></p>
-						<p class="edinautesReward">{{ reward.userRewards|length }}</p>
-					</div>
-					<div class="caracteristiques_reward">
-						{{ reward.description }}
-					</div>
-				</a>
-			{% endfor %}
-	 
-	 <div class="spacer"></div>
-	 </section>
-
-<div class="spacer"></div>
-</div>
+		<div class="spacer"></div>
+	</div>
 
 </div>
 
@@ -159,23 +57,37 @@
 			{
 				calculTotaux();
 			});
+			
+			$('#bloc_contreparties a.blocReward').click(function(event)
+			{
+				var rewardId = parseInt($(this).attr('id').substring('lien_reward_'.length, $(this).attr('id').length));
+				$.get("{{ path('project_blocRecapReward', {'rewardId': null}) }}"+"/"+rewardId, function(data)
+					{
+						$('#blocRecap').html(data);
+						calculTotaux();
+						$('input[type="checkbox"][id*="option_"]').click(function(event) //Attache des handlers
+						{
+							calculTotaux();
+						});
+					}
+				);
+			});
+			
 		});
 	
 	
 		function calculTotaux()
 		{
-			//Calcul du sous_total
-			var sous_total = {{ reward.cost }};
-			var credit = {{ app.user.credit }};
-			var custom = 'u={{ app.user.id }}&rw={{ reward.id }}';
+			var total_reward = parseInt($('#reward_value').attr('value'));
 			
-			//Ajout des options
-			custom += '&opt=';
-			var options_ids = "";			
+			//Calcul du total des options
+			var total_options = 0;
+			
+			var options_ids = ""; //Pour contruire le champ custom		
 			$('input[type="checkbox"][id*="option_"]:checked').each(function(key, value)
 			{
-				sous_total += parseInt($('input[type="hidden"][id*="option_value_'+$(this).attr("value")+'"]').attr("value"));
-				if (options_ids == "") //Mise à jour du champ "custom"
+				total_options += parseInt($('input[type="hidden"][id*="option_value_'+$(this).attr("value")+'"]').attr("value"));
+				if (options_ids == "")
 				{
 					options_ids += $(this).attr("value"); 
 				}
@@ -185,25 +97,45 @@
 				}
 				
 			});
+			if (options_ids != "") { options_ids = "&opt="+options_ids; }
 			
 			//Mise à jour des totaux
-			var credit_utilise = Math.min({{ app.user.credit }}, sous_total); // Calcul du crédit utilisé
-			sous_total = sous_total - credit_utilise; //Décrémentation du crédit que l'user possède
-			credit = credit - credit_utilise; //Décrémentation du crédit que l'user possède
-			paypal_fees = Math.ceil( (sous_total * {{ paypal_fees }}).toPrecision(3) * 100) / 100; //On prend 2 décimales, arrondies au supérieur
-			total = sous_total + paypal_fees;
-			
-			$('#sous_total').html(sous_total);
-			$('#credit').html(credit);
-			$('#frais_gestion').html(paypal_fees);
+			var credit_recuperable = {{ app.user.getCreditRecuperable(reward.project.id) }};
+			var sous_total_1 = total_reward + total_options;
+			var credit_utilise = Math.min(sous_total_1 - credit_recuperable, {{ app.user.credit }}); // Calcul du crédit utilisé
+			var credit_restant = {{ app.user.credit }} - credit_utilise; 
+			var sous_total_2 = sous_total_1 - credit_utilise - credit_recuperable;
+			var paypal_fees = Math.ceil( (sous_total_2 * {{ witty_paypal_fees }}).toPrecision(3) * 100) / 100; //On prend 2 décimales, arrondies au supérieur
+			var total = sous_total_2 + paypal_fees;
+
+			$('#total_reward').html(total_reward);
+			$('#total_options').html('+ '+total_options);
+			$('#credit_recuperable').html('- '+credit_recuperable);
+			if ({{ app.user.credit }} != 0) //Si l'utilisateur a du crédit
+			{
+				$('#credit_utilise').html('- '+credit_utilise);
+				$('#credit_restant').html(credit_restant);
+			}
+			$('#sous_total').html(sous_total_2);
+			$('#frais_gestion').html('+ '+paypal_fees);
 			$('#total').html(total);
 			
 			//Mise à jour du formulaire
-			if (sous_total <= 0) $('#confirmation_form').attr('action', "{{ path('transaction_success') }}"); //Si l'utilisateur a assez de crédit, la transaction est directement un succès
-			else $('#confirmation_form').attr('action', '{{ url_paypal }}');
+			if (total <= 0) //S'il n'y a rien à payer, on ne passe pas par Paypal
+			{
+				$('#confirmation_form').attr('action', "{{ path('transaction_success') }}");
+				$('#confirmation_form').removeAttr('target');
+			}
+			else
+			{	
+				$('#confirmation_form').attr('action', '{{ witty_paypal_url }}');
+				$('#confirmation_form').attr('target', 'paypal');
+			}
 			
-			//Mise à jour du champ custom
-			$('input[type="hidden"][name="custom"]').attr('value', custom+options_ids);
+			//Mise à jour des champs pour paypal
+			$('input[type="hidden"][name="amount"]').attr('value', total);
+			$('input[type="hidden"][name="fees"]').attr('value', paypal_fees);
+			$('input[type="hidden"][name="custom"]').attr('value', 'u={{ app.user.id }}&rw='+parseInt($('#reward_id').attr('value'))+options_ids); //Champ pour traiter le retour de Paypal
 		}
 
 	</script>

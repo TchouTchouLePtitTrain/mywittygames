@@ -327,7 +327,7 @@ class Reward
      */
     public function getUserRewards()
     {
-        return $this->userRewards;
+        return $this->userRewards->filter(function($x){ return !$x->getCancelled();});
     }
 
     /**

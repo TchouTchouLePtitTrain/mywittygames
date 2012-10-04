@@ -140,20 +140,7 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
             
             -->
             
-            <p class="style_select">Sélectionnez votre contrepartie</p>
-            
-			{% for reward in project.rewards %}
-				<a class="blocReward" href="{{ path('project_confirmation', {'id': reward.id}) }}">
-					<div class="titre_reward">
-						<p class="poplight titreReward">{{ reward.title }}</p>
-						<p class="icon_coeur"></p>
-						<p class="edinautesReward">{{ reward.userRewards|length }}</p>
-					</div>
-					<div class="caracteristiques_reward">
-						{{ reward.description }}
-					</div>
-				</a>
-			{% endfor %}
+			{% render WittyProjectBundle:Project:displayRewards with {'project': project, 'linking': true}  %}
 			
         </section>
         <div class="spacer"></div>

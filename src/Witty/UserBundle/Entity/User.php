@@ -184,23 +184,23 @@ class User extends BaseUser
 	
 	
     /**
-     * Cet attribut n'est pas mappé
+     * Cet attribut n'est pas mappÃ©
      */
     private $token;
 	
     /**
-     * Cet attribut n'est pas mappé
+     * Cet attribut n'est pas mappÃ©
      */
     private $token_mws;	
 	
     /**
-     * Cet attribut n'est pas mappé
+     * Cet attribut n'est pas mappÃ©
 	 * Array de Project
      */
     private $projectsFunded;
 	
     /**
-     * Cet attribut n'est pas mappé
+     * Cet attribut n'est pas mappÃ©
 	 * Array de Game
      */
     private $games;
@@ -897,7 +897,7 @@ class User extends BaseUser
 		
 		foreach($this->getUserRewards() as $userReward)
 		{
-			if (!in_array($userReward->getReward()->getProject(), $projectsFunded)) $projectsFunded[] = $userReward->getReward()->getProject(); //Si le projet n'est pas déjà dans la liste, on l'ajoute
+			if (!in_array($userReward->getReward()->getProject(), $projectsFunded)) $projectsFunded[] = $userReward->getReward()->getProject(); //Si le projet n'est pas dÃ©jÃ  dans la liste, on l'ajoute
 		}
 
 		$this->projectsFunded = $projectsFunded;
@@ -945,7 +945,7 @@ class User extends BaseUser
      */
     public function getUserRewards()
     {
-        return $this->userRewards;
+        return $this->userRewards->filter(function($x){ return !$x->getCancelled();});
     }
 
 	
@@ -969,7 +969,7 @@ class User extends BaseUser
         }
     }
 	
-	//Renvoie le texte qui doit apparaître pour identifier l'internaute
+	//Renvoie le texte qui doit apparaÃ®tre pour identifier l'internaute
 	public function getLabel($affectueux = false)
 	{
 		if (isset($this->username)) return $this->username;
@@ -987,7 +987,7 @@ class User extends BaseUser
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
 	 *
-	 * Méthode déclenchée lorsque l'on va persister l'user
+	 * MÃ©thode dÃ©clenchÃ©e lorsque l'on va persister l'user
      */
     public function preUpload()
     {
@@ -1094,7 +1094,7 @@ class User extends BaseUser
 		$this->games = $games;
 	}
 	
-	//Renvoi la liste des rewards du User pour un projet donné
+	//Renvoi la liste des rewards du User pour un projet donnÃ©
 	public function getUserRewardsByProjectId($projectId)
 	{
 		$filter = function($projectId)
@@ -1105,8 +1105,8 @@ class User extends BaseUser
 		return $this->getUserRewards()->filter($filter($projectId));
 	}	
 	
-	//Renvoi la liste des options du User pour un reward donné
-	public function getRewardOptionsByRewardId($rewardId)
+	//Renvoi la liste des options du User pour un reward donnÃ©
+	public function getUserRewardOptionsByRewardId($rewardId)
 	{
 		$filter = function($rewardId)
 				{
@@ -1117,34 +1117,59 @@ class User extends BaseUser
 	}
 	
 	
-	//Calcul des du crédit que récupérerait l'user en annulant ses reward sur un projet
+	//Calcul du crÃ©dit que rÃ©cupÃ©rerait l'user en annulant ses reward sur un projet
 	public function getCreditRecuperable($projectId)
 	{
 		$creditRecuperable = 0;
 		foreach ($this->getUserRewardsByProjectId($projectId) as $userReward)
 		{
-			$creditRecuperable += $userReward->getReward()->getCost(); //Ajout du crédit gagné par la possible annulation du reward
-			foreach($this->getRewardOptionsByRewardId($userReward->getReward()->getId()) as $rewardOption) //Ajout du crédit gagné par l'annulation des options
+			$creditRecuperable += $userReward->getReward()->getCost(); //Ajout du crÃ©dit gagnÃ© par la possible annulation du reward
+			foreach($this->getUserRewardOptionsByRewardId($userReward->getReward()->getId()) as $userRewardOption) //Ajout du crÃ©dit gagnÃ© par l'annulation des options
 			{	
-				$creditRecuperable += $rewardOption->getCost();
+				$creditRecuperable += $userRewardOption->getRewardOption()->getCost();
 			}
 		}
-		
+
 		return $creditRecuperable;
 	}	
 	
     /**
-     * Annule les UserReward sur un projet donné
+     * Annule les UserReward sur un projet donnÃ©
      *
      */
-    public function cancelRewardsByProjectId($projectId)
+    public function cancelUserRewardsAndOptionsByProjectId($projectId)
     {
-		$filter = function($projectId)
+		//Annulation des UserReward
+		$map = function($projectId)
 				{
-					return function($x) use ($projectId) { return ($x->getReward()->getProject()->getId() != $projectId); };
+					return function($x) use ($projectId) 
+					{ 
+						if ($x->getReward()->getProject()->getId() == $projectId) 
+						{
+							$x->setUpdateDate(new \DateTime);
+							$x->setCancelled(true);
+							$this->addToCredit($x->getReward()->getCost());
+						} 
+					};
 				};
-	
-        $this->userRewards = $this->userRewards->filter($filter($projectId));
+
+        $this->getUserRewards()->map($map($projectId));		
+		
+		//Annulation des UserRewardOption
+		$map = function($projectId)
+				{
+					return function($x) use ($projectId) 
+					{ 
+						if ($x->getReward()->getProject()->getId() == $projectId) 
+						{
+							$x->setUpdateDate(new \DateTime);
+							$x->setCancelled(true);
+							$this->addToCredit($x->getRewardOption()->getCost());
+						} 
+					};
+				};
+		
+        $this->getUserRewardOptions()->map($map($projectId));	
     }
 
     /**
@@ -1177,6 +1202,12 @@ class User extends BaseUser
      */
     public function getUserRewardOptions()
     {
-        return $this->userRewardOptions;
+        return $this->userRewardOptions->filter(function($x){ return !$x->getCancelled();});
     }
+	
+	//CrÃ©dite la somme donnÃ©e Ã  l'User
+	public function addToCredit($somme)
+	{
+		$this->credit = $this->credit + $somme;
+	}
 }

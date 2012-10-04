@@ -1,0 +1,119 @@
+{% set creditRecuperable = app.user.getCreditRecuperable(reward.project.id) %}
+
+<form id="confirmation_form" action="{{ witty_paypal_url }}" method="post" target="paypal">
+
+
+	{# Champs obligatoires pour paypal #}
+	<input type="hidden" name="fees" value="{{ max(reward.cost - (app.user.credit + creditRecuperable), 0) *  witty_paypal_fees }}"/>
+	<input type="hidden" name="amount" value="{{ app.user.credit - min( (reward.cost - creditRecuperable), app.user.credit) }}"/>
+	<input type="hidden" value="EUR" name="currency_code">
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_success') }}" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_cancel') }}" name="cancel_url"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_return') }}" name="return_url"> {# adresse de retour des IPN -> transaction/sendback #}
+
+	{# Champs pour la configuration de paypal #}
+	<input type="hidden" value="1" name="no_note"> {# pas de commentaire lors de l'achat #}
+	<input type="hidden" value="1" name="no_shipping"> {# pas de frais de port #}
+	<input type="hidden" value="FR" name="lc"> {# locale #}
+	<input type="hidden" value="2" name="rm"> {# retour par post #}
+	<input type="hidden" value="_xclick" name="cmd"> {# bouton buy now #}
+	<input type="hidden" value="{{ witty_paypal_email_business }}" name="business"> {# adresse notification #}
+	<input type="hidden" value="Paiement" name="item_name"> {# libelle qui apparait sur paypal #}
+	<input type="hidden" value="Retourner sur MyWittyGames.com" name="cbt"> {# texte du bouton de fin de commande #}
+	<input type="hidden" value="PP-ShopCartBF:btn_cart_LG.gif:NonHosted" name="bn"> {# optionnel on s'en fout #}
+
+	{# Champs pour l'auto-remplissage des informations sur paypal #}
+	<input type="hidden" value="{{ app.user.email }}" name="email">
+	<input type="hidden" value="{{ app.user.city }}" name="city">
+	<input type="hidden" value="{{ app.user.postcode }}" name="zip">
+	<input type="hidden" value="{{ app.user.firstname }}" name="first_name">
+	<input type="hidden" value="{{ app.user.lastname }}" name="last_name">
+	<input type="hidden" value="{{ app.user.address }}" name="address1">
+	<input type="hidden" value="{{ app.user.address2 }}" name="address2">
+
+	{# Champs pour le traitement de la réponse #}
+	<input type="hidden" value="u={{ app.user.id }}&rw={{ reward.id }}" name="custom">
+
+	
+	
+	
+	
+	{% if app.user.getUserRewardsByProjectId(reward.project.id) %}
+		<p class="sousTitre_recap">Vous avez déjà la contrepartie</p>
+		<br/>
+		<p class="sousTitre_recap">{{ first(app.user.getUserRewardsByProjectId(reward.project.id)).reward.title }}</p>
+		<br/>
+		<p class="sousTitre_recap">Vous allez l'annuler et choisir la contrepartie suivante :</p>
+		<br/>
+	{% endif %}
+	
+	<p class="sousTitre_recap">{{ reward.title }}</p>
+	<input type='hidden' id='reward_value' name="reward_value" value='{{ reward.cost }}'/>
+	<input type='hidden' id='reward_id' name="reward_id" value='{{ reward.id }}'/>
+	<br/>
+	
+	{% if reward.options|length > 0 %}
+	
+		<hr class="filet"/>
+
+		<p class="sousTitre_recap">Options disponibles</p>
+		
+		<div class="texte_droite">
+		{% for option in reward.options %}
+			<input type='checkbox' id='option_{{ option.id }}' name="options[]" value='{{ option.id }}' checked="0"/>
+			<label for="chkbox_{{ option.id }}">{{ option.title }} <p class="euro"> + {{ option.cost }} €</label></p>
+			<input type='hidden' id='option_value_{{ option.id }}' name="options[]" value='{{ option.cost }}'/>
+			<br/>
+		{% endfor%}
+		</div>
+
+	{% endif %}
+	<div class="spacer"></div>
+
+	<hr class="filet"/>
+
+	<p class="sousTitre_recap">Coût total</p>
+	
+	<div class="paiement_recap">
+		<img class="img_merci" alt=""/>
+		<div class="paiement_recap_texte">
+			Montant de votre soutien
+			<p class="euro"> <output type='number' id='total_reward' name='total_reward'>{{ reward.cost }}</output> €</p>
+			<br/>
+			Options
+			<p class="euro"> <output type='number' id='total_options' name='total_options'>+ 0</output> €</p>
+			<br/>
+			Annulation contrepartie
+			<p class="euro"> <output type='number' id='credit_recuperable' name='credit_recuperable'>- {{ creditRecuperable }}</output> €</p>
+			<br/>
+			{% if app.user.credit != 0 %}
+				Crédit utilisé
+				<p class="euro"> <output type='number' id='credit_utilise' name='credit_utilise'>- {{ min(reward.cost - creditRecuperable, app.user.credit) }}</output> €</p>
+			{% endif %}
+			<hr class="filet2"/>
+			Sous-total
+			<p class="euro"> <output type='number' id='sous_total' name='sous_total'>{{ max(reward.cost - (app.user.credit + creditRecuperable), 0) }}</output> €</p>
+			<hr class="filet2"/>
+			Frais de gestion Paypal
+			<p class="euro"> <output type='number' id='frais_gestion' name='frais_gestion'>+ {{ max(min(reward.cost, (app.user.credit +  creditRecuperable)), 0) *  witty_paypal_fees }}</output> €</p>
+			<hr class="filet2"/>
+			Total
+			<p class="euro"> <output type='number' id='total' name='total'>{{ max(min(reward.cost, (app.user.credit +  creditRecuperable)), 0) * (1 +  witty_paypal_fees) }}</output> €</p>
+			<br/>
+			{#
+				{% if app.user.credit != 0 %}
+					Crédit restant
+					<p class="euro"> <output type='number' id='credit_restant' name='credit_restant'>{{ app.user.credit - min( (reward.cost - creditRecuperable), app.user.credit) }}</output> €</p>
+					<hr class="filet2"/>
+				{% endif %}
+			#}
+		</div>
+	</div>
+
+	<div class="spacer"></div>
+
+	<input type='submit' name='submit'/>
+	<!-- <input name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" /> -->
+
+</form>
+<div class="spacer"></div>

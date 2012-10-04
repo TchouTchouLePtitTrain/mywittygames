@@ -37,7 +37,7 @@ class UserRewardOption
 	 * @ORM\ManyToOne(targetEntity="RewardOption", inversedBy="userRewardOptions")
      * @ORM\JoinColumn(name="option_id", referencedColumnName="id")
      */
-    private $option;
+    private $rewardOption;
 	
     /**
      * @var boolean $cancelled
@@ -194,60 +194,27 @@ class UserRewardOption
     {
         return $this->reward;
     }
-
+	
     /**
-     * Add options
+     * Set rewardOption
      *
-     * @param Witty\ProjectBundle\Entity\RewardOption $options
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOption
      * @return UserRewardOption
      */
-    public function addOption(\Witty\ProjectBundle\Entity\RewardOption $options)
+    public function setOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOption = null)
     {
-        $this->options[] = $options;
+        $this->rewardOption = $rewardOption;
     
         return $this;
     }
 
     /**
-     * Remove options
-     *
-     * @param Witty\ProjectBundle\Entity\RewardOption $options
-     */
-    public function removeOption(\Witty\ProjectBundle\Entity\RewardOption $options)
-    {
-        $this->options->removeElement($options);
-    }
-
-    /**
-     * Get options
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
-
-    /**
-     * Set option
-     *
-     * @param Witty\ProjectBundle\Entity\RewardOption $option
-     * @return UserRewardOption
-     */
-    public function setOption(\Witty\ProjectBundle\Entity\RewardOption $option = null)
-    {
-        $this->option = $option;
-    
-        return $this;
-    }
-
-    /**
-     * Get option
+     * Get rewardOption
      *
      * @return Witty\ProjectBundle\Entity\RewardOption 
      */
-    public function getOption()
+    public function getRewardOption()
     {
-        return $this->option;
+        return $this->rewardOption;
     }
 }
