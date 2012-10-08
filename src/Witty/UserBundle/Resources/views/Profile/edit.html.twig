@@ -14,8 +14,9 @@
 
 	<p class="titrePage titrePageProfil">Mon profil</p>
 	<div id="blocContenuProfil">
-		<figure>
-			<img src="{{ url_asset('avatar', user.id, user.avatar) }}"/>
+		<figure class="avatar">
+			<p class="texte_profil">Photo de profil :</p>
+			<img class="img_avatar" src="{{ url_asset('avatar', user.id, user.avatar) }}"/>
 		</figure>
 		
 		<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">

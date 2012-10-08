@@ -61,7 +61,7 @@
 		<div class="texte_droite">
 		{% for option in reward.options %}
 			<input type='checkbox' id='option_{{ option.id }}' name="options[]" value='{{ option.id }}' checked="0"/>
-			<label for="chkbox_{{ option.id }}">{{ option.title }} <p class="euro"> + {{ option.cost }} €</label></p>
+			<label for="chkbox_{{ option.id }}">{{ option.title }} <p class="euro"> + {{ option.cost }} €</p></label>
 			<input type='hidden' id='option_value_{{ option.id }}' name="options[]" value='{{ option.cost }}'/>
 			<br/>
 		{% endfor%}
@@ -92,8 +92,7 @@
 			{% endif %}
 			<hr class="filet2"/>
 			Sous-total
-			<p class="euro"> <output type='number' id='sous_total' name='sous_total'>{{ max(reward.cost - (app.user.credit + creditRecuperable), 0) }}</output> €</p>
-			<hr class="filet2"/>
+			<p class="euro"> <output type='number' id='sous_total' name='sous_total'>{{ max(reward.cost - (app.user.credit + creditRecuperable), 0) }}</output> €</p><br/>
 			Frais de gestion Paypal
 			<p class="euro"> <output type='number' id='frais_gestion' name='frais_gestion'>+ {{ max(min(reward.cost, (app.user.credit +  creditRecuperable)), 0) *  witty_paypal_fees }}</output> €</p>
 			<hr class="filet2"/>
@@ -112,7 +111,7 @@
 
 	<div class="spacer"></div>
 
-	<input type='submit' name='submit'/>
+	<input type='submit' name='submit' value=''/>
 	<!-- <input name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" /> -->
 
 </form>

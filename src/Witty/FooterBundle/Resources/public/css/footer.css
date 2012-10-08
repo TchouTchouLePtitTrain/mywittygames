@@ -1,12 +1,228 @@
 /* Footer */
 
-#footer{
+footer{
 	background-color:#FFF;
-	height: 69px;
+	height: 100%;
 	width:100%;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
 	border-top: solid 3px #4270be;
-	margin-top:20px;
+	margin-top:30px;
+}
+
+/* Footer - partie du haut*/
+
+#footer1{
+	display:block;
+	height:95px;
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.bloc_footer1{
+	display:block;
+	height:55px;
+	width:215px;
+	padding:20px 10px 20px 20px;
+	float:left;
+}
+
+.filet_footer1{
+	border-right: solid 1px #DDDBDB;
+}
+
+.texte_footer1 {
+	font-family:Arial, Helvetica, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-size:0.850em;
+	color:#514846;
+	margin-top:2px;
+	margin-bottom:10px;
+}
+
+.texte_footer2 {
+	font-family:Arial, Helvetica, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-size:0.700em;
+	color:#514846;
+	margin-top:5px;
+}
+
+.texte_footer3 {
+	font-family:Arial, Helvetica, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-size:0.700em;
+	color:#514846;
+	margin-top:5px;
+	font-weight:bold;
+}
+
+.texte_footer_hover{
+	 color:#514846;
+}
+
+.texte_footer_hover:hover {
+	 text-decoration:underline;
+	 color:#514846;
+	 cursor:pointer;
+}
+
+.icon_cadena{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:15px;
+	width:16px;
+	background-image: url(../../wittyfooter/images/icon_cadena.png);
+	float:left;
+	margin-right:10px;
+}
+
+.icon_livraison{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:15px;
+	width:16px;
+	background-image: url(../../wittyfooter/images/icon_livraison.png);
+	float:left;
+	margin-right:10px;
+}
+
+.icon_service{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:15px;
+	width:16px;
+	background-image: url(../../wittyfooter/images/icon_service.png);
+	float:left;
+	margin-right:10px;
+}
+.icon_satisfait{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:15px;
+	width:16px;
+	background-image: url(../../wittyfooter/images/icon_satisfait.png);
+	float:left;
+	margin-right:10px;
+}
+
+.img_cb{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:22px;
+	width:114px;
+	background-image: url(../../wittyfooter/images/cb.png);
+	margin-top:10px;
+	margin-left:0px;
+}
+
+/* Footer - partie du milieu*/
+
+#footer2{
+	display:block;
+	background-color:#f7f7f7;
+	height: 190px;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	border-top: solid 1px #DDDBDB;
+	border-bottom: solid 1px #DDDBDB;
+}
+
+#footer_contenu{
+	display:block;
+	width:1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bloc_footer2{
+	display:block;
+	height:55px;
+	width:215px;
+	padding:20px 10px 20px 20px;
+	float:left;
+}
+
+.logo_facebook{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:18px;
+	width:48px;
+	background-image: url(../../wittyfooter/images/logo_facebook.png);
+	margin-top:10px;
+	margin-right:12px;
+	float:left;
+}
+
+.logo_twitter{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:18px;
+	width:58px;
+	background-image: url(../../wittyfooter/images/logo_twitter.png);
+	margin-top:10px;
+	margin-right:12px;
+	float:left;
+}
+.logo_dailymotion{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:18px;
+	width:80px;
+	background-image: url(../../wittyfooter/images/logo_dailymotion.png);
+	margin-top:10px;
+	float:left;
+}
+
+.logo_footer{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:25px;
+	width:199px;
+	background-image: url(../../wittyfooter/images/logo_footer.png);
+	margin-top:10px;
+	margin-left:0px;
+}
+
+/* Footer - partie du bas*/
+
+#footer3{
+	display:block;
+	background-color:#fff;
+	height: auto;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.copyright {
+	font-family:Arial, Helvetica, sans-serif;
+	margin-left: auto;
+	margin-right: 30px;
+	position: relative;
+	font-size:0.700em;
+	color:#514846;
+	margin-top:10px;
+	margin-bottom:10px;
+	float:right;
 }

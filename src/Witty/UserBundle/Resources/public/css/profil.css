@@ -59,3 +59,24 @@
 	color:#999;
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
+
+.avatar{
+	display:block;
+	float:right;
+}
+
+.img_avatar{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:160px;
+	width:160px;
+}
+
+.texte_profil {
+    color: #514846;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 0.813em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

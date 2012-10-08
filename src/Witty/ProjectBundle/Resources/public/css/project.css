@@ -25,6 +25,12 @@ section{
 	width:660px;
 }
 
+#bloc_contreparties{
+	display:block;
+	width:285px;
+	float:right;
+}
+
 
 /* --- Sous-menu --- */
 
