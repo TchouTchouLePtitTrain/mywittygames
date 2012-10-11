@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Witty\TransactionBundle\Entity\Ipn;
@@ -30,7 +31,7 @@ class TransactionController extends Controller
 		$request = $this->getRequest();
 		
 		//Fausse requête pour simuler un IPN (pour les tests en dev uniquement)
-		//$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => 'fdsfsfghdfsdf', 'mc_gross' => '11.33', 'custom' => 'u=3716&rw=1&opt=1,2'));		
+		//$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => 'fdsfghfsfghdfsdf', 'mc_gross' => '0', 'custom' => 'u=3716&rw=1&opt=1,2'));		
 
 		if (!$request->getMethod() == 'POST')
 			throw new \Exception('Erreur');
@@ -150,11 +151,14 @@ class TransactionController extends Controller
 		$transaction = new Transaction($this->container->getParameter('witty.paypal.fees'));
 		$transaction->setPaypalId($request->get('txn_id'));
 		
+		$user = $em->getRepository('WittyUserBundle:User')->find($userId);
+		$reward = $em->getRepository('WittyProjectBundle:Reward')->find($rewardId);
+		
 			//Ajout du user
-		$transaction->setUser($em->getRepository('WittyUserBundle:User')->find($userId));
+		$transaction->setUser($user);
 		
 			//Ajout des rewards
-		$transaction->addReward($em->getRepository('WittyProjectBundle:Reward')->find($rewardId));
+		$transaction->addReward($reward);
 
 			//Ajout des options
 		if (!empty($optionsIds)) 
@@ -162,6 +166,13 @@ class TransactionController extends Controller
 			foreach($em->getRepository('WittyProjectBundle:RewardOption')->findBy(array('id' => $optionsIds)) as $option)
 				$transaction->addOption($option);
 		}
+		
+			//Ajout des rewards et options annulés par la transaction. Pour l'instant sont annulés tous les rewards et options du même projet
+		foreach($transaction->getUser()->getUserRewardsByProjectId($reward->getProject()->getId()) as $cancelledReward)
+			$transaction->addCancelledUserReward($cancelledReward);
+			
+		foreach($transaction->getUser()->getUserRewardOptionsByProjectId($reward->getProject()->getId()) as $cancelledOption)
+			$transaction->addCancelledUserRewardOption($cancelledOption);
 
 		$logger->info("Transaction créée");	
 		
@@ -203,11 +214,13 @@ class TransactionController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 
 		$logger->info("Crédit avant annulation des rewards: ".$transaction->getUser()->getCredit());
-		
-		//Annulation des anciens Rewards du User (le crédit est mis à jour)
-		$transaction->getUser()->cancelUserRewardsAndOptionsByProjectId($transaction->getRewards()->first()->getProject()->getId());
 
-		$logger->info("Rewards annulés, nouveau crédit: ".$transaction->getUser()->getCredit());
+		//Annulation des anciens Rewards du User (le crédit est mis à jour)
+		$transaction->getUser()->cancelUserRewards($transaction->getCancelledUserRewards());
+		$transaction->getUser()->cancelUserRewardOptions($transaction->getCancelledUserRewardOptions());
+
+
+		$logger->info("Rewards et options annulés, nouveau crédit: ".$transaction->getUser()->getCredit());
 		
 		//Ajout des rewards et options achetés au User
 		$userReward = new UserReward();
@@ -221,11 +234,7 @@ class TransactionController extends Controller
 			$transaction->getUser()->addUserRewardOption($userReward->getReward(), $option);
 
 		$logger->info("Options ajoutées");
-		
-		//Décrémentation du crédit du user du montant utilisé
-		$transaction->getUser()->setCredit($transaction->getUser()->getCredit() - $transaction->getCreditUsed());
-		
-		$logger->info("Crédit décrémenté, nouveau crédit: ".$transaction->getUser()->getCredit());
+		$logger->info("Crédit de fin: ".$transaction->getUser()->getCredit());
 
 		$em->persist($transaction->getUser());
 		$em->flush();
@@ -244,11 +253,35 @@ class TransactionController extends Controller
 	}		
 	
     /**
-     * @Route("/cancel", name="transaction_return")
+     * @Route("/return", name="transaction_return")
      */
     public function returnAction()
     {
-
 		return new \Symfony\Component\HttpFoundation\Response('retour');
-	}	
+	}
+	
+    /**
+     * @Route("/annuler_contrepartie/{userRewardId}", requirements={"id" = "\d+"}, name="annuler_contrepartie")
+     */	
+	public function cancelUserReward($userRewardId)
+	{
+		$em = $this->getDoctrine()->getEntityManager();
+	
+		$transaction = new Transaction($this->container->getParameter('witty.paypal.fees'));
+		$userReward = $em->getRepository("WittyProjectBundle:UserReward")->find($userRewardId);
+		$transaction->setUser($this->getUser());
+		
+		$transaction->addCancelledUserReward($userReward);
+		foreach($transaction->getUser()->getUserRewardOptionsByRewardId($userReward->getReward()->getId()) as $cancelledOption)
+			$transaction->addCancelledUserRewardOption($cancelledOption);
+
+		$transaction->getUser()->cancelUserRewards($transaction->getCancelledUserRewards());
+		$transaction->getUser()->cancelUserRewardOptions($transaction->getCancelledUserRewardOptions());
+		
+		$em->persist($transaction);
+		$em->persist($transaction->getUser());
+		$em->flush();
+		
+		return $this->redirect($this->generateUrl('fos_user_profile_edit'));
+	}
 }

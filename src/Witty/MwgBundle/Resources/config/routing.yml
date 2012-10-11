@@ -2,6 +2,18 @@ wittymwg_accueil:
     pattern:   /
     defaults:  { _controller: WittyMwgBundle:Home:index }
     
-wittymwg_faq:
+mwg_faq:
     pattern:   /faq
     defaults:  { _controller: WittyMwgBundle:Home:faq }
+    
+mwg_cgu:
+    pattern:   /cgu
+    defaults:  { _controller: WittyMwgBundle:Home:cgu }
+    
+mwg_cgu_edinautes:
+    pattern:   /cgu-edinautes
+    defaults:  { _controller: WittyMwgBundle:Home:cguEdinautes }
+    
+mwg_mentionslegales:
+    pattern:   /mentions-legales
+    defaults:  { _controller: WittyMwgBundle:Home:mentionsLegales }

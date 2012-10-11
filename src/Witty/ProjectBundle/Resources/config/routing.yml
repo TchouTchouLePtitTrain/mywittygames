@@ -11,7 +11,7 @@ project_confirmation:
 project_display:
     pattern:   /{slug}
     defaults:  { _controller: WittyProjectBundle:Project:display }
-        
+
 project_blocRecapReward:
     pattern:   /recapReward/{rewardId}
     defaults:  { _controller: WittyProjectBundle:Project:blocRecapReward }

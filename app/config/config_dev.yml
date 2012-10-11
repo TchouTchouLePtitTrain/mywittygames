@@ -23,5 +23,6 @@ monolog:
 assetic:
     use_controller: true
 
-#swiftmailer:
-#    delivery_address: me@example.com
+swiftmailer:
+    delivery_address: thomas@mywittygames.com
+    disable_delivery: true

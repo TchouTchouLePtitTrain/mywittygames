@@ -64,8 +64,9 @@ class ProjectController extends Controller
 		$parametres = array(
 						'project' => $project, 
 						'linking' => $linking, 
-						'rewardId' => 1
+						'rewardId' => $rewardId
 					);
+
 		if ($rewardId) $parametres['rewardId'] = $rewardId;
 	
 		return $this->render('WittyProjectBundle:Project:blocRewards.html.twig', $parametres);

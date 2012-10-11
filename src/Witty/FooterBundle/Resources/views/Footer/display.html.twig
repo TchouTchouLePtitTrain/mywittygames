@@ -10,23 +10,27 @@
 		<p class="texte_footer1"> PAIEMENT SECURISE </p>
 		<img class="img_cb" src="" alt=""/>
 	</div>
+	{#
 	<div class="bloc_footer1 filet_footer1">
 		<img class="icon_livraison" src="" alt=""/>
 		<p class="texte_footer1"> LIVRAISON EN 72H </p>
 		<p class="texte_footer2"> Commande 24h/24 - 7j/7 </p>
 	</div>
+	#}
 	<div class="bloc_footer1 filet_footer1">
 		<img class="icon_service" src="" alt=""/>
 		<p class="texte_footer1"> SERVICE CLIENT </p>
 		<p class="texte_footer2">01 43 43 41 68 (prix d'un appel local)</p>
 		<p class="texte_footer2">contact@mywittygames.com </p>
 	</div>
+	{#
 	<div class="bloc_footer1">
 		<img class="icon_satisfait" src="" alt=""/>
 		<p class="texte_footer1"> SATISFAIT OU REMBOURSE </p>
-		<p class="texte_footer2"> Satisfait ou Rembours&eacute; </p>
+		<p class="texte_footer2"> Satisfait ou Remboursé </p>
 		<p class="texte_footer2"> pendant 10 jours </p>
 	</div>
+	#}
 </div>
 
 <div class="spacer"></div>
@@ -36,59 +40,57 @@
 		<div class="bloc_footer2">
 			<p class="texte_footer3"> MY WITTY GAMES </p>
 			<p class="texte_footer2">
-				<a class="texte_footer_hover">Jeux</a> - <a class="texte_footer_hover">Boutique</a>
+				<a class="texte_footer_hover" href="{{ path('project_accueil') }}">Jeux</a>{# - <a class="texte_footer_hover">Boutique</a> #}
 			</p>
 			<p class="texte_footer2">
-				<a class="texte_footer_hover">Witty Pack</a> - <a class="texte_footer_hover">News</a>
+				{#<a class="texte_footer_hover" href="{{ path('project_accueil') }}">News</a> - <a class="texte_footer_hover">Partenaires</a> #}
 			</p>
+			{#
 			<p class="texte_footer2">
-				<a class="texte_footer_hover">News</a> - <a class="texte_footer_hover">Radio</a> - <a class="texte_footer_hover">Partenaires</a>
+				<a class="texte_footer_hover">L'équipe</a> - <a class="texte_footer_hover">Forum</a>
 			</p>
-			<p class="texte_footer2">
-				<a class="texte_footer_hover">L'&eacute;quipe</a> - <a class="texte_footer_hover">Forum</a>
-			</p>
+			#}
 			<br/>
+			{#
 			<p class="texte_footer3"> ESPACE PRO </p>
 			<p class="texte_footer2">
 				<a class="texte_footer_hover">Presse</a>
 			</p>
 			<p class="texte_footer2"> <a class="texte_footer_hover">Nous contacter</a> </p>
+			#}
 		</div>
 		
 		<div class="bloc_footer2">
 			<p class="texte_footer3"> AIDE </p>
 			<p class="texte_footer2">
-				<a class="texte_footer_hover">Comment &ccedil;a marche : Edinautes</a>
+				<a class="texte_footer_hover">Comment ça marche : Edinautes</a>
 			</p>
 			<p class="texte_footer2">
-				<a class="texte_footer_hover">Comment &ccedil;a marche : Boutiques</a>
-			</p>
-			<p class="texte_footer2">
-				<a class="texte_footer_hover">FAQ</a>
+				<a class="texte_footer_hover" href="{{ path('mwg_faq') }}">FAQ</a>
 			</p>
 			<br/>
 			<p class="texte_footer3"> INFOS LEGALES </p>
 			<p class="texte_footer2">
-				<a class="texte_footer_hover"> Conditions G&eacute;n&eacute;rales d'Utilisation</a>
+				<a class="texte_footer_hover" href="{{ path('mwg_cgu') }}">Conditions Générales d'Utilisation</a>
 			</p>
 			<p class="texte_footer2">
-				<a class="texte_footer_hover">CGU Edinautes</a> - <a class="texte_footer_hover">CGU Boutiques</a>
+				<a class="texte_footer_hover" href="{{ path('mwg_cgu_edinautes') }}">CGU Edinautes</a>
 			</p>
 			<p class="texte_footer2">
-				<a class="texte_footer_hover">CGV Particuliers</a> - <a class="texte_footer_hover">Mentions L&eacute;gales</a>
+				<a class="texte_footer_hover" href="{{ path('mwg_mentionslegales') }}">Mentions Légales</a>
 			</p>
 		</div>
 		
 		<div class="bloc_footer2">
 			<p class="texte_footer3"> MY WITTY GAMES SUR LE WEB </p>
-			<img class="logo_facebook" src="" alt=""/>
-			<img class="logo_twitter" src="" alt=""/>
-			<img class="logo_dailymotion" src="" alt=""/>
+			<a class="logo_facebook" href="{{ url_witty_facebook }}"></a>
+			<a class="logo_twitter" href="{{ url_witty_twitter }}"></a>
+			<a class="logo_dailymotion" href="{{ url_witty_dailymotion }}"></a>
 		</div>
 		
 		<div class="bloc_footer2">
 			<p class="texte_footer3"> REJOIGNEZ L'AVENTURE<br/>MY WITTY GAMES </p>
-			<p class="texte_footer2"> Devenez Co&eacute;diteur d'un jeu et partagez <br/>les b&eacute;n&eacute;fices.<br/>My Witty Games vous propose une s&eacute;lection <br/>rigoureuse de jeux de soci&eacute;t&eacute; test&eacute;s par <br/>notre &eacute;quipe ainsi que notre communaut&eacute; <br/>de passionn&eacute;s, avec la garantie qu'ils plairont &agrave; tous.</p>
+			<p class="texte_footer2"> My Witty Games vous propose une sélection <br/>rigoureuse de jeux de société testés par <br/>notre équipe ainsi que notre communauté <br/>de passionnés, avec la garantie qu'ils plairont à tous.<br/><br/>Venez les soutenir et les aider à exister.</p>
 			<img class="logo_footer" src="" alt=""/>
 		</div>	
 	</div>
@@ -96,7 +98,7 @@
 
 <div id="footer3">
 	<div id="footer_contenu">
-		<p class="copyright"> &#169; 2012 MyWittyGames - Tous droits r&eacute;serv&eacute;s </p>
+		<p class="copyright"> © 2012 MyWittyGames - Tous droits réservés </p>
 	</div>
 </div>
 

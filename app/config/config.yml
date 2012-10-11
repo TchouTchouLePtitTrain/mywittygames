@@ -56,6 +56,9 @@ twig:
         witty_paypal_return_url: %witty.paypal.return_url%
         witty_paypal_fees: %witty.paypal.fees%
         witty_paypal_email_business: %witty.paypal.email_business%
+        url_witty_facebook: http://www.facebook.com/pages/My-Witty-Games/149984978360626
+        url_witty_twitter: http://twitter.com/MyWittyGames
+        url_witty_dailymotion: http://www.dailymotion.com/MyWittyGames
 
 # Assetic Configuration
 assetic:
@@ -101,6 +104,8 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Witty\UserBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.default
     from_email:
         address:        contact@mywittygames.com
         sender_name:    no-reply
@@ -111,6 +116,7 @@ fos_user:
     registration: 
         form: 
             type: witty_user_registration
+            handler: witty_user.registration.form.handler
         confirmation:
             from_email: # Use this node only if you don't want the global email address for the confirmation email
                 address: inscriptions@mywittygames.com

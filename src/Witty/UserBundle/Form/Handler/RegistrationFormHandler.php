@@ -2,21 +2,44 @@
 
 namespace Witty\UserBundle\Form\Handler;
 
+use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Form\Handler\RegistrationFormHandler as BaseHandler;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
+use FOS\UserBundle\Mailer\MailerInterface;
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class RegistrationFormHandler extends BaseHandler
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function __construct(FormInterface $form, Request $request, UserManagerInterface $userManager, MailerInterface $mailer, TokenGeneratorInterface $tokenGenerator)
     {
-        parent::buildForm($builder, $options);
-	
-		//Ajout des champs spécifiques à Mwg
-        //$builder->add('location');
+        parent::__construct($form, $request, $userManager, $mailer, $tokenGenerator);
     }
+	
+    public function process($confirmation = false)
+    {
+		if (!$this->form->isBound())
+		{
+			$user = $this->createUser();
+			$this->form->setData($user);
 
-    public function getName()
-    {
-        return 'witty_user_registration';
+			if ($this->request->get('fos_user_registration_form'))
+			{
+				$this->form->bindRequest($this->request);
+
+				if ($this->form->isValid()) {
+
+					$this->onSuccess($user, $confirmation);
+
+					return true;
+				}
+
+			}
+		}
+			
+        return false;
     }
-	
 }

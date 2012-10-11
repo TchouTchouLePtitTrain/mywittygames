@@ -44,6 +44,24 @@ class Transaction
      *      )
      */
     private $options;
+	
+	/**
+     * @ORM\ManyToMany(targetEntity="\Witty\ProjectBundle\Entity\Reward")
+     * @ORM\JoinTable(name="transaction_cancelleduserreward",
+     *      joinColumns={@ORM\JoinColumn(name="reward_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")}
+     *      )
+     */
+    private $cancelledUserRewards;	
+	
+	/**
+     * @ORM\ManyToMany(targetEntity="\Witty\ProjectBundle\Entity\RewardOption")
+     * @ORM\JoinTable(name="transaction_cancelleduserrewardoption",
+     *      joinColumns={@ORM\JoinColumn(name="rewardoption_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")}
+     *      )
+     */
+    private $cancelledUserRewardOptions;
 
     /**
      * @var boolean $completed
@@ -125,6 +143,8 @@ class Transaction
 		$this->feesPercentage = $feesPercentage;
 		$this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->options = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->cancelledRewards = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->cancelledOptions = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->creditUsed = 0;
     }
 
@@ -448,16 +468,22 @@ class Transaction
 	
 		foreach($this->getRewards() as $reward)
 			$amount += $reward->getCost();
-		
+	
 		foreach($this->getOptions() as $option)
 			$amount += $option->getCost();
+			
+		foreach($this->getCancelledRewards() as $cancelledReward)
+			$amount -= $cancelledReward->getCost();
+	
+		foreach($this->getCancelledOptions() as $cancelledOption)
+			$amount -= $cancelledOption->getCost();
 
 		if($this->user)
 		{
-			$this->creditUsed = min($this->user->getCredit() + $this->user->getCreditRecuperable($this->getRewards()->first()->getProject()->getId()), $amount);
+			$this->creditUsed = min($this->user->getCredit(), $amount);	
 			$amount -= $this->creditUsed;
 		}
-	
+
 		$this->amount = $amount;
 		$this->fees = ceil($amount * $this->feesPercentage * 100) / 100;
 		$this->totalAmount = $this->amount + $this->fees;
@@ -472,6 +498,7 @@ class Transaction
     public function setCreditUsed($creditUsed)
     {
         $this->creditUsed = $creditUsed;
+		$this->calculateAmount();
     
         return $this;
     }
@@ -485,4 +512,5 @@ class Transaction
     {
         return $this->creditUsed;
     }
+
 }

@@ -26,5 +26,29 @@ class HomeController extends Controller
     public function faqAction()
     {
         return $this->render('WittyMwgBundle:Home:faq.html.twig');
+    }  
+	
+    /**
+     * @Template()
+     */
+    public function cguAction()
+    {
+        return $this->render('WittyMwgBundle:Home:cgu.html.twig');
+    }   
+	
+    /**
+     * @Template()
+     */
+    public function cguEdinautesAction()
+    {
+        return $this->render('WittyMwgBundle:Home:cgu_edinautes.html.twig');
+    }
+	
+    /**
+     * @Template()
+     */
+    public function mentionsLegalesAction()
+    {
+        return $this->render('WittyMwgBundle:Home:mentions_legales.html.twig');
     }
 }

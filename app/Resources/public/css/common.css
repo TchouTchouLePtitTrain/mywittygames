@@ -2,9 +2,33 @@
     clear: both;
 }
 
+/* Styles des éléments */
 body{
 	background-color: #f6f6f6;
 }
+
+p{
+	font-family: Arial,Helvetica,sans-serif;
+	color: #786E6C;
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+
+h1{
+	font-family: 'Cabin Sketch',cursive;
+	color: #514846;
+	font-size: 1em;
+	line-height: 1.2;
+}
+
+h2{
+	font-family: 'Cabin Sketch',cursive;
+	color: #514846;
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+
+/* Classes courantes */
 
 .titrePage{
 	font-family: 'Cabin Sketch', cursive;
@@ -26,4 +50,12 @@ body{
 	font-size:1.250em;
 	text-align:center;
 	line-height: 1.2;
+}
+
+
+.tabulation{
+	margin-left : 50px;
+}
+.centre{
+	margin: 0 auto;
 }

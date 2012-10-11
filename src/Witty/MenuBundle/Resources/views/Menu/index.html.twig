@@ -11,7 +11,7 @@
         <nav id="menu">
         	<ul>
         		<li> <a class="btn_decouvrir" href="{{ path('project_accueil') }}"> </a> </li> 
-            	<li> <a class="btn_faq" href="/"> </a> </li> 
+            	<li> <a class="btn_faq" href="{{ path('mwg_faq') }}"> </a> </li> 
             </ul>       
         </nav>       
     </div>
@@ -23,9 +23,9 @@
     </div>
     
     <div id="logosociaux">
-    	<a class="btn_facebook" href="/"> </a>
-        <a class="btn_twitter" href="/"> </a>
-        <a class="btn_dailymotion" href="/"> </a>    	         
+    	<a class="btn_facebook" href="{{ url_witty_facebook }}"> </a>
+        <a class="btn_twitter" href="{{ url_witty_twitter }}"> </a>
+        <a class="btn_dailymotion" href="{{ url_witty_dailymotion }}"> </a>    	         
     </div>
     
 </div>    

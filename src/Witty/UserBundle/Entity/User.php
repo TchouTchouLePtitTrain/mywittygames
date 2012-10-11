@@ -923,6 +923,7 @@ class User extends BaseUser
     public function addUserReward(\Witty\ProjectBundle\Entity\UserReward $userReward)
     {
         $this->userRewards[] = $userReward;
+		$this->addToCredit(- $userReward->getReward()->getCost());
     
         return $this;
     }
@@ -972,6 +973,7 @@ class User extends BaseUser
 	//Renvoie le texte qui doit apparaître pour identifier l'internaute
 	public function getLabel($affectueux = false)
 	{
+
 		if (isset($this->username)) return $this->username;
 		elseif (isset($this->firstname)) return $this->firstname.($affectueux ? $this->lastname : "");
 		else return $this->email;
@@ -1103,7 +1105,19 @@ class User extends BaseUser
 				};			
 
 		return $this->getUserRewards()->filter($filter($projectId));
+	}		
+	
+	//Renvoi la liste des rewards du User pour un projet donné
+	public function getUserRewardOptionsByProjectId($projectId)
+	{
+		$filter = function($projectId)
+				{
+					return function($x) use ($projectId) { return $x->getReward()->getProject()->getId() == $projectId; };
+				};			
+
+		return $this->getUserRewardOptions()->filter($filter($projectId));
 	}	
+	
 	
 	//Renvoi la liste des options du User pour un reward donné
 	public function getUserRewardOptionsByRewardId($rewardId)
@@ -1137,14 +1151,14 @@ class User extends BaseUser
      * Annule les UserReward sur un projet donné
      *
      */
-    public function cancelUserRewardsAndOptionsByProjectId($projectId)
+    public function cancelUserRewards($userRewards)
     {
 		//Annulation des UserReward
-		$map = function($projectId)
+		$map = function($userRewards)
 				{
-					return function($x) use ($projectId) 
+					return function($x) use ($userRewards) 
 					{ 
-						if ($x->getReward()->getProject()->getId() == $projectId) 
+						if ($userRewards->contains($x)) 
 						{
 							$x->setUpdateDate(new \DateTime);
 							$x->setCancelled(true);
@@ -1153,14 +1167,21 @@ class User extends BaseUser
 					};
 				};
 
-        $this->getUserRewards()->map($map($projectId));		
-		
+        $this->getUserRewards()->map($map($userRewards));		
+    }
+	
+	/*
+	* Annule les UserRewardOption passées en paramètres
+	*
+	*/
+    public function cancelUserRewardOptions($userRewardOptions)
+    {
 		//Annulation des UserRewardOption
-		$map = function($projectId)
+		$map = function($userRewardOptions)
 				{
-					return function($x) use ($projectId) 
+					return function($x) use ($userRewardOptions) 
 					{ 
-						if ($x->getReward()->getProject()->getId() == $projectId) 
+						if ($userRewardOptions->contains($x))
 						{
 							$x->setUpdateDate(new \DateTime);
 							$x->setCancelled(true);
@@ -1169,8 +1190,9 @@ class User extends BaseUser
 					};
 				};
 		
-        $this->getUserRewardOptions()->map($map($projectId));	
+        $this->getUserRewardOptions()->map($map($userRewardOptions));	
     }
+	
 
     /**
      * Add userRewardOptions
@@ -1181,6 +1203,7 @@ class User extends BaseUser
     public function addUserRewardOption(\Witty\ProjectBundle\Entity\Reward $reward, \Witty\ProjectBundle\Entity\RewardOption $rewardOption)
     {
         $this->userRewardOptions[] = new \Witty\ProjectBundle\Entity\UserRewardOption($this, $reward, $rewardOption);
+		$this->addToCredit(- $rewardOption->getCost());
 		
 		return $this;
     }

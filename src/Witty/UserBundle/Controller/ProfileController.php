@@ -52,6 +52,21 @@ class ProfileController extends BaseController
         );
     }
 	
+    /**
+     * Voir les rewards du user
+     */
+    public function displayRewardsAction()
+    {
+		$userRewards = $this->container->get('doctrine')->getRepository('WittyProjectBundle:UserReward')->findAllByUserIdOrderedByProjectIds($this->container->get('security.context')->getToken()->getUser()->getId());
+	
+        return $this->container->get('templating')->renderResponse(
+            'FOSUserBundle:Profile:display_userrewards.html.'.$this->container->getParameter('fos_user.template.engine'),
+            array(
+				'userRewards' => $userRewards
+			)
+        );
+    }
+	
     protected function getRedirectionUrl(UserInterface $user)
     {
         return $this->container->get('router')->generate('fos_user_profile_edit');

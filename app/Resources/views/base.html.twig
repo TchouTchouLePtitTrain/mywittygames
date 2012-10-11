@@ -62,13 +62,13 @@
 					<div class="champs_inscription">
 						{% render "FOSUserBundle:Security:loginPopup" %}
 					</div>
-					<a class="texte_popuplogin3">Mot de passe oublié ?</a>
+					<a class="texte_popuplogin3" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
 				</div>
 				<div id="login_facebook">
 					<div id="haut_popup2">
 						<p class="texte_popuplogin4">Ou connectez-vous avec Facebook</p>
-						{{ facebook_login_button({'autologoutlink': true}) }}
 					</div>
+					{{ facebook_login_button({'autologoutlink': true}) }}
 				</div>
 			</div>
 				
@@ -84,8 +84,8 @@
 				<div id="login_facebook2">
 					<div id="haut_popup2">
 						<p class="texte_popuplogin4">Ou connectez-vous avec Facebook</p>
-						{{ facebook_login_button({'autologoutlink': true}) }}
 					</div>
+					{{ facebook_login_button({'autologoutlink': true}) }}
 				</div>
 			</div>
 			

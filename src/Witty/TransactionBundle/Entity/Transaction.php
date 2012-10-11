@@ -30,8 +30,8 @@ class Transaction
 	/**
      * @ORM\ManyToMany(targetEntity="\Witty\ProjectBundle\Entity\Reward")
      * @ORM\JoinTable(name="transaction_reward",
-     *      joinColumns={@ORM\JoinColumn(name="reward_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="reward_id", referencedColumnName="id")}
      *      )
      */
     private $rewards;
@@ -39,11 +39,29 @@ class Transaction
 	/**
      * @ORM\ManyToMany(targetEntity="\Witty\ProjectBundle\Entity\RewardOption")
      * @ORM\JoinTable(name="transaction_rewardoption",
-     *      joinColumns={@ORM\JoinColumn(name="rewardoption_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="rewardoption_id", referencedColumnName="id")}
      *      )
      */
     private $options;
+	
+	/**
+     * @ORM\ManyToMany(targetEntity="\Witty\ProjectBundle\Entity\UserReward")
+     * @ORM\JoinTable(name="transaction_cancelleduserreward",
+     *      joinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="userreward_id", referencedColumnName="id")}
+     *      )
+     */
+    private $cancelledUserRewards;	
+	
+	/**
+     * @ORM\ManyToMany(targetEntity="\Witty\ProjectBundle\Entity\UserRewardOption")
+     * @ORM\JoinTable(name="transaction_cancelleduserrewardoption",
+     *      joinColumns={@ORM\JoinColumn(name="transaction_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="userrewardoption_id", referencedColumnName="id")}
+     *      )
+     */
+    private $cancelledUserRewardOptions;
 
     /**
      * @var boolean $completed
@@ -125,6 +143,8 @@ class Transaction
 		$this->feesPercentage = $feesPercentage;
 		$this->rewards = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->options = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->cancelledUserRewards = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->cancelledUserRewardOptions = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->creditUsed = 0;
     }
 
@@ -227,7 +247,6 @@ class Transaction
      */
     public function getAmount()
     {
-		$this->calculateAmount();
         return $this->amount;
     }
 
@@ -251,7 +270,6 @@ class Transaction
      */
     public function getFees()
     {
-		$this->calculateAmount();
         return $this->fees;
     }
 
@@ -275,7 +293,6 @@ class Transaction
      */
     public function getTotalAmount()
     {
-		$this->calculateAmount();
         return $this->totalAmount;
     }
 
@@ -357,6 +374,7 @@ class Transaction
     public function addReward(\Witty\ProjectBundle\Entity\Reward $rewards)
     {
         $this->rewards[] = $rewards;
+		$this->updateAmount();
 		
         return $this;
     }
@@ -369,6 +387,7 @@ class Transaction
     public function removeReward(\Witty\ProjectBundle\Entity\Reward $rewards)
     {
         $this->rewards->removeElement($rewards);
+		$this->updateAmount();
     }
 
     /**
@@ -390,6 +409,7 @@ class Transaction
     public function addOption(\Witty\ProjectBundle\Entity\RewardOption $options)
     {
         $this->options[] = $options;
+		$this->updateAmount();
     
         return $this;
     }
@@ -402,6 +422,7 @@ class Transaction
     public function removeOption(\Witty\ProjectBundle\Entity\RewardOption $options)
     {
         $this->options->removeElement($options);
+		$this->updateAmount();
     }
 
     /**
@@ -424,6 +445,7 @@ class Transaction
     public function setFeesPercentage($feesPercentage)
     {
         $this->feesPercentage = $feesPercentage;
+		$this->updateAmount();
     
         return $this;
     }
@@ -440,7 +462,7 @@ class Transaction
 	
 	
 	//Calcule le montant de la transaction
-	private function calculateAmount()
+	private function updateAmount()
 	{
 		$amount = 0;
 	
@@ -449,10 +471,16 @@ class Transaction
 	
 		foreach($this->getOptions() as $option)
 			$amount += $option->getCost();
+			
+		foreach($this->getCancelledUserRewards() as $cancelledUserReward)
+			$amount -= $cancelledUserReward->getReward()->getCost();
+	
+		foreach($this->getCancelledUserRewardOptions() as $cancelledUserRewardOption)
+			$amount -= $cancelledUserRewardOption->getRewardOption()->getCost();
 
 		if($this->user)
 		{
-			$this->creditUsed = min($this->user->getCredit() + $this->user->getCreditRecuperable($this->getRewards()->first()->getProject()->getId()), $amount);	
+			$this->creditUsed = min($this->user->getCredit(), $amount);	
 			$amount -= $this->creditUsed;
 		}
 
@@ -470,6 +498,7 @@ class Transaction
     public function setCreditUsed($creditUsed)
     {
         $this->creditUsed = $creditUsed;
+		$this->updateAmount();
     
         return $this;
     }
@@ -482,5 +511,76 @@ class Transaction
     public function getCreditUsed()
     {
         return $this->creditUsed;
+    }
+
+
+    /**
+     * Add cancelledUserRewards
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $cancelledUserRewards
+     * @return Transaction
+     */
+    public function addCancelledUserReward(\Witty\ProjectBundle\Entity\UserReward $cancelledUserRewards)
+    {
+        $this->cancelledUserRewards[] = $cancelledUserRewards;
+		$this->updateAmount();
+    
+        return $this;
+    }
+
+    /**
+     * Remove cancelledUserRewards
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $cancelledUserRewards
+     */
+    public function removeCancelledUserReward(\Witty\ProjectBundle\Entity\UserReward $cancelledUserRewards)
+    {
+        $this->cancelledUserRewards->removeElement($cancelledUserRewards);
+		$this->updateAmount();
+    }
+
+    /**
+     * Get cancelledUserRewards
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCancelledUserRewards()
+    {
+        return $this->cancelledUserRewards;
+    }
+
+    /**
+     * Add cancelledUserRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $cancelledUserRewardOptions
+     * @return Transaction
+     */
+    public function addCancelledUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $cancelledUserRewardOptions)
+    {
+        $this->cancelledUserRewardOptions[] = $cancelledUserRewardOptions;
+		$this->updateAmount();
+    
+        return $this;
+    }
+
+    /**
+     * Remove cancelledUserRewardOptions
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $cancelledUserRewardOptions
+     */
+    public function removeCancelledUserRewardOption(\Witty\ProjectBundle\Entity\UserRewardOption $cancelledUserRewardOptions)
+    {
+        $this->cancelledUserRewardOptions->removeElement($cancelledUserRewardOptions);
+		$this->updateAmount();
+    }
+
+    /**
+     * Get cancelledUserRewardOptions
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCancelledUserRewardOptions()
+    {
+        return $this->cancelledUserRewardOptions;
     }
 }

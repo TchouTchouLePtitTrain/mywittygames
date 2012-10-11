@@ -13,7 +13,7 @@
 		{% set affichage = 'petit' %}
 	{% endif %}
  
- 	<img class="ruban"/>
+ 	{% if loop.first %} <img class="ruban"/> {% endif %}
 	<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
 		class="bloc_jeu {{affichage}}">
 		<img class="img_jeu" src="{{ project.image }}" alt=""/>

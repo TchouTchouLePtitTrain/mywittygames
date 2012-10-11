@@ -38,7 +38,7 @@
 	
 	
 	
-	{% if app.user.getUserRewardsByProjectId(reward.project.id) %}
+	{% if app.user.getUserRewardsByProjectId(reward.project.id)|length > 0 %}
 		<p class="sousTitre_recap">Vous avez déjà la contrepartie</p>
 		<br/>
 		<p class="sousTitre_recap">{{ first(app.user.getUserRewardsByProjectId(reward.project.id)).reward.title }}</p>
@@ -116,3 +116,108 @@
 
 </form>
 <div class="spacer"></div>
+
+	
+<script>
+
+	$(document).ready(function()
+	{
+		calculTotaux();
+	
+		//Gestion des checkboxes
+		$('input[type="checkbox"][id*="option_"]').click(function(event)
+		{
+			calculTotaux();
+		});
+		
+		$('#bloc_contreparties a.blocReward').click(function(event)
+		{
+			var rewardId = parseInt($(this).attr('id').substring('lien_reward_'.length, $(this).attr('id').length));
+			$.get("{{ path('project_blocRecapReward', {'rewardId': null}) }}"+"/"+rewardId, function(data)
+				{
+					$('#blocRecap').html(data);
+					calculTotaux();
+					$('input[type="checkbox"][id*="option_"]').click(function(event) //Attache des handlers
+					{
+						calculTotaux();
+					});
+				}
+			);
+		});
+		
+	});
+
+
+	function calculTotaux()
+	{
+		var total_reward = parseInt($('#reward_value').attr('value'));
+		
+		//Calcul du total des options
+		var total_options = 0;
+		
+		var options_ids = ""; //Pour contruire le champ custom		
+		$('input[type="checkbox"][id*="option_"]:checked').each(function(key, value)
+		{
+			total_options += parseInt($('input[type="hidden"][id*="option_value_'+$(this).attr("value")+'"]').attr("value"));
+			if (options_ids == "")
+			{
+				options_ids += $(this).attr("value"); 
+			}
+			else
+			{
+				options_ids += ','+$(this).attr("value");
+			}
+			
+		});
+		if (options_ids != "") { options_ids = "&opt="+options_ids; }
+		
+		//Mise à jour des totaux
+		var credit_recuperable = {{ app.user.getCreditRecuperable(reward.project.id) }};
+		var sous_total_1 = total_reward + total_options;
+		var credit_utilise = Math.min(sous_total_1 - credit_recuperable, {{ app.user.credit }}); // Calcul du crédit utilisé
+		var credit_restant = {{ app.user.credit }} - credit_utilise; 
+		var sous_total_2 = sous_total_1 - credit_utilise - credit_recuperable;
+		var paypal_fees = Math.ceil( (sous_total_2 * {{ witty_paypal_fees }}).toPrecision(3) * 100) / 100; //On prend 2 décimales, arrondies au supérieur
+		var total = sous_total_2 + paypal_fees;
+
+		$('#total_reward').html(total_reward);
+		$('#total_options').html('+ '+total_options);
+		$('#credit_recuperable').html('- '+credit_recuperable);
+		if ({{ app.user.credit }} != 0) //Si l'utilisateur a du crédit
+		{
+			var affichage_credit_utilise = Math.max(0, credit_utilise);
+			if (affichage_credit_utilise != 0) affichage_credit_utilise = "- "+affichage_credit_utilise;
+			$('#credit_utilise').html(affichage_credit_utilise);
+			$('#credit_restant').html(credit_restant);
+		}
+		
+		var affichage_sous_total_2 = Math.max(0, sous_total_2);
+		
+		var affichage_paypal_fees = Math.max(0, paypal_fees);
+		if (affichage_paypal_fees != 0) affichage_paypal_fees = "+ "+affichage_paypal_fees;	
+		
+		var affichage_total = Math.max(0, total);	
+		
+		$('#sous_total').html(affichage_sous_total_2);
+		$('#frais_gestion').html(affichage_paypal_fees);
+		$('#total').html(affichage_total);
+		
+		//Mise à jour du formulaire
+		if (total <= 0) //S'il n'y a rien à payer, on ne passe pas par Paypal
+		{
+			$('#confirmation_form').attr('action', "{{ path('transaction_success') }}");
+			$('#confirmation_form').removeAttr('target');
+		}
+		else
+		{	
+			$('#confirmation_form').attr('action', '{{ witty_paypal_url }}');
+			$('#confirmation_form').attr('target', 'paypal');
+		}
+		
+		//Mise à jour des champs pour paypal
+		$('input[type="hidden"][name="amount"]').attr('value', total);
+		$('input[type="hidden"][name="fees"]').attr('value', paypal_fees);
+		$('input[type="hidden"][name="custom"]').attr('value', 'u={{ app.user.id }}&rw='+parseInt($('#reward_id').attr('value'))+options_ids); //Champ pour traiter le retour de Paypal
+	}
+
+</script>

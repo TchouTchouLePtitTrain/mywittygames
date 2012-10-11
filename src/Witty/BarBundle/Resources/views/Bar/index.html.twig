@@ -27,11 +27,7 @@
 				<a class="btn_profil" href="{{ path('fos_user_profile_edit') }}">
 					<p class="img_profil"></p> 
 					<p class="pseudo pseudo-connecte">
-						{% if app.user.login %}
-							{{ app.user.login }}
-						{% else %}
-							{{ app.user.firstname }}
-						{% endif %}
+						{{ app.user.label }}
 					</p>
 				</a>
 			{% else %}
