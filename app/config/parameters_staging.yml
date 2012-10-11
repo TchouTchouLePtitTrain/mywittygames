@@ -2,7 +2,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: mywittygames.cbcdvav5ui8j.eu-west-1.rds.amazonaws.com
     database_port: null
-    database_name: witty_prod
+    database_name: witty_staging
     database_user: mywittygames
     database_password: mysql1105*
     mailer_transport: smtp
@@ -17,7 +17,7 @@ parameters:
     witty.url_mwg: http://www.mywittygames.com/
     witty.url_mwn: http://www.mywittynews.com/
     witty.url_mws: http://www.mywittyshop.com/
-    witty.public_url_mwg: http://www.mywittygames.com
+    witty.public_url_mwg: http://87.91.25.164
     
 #Paramètres des services
     witty.s3.bucket: mywittygames
@@ -26,8 +26,8 @@ parameters:
         key: AKIAICH4QGFKNEHOOZAA
         secret: 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
         
-    witty.paypal.ssl: ssl://www.paypal.com
-    witty.paypal.url: https://www.paypal.com/cgi-bin/webscr
+    witty.paypal.ssl: ssl://www.sandbox.paypal.com
+    witty.paypal.url: https://www.sandbox.paypal.com/cgi-bin/webscr
     witty.paypal.notify_url: transaction/success
     witty.paypal.cancel_url: transaction/cancel
     witty.paypal.return_url: transaction/return
