@@ -1,6 +1,6 @@
 parameters:
     database_driver: pdo_mysql
-    database_host: mywittygames.cbcdvav5ui8j.eu-west-1.rds.amazonaws.com
+    database_host: mywittygamesprod.cbcdvav5ui8j.eu-west-1.rds.amazonaws.com
     database_port: null
     database_name: witty_prod
     database_user: mywittygames

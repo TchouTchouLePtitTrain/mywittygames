@@ -17,6 +17,9 @@ Witty\UserBundle\Entity\User:
         projects:
             targetEntity: Witty\ProjectBundle\Entity\Project
             mappedBy: creator
+        projectComments:
+            targetEntity: Witty\ProjectBundle\Entity\Comment
+            mappedBy: user
     fields:
         id:
             id: true

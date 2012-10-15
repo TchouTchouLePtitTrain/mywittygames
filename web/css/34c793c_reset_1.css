@@ -50,4 +50,16 @@ a{
 text-decoration: none;
 color:black;
 }
+input[type="submit"]
+{
+    margin: 0;
+    padding: 0;
+    line-height: 100%; /* Si ça fonctionne pas mets 0 */
+    border: 0;
+    background: none; /* ou transparent je sais plus... */
+    font: /* Définis le même font qu'un lien traditionnel */;
+    color: /* La même couleur... */;
+    text-decoration: underline; /* Normalement */
+}
+
 /*************** fin du reset ******************/

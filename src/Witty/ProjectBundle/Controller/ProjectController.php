@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Witty\ProjectBundle\Entity\Comment;
 
 class ProjectController extends Controller
 {
@@ -78,6 +79,51 @@ class ProjectController extends Controller
 
 		return $this->render('WittyProjectBundle:Project:blocRecapReward.html.twig', array(
 						'reward' => $reward
+					)
+				);
+    }
+	
+	//Ajoute le commentaire passé en POST au projet
+    public function addCommentAction()
+    {
+		$request = $this->get('request');	
+
+		if ($request->getMethod() === 'POST')
+		{
+			$em = $this->getDoctrine()->getEntityManager();
+			
+			$project = $em->getRepository('WittyProjectBundle:Project')->find($request->request->get('projectId'));
+
+			$comment = new Comment();
+			$comment->setProject($project);
+			$comment->setUser($this->getUser());
+			$comment->setContent($request->request->get('content')); //Pour que les sauts de lignes soient visibles à l'affichage, il faut convertir les "new line" en balises <br/>
+			
+			if ($this->container->get('validator')->validate($comment))
+			{
+				$project->addComment($comment);
+				$this->getUser()->addProjectComment($comment);
+			
+				//Ajout du commentaire
+				$em->persist($comment);
+				$em->persist($project);
+				$em->persist($this->getUser());
+				$em->flush();
+			
+				return $this->blocCommentsAction($project->getId());
+			}
+			else throw new \Exception("Erreur d'ajout du commentaire");
+		}
+		else throw new \Exception("Vous ne pouvez pas ajout ce commentaire");
+    }
+	
+    public function blocCommentsAction($projectId)
+    {
+		$em = $this->getDoctrine()->getEntityManager();
+		$comments = $em->getRepository('WittyProjectBundle:Comment')->findAllOrderedByCreationDate($projectId);
+
+		return $this->render('WittyProjectBundle:Project:blocComments.html.twig', array(
+						'comments' => $comments
 					)
 				);
     }

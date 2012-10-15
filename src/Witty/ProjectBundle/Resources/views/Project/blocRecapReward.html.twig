@@ -174,7 +174,8 @@
 		//Mise à jour des totaux
 		var credit_recuperable = {{ app.user.getCreditRecuperable(reward.project.id) }};
 		var sous_total_1 = total_reward + total_options;
-		var credit_utilise = Math.min(sous_total_1 - credit_recuperable, {{ app.user.credit }}); // Calcul du crédit utilisé
+		var credit_anterieur_utilise = Math.max( Math.min(sous_total_1 - credit_recuperable, {{ app.user.credit }}), 0); // Calcul du crédit avant annulation de la contrepartie qui va être utilisé
+		var credit_utilise = Math.max( Math.min(sous_total_1 - credit_recuperable, {{ app.user.credit }}), 0); // Calcul du crédit après annulation de la contrepartie qui va être utilisé
 		var credit_restant = {{ app.user.credit }} - credit_utilise; 
 		var sous_total_2 = sous_total_1 - credit_utilise - credit_recuperable;
 		var paypal_fees = Math.ceil( (sous_total_2 * {{ witty_paypal_fees }}).toPrecision(3) * 100) / 100; //On prend 2 décimales, arrondies au supérieur
@@ -185,7 +186,7 @@
 		$('#credit_recuperable').html('- '+credit_recuperable);
 		if ({{ app.user.credit }} != 0) //Si l'utilisateur a du crédit
 		{
-			var affichage_credit_utilise = Math.max(0, credit_utilise);
+			var affichage_credit_utilise = Math.max(0, credit_anterieur_utilise);
 			if (affichage_credit_utilise != 0) affichage_credit_utilise = "- "+affichage_credit_utilise;
 			$('#credit_utilise').html(affichage_credit_utilise);
 			$('#credit_restant').html(credit_restant);

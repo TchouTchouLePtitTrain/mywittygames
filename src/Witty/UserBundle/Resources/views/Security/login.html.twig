@@ -40,7 +40,15 @@
 		
 		<div class="bloc bloc2">
 			<a class="titre_popup bloc_titre">S'inscrire</a>
-			{% render "WittyUserBundle:Registration:register" %}
+			{# render "WittyUserBundle:Registration:register" #}
+			<form action="{{ path('fos_user_security_login') }}" {{ form_enctype(form_register) }} method="POST" class="fos_user_registration_register">
+				{{ form_widget(form_register) }}
+				{{ form_rest(form_register) }}
+				<div>
+					<input id="inscrire" type="submit" value="" />
+				</div>
+			</form>
+
 			<p class="texte_popuplogin5">En vous inscrivant, vous acceptez<br/> nos <a class="conditions">conditions d'utilisation</a></p>
 		</div>
 		

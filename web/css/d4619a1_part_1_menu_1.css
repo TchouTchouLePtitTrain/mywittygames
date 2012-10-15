@@ -8,6 +8,7 @@
 	margin-right: auto;
 	position: relative;
 	border-bottom: solid 3px #4270be;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
 .container_bandeau{
@@ -18,7 +19,6 @@
 }
 
 #logomenu{
-	float:left;
 	position:relative;
 }
 
@@ -38,9 +38,9 @@
 }
 
 #menu{
-	float:left;
 	margin-left:0px;
 	position:relative;
+	display:block;
 }
 
 .btn_decouvrir{
@@ -85,6 +85,7 @@
 .recherche{
 	float:left;
 	margin-left:30px;
+	margin-top: 22px;
 }
 
 .recherche form{
@@ -141,7 +142,6 @@
 	border-left: 1px solid #F2F0EF;
 	width:130px;
 	height:54px;
-	top:-22px;
 	padding-top:15px;
 	padding-left:20px;
 }

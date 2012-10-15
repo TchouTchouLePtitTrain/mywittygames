@@ -20,6 +20,7 @@ class ProfileFormType extends BaseType
 			->remove('username')
 			->remove('plainPassword')
             ->add('plainPassword', 'password', array( 'required' => false, 'always_empty' => true)) //Override du champ password tel que défini dans le FOSUserBundle, pour qu'il ne soit plus 'required' et qu'il soit 'always_empty'
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('firstname', 'text', array('required' => false))
             ->add('lastname', 'text', array('required' => false))
             ->add('sex', 'choice', array('required' => false, 'choices' => array( 1 => 'Homme', 0 => 'Femme'), 'expanded' => true, 'multiple' => false))

@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Witty\ProjectBundle\Entity\Comment
  *
- * @ORM\Table(name="project_comments")
- * @ORM\Entity
+ * @ORM\Table(name="project_comment")
+ * @ORM\Entity(repositoryClass="Witty\ProjectBundle\Repository\CommentRepository")
  */
 class Comment
 {
@@ -28,7 +28,7 @@ class Comment
     private $project;
 	
     /**
-	 * @ORM\ManyToOne(targetEntity="\Witty\UserBundle\Entity\User", inversedBy="comments")
+	 * @ORM\ManyToOne(targetEntity="\Witty\UserBundle\Entity\User", inversedBy="projectComments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -138,12 +138,12 @@ class Comment
 	public function getDelay()
 	{
 		$delai = $this->getCreationDate()->diff(new \DateTime());
-		
+
 		if ($delai->y !== 0) return $delai->format('%y an'.(($delai->y > 1)? 's' : ''));
-		elseif ($delai->m !== 0) return $delai->format('%m moi'.(($delai->m > 1)? 's' : ''));
+		elseif ($delai->m !== 0) return $delai->format('%m mois');
 		elseif ($delai->d !== 0) return $delai->format('%d jour'.(($delai->d > 1)? 's' : ''));
 		elseif ($delai->h !== 0) return $delai->format('%h heure'.(($delai->h > 1)? 's' : ''));
-		else return $delai->format('%i minute'.(($delai->m > 1)? 's' : ''));
+		else return $delai->format('%i minute'.(($delai->i > 1)? 's' : ''));
 	}
 
     /**

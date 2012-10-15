@@ -50,9 +50,79 @@ a{
 text-decoration: none;
 color:black;
 }
+input[type="submit"]
+{
+    margin: 0;
+    padding: 0;
+    line-height: 100%; /* Si ça fonctionne pas mets 0 */
+    border: 0;
+    background: none; /* ou transparent je sais plus... */
+    font: /* Définis le même font qu'un lien traditionnel */;
+    color: /* La même couleur... */;
+    text-decoration: underline; /* Normalement */
+}
+
 /*************** fin du reset ******************/
 .spacer {
     clear: both;
+}
+
+/* Styles des �l�ments */
+body{
+	background-color: #f6f6f6;
+}
+
+p{
+	font-family: Arial,Helvetica,sans-serif;
+	color: #786E6C;
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+
+h1{
+	font-family: 'Cabin Sketch',cursive;
+	color: #514846;
+	font-size: 1em;
+	line-height: 1.2;
+}
+
+h2{
+	font-family: 'Cabin Sketch',cursive;
+	color: #514846;
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+
+/* Classes courantes */
+
+.titrePage{
+	font-family: 'Cabin Sketch', cursive;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-size:2.500em;
+	text-align:center;
+	margin-bottom:16px;
+}
+
+.descriptionPage{
+	font-family: 'Cabin Sketch', cursive;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-size:1.250em;
+	text-align:center;
+	line-height: 1.2;
+}
+
+
+.tabulation{
+	margin-left : 50px;
+}
+.centre{
+	margin: 0 auto;
 }
 /*!
  * jQuery UI CSS Framework 1.8.23
@@ -617,3 +687,418 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  */
 .ui-progressbar { height:2em; text-align: left; overflow: hidden; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+/* --- POP UP Login --- */
+
+
+#fade { /*--Masque opaque noir de fond--*/
+	display: none; /*--masqué par défaut--*/
+	background: #000;
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	opacity: .60;
+	z-index: 9999;
+}
+
+.popup.login{
+	display: none; /*--masqué par défaut--*/
+	background: #fff;
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	/*--Les différentes définitions de Box Shadow en CSS3--*/
+	-webkit-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	/*--Coins arrondis en CSS3--*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+}
+
+img.btn_close {
+	float: right;
+	margin: -55px -55px 0 0;
+}
+
+/*--Gérer la position fixed pour IE6--*/
+*html #fade {
+position: absolute;
+}
+*html .popup.login {
+position: absolute;
+}
+
+#haut_popup{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:40px;
+	width:100%;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:20px;
+}
+
+#haut_popup2{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:40px;
+	width:100%;
+	border-bottom: solid 1px #FFF;
+	margin-bottom:20px;
+}
+
+.titre_popup{
+	font-family: 'Cabin Sketch',cursive;
+	color:#4575c7;
+	font-size:1.875em;
+	margin-bottom:10px;
+}
+
+.close{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#CCC;
+	font-size:1em;
+	font-weight:bold;
+	margin-bottom:10px;
+	float:right;
+	cursor:pointer;
+	margin-top:10px;
+}
+
+.close:hover{
+	color:#666;
+}
+
+#_submit{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:45px;
+	width:165px;
+	background-image: url(../../bundles/wittybar/images/btn_seconnecter_normal.png); /* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+	float:right;
+	cursor:pointer;
+}
+
+#_submit:hover{
+	background-image:url(../../bundles/wittybar/images/btn_seconnecter_hover.png);/* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+}
+
+label[for='remember_me']{
+	ont-family:Arial, Helvetica, sans-serif;
+	font-size:0.750em;
+	color:#514846;
+	margin-bottom:10px;
+}
+
+#bas_popup_gauche{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:50px;
+	width:130px;
+	float:left;
+	margin-top:5px;
+}
+
+.texte_popup{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.750em;
+	color:#514846;
+	font-weight:bold;
+}
+
+.champs_inscription{
+	display:block;
+	width:350px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.875;
+	font-weight:bold;
+	color:#514846;
+	margin-bottom:10px;
+}
+
+.champspopup{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:20px;
+	width:340px;
+	background-color:#FFF;
+	margin-bottom:15px;
+	
+	border-radius:4px;
+}
+
+.texte_popuplogin3{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.750em;
+	color:#ababab;
+	margin-bottom:10px;
+	text-decoration:underline; 
+	cursor:pointer;
+}
+
+.texte_popuplogin4{
+	float:left;	
+	font-family: 'Cabin Sketch',cursive;
+	color:#FFF;
+	font-size:1.500em;
+	margin-bottom:10px;
+}
+
+.texte_popuplogin5{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.750em;
+	color:#ababab;
+	margin-bottom:10px; 
+	cursor:pointer;
+	margin-top:25px;
+	line-height:1.2;
+}
+
+.conditions{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:1em;
+	color:#4270BE;
+	margin-bottom:10px; 
+	cursor:pointer;
+}
+
+.texte_popuplogin3:hover{
+	color:#514846;
+}
+
+#remember_me{
+	float:left;
+	margin-right:10px;
+	margin-left:-1px;
+	margin-top:-1px;
+}
+
+#login_facebook{
+	display:block;
+	width:370px;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	background-color:#3B62B2;
+	padding:20px;
+}
+
+#login_facebook2{
+	display:block;
+	width:370px;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	background-color:#3B62B2;
+	padding:20px;
+}
+
+#login_normal{
+	display:block;
+	padding-left: 30px;
+	padding-bottom: 30px;
+	padding-right: 30px;
+	padding-top: 20px;
+}
+
+.jaime{
+	margin-bottom:10px;
+	float:right;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url(../images/jaime.png);
+	height:15px;
+	width:17px;
+}
+
+label{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.813em;
+	font-weight:bold;
+	color:#514846;
+	margin-bottom:10px;
+}
+
+#username{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:35px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#username:focus{
+	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}
+
+#password{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:35px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:30px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#password:focus{
+	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}
+
+#fos_user_registration_form_email{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:30px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#fos_user_registration_form_email:focus{
+	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}
+
+#fos_user_registration_form_plainPassword{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:30px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#fos_user_registration_form_plainPassword:focus{
+	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}
+
+#fos_user_registration_form_username{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:30px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#fos_user_registration_form_username:focus{
+	color:#999;
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-o-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	-ms-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}
+
+#inscrire{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:45px;
+	width:129px;
+	background-image: url(../../bundles/wittybar/images/btn_inscrire_normal.png); /* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+	margin-top:5px;
+	float:right;
+	cursor:pointer;
+}
+
+#inscrire:hover{
+	background-image:url(../../bundles/wittybar/images/btn_inscrire_hover.png);/* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+}
+
+/* --- POP UP Login --- */
+
+.popup.register{
+	display: none; /*--masqué par défaut--*/
+	background: #fff;
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	/*--Les différentes définitions de Box Shadow en CSS3--*/
+	-webkit-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 20px 4px rgba(0,0,0,0.5);
+	/*--Coins arrondis en CSS3--*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+}

@@ -51,13 +51,6 @@ class Project
     private $title;
 
     /**
-     * @var boolean $category
-     *
-     * @ORM\Column(name="category", type="boolean", nullable=false)
-     */
-    private $category;
-
-    /**
      * @var boolean $funded
      *
      * @ORM\Column(name="funded", type="boolean", nullable=false)
@@ -221,29 +214,6 @@ class Project
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set category
-     *
-     * @param boolean $category
-     * @return Project
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-    
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return boolean 
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 
     /**

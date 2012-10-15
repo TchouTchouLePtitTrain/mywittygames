@@ -52,8 +52,22 @@ class TransactionController extends Controller
 			$this->processPostTransaction($transaction, $logger); //Ajout des rewards et options achetés au User
 		}
 		
-		return new \Symfony\Component\HttpFoundation\Response('ok');
+		return $this->redirect($this->generateUrl('transaction_success_information', array('projectId' => $transaction->getRewards()->first()->getProject()->getId())));
 	}
+	
+    /**
+     * @Route("/success-information/{projectId}", requirements={"id" = "\d+"}, name="transaction_success_information")
+     */
+    public function successInformationAction($projectId)
+    {
+		$project = $this->getDoctrine()->getRepository("WittyProjectBundle:Project")->find($projectId);
+	
+		return $this->render('WittyTransactionBundle:Transaction:success.html.twig', 
+			array(
+				'project' => $project
+			));
+	}	
+
 	
 	
 	//Sauvegarde l'IPN reçu et renvoie la confirmation à Paypal

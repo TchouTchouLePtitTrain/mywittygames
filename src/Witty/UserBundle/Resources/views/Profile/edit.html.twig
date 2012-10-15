@@ -25,29 +25,39 @@
 				<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
 			</div>
 		</form>
+		
+		<br/>
+		<br/>
+		
+		<h2>Les projets que vous avez soutenus</h2>
+		<br/>
+		{% render "WittyUserBundle:Profile:displayRewards" %}
+		
+		<br/>
+		<br/>
+		
 		{% if user.games|length > 0 %}
-			Les projets que vous avez soutenus :
-			
-			{% for project in user.projectsFunded %}
-				{{ project.title }} => 
-					{% for userReward in user.userRewards() %}
-						{{ userReward.reward.title }} : {{ userReward.reward.description }}
-					{% endfor %}
-			{% endfor %}
-		{% endif %}
-
-		{% if user.games|length > 0 %}
-			Les jeux de la saison 2 auxquels vous avez participé
+			<h2>Les projets que vous avez soutenus en saisons 1 et 2</h2>
+			<br/>
 			{% for game in user.games %}
-				{{game.name}} => {{ game.sharesByUserId(user.id)|length }}
+				<p>Vous avez {{ game.sharesByUserId(user.id)|length }} parts de {{game.name}}.</p>
+				<br/>
 			{% endfor %}
 		{% endif %}
+		
+		<br/>
+		<br/>
+		
 		{% if user.credit > 0 %}
-			Votre crédit : {{ user.credit }} €
+			<h2>Votre crédit</h2>
+			<br/>
+			<p>Votre crédit est actuellement de {{ user.credit }} €</p>
 		{% endif %}
+		
+		<br/>
+		<br/>
 	</div>
 	
-	{% render "WittyUserBundle:Profile:displayRewards" %}
 	
 </div>	
 	

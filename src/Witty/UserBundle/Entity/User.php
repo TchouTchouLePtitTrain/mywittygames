@@ -40,6 +40,11 @@ class User extends BaseUser
     private $projects;
 	
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $projectComments;
+	
+    /**
      * @var \DateTime $createdAt
      */
     private $createdAt;
@@ -1233,4 +1238,42 @@ class User extends BaseUser
 	{
 		$this->credit = $this->credit + $somme;
 	}
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $project_comments;
+
+
+    /**
+     * Add project_comments
+     *
+     * @param Witty\ProjectBundle\Entity\Comment $projectComments
+     * @return User
+     */
+    public function addProjectComment(\Witty\ProjectBundle\Entity\Comment $projectComments)
+    {
+        $this->project_comments[] = $projectComments;
+    
+        return $this;
+    }
+
+    /**
+     * Remove project_comments
+     *
+     * @param Witty\ProjectBundle\Entity\Comment $projectComments
+     */
+    public function removeProjectComment(\Witty\ProjectBundle\Entity\Comment $projectComments)
+    {
+        $this->project_comments->removeElement($projectComments);
+    }
+
+    /**
+     * Get project_comments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getProjectComments()
+    {
+        return $this->project_comments;
+    }
 }

@@ -9452,91 +9452,62 @@ jQuery.effects||function(a,b){function c(b){var c;return b&&b.constructor==Array
 * Includes: jquery.effects.transfer.js
 * Copyright (c) 2012 AUTHORS.txt; Licensed MIT, GPL */
 (function(a,b){a.effects.transfer=function(b){return this.queue(function(){var c=a(this),d=a(b.options.to),e=d.offset(),f={top:e.top,left:e.left,height:d.innerHeight(),width:d.innerWidth()},g=c.offset(),h=a('<div class="ui-effects-transfer"></div>').appendTo(document.body).addClass(b.options.className).css({top:g.top,left:g.left,height:c.innerHeight(),width:c.innerWidth(),position:"absolute"}).animate(f,b.duration,b.options.easing,function(){h.remove(),b.callback&&b.callback.apply(c[0],arguments),c.dequeue()})})}})(jQuery);;
-// JavaScript Document
-
 $(document).ready(function() {
 	
 	//Lorsque vous cliquez sur un lien de la classe poplight et que le href commence par #
-//$('a.poplight[href^=#]').
-$('.popuplogin').click(function() {
-	
-	var popWidth = 390; //La première valeur du lien
+	//$('a.poplight[href^=#]').
+	$('[class*=popup_caller\\:]').click(function()
+	{
+		var popWidth = 410;
 
-	//Faire apparaitre la pop-up et ajouter le bouton de fermeture
+		//Faire apparaitre la pop-up et ajouter le bouton de fermeture
+			//Traitement de la liste de classes de l'élément pour récupérer le type de popup à afficher
+		var classes = $(this).attr('class'); //Liste des classes de l'élément caller
+		var chaine_temporaire = classes.substring(classes.indexOf('popup_caller:') + 'popup_caller:'.length, classes.length); //Sous chaîne, étape intermédiaire
+		var index_fin = chaine_temporaire.indexOf(' ');
+		if (index_fin = -1){ index_fin = chaine_temporaire.length;}
+		var type_popup = chaine_temporaire.substring(0, index_fin); //Le type de la popup, extrait de la liste de classes
+		var popup = $('.popup.'+type_popup); //Détermination de la popup à afficher
 		
-	$('#popup').css({
-		'width': popWidth
-	});
-	$('#popup').fadeIn();
-
-	//Récupération du margin, qui permettra de centrer la fenêtre - on ajuste de 80px en conformité avec le CSS
-	var popMargTop = ($('#popup').height() + 80) / 2;
-	var popMargLeft = ($('#popup').width() + 80) / 2;
-
-	//On affecte le margin
-	$('#popup').css({
-		'margin-top' : -popMargTop,
-		'margin-left' : -popMargLeft
-	});
-
-	//Effet fade-in du fond opaque
-	$('body').append('<div id="fade"></div>'); //Add the fade layer to bottom of the body tag.
-	//Apparition du fond - .css({'filter' : 'alpha(opacity=80)'}) pour corriger les bogues de IE
-	$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn();
-
-	return false;
-});
-
-//Fermeture de la pop-up et du fond
-$('a.close, #fade').live('click', function() { //Au clic sur le bouton ou sur le calque...
-	$('#fade , .popup_block').fadeOut(function() {
-		$('#fade').remove();  //...ils disparaissent ensemble
-	});
-	return false;
-});
-	
-});
-// JavaScript Document
-
-$(document).ready(function() {
-	
-	//Lorsque vous cliquez sur un lien de la classe poplight et que le href commence par #
-//$('a.poplight[href^=#]').
-$('.popupsignin').click(function() {
-	
-	var popWidth = 390; //La première valeur du lien
-
-	//Faire apparaitre la pop-up et ajouter le bouton de fermeture
+		popup.css({
+			'width': popWidth
+		});
 		
-	$('#popup2').css({
-		'width': popWidth
+		popup.css({
+			'width': popWidth
+		});
+		popup.fadeIn();
+
+		//Récupération du margin, qui permettra de centrer la fenêtre - on ajuste de 80px en conformité avec le CSS
+		var popMargTop = (popup.height() + 80) / 2;
+		var popMargLeft = (popup.width() + 80) / 2;
+
+		//On affecte le margin
+		popup.css({
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+
+		//Effet fade-in du fond opaque
+		$('body').append('<div id="fade"></div>'); //Add the fade layer to bottom of the body tag.
+		
+		//Apparition du fond - .css({'filter' : 'alpha(opacity=80)'}) pour corriger les bogues de IE
+		$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn();
+
+		//Focus sur le premier champ
+		popup.find('input[type!="hidden"]').first().focus();
+		
+		return false;
 	});
-	$('#popup2').fadeIn();
 
-	//Récupération du margin, qui permettra de centrer la fenêtre - on ajuste de 80px en conformité avec le CSS
-	var popMargTop = ($('#popup2').height() + 80) / 2;
-	var popMargLeft = ($('#popup2').width() + 80) / 2;
-
-	//On affecte le margin
-	$('#popup2').css({
-		'margin-top' : -popMargTop,
-		'margin-left' : -popMargLeft
+	//Fermeture de la pop-up et du fond
+	$('a.close, #fade').live('click', function() //Au clic sur le bouton ou sur le calque...
+	{
+		$('#fade , .popup').fadeOut(function()
+		{
+			$('#fade').remove();  //...ils disparaissent ensemble
+		});
+		return false;
 	});
-
-	//Effet fade-in du fond opaque
-	$('body').append('<div id="fade"></div>'); //Add the fade layer to bottom of the body tag.
-	//Apparition du fond - .css({'filter' : 'alpha(opacity=80)'}) pour corriger les bogues de IE
-	$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn();
-
-	return false;
-});
-
-//Fermeture de la pop-up et du fond
-$('a.close, #fade').live('click', function() { //Au clic sur le bouton ou sur le calque...
-	$('#fade , .popup_block2').fadeOut(function() {
-		$('#fade').remove();  //...ils disparaissent ensemble
-	});
-	return false;
-});
 	
 });

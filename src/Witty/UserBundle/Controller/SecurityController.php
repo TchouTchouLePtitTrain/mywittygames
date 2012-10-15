@@ -4,8 +4,13 @@ namespace Witty\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\SecurityController as BaseController;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Exception\AccountStatusException;
+use FOS\UserBundle\Model\UserInterface;
 
 class SecurityController extends BaseController
 {
@@ -87,11 +92,66 @@ class SecurityController extends BaseController
 		$response = $client->getResponse();
 		$content = $response->getContent();*/
 		
+		$form_register = $this->container->get('fos_user.registration.form');
+        $formHandler = $this->container->get('fos_user.registration.form.handler');
+        $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
+
+        $process = $formHandler->process($confirmationEnabled);
+        if ($process) {
+            $user = $form_register->getData();
+
+            $authUser = false;
+            if ($confirmationEnabled) {
+                $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
+                $route = 'fos_user_registration_check_email';
+            } else {
+                $authUser = true;
+                $route = 'fos_user_registration_confirmed';
+            }
+
+            $this->setFlash('fos_user_success', 'registration.flash.user_created');
+            $url = $this->container->get('router')->generate($route);
+            $response = new RedirectResponse($url);
+
+            if ($authUser) {
+                $this->authenticateUser($user, $response);
+            }
+
+            return $response;
+        }
+		
 		
         return $this->renderLogin(array(
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,
+			'form_register' => $form_register->createView()
         ));
+    }
+	
+	
+	/**
+     * Authenticate a user with Symfony Security
+     *
+     * @param \FOS\UserBundle\Model\UserInterface        $user
+     * @param \Symfony\Component\HttpFoundation\Response $response
+     */
+    protected function authenticateUser(UserInterface $user, Response $response)
+    {
+        try {
+            $this->container->get('fos_user.security.login_manager')->loginUser(
+                $this->container->getParameter('fos_user.firewall_name'),
+                $user,
+                $response);
+        } catch (AccountStatusException $ex) {
+            // We simply do not authenticate users which do not pass the user
+            // checker (not enabled, expired, etc.).
+        }
+    }
+	
+	
+	protected function setFlash($action, $value)
+    {
+        $this->container->get('session')->setFlash($action, $value);
     }
 }

@@ -1,3 +1,173 @@
+/* --- FAQ Witty --- */
+
+#container{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:1000px;
+}
+
+.blocTitrePage{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.titrePage_faq{
+	color:#4270be;
+}
+
+.descriptionPage_faq{
+	color:#514846;
+}
+
+/* --- Bloc contenu --- */
+
+#blocContenuFaq{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:960px;
+	height:100%;
+	background-color:#FFF;
+	border-radius:4px;
+	
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-o-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	
+	border: solid 1px #b7b7b7;
+	padding:20px 20px 10px 20px;	
+}
+
+/* --- Contenu question --- */
+
+.faq_p {
+    margin: 0px 10px 20px 10px;
+}
+.faq_p_last {
+    margin: 0 0 0 10px;
+}
+
+.faq_2 {
+border-bottom: solid 1px #DDDBDB;
+padding-top: 5px;
+padding-bottom: 10px;
+}
+
+.faq_3 {
+	color: #666;
+    font-family: 'Karla', sans-serif;
+    font-size: 1em;
+    margin-top:10px;
+}
+
+.faq_2_p {
+    margin: 0 0 10px 10px;
+}
+
+.faq_title_1 {
+	color: #514846;
+	display: block;
+	font-family: 'Crete Round',serif;
+	font-size: 1.500em;
+}
+
+.faq_title_1_hover {
+	color: #4270BE;
+}
+
+.faq_title_2 {
+    color: #333333;
+    font-family: 'Karla', sans-serif;
+    font-size: 1.125em;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+.faq_title_2_active {
+    color: #4270BE;
+    font-size: 1.125em;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+.faq_title_2_old {
+    color: #4270BE;
+    font-size: 1.125em;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+.faq_title_2:hover {
+    color: #4270BE;
+}
+.faq_2_active {
+    margin: 10px 0 5px;
+}
+.faq_2 {
+    display: none;
+    margin-top: 10px;
+}
+.active {
+    color: #4270BE;
+    font-family: 'Karla', sans-serif;
+    font-size: 1.500em;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+h2 a:visited {
+    color: #4270BE;
+    font-family: 'Karla', sans-serif;
+    margin: 0 0 5px;
+}
+
+.faq_infos{
+	display:block;
+	margin-top:10px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:20px;
+	padding:30px;
+	border: 1px solid #DDDBDB;
+	box-shadow: 0 0 0 10px #F7F7F7 inset,
+                0 0 0 11px #DDDBDB inset;
+}
+
+.partie1{
+	display:block;
+	width:295px;
+	float:left;
+	padding-right:35px;
+	border-right: solid 1px #DDDBDB;
+}
+
+.partie2{
+	display:block;
+	width:154px;
+	float:left;
+	padding-left:35px;
+	padding-right:35px;
+	border-right: solid 1px #DDDBDB;
+}
+
+.partie3{
+	display:block;
+	width:215px;
+	float:left;
+	padding-left:35px;
+}
+
+.texte_infos{	
+	font-family: 'Crete Round',serif;
+	font-size: 1.385em;
+	color: #514846;
+}
+
+.texte_infos2{
+	font-family: 'Karla', sans-serif;
+	font-size: 1em;
+	color: #666;
+	margin-top:5px;
+}
 /* --- WittyHome --- */
 
 #container{
@@ -24,7 +194,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size:16px;
+	font-size:1em;
 	color:#bfd7fe;
 	text-align:center;
 	margin-top:20px;
@@ -34,18 +204,20 @@
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	height:240px;
+	height:250px;
 	width:100%;
 	background-color:#4270be;
 	margin-bottom: 20px;
+	border-bottom: solid 1px rgba(0,0,0,0.5);
+	/*box-shadow: inset 0 1px 5px rgba(0,0,0,0.5);*/
 }
 
 .btn_sinscrireNow{
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	height:35px;
-	width:264px;
+	height:45px;
+	width:279px;
 	background-image:url(../../bundles/wittymwg/images/btn_sinscrire_normal.png);
 	margin-top:20px;
 	cursor:pointer;
@@ -53,305 +225,4 @@
 
 .btn_sinscrireNow:hover{
 	background-image:url(../../bundles/wittymwg/images/btn_sinscrire_hover.png);
-}
-
-/* --- Grand Bloc jeu --- */
-
-.bloc_jeu_grand{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	margin-bottom:20px;
-	width:960px;
-	height:100%;
-	background-color:#FFF;
-	border-radius:4px;
-	
-	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	-o-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	-ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	
-	border: solid 1px #b7b7b7;
-	padding:10px 0px 10px 10px;
-}
-
-.bloc_jeu_grand:hover{
-	background-color:#f7f7f7;
-}
-
-
-.img_jeu_grand{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	width:530px;
-	height:360px;
-	background-color:#000;
-	border-top-left-radius:4px;
-	border-bottom-left-radius:4px;
-	float:left;
-}
-
-.bloc_jeu_haut_grand{
-	display:block;
-	width:370px;
-	height:200px;
-	float:left;
-	margin-left:30px;
-	margin-right:30px;
-}
-
-.titreJeu_grand{
-	font-family: 'Cabin Sketch', cursive;
-	display:block;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	font-size:30px;
-	color:#4270be;
-	margin-bottom:16px;
-}
-
-.descriptionJeu_grand{
-	font-family: 'Cabin Sketch', cursive;
-	display:block;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	font-size:16px;
-	color:#514846;
-	line-height: 1.2;
-	margin-bottom:10px;
-}
-
-.texteJeu_grand{
-	font-family:Arial, Helvetica, sans-serif;
-	display:block;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	font-size:14px;
-	color:#786e6c;
-	line-height: 1.2;
-	margin-bottom:10px;
-}
-
-.bloc_jeu_bas_grand{
-	display:block;
-	width:400px;
-	height:128px;
-	background-image: -moz-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%);
-	border-top: solid 1px #b7b7b7;
-	border-bottom: solid 1px #b7b7b7;
-	float:left;
-	padding-top:15px;
-	padding-bottom:15px;
-	padding-left:30px;
-}
-
-.bloc_caracteritiques_grand{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	height:75px;
-	width:133px;
-	float:left;
-}
-
-.style_NBcaracteritiques_grand{
-	font-family: 'Crete Round', serif;
-	font-size:30px;
-	color:#514846;
-	text-align:center;
-	margin-bottom:10px;
-}
-
-.style_caracteritiques_grand{
-	font-family: 'Crete Round', serif;
-	font-size:14px;
-	color:#514846;
-	text-align:center;
-	margin-bottom:10px;
-}
-
-.img_user_grand{
-	display:block;
-	background-image:url(../../bundles/wittymwg/images/btn_user.png);
-	width:54px;
-	height:47px;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	opacity:0.7;
-	margin-top:5px;
-	margin-bottom:3px;
-}
-
-.img_piggy_grand{
-	display:block;
-	background-image:url(../../bundles/wittymwg/images/btn_piggy.png);
-	width:54px;
-	height:47px;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	opacity:0.7;
-	margin-top:5px;
-	margin-bottom:3px;
-}
-
-.img_clock_grand{
-	display:block;
-	background-image:url(../../bundles/wittymwg/images/btn_clock.png);
-	width:54px;
-	height:47px;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	opacity:0.7;
-	margin-top:5px;
-	margin-bottom:3px;
-}
-
-
-
-/* --- Bloc jeu --- */
-
-.bloc_jeu{
-	display:block;
-	margin-left:10px;
-	margin-right:10px;
-	margin-bottom:20px;
-	width:310px;
-	height:1OO%;
-	background-color:#FFF;
-	border-radius:4px;
-	
-	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	-o-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	-ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-	
-	border: solid 1px #b7b7b7;
-	float:left;
-}
-
-.img_jeu{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	width:100%;
-	height:170px;
-	background-color:#000;
-	border-top-left-radius:4px;
-	border-top-right-radius:4px;
-	border: solid 1px #b7b7b7;
-	margin-bottom:16px;
-}
-
-.titreJeu{
-	font-family: 'Cabin Sketch', cursive;
-	display:block;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	font-size:30px;
-	color:#4270be;
-	text-align:center;
-	margin-bottom:16px;
-}
-
-.descriptionJeu{
-	font-family: 'Cabin Sketch', cursive;
-	display:block;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	font-size:14px;
-	color:#514846;
-	text-align:center;
-	line-height: 1.2;
-	margin-bottom:10px;
-}
-
-.bloc_jeu_haut{
-	display:block;
-	width:290px;
-	height:1OO%;
-	background-color:#FFF;
-	padding:10px;
-	border-top-left-radius:4px;
-	border-top-right-radius:4px;
-}
-
-.bloc_jeu_haut:hover{
-	background-color:#f7f7f7;
-}
-
-.bloc_jeu_bas{
-	display:block;
-	width:100%;
-	height:75px;
-	background-image: -moz-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
-	border-bottom_left-radius:4px;
-	border-bottom_right-radius:4px;
-	border-top: solid 1px #b7b7b7;
-}
-
-.bloc_caracteritiques{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	height:75px;
-	width:103px;
-	float:left;
-}
-
-.style_caracteritiques{
-	font-family: 'Crete Round', serif;
-	font-size:20px;
-	color:#514846;
-	text-align:center;
-}
-
-.img_user{
-	display:block;
-	background-image:url(../../bundles/wittymwg/images/btn_user_petit.png);
-	width:41px;
-	height:35px;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	opacity:0.7;
-	margin-top:5px;
-	margin-bottom:3px;
-}
-
-.img_piggy{
-	display:block;
-	background-image:url(../../bundles/wittymwg/images/btn_piggy_petit.png);
-	width:41px;
-	height:35px;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	opacity:0.7;
-	margin-top:5px;
-	margin-bottom:3px;
-}
-
-.img_clock{
-	display:block;
-	background-image:url(../../bundles/wittymwg/images/btn_clock_petit.png);
-	width:41px;
-	height:35px;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	opacity:0.7;
-	margin-top:5px;
-	margin-bottom:3px;
 }

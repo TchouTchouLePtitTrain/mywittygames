@@ -1,0 +1,7 @@
+{% for comment in comments %}
+	<div class="comm">
+		<img class="img_profil2" src="{{ comment.user.avatar }}" alt=""/>
+		<p class="nom_edinaute">{{ comment.user.label }}<time datetime="{{ comment.getCreationDate|date('m/d/Y') }}" class="date_comm">Il y a {{ comment.delay }}</p>
+		<p class="texte_comm">{{ comment.content|nl2br }}</p>
+	</div>
+{% endfor %}

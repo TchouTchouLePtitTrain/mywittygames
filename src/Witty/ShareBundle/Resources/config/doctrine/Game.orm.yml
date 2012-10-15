@@ -18,11 +18,6 @@ Witty\ShareBundle\Entity\Game:
             unsigned: false
             nullable: true
             column: level_id
-        typeId:
-            type: integer
-            unsigned: false
-            nullable: true
-            column: type_id
         createdAt:
             type: datetime
             nullable: false

@@ -1,4 +1,4 @@
-wittymwg_accueil:
+mwg_accueil:
     pattern:   /
     defaults:  { _controller: WittyMwgBundle:Home:index }
     

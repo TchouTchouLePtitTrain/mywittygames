@@ -1,16 +1,15 @@
 <div>
 	{% for userReward in userRewards %}
 	
-		{{ userReward.reward.title }}<br/>
-	
-		{{ userReward.id}}<br/>
-		{{ userReward.reward.project.title }}<br/>
-		<a href="{{ path('annuler_contrepartie', {'userRewardId': userReward.id}) }}">Annuler cette contrepartie</a><br/>
+		<p>{{ userReward.reward.project.title }} - {{ userReward.reward.title }}</p>
+		<a style='margin-left:100px;float:left' href="{{ path('annuler_contrepartie', {'userRewardId': userReward.id}) }}"><p>Annuler cette contrepartie</p></a><br/>
 		
 		{% for userRewardOption in app.user.getUserRewardOptionsByRewardId(userReward.reward.id) %}
 			
-			{{ userRewardOption.id}}<br/>
-			{{ userRewardOption.rewardOption.title }}<br/>
+			<p>
+				{{ userRewardOption.id}}<br/>
+				{{ userRewardOption.rewardOption.title }}<br/>
+			</p>
 			
 		{% endfor %}
 	{% endfor %}

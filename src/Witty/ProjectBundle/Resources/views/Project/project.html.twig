@@ -83,20 +83,21 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
         
         <section class="item">
             <div id="commenter">
-                <p class="texte">Publier votre commentaire</p>
-                <div id="champs_commentaire">
-                	<textarea class="commentaire"></textarea>
-                </div>
-                <a class="btn_commenter"></a>
+				{% if app.user %}
+					<p class="texte">Publiez votre commentaire</p>
+					<div id="champs_commentaire">
+						<textarea class="commentaire"></textarea>
+					</div>
+					<a class="btn_commenter"></a>
+					<div class="spacer"></div>
+				{% else %}
+					<p>Identifiez-vous pour laisser un commentaire.</p>
+				{% endif %}
             </div>
 			
-			{% for comment in project.comments %}
-				<div class="comm">
-					<img class="img_profil2" src="{{ comment.user.avatar }}" alt=""/>
-					<p class="nom_edinaute">{{ comment.user.label }}<time datetime="{{ comment.getCreationDate|date('m/d/Y') }}" class="date_comm">{{ comment.delay }}</p>
-					<p class="texte_comm">{{ comment.content }}</p>
-				</div>
-			{% endfor %}
+			<div class="blocComments">
+				{% render "WittyProjectBundle:Project:blocComments" with {'projectId': project.id}  %}
+			</div>
         </section>
         
         <section id="contenuJeuDroite">
@@ -126,19 +127,18 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
                 <a class="btn_soutenir"></a>   
             </div>
             
-            <!--  BLOC NON FINI D'INTEGRER ! A REVOIR QUAND ON VOUDRA LE METTRE EN LIGNE, BISOUS :)
-            
-            <div id="blocEditeur">
-            	<div id="img_nom">
-                    <img class="img_profil2" src="" alt=""/>
-                    <p class="texte_editeur">Un jeu de<a class="nom_editeur">{{ project.creator.username }}</a></p>
-                </div>
-                <p class="texte_editeur">Adresse : <br/><br/>Téléphone :</p>
-                <p class="texte_editeur">Site :<br/><br/>Facebook : <br/><br/>Twitter :</p>
-                <div class="spacer"></div>
-            </div>
-            
-            -->
+ 
+            {# BLOC NON FINI D'INTEGRER ! A REVOIR QUAND ON VOUDRA LE METTRE EN LIGNE, BISOUS :)
+				<div id="blocEditeur">
+					<div id="img_nom">
+						<img class="img_profil2" src="" alt=""/>
+						<p class="texte_editeur">Un jeu de<a class="nom_editeur">{{ project.creator.username }}</a></p>
+					</div>
+					<p class="texte_editeur">Adresse : <br/><br/>Téléphone :</p>
+					<p class="texte_editeur">Site :<br/><br/>Facebook : <br/><br/>Twitter :</p>
+					<div class="spacer"></div>
+				</div>
+            #}
             
 			{% render "WittyProjectBundle:Project:blocRewards" with {'project': project, 'linking': true}  %}
 			
@@ -158,4 +158,24 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
     {% javascripts 'bundles/wittyproject/js/*.js' %}
         <script src="{{ asset_url }}" type="text/javascript"></script>
     {% endjavascripts %}
+	
+	<script>
+		$(document).ready(function(){
+
+			$('a.btn_commenter').click(function()
+			{
+				var data = {
+					content: $('textarea.commentaire').val(),
+					projectId: {{ project.id }}
+				};
+			
+				//Ajout du commentaire
+				$.post("{{ path('project_addComment') }}", data, function(response){
+						
+					//Rechargement du bloc commentaires
+					$('.blocComments').html(response);
+				});
+			});
+		});
+	</script>
 {% endblock %}

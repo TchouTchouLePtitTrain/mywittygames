@@ -1,19 +1,32 @@
-project_accueil:
-    pattern:   /
-    defaults:  { _controller: WittyProjectBundle:Project:index }
-    
 project_confirmation:
     pattern:   /soutien/{id}
     defaults:  { _controller: WittyProjectBundle:Project:confirmation }
     requirements:
         page:  \d+
         
-project_display:
-    pattern:   /{slug}
-    defaults:  { _controller: WittyProjectBundle:Project:display }
 
 project_blocRecapReward:
     pattern:   /recapReward/{rewardId}
     defaults:  { _controller: WittyProjectBundle:Project:blocRecapReward }
     requirements:
         page:  \d+
+
+project_blocComments:
+    pattern:   /commentaires-projet/{projectId}
+    defaults:  { _controller: WittyProjectBundle:Project:blocComments }
+    requirements:
+        page:  \d+
+
+project_addComment:
+    pattern:   /ajouter-commentaire
+    defaults:  { _controller: WittyProjectBundle:Project:addComment }
+    requirements:
+        _method:  POST
+    
+project_display:
+    pattern:   /{slug}
+    defaults:  { _controller: WittyProjectBundle:Project:display }
+    
+project_accueil:
+    pattern:   /
+    defaults:  { _controller: WittyProjectBundle:Project:index }

@@ -25,11 +25,6 @@ class Game
     private $levelId;
 
     /**
-     * @var integer $typeId
-     */
-    private $typeId;
-
-    /**
      * @var \DateTime $createdAt
      */
     private $createdAt;
@@ -171,29 +166,6 @@ class Game
     public function getLevelId()
     {
         return $this->levelId;
-    }
-
-    /**
-     * Set typeId
-     *
-     * @param integer $typeId
-     * @return Game
-     */
-    public function setTypeId($typeId)
-    {
-        $this->typeId = $typeId;
-    
-        return $this;
-    }
-
-    /**
-     * Get typeId
-     *
-     * @return integer 
-     */
-    public function getTypeId()
-    {
-        return $this->typeId;
     }
 
     /**

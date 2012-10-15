@@ -178,9 +178,10 @@ section{
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	height:230px;
+	/*height:230px;*/
 	border-bottom: solid 1px #dddbdb;
 	margin-bottom:20px;
+	padding-bottom:10px;
 }
 
 .commentaire{
