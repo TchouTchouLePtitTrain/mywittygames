@@ -59,12 +59,16 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
         </section>
         
         <section class="item">
-			{% for news in project.news %}
-				<article>
-					<p class="soustitre">{{ news.title }}</p>
-					<p class="texte">{{ news.content}}</p>
-				</article>
-			{% endfor %}
+			{% if project.news|length > 0 %}
+				{% for news in project.news %}
+					<article>
+						<p class="soustitre">{{ news.title }}</p>
+						<p class="texte">{{ news.content}}</p>
+					</article>
+				{% endfor %}
+			{% else %}
+				<p>Il n'y a pas encore de news sur ce jeu</p>
+			{% endif %}
 		</section>
         
         <section class="item">

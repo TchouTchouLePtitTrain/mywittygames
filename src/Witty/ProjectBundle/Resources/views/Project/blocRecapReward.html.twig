@@ -8,8 +8,8 @@
 	<input type="hidden" name="amount" value="{{ app.user.credit - min( (reward.cost - creditRecuperable), app.user.credit) }}"/>
 	<input type="hidden" value="EUR" name="currency_code">
 	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_success') }}" name="notify_url"> {# adresse de retour des IPN -> transaction/sendback #}
-	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_cancel') }}" name="cancel_url"> {# adresse de retour des IPN -> transaction/sendback #}
-	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_return') }}" name="return_url"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_cancel') }}" name="cancel_return"> {# adresse de retour des IPN -> transaction/sendback #}
+	<input type="hidden" value="{{ public_url_mwg }}{{ path('transaction_success_information', { projectId: reward.project.id }) }}" name="return"> {# adresse de retour des IPN -> transaction/sendback #}
 
 	{# Champs pour la configuration de paypal #}
 	<input type="hidden" value="1" name="no_note"> {# pas de commentaire lors de l'achat #}
