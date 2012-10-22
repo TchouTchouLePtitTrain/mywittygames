@@ -147,3 +147,14 @@
     font-size: 0.875em;
     line-height: 1.2;
 }
+
+.btn_mettreajour{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:45px;
+	width:307px;
+	background-image: url(../../wittyuser/images/btn_enregistrerModif_normal.png);
+	margin-left:0px;
+	float:left;
+}

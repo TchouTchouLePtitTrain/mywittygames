@@ -22,7 +22,7 @@
 		<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
 			{{ form_widget(form) }}
 			<div>
-				<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+				<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" class:"btn_mettreajour" />
 			</div>
 		</form>
 		
@@ -30,14 +30,10 @@
 		<br/>
 		
 		<p class="texte_profil">Les projets que vous avez soutenus</p>
-		<br/>
 		{% render "WittyUserBundle:Profile:displayRewards" %}
 		
-		<br/>
-		
 		{% if user.games|length > 0 %}
-			<h2>Les projets que vous avez soutenus en saisons 1 et 2</h2>
-			<br/>
+			<p class="texte_profil">Les projets que vous avez soutenus en saisons 1 et 2</p>
 			{% for game in user.games %}
 				<p>Vous avez {{ game.sharesByUserId(user.id)|length }} parts de {{game.name}}.</p>
 			{% endfor %}

@@ -93,3 +93,11 @@
     width: 200px;
     display:block;
 }
+
+.error{
+	color: #C04906;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 0.813em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
