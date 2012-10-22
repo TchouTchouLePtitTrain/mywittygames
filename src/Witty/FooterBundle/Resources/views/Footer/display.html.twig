@@ -2,13 +2,13 @@
 	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
 {% endstylesheets %}
 
-
+<div id="footer">
 
 <div id="footer1">
-	<div class="bloc_footer1 filet_footer1">
-		<img class="icon_cadena" src="" alt=""/>
-		<p class="texte_footer1"> PAIEMENT SECURISE </p>
-		<img class="img_cb" src="" alt=""/>
+	<div class="bloc_footer11 filet_footer1">
+		<div class="icon_cadena" src="" alt=""></div>
+		<p class="texte_footer1"> PAIEMENT SECURISE : </p>
+		<div class="img_cb" src="" alt=""></div>
 	</div>
 	{#
 	<div class="bloc_footer1 filet_footer1">
@@ -17,11 +17,10 @@
 		<p class="texte_footer2"> Commande 24h/24 - 7j/7 </p>
 	</div>
 	#}
-	<div class="bloc_footer1 filet_footer1">
-		<img class="icon_service" src="" alt=""/>
-		<p class="texte_footer1"> SERVICE CLIENT </p>
-		<p class="texte_footer2">01 43 43 41 68 (prix d'un appel local)</p>
-		<p class="texte_footer2">contact@mywittygames.com </p>
+	<div class="bloc_footer12">
+		<div class="icon_service" src="" alt=""></div>
+		<p class="texte_footer1"> SERVICE CLIENT : </p>
+		<p class="texte_footer2">01 43 43 41 68 (prix d'un appel local) - contact@mywittygames.com</p>
 	</div>
 	{#
 	<div class="bloc_footer1">
@@ -50,7 +49,6 @@
 				<a class="texte_footer_hover">L'équipe</a> - <a class="texte_footer_hover">Forum</a>
 			</p>
 			#}
-			<br/>
 			{#
 			<p class="texte_footer3"> ESPACE PRO </p>
 			<p class="texte_footer2">
@@ -58,9 +56,6 @@
 			</p>
 			<p class="texte_footer2"> <a class="texte_footer_hover">Nous contacter</a> </p>
 			#}
-		</div>
-		
-		<div class="bloc_footer2">
 			<p class="texte_footer3"> AIDE </p>
 			{#
 			<p class="texte_footer2">
@@ -70,7 +65,9 @@
 			<p class="texte_footer2">
 				<a class="texte_footer_hover" href="{{ path('mwg_faq') }}">FAQ</a>
 			</p>
-			<br/>
+		</div>
+		
+		<div class="bloc_footer2">
 			<p class="texte_footer3"> INFOS LEGALES </p>
 			<p class="texte_footer2">
 				<a class="texte_footer_hover" href="{{ path('mwg_cgu') }}">Conditions Générales d'Utilisation</a>
@@ -91,9 +88,9 @@
 		</div>
 		
 		<div class="bloc_footer2">
-			<p class="texte_footer3"> REJOIGNEZ L'AVENTURE<br/>MY WITTY GAMES </p>
-			<p class="texte_footer2"> My Witty Games vous propose une sélection <br/>rigoureuse de jeux de société testés par <br/>notre équipe ainsi que notre communauté <br/>de passionnés, avec la garantie qu'ils plairont à tous.<br/><br/>Venez les soutenir et les aider à exister.</p>
-			<img class="logo_footer" src="" alt=""/>
+			<p class="texte_footer3"> REJOIGNEZ L'AVENTURE</p>
+			<p class="texte_footer2"> My Witty Games vous propose une sélection <br/>rigoureuse de jeux de société testés par <br/>notre équipe ainsi que notre communauté <br/>de passionnés, avec la garantie qu'ils plairont à tous.<br/>Venez les soutenir et les aider à exister.</p>
+			{# <div class="logo_footer" src="" alt=""></div> #}
 		</div>	
 	</div>
 </div>
@@ -102,6 +99,8 @@
 	<div id="footer_contenu">
 		<p class="copyright"> © 2012 MyWittyGames - Tous droits réservés </p>
 	</div>
+</div>
+
 </div>
 
 

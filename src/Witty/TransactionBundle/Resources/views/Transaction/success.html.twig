@@ -1,18 +1,22 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets %}
+    {% stylesheets 'bundles/wittytransaction/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block content %}
 
 <div id="container">
 
-	<p class="titrePage">Confirmation de soutien</p>
-	<div id="blocContenuProfil">
-		<p>
-			Merci d'avoir soutenu {{ project.title }}.
-		</p>
-	</div>
+	<div class="blocTitrePage">
+    	<p class="titrePage">Confirmation de soutien</p>
+        <p class="descriptionPage">Merci d'avoir soutenu {{ project.title }}.</p>
+		<p class="infosPage">Vous allez &ecirc;tre redirig&eacute; dans 10 secondes</p>
+    </div>
 	
 	
 </div>	

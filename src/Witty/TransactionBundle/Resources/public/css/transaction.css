@@ -1,24 +1,16 @@
-/* --- WittyProject --- */
+/* --- WittyTransaction --- */
 
-#container{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	width:1000px;
-}
-
-/* --- Titre Page --- */
 
 .blocTitrePage{
 	margin-top: 20px;
 	margin-bottom: 40px;
 }
 
-.titrePage_projet{
+.titrePage{
 	color:#4270be;
 }
 
-.descriptionPage_projet{
+.descriptionPage{
 	color:#514846;
 }
 
@@ -32,10 +24,4 @@
 	color:#999;
 	text-align:center;
 	margin-top:20px;
-}
-
-.rejoignez{
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:1em;
-	color:#999;
 }

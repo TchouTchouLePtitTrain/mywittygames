@@ -13,10 +13,10 @@
 		{% set affichage = 'petit' %}
 	{% endif %}
  
- 	{% if loop.first %} <img class="ruban"/> {% endif %}
+ 	{% if loop.first %} <div class="ruban"></div> {% endif %}
 	<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
 		class="bloc_jeu {{affichage}}">
-		<img class="img_jeu" src="{{ project.image }}" alt=""/>
+		<div class="img_jeu" src="{{ project.image }}" alt=""></div>
 		<div class="bloc_jeu_haut">
 			<p class="titreJeu">{{ project.title }}</p>
 			<p class="descriptionJeu">{{ project.shortDescription }}</p>
@@ -28,21 +28,21 @@
 				{% if affichage == 'grand' %}
 					<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
 				{% endif %}
-				<img class="img_user"/>
+				<div class="img_user"></div>
 			</div>
 			<div class="bloc_caracteristiques">
 				<p class="style_NBcaracteritiques">{{ project.funding }}</p>
 				{% if affichage == 'grand' %}
 					<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
 				{% endif %}
-				<img class="img_piggy"/>
+				<div class="img_piggy"> </div>
 			</div>
 			<div class="bloc_caracteristiques">
 				<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
 				{% if affichage == 'grand' %}					
 					<p class="style_caracteristiques">jours<br/>restants</p>
 				{% endif %}
-				<img class="img_clock"/>
+				<div class="img_clock"></div>
 			</div>
 			<div class="spacer"></div>
 		</div>

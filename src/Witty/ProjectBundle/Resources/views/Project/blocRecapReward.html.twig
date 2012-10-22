@@ -39,19 +39,17 @@
 	
 	
 	{% if app.user.getUserRewardsByProjectId(reward.project.id)|length > 0 %}
-		<p class="sousTitre_recap">Vous avez déjà la contrepartie</p>
-		<br/>
-		<p class="sousTitre_recap">{{ first(app.user.getUserRewardsByProjectId(reward.project.id)).reward.title }}</p>
-		<br/>
-		<p class="sousTitre_recap">Vous allez l'annuler et choisir la contrepartie suivante :</p>
-		<br/>
+		<p class="sousTitre_recap">Vous allez annuler la contrepartie :</p>
+		<p class="contrepartie_choisie">{{ first(app.user.getUserRewardsByProjectId(reward.project.id)).reward.title }}</p>
+		<p class="sousTitre_recap">Et obtenir la contrepartie :</p>
 	{% endif %}
 	
-	<p class="sousTitre_recap">{{ reward.title }}</p>
+	<p class="contrepartie_choisie">{{ reward.title }}</p>
 	<input type='hidden' id='reward_value' name="reward_value" value='{{ reward.cost }}'/>
 	<input type='hidden' id='reward_id' name="reward_id" value='{{ reward.id }}'/>
 	<br/>
-	
+	<br/>
+	<br/>
 	{% if reward.options|length > 0 %}
 	
 		<hr class="filet"/>
@@ -75,7 +73,7 @@
 	<p class="sousTitre_recap">Coût total</p>
 	
 	<div class="paiement_recap">
-		<img class="img_merci" alt=""/>
+		<div class="img_merci" alt=""></div>
 		<div class="paiement_recap_texte">
 			Montant de votre soutien
 			<p class="euro"> <output type='number' id='total_reward' name='total_reward'>{{ reward.cost }}</output> €</p>

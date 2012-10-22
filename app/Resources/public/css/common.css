@@ -28,6 +28,14 @@ h2{
 	line-height: 1.2;
 }
 
+img {
+  border: none;
+}
+
+input, textarea, select{
+  outline: none;
+}
+
 /* Classes courantes */
 
 .titrePage{
@@ -58,4 +66,8 @@ h2{
 }
 .centre{
 	margin: 0 auto;
+}
+
+footer{
+	bottom:0px;
 }

@@ -29,11 +29,10 @@
 		<br/>
 		<br/>
 		
-		<h2>Les projets que vous avez soutenus</h2>
+		<p class="texte_profil">Les projets que vous avez soutenus</p>
 		<br/>
 		{% render "WittyUserBundle:Profile:displayRewards" %}
 		
-		<br/>
 		<br/>
 		
 		{% if user.games|length > 0 %}
@@ -41,16 +40,13 @@
 			<br/>
 			{% for game in user.games %}
 				<p>Vous avez {{ game.sharesByUserId(user.id)|length }} parts de {{game.name}}.</p>
-				<br/>
 			{% endfor %}
 		{% endif %}
 		
 		<br/>
-		<br/>
 		
 		{% if user.credit > 0 %}
-			<h2>Votre crédit</h2>
-			<br/>
+			<p class="texte_profil">Votre crédit</p>
 			<p>Votre crédit est actuellement de {{ user.credit }} €</p>
 		{% endif %}
 		

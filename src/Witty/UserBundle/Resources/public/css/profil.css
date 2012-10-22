@@ -60,6 +60,60 @@
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
+#blocContenuProfil input[type=email]{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:30px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#blocContenuProfil input[type=email]:focus{
+	color:#999;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}
+
+#blocContenuProfil input[type=password]{
+	display:block;
+	border: 1px solid #dddbdb;
+	padding:5px;
+	margin:0;
+	height:30px;
+	width:330px;
+	background-color:#FFF;
+	margin-top:15px;
+	margin-bottom:20px;
+	border-radius:4px;
+	padding-left:15px;
+	font-style:italic;
+	color:#CCC;
+	font-size:1em;
+}
+
+#blocContenuProfil input[type=password]:focus{
+	color:#999;
+	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
+}
+
+#fos_user_profile_form_sex{
+	margin-top:15px;
+	margin-bottom:15px;
+}
+
+#fos_user_profile_form_birthdate{
+	margin-top:15px;
+	margin-bottom:15px;
+}
+
 .avatar{
 	display:block;
 	float:right;
@@ -79,4 +133,17 @@
     font-size: 0.813em;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+.projets_soutenus{
+	display:block;
+	height:100%;
+	width:450px;
+}
+
+.annuler_contrepartie{
+	color: #786E6C;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 0.875em;
+    line-height: 1.2;
 }
