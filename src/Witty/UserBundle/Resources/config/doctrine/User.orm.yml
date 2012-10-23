@@ -131,9 +131,6 @@ Witty\UserBundle\Entity\User:
             fixed: false
             nullable: true
             column: password_dp
-        origine:
-            type: boolean
-            nullable: true
         old_password:
             type: string
             length: 255

@@ -163,11 +163,6 @@ class User extends BaseUser
      * @var string $passwordDp
      */
     private $passwordDp;
-
-    /**
-     * @var boolean $origine
-     */
-    private $origine;
 	
     /**
      * @var boolean $newsletter
