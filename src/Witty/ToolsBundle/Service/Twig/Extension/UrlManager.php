@@ -45,7 +45,11 @@ class UrlManager extends \Twig_Extension
 		switch ($type)
 		{
 			case 'project':
-				$url = $this->urlSite.'project/'.$id;
+				$url = $this->endpointS3.'project/'.$id.'/'.$filename;
+				break;
+				
+			case 'project_description':
+				$url = $this->endpointS3.'project/'.$id.'/description/'.$filename;
 				break;
 				
 			case 'avatar':

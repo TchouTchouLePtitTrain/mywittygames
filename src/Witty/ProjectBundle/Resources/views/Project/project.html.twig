@@ -31,8 +31,11 @@
     <div id="blocContenuJeu">
     
     	<section class="item">
-        	<video class="video" src="{{ project.video }}" ></video>
-        	<article>
+        	{# <video class="video" src="{{ project.video }}" ></video> #}
+        	<img src="{{ url_asset('project', project.id, project.image) }}" style="width:100%"/>
+			{{ project.description|raw }}
+		
+		{#<article>
             	<p class="soustitre">Description du jeu </p>
             	<p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
 
@@ -55,7 +58,7 @@ Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
 Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
 
 Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
-        </article>
+        </article> #}
         </section>
         
         <section class="item">

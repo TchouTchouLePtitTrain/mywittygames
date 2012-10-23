@@ -20,8 +20,8 @@ parameters:
     witty.public_url_mwg: http://87.91.25.164
     
 #Paramètres des services
-    witty.s3.bucket: mywittygames
-    witty.s3.endpoint: https://s3-eu-west-1.amazonaws.com/mywittygames/
+    witty.s3.bucket: mywittygamesdev
+    witty.s3.endpoint: https://s3-eu-west-1.amazonaws.com/mywittygamesdev/
     witty.s3.options: 
         key: AKIAICH4QGFKNEHOOZAA
         secret: 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
