@@ -20,6 +20,10 @@ Witty\UserBundle\Entity\User:
         projectComments:
             targetEntity: Witty\ProjectBundle\Entity\Comment
             mappedBy: user
+    manyToMany:
+        flux:
+            targetEntity: Witty\NewsBundle\Entity\Flux
+            inversedBy: users
     fields:
         id:
             id: true

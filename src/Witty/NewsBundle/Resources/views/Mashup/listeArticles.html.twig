@@ -1,0 +1,32 @@
+<link href="static/css/home/news.css" type="text/css" rel="stylesheet" />
+
+{% if ($items) %}
+	{% for item in items %}
+
+		<article class="new">
+		
+			<h2 class="titre"><a href="{{ item.link }}" target="_blank">{{ item.title }}</a></h2>
+			<p class="infos">par <a href="{{ item.link }}" target="_blank" class="source">{{ item.flux.name }}</a>
+				, il y a 
+				<time datetime="{{ item.creationDate }}">{{ item.delay }}
+					<?php 
+						$intervalle = date_diff(new Datetime(), new Datetime($itemFlux['created']));
+						
+						if ($intervalle->y !== 0) echo $intervalle->format('%y an'.(($intervalle->y > 1)? 's' : ''));
+						elseif ($intervalle->m !== 0) echo $intervalle->format('%m moi'.(($intervalle->m > 1)? 's' : ''));
+						elseif ($intervalle->d !== 0) echo $intervalle->format('%d jour'.(($intervalle->d > 1)? 's' : ''));
+						elseif ($intervalle->h !== 0) echo $intervalle->format('%h heure'.(($intervalle->h > 1)? 's' : ''));
+						else echo $intervalle->format('%i minute'.(($intervalle->m > 1)? 's' : ''));
+					?>
+				</time>
+			</p>
+			<div id="texte+image">
+				<?php if ($itemFlux['image'] != ''){  ?>
+					<a class="lien-image" href="<?php echo $itemFlux['link']; ?>" target="_blank"><img class="image carree" src="<?php echo $itemFlux['image']; ?>" alt="<?php echo $itemFlux['title']; ?>"/></a>
+				<?php } ?>
+				<a class="texte" href="<?php echo $itemFlux['link']; ?>" target="_blank"><?php echo substr($itemFlux['accroche'], 0, 450); ?>   <span class="lire_la_suite">Lire la suite</span></a>
+			</div>
+		</article>
+
+	{% endfor %}
+{% endif %}

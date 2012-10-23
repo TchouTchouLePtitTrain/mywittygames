@@ -45,6 +45,11 @@ class User extends BaseUser
     private $projectComments;
 	
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $flux;
+	
+    /**
      * @var \DateTime $createdAt
      */
     private $createdAt;

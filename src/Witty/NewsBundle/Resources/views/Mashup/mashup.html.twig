@@ -1,0 +1,247 @@
+<link href="static/css/home/default.css" type="text/css" rel="stylesheet" />
+
+<!-- Formulaire de login -->
+<div style="display:none">
+    <?php $this->load->view('common/login'); ?>
+</div>
+
+
+<!-- Contenu -->
+
+<!-- News et filtres -->
+<div id="contenu">
+
+	<section id="blocnews">
+		<section id="liste_articles">
+			<?php $this->load->view('home/liste_articles.php'); ?>
+		</section>
+
+		<div id="filtrer">
+			<div id="filtrerNews"><a class="filtrerTexte">Filtrer les news</a></div>
+			<!-- <div id="filtrerRecherche">
+				<form method="get" action="#" id="rechercher">
+					<input type="text" name="rechercher" placeholder="Rechercher un site..."/>
+					<input type="submit" value=""/>
+				</form>
+			</div> -->
+			<div id="filtrerLangue"><input type="checkbox" name="check-1" class="check-langue" id="chbox_fr" checked="checked"/><label for="check-3">Sites français</label></div>	
+			<div id="filtrerBloc">
+				<?php foreach ($flux_francais as $flux) {?>
+					<input type="checkbox" name="flux_<?php echo $flux['id']; ?>" class="check-source" value="1" data-type-flux="fr" id="chbox_flux_<?php echo $flux['id']; ?>" <?php if (in_array($flux['id'], $fluxAffichage)) echo "checked='checked'"; ?> />
+					<label class="sourceTexte" for="chbox_flux_<?php echo $flux['id']; ?>"><?php echo $flux['name']; ?></label>
+					<br/>
+				<?php } ?>
+			</div>
+			
+			<div id="filtrerLangue"><input type="checkbox" name="check-1" class="check-langue" id="chbox_en" checked="checked"/><label for="check-3">Sites anglais</label></div>	
+			<div id="filtrerBloc">
+				<?php foreach ($flux_anglais as $flux) {?>
+					<input type="checkbox" name="flux_<?php echo $flux['id']; ?>" class="check-source" value="1" data-type-flux="en" id="chbox_flux_<?php echo $flux['id']; ?>" <?php if (in_array($flux['id'], $fluxAffichage)) echo "checked='checked'"; ?> />
+					<label for="chbox_flux_<?php echo $flux['id']; ?>"><?php echo $flux['name']; ?></label>
+					<br/>
+				<?php } ?>
+			</div>
+			
+			<div id="filtrerLangue"><input type="checkbox" name="check-1" class="check-langue" id="chbox_al" checked="checked"/><label for="check-3">Sites allemands</label></div>	
+			<div id="filtrerBloc">
+				<?php foreach ($flux_allemands as $flux) {?>
+					<input type="checkbox" name="flux_<?php echo $flux['id']; ?>" class="check-source" value="1" data-type-flux="al" id="chbox_flux_<?php echo $flux['id']; ?>" <?php if (in_array($flux['id'], $fluxAffichage)) echo "checked='checked'"; ?> />
+					<label for="chbox_flux_<?php echo $flux['id']; ?>"><?php echo $flux['name']; ?></label>
+					<br/>
+				<?php } ?>
+			</div>
+
+			<div id="filtrer_Enregistrer">
+				<!--<form id="filtrer_btnEnregistrer" action="">
+					<input type="submit"/>
+				</form>-->
+				<div id="filtrer_btnEnregistrer"></div>
+				<center id="pref_enregistrees" style="color:#D88F0E;display:none">Vos préférences ont bien été enregistrées</center>
+				<center id="impossible_enreg_pref" style="color:#D88F0E;display:none">Vos devez être connecté pour enregistrer vos préférences</center>
+			</div>
+			<div class="spacer"> </div>
+		</div>
+		<div class="spacer"> </div>
+	</section>
+</div>
+
+<script src="static/js/spin.min.js"></script>
+<script>
+	
+	//Google analytics
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-17906341-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	
+	//Initialisation des variables
+	var flux = new Array();
+	var nombre_chargements_news = 0;
+	var isConnected = <?php echo ($is_connected)? "true": "false";?>;
+	
+	//Evenements
+	$(document).ready(function(){
+	
+
+		//Initialisation des flux
+		var checkboxes = $('input:checked').each(function(key, value){
+			if ($(this).attr('id').substring(0, 11) == 'chbox_flux_'){
+				flux.push($(this).attr('id').substring(11, $(this).attr('id').length)); //La chaine chbox_flux_ fait 11 caractères
+			}
+		});
+
+		$('input[type=checkbox][id*="chbox_"]').on('click', function(event){
+			
+			event.stopImmediatePropagation();
+			
+			//Spinner pour patienter
+			var opts = {
+				  lines: 11, // The number of lines to draw
+				  length: 13, // The length of each line
+				  width: 20, // The line thickness
+				  radius: 40, // The radius of the inner circle
+				  rotate: 0, // The rotation offset
+				  color: '#000', // #rgb or #rrggbb
+				  speed: 1.7, // Rounds per second
+				  trail: 72, // Afterglow percentage
+				  shadow: false, // Whether to render a shadow
+				  hwaccel: false, // Whether to use hardware acceleration
+				  className: 'spinner', // The CSS class to assign to the spinner
+				  zIndex: 2e9, // The z-index (defaults to 2000000000)
+				  top: 'auto', // Top position relative to parent in px
+				  left: 'auto' // Left position relative to parent in px
+				};
+			
+			$('#liste_articles').html('<div id="spinner_attente" style="margin: 250px auto 0 50%;float:left"></div>');
+			var target = document.getElementById('spinner_attente');
+			var spinner = new Spinner(opts).spin(target);
+			
+			//Réactivation du bouton enregistrer mes préférences s'il était desactivé
+			$('#filtrer_btnEnregistrer').show();
+			$('#pref_enregistrees').hide();
+			
+			
+			//Si c'est une checkbox "groupe", on check toutes les checkbox qui appartiennent à ce groupe
+				//Français
+			if ($(this).attr('id') == 'chbox_fr'){
+				if ($(this).attr('checked') == 'checked') { 
+					$('input[type=checkbox][data-type-flux=fr]').attr('checked', true); }
+				else { 
+					$('input[type=checkbox][data-type-flux=fr]').attr('checked', false); }
+			}
+			
+				//Anglais
+			if ($(this).attr('id') == 'chbox_en'){
+				if ($(this).attr('checked') == 'checked') { 
+					$('input[type=checkbox][data-type-flux=en]').attr('checked', true); }
+				else { 
+					$('input[type=checkbox][data-type-flux=en]').attr('checked', false); }
+			}
+			
+				//Allemands
+			if ($(this).attr('id') == 'chbox_al'){
+				if ($(this).attr('checked') == 'checked') { 
+					$('input[type=checkbox][data-type-flux=al]').attr('checked', true); }
+				else { 
+					$('input[type=checkbox][data-type-flux=al]').attr('checked', false); }
+			}
+			
+			//Construction du tableau des flux sélectionnés
+			flux = new Array();
+			
+			var checkboxes = $('input:checked').each(function(key, value){
+				if ($(this).attr('id').substring(0, 11) == 'chbox_flux_'){
+					flux.push($(this).attr('id').substring(11, $(this).attr('id').length)); //La chaine chbox_flux_ fait 11 caractères
+				}
+			});
+
+			//Rechargement de la page
+			$.post('home/ajax', {'flux_selectionnes[]': flux}, function(data){
+				$('#liste_articles').html(data);
+			});
+		});
+	
+		//Enregistrement des flux sélectionnés
+		$('#filtrer_btnEnregistrer').on('click', function(event){
+		
+			if (isConnected){
+		
+				$.post('home/enregistrerFlux', {'flux_selectionnes[]': flux}, function(data){
+					$('#filtrer_btnEnregistrer').hide();
+					$('#pref_enregistrees').show();
+				});
+			}
+			else{
+				$('#filtrer_btnEnregistrer').hide();
+				$('#impossible_enreg_pref').show();
+			}
+		});
+		
+		
+		
+		
+		
+		
+		//Rechargement lorsque le scroll arrive en bas de page
+		
+		var load = false; // aucun chargement de news n'est en cours
+		var hauteur_news = 130; //hauteur des news en pixelss
+ 
+		/* la fonction offset permet de récupérer la valeur X et Y d'un élément
+		dans une page. Ici on récupère la position du dernier div qui 
+		a pour classe : ".new" */
+		var offset = $('.new:last').offset();
+
+		$(window).scroll(function(){ // On surveille l'évènement scroll
+	 
+			/* Si l'élément offset est en bas de scroll, si aucun chargement 
+			n'est en cours, si le nombre de commentaire affiché est supérieur 
+			à 5, alors on lance la fonction. */
+			if(((offset.top + hauteur_news)-$(window).height() <= $(window).scrollTop()) 
+			&& load==false && ($('.new').size()>=5)){
+
+				// la valeur passe à vrai, on va charger
+				load = true;
+				nombre_chargements_news = nombre_chargements_news + 1; //Incrémentation du nombre de fois où l'on a chargé des news
+	 
+				//On affiche un loader
+				var opts = {
+					  lines: 11, // The number of lines to draw
+					  length: 13, // The length of each line
+					  width: 10, // The line thickness
+					  radius: 20, // The radius of the inner circle
+					  rotate: 0, // The rotation offset
+					  color: '#000', // #rgb or #rrggbb
+					  speed: 1.7, // Rounds per second
+					  trail: 72, // Afterglow percentage
+					  shadow: false, // Whether to render a shadow
+					  hwaccel: false, // Whether to use hardware acceleration
+					  className: 'spinner', // The CSS class to assign to the spinner
+					  zIndex: 2e9, // The z-index (defaults to 2000000000)
+					  top: 'auto', // Top position relative to parent in px
+					  left: 'auto' // Left position relative to parent in px
+					};
+		
+				$('#liste_articles').append('<div id="spinner_attente" style="height:100px"></div>');
+				var target = document.getElementById('spinner_attente');
+				var spinner = new Spinner(opts).spin(target);
+	 
+				//On lance la fonction ajax
+				$.post('home/ajax', {'flux_selectionnes[]': flux, 'nombre_chargements_news':nombre_chargements_news}, function(data){
+					$('#liste_articles #spinner_attente').remove(); //On enlève le spinner
+					$('#liste_articles').append(data); //Ajout des articles récupérés
+					offset = $('.new:last').offset(); //On actualise la valeur offset du dernier commentaire
+					load = false; //On remet la valeur à faux car c'est fini
+				});
+			}
+	 
+	 
+		});
+	
+	});
+</script>
+
