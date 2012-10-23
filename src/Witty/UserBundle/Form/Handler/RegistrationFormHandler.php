@@ -30,10 +30,11 @@ class RegistrationFormHandler extends BaseHandler
 			{
 				//Si le pseudo n'est pas renseigné, on le ne transmet pas
 				if (
-					isset($this->request->get('fos_user_registration_form')['username']) 
-					&& (
-						($this->request->get('fos_user_registration_form')['username'] == "") 
-						|| ($this->request->get('fos_user_registration_form')['username'] == null) )
+					//isset($this->request->get('fos_user_registration_form')['username']) 
+					//&& (
+							($this->request->get('fos_user_registration_form')['username'] == "") 
+							|| ($this->request->get('fos_user_registration_form')['username'] == null) 
+						// )
 					)
 				{
 					$parametres_requete = $this->request->get('fos_user_registration_form');
