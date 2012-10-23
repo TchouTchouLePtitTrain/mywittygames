@@ -29,15 +29,16 @@ class RegistrationFormHandler extends BaseHandler
 			if ($this->request->get('fos_user_registration_form') && ('POST' === $this->request->getMethod()) )
 			{
 				//Si le pseudo n'est pas renseigné, on le ne transmet pas
+				$parametres_requete = $this->request->get('fos_user_registration_form');
+				
 				if (
-					//isset($this->request->get('fos_user_registration_form')['username']) 
-					//&& (
-							($this->request->get('fos_user_registration_form')['username'] == "") 
-							|| ($this->request->get('fos_user_registration_form')['username'] == null) 
-						// )
+					isset($parametres_requete['username']) 
+					&& (
+							($parametres_requete['username'] == "") 
+							|| ($parametres_requete['username'] == null) 
+						)
 					)
 				{
-					$parametres_requete = $this->request->get('fos_user_registration_form');
 					$parametres_requete['username'] = $parametres_requete['email']; //substr($parametres_requete['email'], 0, strpos($parametres_requete['email'], '@')); //On ne garde pas unqiuement le début de l'adresse mail pour assurer l'unicité du username
 					$this->request->request->set('fos_user_registration_form', $parametres_requete);
 				}
