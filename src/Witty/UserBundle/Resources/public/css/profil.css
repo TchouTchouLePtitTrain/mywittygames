@@ -139,13 +139,6 @@
 	margin-left:15px;
 }
 
-#fos_user_profile_form_avatarFile{
-  position:relative;
-    width:250px;
-    height:32px;
-    overflow:hidden;
-}
-
 #fos_user_profile_form_avatarFile input {
     position:absolute;
     right:0;
@@ -164,12 +157,26 @@
 	color: #999;
 }
 
+.fond_texte{
+	display:block;
+	background-color:#fff;
+	opacity:0.3;
+	height:30px;
+	width:160px;
+	margin-top:156px;
+	margin-left:420px;
+	position:absolute;
+}
+
 #fos_user_profile_form_avatarFile{
 	position:absolute;
-	margin-left:380px;
-	margin-top:150px;
+	margin-left:420px;
+	margin-top:165px;
 	opacity:0;
 	cursor:pointer;
+	width:160px;
+    height:15px;
+    overflow:hidden;
 }
 
 #fos_user_profile_form label[for="fos_user_profile_form_avatarFile"]{
@@ -177,6 +184,7 @@
 	margin-left:435px;
 	margin-top:165px;
 	cursor:pointer;
+	color:#fff;
 }
 
 #fos_user_profile_form label[for="fos_user_profile_form_avatarFile"]:hover{
