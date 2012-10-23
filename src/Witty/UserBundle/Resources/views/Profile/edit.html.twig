@@ -14,6 +14,7 @@
 
 	<p class="titrePage titrePageProfil">Mon profil</p>
 	<div id="blocContenuProfil">
+		<p class="titre_bloc">Informations personnelles</p>
 		<figure class="avatar">
 			<p class="texte_profil">Photo de profil :</p>
 			<img class="img_avatar" src="{{ url_asset('avatar', user.id, user.avatar) }}"/>
@@ -21,36 +22,48 @@
 		
 		<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
 			{{ form_widget(form) }}
-			<div>
-				<input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" class:"btn_mettreajour" />
+			<div id="mettreajour">
+				<input type="submit" value=""/>
 			</div>
 		</form>
 		
 		<br/>
 		<br/>
 		
-		<p class="texte_profil">Les projets que vous avez soutenus</p>
-		{% render "WittyUserBundle:Profile:displayRewards" %}
+	</div>			
 		
-		{% if user.games|length > 0 %}
-			<p class="texte_profil">Les projets que vous avez soutenus en saisons 1 et 2</p>
+		
+	<div id="blocContenuProfil2">
+		<p class="titre_bloc">Informations du compte</p>
+		<div  class="paragraphe">
+			<p class="texte_profil">Les projets que vous avez soutenus</p>
+			{% render "WittyUserBundle:Profile:displayRewards" %}
+		
+			{% if user.games|length > 0 %}
+		</div>
+		<div  class="paragraphe">	
+			<p class="texte_profil">Les projets que vous avez soutenus<br/>en saisons 1 et 2</p>
 			{% for game in user.games %}
-				<p>Vous avez {{ game.sharesByUserId(user.id)|length }} parts de {{game.name}}.</p>
+				<p class="texte_profil2">Vous avez {{ game.sharesByUserId(user.id)|length }} parts de {{game.name}}.</p>
 			{% endfor %}
 		{% endif %}
+		</div>
 		
 		<br/>
-		
-		{% if user.credit > 0 %}
-			<p class="texte_profil">Votre crédit</p>
-			<p>Votre crédit est actuellement de {{ user.credit }} €</p>
-		{% endif %}
-		
+		<div  class="paragraphe">
+			{% if user.credit > 0 %}
+				<p class="texte_profil">Votre crédit</p>
+				<p class="texte_profil2">Votre crédit est actuellement de {{ user.credit }} €</p>
+			{% endif %}
+		</div>
 		<br/>
 		<br/>
 	</div>
 	
+	<div class="spacer"></div>
 	
-</div>	
+</div>
+	
+	
 	
 {% endblock content %}

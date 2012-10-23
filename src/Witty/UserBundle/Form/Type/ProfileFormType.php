@@ -18,8 +18,11 @@ class ProfileFormType extends BaseType
 
         $builder
 			->remove('username')
-			->remove('plainPassword')
-            ->add('plainPassword', 'password', array( 'required' => false, 'always_empty' => true, 'label' => 'Password')) //Override du champ password tel que défini dans le FOSUserBundle, pour qu'il ne soit plus 'required' et qu'il soit 'always_empty'
+			->remove('plainPassword')  
+			->remove('email')            
+			->add('avatarFile', 'file', array('required' => false, 'label' => 'Changer mon avatar '))
+            ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
+			->add('plainPassword', 'password', array( 'required' => false, 'always_empty' => true, 'label' => 'Password')) //Override du champ password tel que défini dans le FOSUserBundle, pour qu'il ne soit plus 'required' et qu'il soit 'always_empty'
             ->add('username', null, array('label' => 'Pseudo', 'translation_domain' => 'FOSUserBundle'))
             ->add('firstname', 'text', array('required' => false, 'label' => 'Prénom'))
             ->add('lastname', 'text', array('required' => false, 'label' => 'Nom'))
@@ -32,7 +35,6 @@ class ProfileFormType extends BaseType
             ->add('country', 'country', array('required' => false, 'label' => 'Pays'))
             //->add('country', 'country', array('required' => false))
             ->add('newsletter', 'checkbox', array('value' => 0, 'required' => false, 'label' => 'Recevoir la newsletter'))
-            ->add('avatarFile', 'file', array('required' => false, 'label' => 'Changer mon avatar '))
         ;
     }
 
