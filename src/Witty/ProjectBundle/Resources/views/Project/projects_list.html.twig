@@ -16,7 +16,7 @@
  	{% if loop.first %} <div class="ruban"></div> {% endif %}
 	<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
 		class="bloc_jeu {{affichage}}">
-		<div class="img_jeu" src="{{ project.image }}" alt=""></div>
+		<img class="img_jeu" src="{{ project.image }}" alt="img jeu"/>
 		<div class="bloc_jeu_haut">
 			<p class="titreJeu">{{ project.title }}</p>
 			<p class="descriptionJeu">{{ project.shortDescription }}</p>

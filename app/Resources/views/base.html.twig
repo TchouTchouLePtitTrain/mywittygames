@@ -55,8 +55,8 @@
         {% if not(app.user) %}
 		
 			<div id="popup_login" class="popup login">
-				<div id="login_normal">
-					<div id="haut_popup">
+				<div class="login_normal">
+					<div class="haut_popup">
 						<a class="titre_popup">Se connecter</a>
 						<a class="close">x</a>
 					</div>
@@ -66,7 +66,7 @@
 					<a class="texte_popuplogin3" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
 				</div>
 				<div id="login_facebook">
-					<div id="haut_popup2">
+					<div class="haut_popup2">
 						<p class="texte_popuplogin4">Ou connectez-vous avec Facebook</p>
 					</div>
 					{{ facebook_login_button({'autologoutlink': true}) }}
@@ -74,8 +74,8 @@
 			</div>
 				
 			<div id="popup_register" class="popup register" type_popup="register">
-				<div id="login_normal">
-					<div id="haut_popup">
+				<div class="login_normal">
+					<div class="haut_popup">
 						<a class="titre_popup">S'inscrire</a>
 						<a class="close">x</a>
 					</div>
@@ -83,7 +83,7 @@
 					<p class="texte_popuplogin5">En vous inscrivant, vous acceptez<br/> nos <a class="conditions">conditions d'utilisation</a></p>
 				</div>
 				<div id="login_facebook2">
-					<div id="haut_popup2">
+					<div class="haut_popup2">
 						<p class="texte_popuplogin4">Ou connectez-vous avec Facebook</p>
 					</div>
 					{{ facebook_login_button({'autologoutlink': true}) }}

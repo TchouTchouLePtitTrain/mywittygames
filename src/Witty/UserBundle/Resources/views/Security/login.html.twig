@@ -23,16 +23,16 @@
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
 				<label for="username">Adresse e-mail ou Pseudo :{# 'security.login.username'|trans({}, 'FOSUserBundle') #}</label>
-				<input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="monmail@mail.com" />
+				<input type="text" class="username" name="_username" value="{{ last_username }}" placeholder="monmail@mail.com" />
 
 				<label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-				<input type="password" id="password" name="_password" placeholder="mon mot de passe" />
+				<input type="password" class="password" name="_password" placeholder="mon mot de passe" />
 
-				<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+				<input type="checkbox" class="remember_me" name="_remember_me" value="on" />
 				<label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
 				
 				<a class="texte_popuplogin3" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
-				<input type="submit" id="_submit" name="_submit" value=""/>
+				<input type="submit" class="_submit" name="_submit" value=""/>
 			</form>
 			
 
@@ -44,12 +44,11 @@
 			<form action="{{ path('fos_user_security_login') }}" {{ form_enctype(form_register) }} method="POST" class="fos_user_registration_register">
 				{{ form_widget(form_register) }}
 				{{ form_rest(form_register) }}
+				<p class="texte_popuplogin5">En vous inscrivant, vous acceptez<br/> nos <a class="conditions">conditions d'utilisation</a></p>
 				<div>
-					<input id="inscrire" type="submit" value="" />
+					<input class="inscrire" type="submit" value="" />
 				</div>
 			</form>
-
-			<p class="texte_popuplogin5">En vous inscrivant, vous acceptez<br/> nos <a class="conditions">conditions d'utilisation</a></p>
 		</div>
 		
 		<div class="bloc">

@@ -44,7 +44,7 @@ position: absolute;
 position: absolute;
 }
 
-#haut_popup{
+.haut_popup{
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
@@ -54,7 +54,7 @@ position: absolute;
 	margin-bottom:20px;
 }
 
-#haut_popup2{
+.haut_popup2{
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
@@ -86,18 +86,29 @@ position: absolute;
 	color:#666;
 }
 
-#_submit{
+.bloc ._submit{
 	display:block;
-	margin-left:auto;
-	margin-right:auto;
 	height:45px;
 	width:165px;
 	background-image: url(../../bundles/wittybar/images/btn_seconnecter_normal.png); /* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
-	float:right;
 	cursor:pointer;
+	margin-top:20px;
 }
 
-#_submit:hover{
+.bloc ._submit:hover{
+	background-image:url(../../bundles/wittybar/images/btn_seconnecter_hover.png);/* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+}
+
+.champs_inscription ._submit{
+	display:block;
+	height:45px;
+	width:165px;
+	background-image: url(../../bundles/wittybar/images/btn_seconnecter_normal.png); /* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+	cursor:pointer;
+	float:right;
+}
+
+.champs_inscription ._submit:hover{
 	background-image:url(../../bundles/wittybar/images/btn_seconnecter_hover.png);/* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
 }
 
@@ -187,7 +198,7 @@ label[for='remember_me']{
 	color:#514846;
 }
 
-#remember_me{
+.remember_me{
 	float:left;
 	margin-right:10px;
 	margin-left:-1px;
@@ -218,7 +229,7 @@ label[for='remember_me']{
 	padding:20px;
 }
 
-#login_normal{
+.login_normal{
 	display:block;
 	padding-left: 30px;
 	padding-bottom: 30px;
@@ -245,13 +256,13 @@ label{
 	margin-bottom:10px;
 }
 
-#username{
+.username{
 	display:block;
 	border: 1px solid #dddbdb;
 	padding:5px;
 	margin:0;
 	height:35px;
-	width:330px;
+	width:92%;
 	background-color:#FFF;
 	margin-top:15px;
 	margin-bottom:20px;
@@ -262,7 +273,7 @@ label{
 	font-size:1em;
 }
 
-#username:focus{
+.username:focus{
 	color:#999;
 	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
@@ -271,13 +282,13 @@ label{
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
-#password{
+.password{
 	display:block;
 	border: 1px solid #dddbdb;
 	padding:5px;
 	margin:0;
 	height:35px;
-	width:330px;
+	width:92%;
 	background-color:#FFF;
 	margin-top:15px;
 	margin-bottom:30px;
@@ -288,7 +299,7 @@ label{
 	font-size:1em;
 }
 
-#password:focus{
+.password:focus{
 	color:#999;
 	-webkit-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 	-moz-box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
@@ -375,19 +386,31 @@ label{
 	box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, .4) inset;
 }
 
-#inscrire{
+.bloc .inscrire{
 	display:block;
-	margin-left:auto;
-	margin-right:auto;
 	height:45px;
 	width:129px;
 	background-image: url(../../bundles/wittybar/images/btn_inscrire_normal.png); /* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
 	margin-top:5px;
-	float:right;
 	cursor:pointer;
+	margin-top:15px;
 }
 
-#inscrire:hover{
+.bloc .inscrire:hover{
+	background-image:url(../../bundles/wittybar/images/btn_inscrire_hover.png);/* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+}
+
+.login_normal .fos_user_registration_register .inscrire{
+	display:block;
+	height:45px;
+	width:129px;
+	background-image: url(../../bundles/wittybar/images/btn_inscrire_normal.png); /* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
+	margin-top:5px;
+	cursor:pointer;
+	float:right;
+}
+
+.login_normal .fos_user_registration_register .inscrire:hover{
 	background-image:url(../../bundles/wittybar/images/btn_inscrire_hover.png);/* A changer dès que le problème du cssrewrite sera résolu dans Assetic */
 }
 

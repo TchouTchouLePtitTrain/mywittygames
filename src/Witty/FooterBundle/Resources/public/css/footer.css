@@ -153,7 +153,7 @@ footer{
 	border-bottom: solid 1px #DDDBDB;
 }
 
-#footer_contenu{
+.footer_contenu{
 	display:block;
 	width:1000px;
 	margin-left: auto;
