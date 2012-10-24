@@ -59,6 +59,7 @@ twig:
         url_witty_facebook: http://www.facebook.com/pages/My-Witty-Games/149984978360626
         url_witty_twitter: http://twitter.com/MyWittyGames
         url_witty_dailymotion: http://www.dailymotion.com/MyWittyGames
+        facebook_appId: 212621892102168
 
 # Assetic Configuration
 assetic:

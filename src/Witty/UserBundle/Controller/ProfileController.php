@@ -71,4 +71,10 @@ class ProfileController extends BaseController
     {
         return $this->container->get('router')->generate('fos_user_profile_edit');
     }
+	
+	
+	public function avatarAction()
+	{
+		return $this->container->get('templating')->renderResponse('WittyUserBundle:Profile:avatar.html.twig', array());
+	}
 }

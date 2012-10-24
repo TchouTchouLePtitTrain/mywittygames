@@ -15,10 +15,33 @@
 	<div class="blocTitrePage">
     	<p class="titrePage">Confirmation de soutien</p>
         <p class="descriptionPage">Merci d'avoir soutenu {{ project.title }}.</p>
-		<p class="infosPage">Vous allez &ecirc;tre redirig&eacute; dans 10 secondes</p>
+		<p class="infosPage">Vous pouvez consulter les projets de jeu que vous avez soutenus en allant dans votre profil.<br/><br/> Vous allez &ecirc;tre redirig&eacute; sur la page d'accueil dans <span class="timer">10</span> secondes.</p>
     </div>
 	
 	
-</div>	
+</div>
+
+<script>
+
+	function timer()
+	{
+			//Timer pour la redirection
+			var time_left = parseInt($('.timer').html());
+			if (time_left < 1)
+			{
+				window.location = "{{ path('mwg_accueil') }}";
+			}
+			else
+			{
+				$('.timer').html(time_left - 1);
+				setTimeout("timer()", 1000);
+			}
+	}
+
+
+	$(document).ready(function(){
+		setTimeout("timer()", 1000);
+	});
+</script>
 	
 {% endblock content %}

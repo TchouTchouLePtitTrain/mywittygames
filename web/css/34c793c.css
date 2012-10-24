@@ -73,10 +73,8 @@ body{
 }
 
 p{
-	font-family: Arial,Helvetica,sans-serif;
+	font-family: font-family: Arial,Helvetica,sans-serif;
 	color: #786E6C;
-	font-size: 0.875em;
-	line-height: 1.2;
 }
 
 h1{
@@ -91,6 +89,14 @@ h2{
 	color: #514846;
 	font-size: 0.875em;
 	line-height: 1.2;
+}
+
+img {
+  border: none;
+}
+
+input, textarea, select{
+  outline: none;
 }
 
 /* Classes courantes */
@@ -123,6 +129,10 @@ h2{
 }
 .centre{
 	margin: 0 auto;
+}
+
+footer{
+	bottom:0px;
 }
 /*!
  * jQuery UI CSS Framework 1.8.23

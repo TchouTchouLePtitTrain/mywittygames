@@ -18,14 +18,14 @@
 			<ul>
 				<li> <a id="lien_mwg" class="btn_mwg lien_mw" href="{{ url_mwg }}" ></a></li>
 				<li> <a id="lien_mwn" class="btn_mwn lien_mw" href="{{ url_mwn }}" onclick="javascript:return false;"></a></li>
-				<li> <a id="lien_mws" class="btn_mws lien_mw" href="{{ url_mws }}" onclick="javascript:return false;"></a></li>
+				{#<li> <a id="lien_mws" class="btn_mws lien_mw" href="{{ url_mws }}" onclick="javascript:return false;"></a></li>#}
 			</ul>
 		</nav>
 		<div id="espace_login">
 			{% if app.user %}
 				<a class=" pseudo-connecte btn_deconnexion" href="{{ path('fos_user_security_logout') }}">x</a>
 				<a class="btn_profil" href="{{ path('fos_user_profile_edit') }}">
-					<p class="img_profil"></p> 
+					{% render "WittyUserBundle:Profile:avatar" %}
 					<p class="pseudo pseudo-connecte">
 						{{ app.user.label }}
 					</p>

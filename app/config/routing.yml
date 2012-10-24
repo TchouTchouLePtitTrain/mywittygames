@@ -9,7 +9,7 @@ witty_mwg:
 
 witty_project:
     resource: "@WittyProjectBundle/Resources/config/routing.yml"
-    prefix:   /projet
+    prefix:   /jeu
     
 witty_transaction:
     resource: "@WittyTransactionBundle/Controller"
