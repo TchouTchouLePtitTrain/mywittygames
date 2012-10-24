@@ -19,7 +19,6 @@
 			<p class="texte_profil">Photo de profil :</p>
 			<img class="img_avatar" src="{{ url_asset('avatar', user.id, user.avatar) }}"/>
 		</figure>
-		<span class="fond_texte"></span>
 		<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
 			{{ form_widget(form) }}
 			<div id="mettreajour">
