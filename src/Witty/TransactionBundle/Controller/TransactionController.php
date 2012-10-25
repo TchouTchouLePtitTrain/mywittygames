@@ -31,7 +31,7 @@ class TransactionController extends Controller
 		$request = $this->getRequest();
 		
 		//Fausse requête pour simuler un IPN (pour les tests en dev uniquement)
-		//$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => 'fdsfghfsfghdfsdf', 'mc_gross' => '0', 'custom' => 'u=3716&rw=1&opt=1,2'));		
+		//$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => 'fdsfgfgdxfghfsfghdfsdf', 'mc_gross' => '53.56', 'custom' => 'u=3716&rw=17'));		
 
 		if (!$request->getMethod() == 'POST')
 			throw new \Exception('Erreur');
@@ -233,8 +233,12 @@ class TransactionController extends Controller
 		$transaction->getUser()->cancelUserRewards($transaction->getCancelledUserRewards());
 		$transaction->getUser()->cancelUserRewardOptions($transaction->getCancelledUserRewardOptions());
 
-
 		$logger->info("Rewards et options annulés, nouveau crédit: ".$transaction->getUser()->getCredit());
+		
+		//Ajout de la somme payée par l'user à son crédit
+		$transaction->getUser()->addToCredit($transaction->getAmount());
+		
+		$logger->info("Ajout de la somme payée à paypal, nouveau crédit: ".$transaction->getUser()->getCredit());
 		
 		//Ajout des rewards et options achetés au User
 		$userReward = new UserReward();

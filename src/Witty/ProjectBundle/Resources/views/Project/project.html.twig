@@ -1,5 +1,7 @@
 {% extends "WittyProjectBundle::layout.html.twig" %}
 
+{% block title %} {{ project.title }} - Jeu à soutenir sur My Witty Games {% endblock %}
+
 {% block stylesheets %}
     {% stylesheets 'bundles/wittyproject/css/*.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
