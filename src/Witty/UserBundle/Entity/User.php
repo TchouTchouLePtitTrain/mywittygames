@@ -972,7 +972,11 @@ class User extends BaseUser
         }
         if (isset($fbdata['email'])) {
             $this->setEmail($fbdata['email']);
+			$this->setUsername($fbdata['email']);
         }
+
+		
+		
     }
 	
 	//Renvoie le texte qui doit apparaître pour identifier l'internaute

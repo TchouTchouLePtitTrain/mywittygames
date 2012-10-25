@@ -14,9 +14,9 @@ parameters:
     database_path: null
 
 #Urls des sites Witty
-    witty.url_mwg: http://localhost/mywittygames/
-    witty.url_mwn: http://localhost/mywittynews/
-    witty.url_mws: http://localhost/mywittyshop/
+    witty.url_mwg: http://www.mywittygames.com.local/mywittygames/
+    witty.url_mwn: http://www.mywittygames.com.local/mywittynews/
+    witty.url_mws: http://www.mywittygames.com.local/mywittyshop/
     witty.public_url_mwg: http://87.91.25.164
     
 #Paramètres des services
@@ -34,3 +34,9 @@ parameters:
     witty.paypal.fees: 0.03
     witty.paypal.email_business: mywittygames@gmail.com
     witty.paypal.log.success.path: ../app/logs/paypal/success.log
+    
+    #Facebook
+    witty.facebook.app_id: 212621892102168
+    witty.facebook.secret: e6f2e33b87ff8154600659c8565f68bb
+    # witty.facebook.name: http://apps.facebook.com/mon-super-site-web/ # App Namespace
+    # api_facebook_server: %witty.url_mwg%

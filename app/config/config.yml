@@ -128,10 +128,10 @@ fos_user:
 fos_facebook:
     file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
     alias:  facebook
-    app_id: 212621892102168
-    secret: e6f2e33b87ff8154600659c8565f68bb
+    app_id: %witty.facebook.app_id%
+    secret: %witty.facebook.secret%
     cookie: true
-    permissions: [email, user_birthday, user_location]
+    permissions: [email, user_birthday]
 
 knp_gaufrette:
     adapters:
