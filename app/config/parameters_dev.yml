@@ -14,9 +14,9 @@ parameters:
     database_path: null
 
 #Urls des sites Witty
-    witty.url_mwg: http://www.mywittygames.com.local/mywittygames/
-    witty.url_mwn: http://www.mywittygames.com.local/mywittynews/
-    witty.url_mws: http://www.mywittygames.com.local/mywittyshop/
+    witty.url_mwg: http://www.mywittygames.com.local/
+    witty.url_mwn: http://www.mywittygames.com.local/
+    witty.url_mws: http://www.mywittygames.com.local/
     witty.public_url_mwg: http://87.91.25.164
     
 #Paramètres des services

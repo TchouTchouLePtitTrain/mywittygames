@@ -34,3 +34,7 @@ parameters:
     witty.paypal.fees: 0.03
     witty.paypal.email_business: mywittygames@gmail.com
     witty.paypal.log.success.path: ../app/logs/paypal/success.log
+    
+    #Facebook
+    witty.facebook.app_id: 212621892102168
+    witty.facebook.secret: e6f2e33b87ff8154600659c8565f68bb
