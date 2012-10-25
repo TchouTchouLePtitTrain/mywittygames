@@ -17,7 +17,7 @@ parameters:
     witty.url_mwg: http://www.mywittygames.com/
     witty.url_mwn: http://www.mywittynews.com/
     witty.url_mws: http://www.mywittyshop.com/
-    witty.public_url_mwg: http://www.mywittygames.com
+    witty.public_url_mwg: http://54.246.126.127
     
 #Paramètres des services
     witty.s3.bucket: mywittygames

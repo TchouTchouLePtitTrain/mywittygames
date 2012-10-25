@@ -33,7 +33,7 @@ class ProfileController extends BaseController
 		if (isset($avatarFile))
 		{
 			//Sauvegarde de l'avatar
-			$fileSystem = $this->container->get('witty.fs'); //GaufretteBundle - virer les m�thodes de user les persist
+			$fileSystem = $this->container->get('witty.fs'); //GaufretteBundle - virer les méthodes de user les persist
 			$fileSystem->moveFile($avatarFile, 'user/'.$user->getId().'/avatar', $avatarFile->getClientOriginalName());
 		}
         
@@ -72,9 +72,13 @@ class ProfileController extends BaseController
         return $this->container->get('router')->generate('fos_user_profile_edit');
     }
 	
-	
-	public function avatarAction()
+	//Renvoie l'avatar de l'utilisateur dont l'id est passé en paramètre.
+	// Si aucun id n'est passé, l'avatar de l'user courant est renvoyé
+	public function avatarAction($id = null)
 	{
-		return $this->container->get('templating')->renderResponse('WittyUserBundle:Profile:avatar.html.twig', array());
+		if ($id) $user = $this->container->get('doctrine')->getRepository('WittyUserBundle:User')->find($id);
+		else $user = $this->container->get('security.context')->getToken()->getUser();
+	
+		return $this->container->get('templating')->renderResponse('WittyUserBundle:Profile:avatar.html.twig', array('user' => $user));
 	}
 }

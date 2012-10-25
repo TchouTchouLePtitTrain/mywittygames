@@ -58,7 +58,7 @@
 		
 		<div class="texte_droite">
 		{% for option in reward.options %}
-			<input type='checkbox' id='option_{{ option.id }}' name="options[]" value='{{ option.id }}' checked="0"/>
+			<input type='checkbox' id='option_{{ option.id }}' name="options[]" value='{{ option.id }}'/>
 			<label for="chkbox_{{ option.id }}">{{ option.title }} <p class="euro"> + {{ option.cost }} €</p></label>
 			<input type='hidden' id='option_value_{{ option.id }}' name="options[]" value='{{ option.cost }}'/>
 			<br/>
