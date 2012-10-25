@@ -585,7 +585,7 @@ class Project
      */
 	public function getDaysLeft()
 	{
-		return $this->getEndDate()->diff(new \DateTime())->format('%d');
+		return $this->getEndDate()->diff(new \DateTime())->days;
 	}
 	
 	
