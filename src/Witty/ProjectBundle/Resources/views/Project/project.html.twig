@@ -80,7 +80,9 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
 				Voici la liste des édinautes qui soutiennent ce projet. <br/>
 				Vous désirez les rejoindre ? Cliquez sur le bouton "<a class="texte_bleu">Je soutiens ce jeu</a>" !
 			</p>
-			{% for edinaute in project.edinautes %}
+			{# La bonne méthode est celle en commentaires, mais à cause d'un bug php, on doit passer par les ids des édinautes pour les récupérer. On ne peut donc pas les récupérer directement par le projet ... #}
+			{# for edinaute in project.edinautes #}
+			{% for edinaute in edinautes %}
 				<div class="edinaute">
 					{% render "WittyUserBundle:Profile:avatar" %}
 					<p class="nom_edinaute">{{ edinaute.label }}</p>

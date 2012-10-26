@@ -32,9 +32,17 @@ class ProjectController extends Controller
 		else
 			$project = $em->getRepository('WittyProjectBundle:Project')->findOneById($slug);
 
+		$edinautes = array();
+		foreach($project->getEdinautes() as $id)
+		{
+			$edinautes[] = $em->getRepository('WittyUserBundle:User')->find($id);
+		}
+			
+			
 		return $this->render('WittyProjectBundle:Project:project.html.twig', 
 			array(
-				'project' => $project
+				'project' => $project, 
+				'edinautes' => $edinautes
 			));
     }
 	
