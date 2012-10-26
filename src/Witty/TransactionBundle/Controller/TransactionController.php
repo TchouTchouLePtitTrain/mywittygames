@@ -31,7 +31,7 @@ class TransactionController extends Controller
 		$request = $this->getRequest();
 		
 		//Fausse requête pour simuler un IPN (pour les tests en dev uniquement)
-		//$request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => 'fdsfgfgdxfghfsfghdfsdf', 'mc_gross' => '53.56', 'custom' => 'u=3716&rw=17'));		
+		// $request = new \Symfony\Component\HttpFoundation\Request(array(), array('txn_id' => '05U12926LH4163820', 'mc_gross' => '56.65', 'custom' => 'u=652&rw=5'));		
 
 		if (!$request->getMethod() == 'POST')
 			throw new \Exception('Erreur');
@@ -201,7 +201,7 @@ class TransactionController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 	
 		//Vérification transaction déjà reçue ?
-		if ( $request->get('txn_id') && ($em->getRepository('WittyTransactionBundle:Transaction')->find($transaction->getPaypalId())) ) //Si la transaction vient de Paypal, la différence entre le montant envoyé par Paypal et celui que l'on a recalculé sur la base des rewards et des options dépasse les erreurs d'arrondi
+		if ( $request->get('txn_id') && ($em->getRepository('WittyTransactionBundle:Transaction')->findByPaypalId($transaction->getPaypalId())) ) //Si la transaction vient de Paypal, la différence entre le montant envoyé par Paypal et celui que l'on a recalculé sur la base des rewards et des options dépasse les erreurs d'arrondi
 		{
 			$logger->err('Transaction déjà reçue -> id: '.$transaction->getPaypalId());
 			$logger->info("Transaction KO");	
