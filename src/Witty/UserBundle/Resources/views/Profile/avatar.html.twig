@@ -1,4 +1,4 @@
-{% if user.avatar is defined %}
+{% if user.avatar %}
 	<img class="img_avatar" src="{{ url_asset('avatar', user.id, user.avatar) }}" alt="avatar"/>
 {% else %}
 	{% image '@WittyUserBundle/Resources/public/images/avatar_118_default.jpg' %}
