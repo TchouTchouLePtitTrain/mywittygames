@@ -32,7 +32,7 @@
 				<div class="img_user"></div>
 			</div>
 			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.funding }}</p>
+				<p class="style_NBcaracteritiques">{{ project.funding }} €</p>
 				{% if affichage == 'grand' %}
 					<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
 				{% endif %}
