@@ -217,6 +217,7 @@ class User extends BaseUser
 		parent::__construct();
 		$this->createdAt = new \Datetime();
 		$this->credit = 0;
+		$this->newsletter = true;
 		$this->shares = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->userRewards = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->userRewardOptions = new \Doctrine\Common\Collections\ArrayCollection();
