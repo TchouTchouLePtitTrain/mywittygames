@@ -35,6 +35,11 @@
     	<section class="item">
         	{# <video class="video" src="{{ project.video }}" ></video> #}
 			{{ project.description|raw }}
+			
+			<p class="soustitre">Les règles</p>
+			<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/1/description/" alt="regles_cocorico_partie_1"/>
+			<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/1/description/" alt="regles_cocorico_partie_2"/>
+			<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/1/description/" alt="regles_cocorico_partie_3"/>
 		
 		{#<article>
             	<p class="soustitre">Description du jeu </p>
@@ -138,17 +143,21 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
             </div>
             
  
-            {# BLOC NON FINI D'INTEGRER ! A REVOIR QUAND ON VOUDRA LE METTRE EN LIGNE, BISOUS :)
+            {# BLOC NON FINI D'INTEGRER ! A REVOIR QUAND ON VOUDRA LE METTRE EN LIGNE, BISOUS :) #}
 				<div id="blocEditeur">
 					<div id="img_nom">
-						<img class="img_profil2" src="" alt=""/>
-						<p class="texte_editeur">Un jeu de<a class="nom_editeur">{{ project.creator.username }}</a></p>
+						{% render "WittyUserBundle:Profile:avatar" with {'id': project.creator.id } %}
+						<p class="texte_editeur">Un jeu de<a class="nom_editeur">{{ project.creator.firstname }} {{ project.creator.lastname }}</a></p>
 					</div>
-					<p class="texte_editeur">Adresse : <br/><br/>Téléphone :</p>
-					<p class="texte_editeur">Site :<br/><br/>Facebook : <br/><br/>Twitter :</p>
+					<p class="texte_editeur">
+C'est un honneur pour moi de vous présenter ce party-game qui va mettre à l'épreuve votre sens de l'observation et votre rapidité.<br/>
+Dans Cocorico! tout va très vite et l'ambiance monte rapidement.<br/>
+L'aventure ne fait que débuter et j'espère que vous soutiendrez ce jeu qui inaugure la saison3 de My witty Games.</p>
+					{# <p class="texte_editeur">Adresse : <br/><br/>Téléphone :</p>
+					<p class="texte_editeur">Site :<br/><br/>Facebook : <br/><br/>Twitter :</p> #}
 					<div class="spacer"></div>
 				</div>
-            #}
+            {# #}
             
 			{% render "WittyProjectBundle:Project:blocRewards" with {'project': project, 'linking': true}  %}
 			
