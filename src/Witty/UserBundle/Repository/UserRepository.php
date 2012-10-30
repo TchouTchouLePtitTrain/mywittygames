@@ -18,4 +18,16 @@ class UserRepository extends EntityRepository
 			)->setParameter('id', $project_id)
             ->getResult();
     }
+	
+    public function findEdinautesByGameId($game_id)
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+				SELECT DISTINCT u FROM WittyUserBundle:User u
+				INNER JOIN WittyShareBundle:Share s WHERE u.id = s.user
+				WHERE s.game = :id 
+				AND s.isCancelled = 0'
+			)->setParameter('id', $game_id)
+            ->getResult();
+    }
 }

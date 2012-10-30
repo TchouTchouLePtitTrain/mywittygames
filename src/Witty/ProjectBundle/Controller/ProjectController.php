@@ -22,10 +22,27 @@ class ProjectController extends Controller
 		);
     }
 	
-	//L'argument "slug" peut �tre un slug ou un id
+	//L'argument "slug" peut être un slug ou un id
     public function displayAction($slug)
     {
 		$em = $this->getDoctrine()->getEntityManager();
+		
+		//Compatibilité saison 1 et 2
+		$jeux_saison_1_et_2 = array( "pong", "zibi", "chronos", "ice3", "temple", "jeu-du-métro", "empathy" );
+		
+		if (in_array($slug, $jeux_saison_1_et_2) )
+		{
+			$game = $em->getRepository('WittyShareBundle:Game')->findOneBySlug($slug);
+			$edinautes = $em->getRepository('WittyUserBundle:User')->findEdinautesByGameId($game->getId());
+		
+			return $this->render('WittyProjectBundle:Project:game_saison_1_et_2.html.twig', 
+				array(
+					'game' => $game, 
+					'edinautes' => $edinautes
+				));
+		}
+		//Fin compatibilité
+		
 		
 		if (!is_numeric($slug) == 'string')
 			$project = $em->getRepository('WittyProjectBundle:Project')->findOneBySlug($slug);
@@ -37,8 +54,7 @@ class ProjectController extends Controller
 		{
 			$edinautes[] = $em->getRepository('WittyUserBundle:User')->find($id);
 		}
-			
-			
+		
 		return $this->render('WittyProjectBundle:Project:project.html.twig', 
 			array(
 				'project' => $project, 
@@ -91,7 +107,7 @@ class ProjectController extends Controller
 				);
     }
 	
-	//Ajoute le commentaire pass� en POST au projet
+	//Ajoute le commentaire passé en POST au projet
     public function addCommentAction()
     {
 		$request = $this->get('request');	
@@ -105,7 +121,7 @@ class ProjectController extends Controller
 			$comment = new Comment();
 			$comment->setProject($project);
 			$comment->setUser($this->getUser());
-			$comment->setContent($request->request->get('content')); //Pour que les sauts de lignes soient visibles � l'affichage, il faut convertir les "new line" en balises <br/>
+			$comment->setContent($request->request->get('content')); //Pour que les sauts de lignes soient visibles à l'affichage, il faut convertir les "new line" en balises <br/>
 			
 			if ($this->container->get('validator')->validate($comment))
 			{
