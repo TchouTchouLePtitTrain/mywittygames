@@ -28,7 +28,7 @@ class ProjectController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		
 		//Compatibilité saison 1 et 2
-		$jeux_saison_1_et_2 = array( "pong", "zibi", "chronos", "ice3", "temple", "jeu-du-métro", "empathy" );
+		/*$jeux_saison_1_et_2 = array( "pong", "zibi", "chronos", "ice3", "temple", "jeu-du-métro", "empathy" );
 		
 		if (in_array($slug, $jeux_saison_1_et_2) )
 		{
@@ -40,7 +40,7 @@ class ProjectController extends Controller
 					'game' => $game, 
 					'edinautes' => $edinautes
 				));
-		}
+		}*/
 		//Fin compatibilité
 		
 		
@@ -65,9 +65,10 @@ class ProjectController extends Controller
     public function projectsListAction($mode_affichage = 'focus_one_project')
     {
 		$em = $this->getDoctrine()->getEntityManager();
-		$projects = $em->getRepository('WittyProjectBundle:Project')->findAllOrderedByPriority();
-			
-		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projects' => $projects, 'mode_affichage' => $mode_affichage));
+		$projectsFunded = $em->getRepository('WittyProjectBundle:Project')->findFundedOrderedByPriority();
+		$projectsNotFunded = $em->getRepository('WittyProjectBundle:Project')->findNotFundedOrderedByPriority();
+
+		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projectsFunded' => $projectsFunded, 'projectsNotFunded' => $projectsNotFunded, 'mode_affichage' => $mode_affichage));
     }	
 	
 	/**
