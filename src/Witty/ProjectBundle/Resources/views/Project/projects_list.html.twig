@@ -7,7 +7,7 @@
 
 {% for project in projectsNotFunded %}
 
-	{% if ((mode_affichage == 'focus_one_project' and loop.first) or (mode_affichage == 'not_funded_big')) and (not(mode_affichage == 'all_projects_small')) %}
+	{% if ((mode_affichage == 'focus_one_project' and loop.first) or (mode_affichage == 'not_funded_big') or (mode_affichage == 'all_projects_big')) and (not(mode_affichage == 'all_projects_small')) %}
 		{% set affichage = 'grand' %}
 	{% else %}
 		{% set affichage = 'petit' %}
