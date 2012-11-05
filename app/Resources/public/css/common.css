@@ -69,3 +69,12 @@ input, textarea, select{
 footer{
 	bottom:0px;
 }
+
+/* Styles courants */
+.texte_bleu{
+	color: #4270BE;
+}
+
+.texte_centre{
+	margin: 0 auto;
+}

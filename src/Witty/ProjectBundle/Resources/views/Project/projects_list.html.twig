@@ -7,7 +7,7 @@
 
 {% for project in projectsNotFunded %}
 
-	{% if ((mode_affichage == 'focus_one_project' and loop.first) or (mode_affichage == 'all_projects_big')) and (not(mode_affichage == 'all_projects_small')) %}
+	{% if ((mode_affichage == 'focus_one_project' and loop.first) or (mode_affichage == 'not_funded_big')) and (not(mode_affichage == 'all_projects_small')) %}
 		{% set affichage = 'grand' %}
 	{% else %}
 		{% set affichage = 'petit' %}
@@ -53,49 +53,58 @@
 
 {% endfor %}
 
-
-<p class="titrePage">Les projets déjà financés</p>
-
-{% for project in projectsFunded %}
-
-	{% set affichage = 'petit' %}
-
-	<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
-		class="bloc_jeu {{affichage}}">
-		<img class="img_jeu" src="{{ url_asset('project', project.id, project.image) }}" alt="Image du jeu"/>
-
-		<div class="bloc_jeu_haut">
-			<p class="titreJeu">{{ project.title }}</p>
-			<p class="descriptionJeu">{{ project.shortDescription }}</p>
-			<p class="texteJeu">{{ project.mediumDescription }}</p>
-		</div>
-		<div class="bloc_jeu_bas">
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
-				{% if affichage == 'grand' %}
-					<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
-				{% endif %}
-				<div class="img_user"></div>
-			</div>
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.funding }} €</p>
-				{% if affichage == 'grand' %}
-					<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
-				{% endif %}
-				<div class="img_piggy"> </div>
-			</div>
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
-				{% if affichage == 'grand' %}					
-					<p class="style_caracteristiques">jours<br/>restants</p>
-				{% endif %}
-				<div class="img_clock"></div>
-			</div>
-			<div class="spacer"></div>
-		</div>
-		
-		<div class="spacer"></div>
-	</a>
-
-{% endfor %}
 <div class="spacer"></div>
+
+{% if mode_affichage == "all_projects_big" %} 
+
+	<p class="titrePage titrePage_projet">Les projets déjà financés</p>
+
+	{% for project in projectsFunded %}
+
+		{% set affichage = 'petit' %}
+
+		<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
+			class="bloc_jeu {{affichage}}">
+			<img class="img_jeu" src="{{ url_asset('project', project.id, project.image) }}" alt="Image du jeu"/>
+
+			<div class="bloc_jeu_haut">
+				<p class="titreJeu">{{ project.title }}</p>
+				<p class="descriptionJeu">{{ project.shortDescription }}</p>
+				<p class="texteJeu">{{ project.mediumDescription }}</p>
+			</div>
+			<div class="bloc_jeu_bas">
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
+					{% if affichage == 'grand' %}
+						<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
+					{% endif %}
+					<div class="img_user"></div>
+				</div>
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.funding }} €</p>
+					{% if affichage == 'grand' %}
+						<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
+					{% endif %}
+					<div class="img_piggy"> </div>
+				</div>
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
+					{% if affichage == 'grand' %}					
+						<p class="style_caracteristiques">jours<br/>restants</p>
+					{% endif %}
+					<div class="img_clock"></div>
+				</div>
+				<div class="spacer"></div>
+			</div>
+			
+			<div class="spacer"></div>
+		</a>
+
+	{% endfor %}
+	<div class="spacer"></div>
+	
+{% endif %}
+
+{% if mode_affichage == "not_funded_big" %}
+	<a href="{{ path('project_accueil') }}"><p class="texte"><span class="texte_bleu">Cliquez ici</span> pour voir tous les projets</p></a>
+{% endif %}
