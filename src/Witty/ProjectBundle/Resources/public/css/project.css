@@ -365,6 +365,15 @@ section{
 	background-image: url(../images/btn_soutenir_hover.png);
 }
 
+.btn_merci{
+	display:block;
+	background-image: url(../images/btn_merci.png);
+	width:240px;
+	height:50px;
+	margin-top:15px;
+	cursor:pointer;
+}
+
 /* --- Bloc Éditeur --- */
 
 #blocEditeur{

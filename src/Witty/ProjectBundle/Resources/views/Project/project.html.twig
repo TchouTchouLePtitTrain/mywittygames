@@ -95,7 +95,9 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
         <section class="item">
             <p class="texte titre_edinautes">
 				Voici la liste des édinautes qui soutiennent ce projet. <br/>
-				Vous désirez les rejoindre ? Cliquez sur le bouton "<a class="texte_bleu" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}">Soutenir ce jeu</a>" !
+				{% if project.funded == 0 %}
+					Vous désirez les rejoindre ? Cliquez sur le bouton "<a class="texte_bleu" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}">Soutenir ce jeu</a>" !
+				{% endif %}
 			</p>
 			{# La bonne méthode est celle en commentaires, mais à cause d'un bug php, on doit passer par les ids des édinautes pour les récupérer. On ne peut donc pas les récupérer directement par le projet ... #}
 			{# for edinaute in project.edinautes #}
@@ -151,7 +153,11 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
                     </div>
                     <a class="btn_clock"></a>
                 </div>
-                <a class="btn_soutenir" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}"></a>   
+				{% if project.funded == 0 %}
+					<a class="btn_soutenir" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}"></a>
+				{% else %}
+					<a class="btn_merci" href="#"></a>
+				{% endif %}
             </div>
             
  
