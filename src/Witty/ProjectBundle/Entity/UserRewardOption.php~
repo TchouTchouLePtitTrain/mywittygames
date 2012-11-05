@@ -217,4 +217,17 @@ class UserRewardOption
     {
         return $this->rewardOption;
     }
+
+    /**
+     * Set rewardOption
+     *
+     * @param Witty\ProjectBundle\Entity\RewardOption $rewardOption
+     * @return UserRewardOption
+     */
+    public function setRewardOption(\Witty\ProjectBundle\Entity\RewardOption $rewardOption = null)
+    {
+        $this->rewardOption = $rewardOption;
+    
+        return $this;
+    }
 }

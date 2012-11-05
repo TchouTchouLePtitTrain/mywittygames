@@ -33,6 +33,12 @@ class Project
     protected $rewards;
 	
     /**
+     * @ORM\OneToOne(targetEntity="Reward")
+	 * @ORM\JoinColumn(name="rewarddefault_id", referencedColumnName="id")
+     */
+    protected $rewardParDefaut;
+	
+    /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="project")
      */
     protected $comments;
@@ -151,7 +157,7 @@ class Project
      * non mappé
 	 * Array des édinautes du projet
      */
-    protected $edinautes;
+    //protected $edinautes;
 	
     /**
      * non mappé
@@ -487,21 +493,64 @@ class Project
     }
 	
 	/**
-     * Get Edinautes
+     * Get Edinautes - renvoie les ids au lieu des édinautes à cause d'une anomalie php (voir ci-dessous)
      *
      * @return Array
      */
 	public function getEdinautes()
 	{
+		//On est obligés de passer par les ids à cause d'une anomalie php. 
+		// Le tableau des édinautes est en effet bien mis à jour dans la boucle foreach (var_dump) mais lorsqu'on le retourne, il ne contient plus que le premier élément.
+		// Le var_dump modifie la variable
+		// voir http://stackoverflow.com/questions/6571250/var-dump-changes-the-result-of-the-function
+		// Mais cela n'explique pas pourquoi sans les var_dump, seul le premier élément est retourné...
+		
+		//Ancien code 
+		// $edinautes = array();
+
+		// foreach($this->getUserRewards() as $userReward)
+		// {
+			// if (!in_array($userReward->getUser(), $edinautes)) $edinautes[] = $userReward->getUser(); //Si l'édinaute n'est pas déjà dans la liste, on l'ajoute
+// var_dump($edinautes);
+		// }
+// echo 'apres la boucle';
+// var_dump($edinautes);		
+		// return $edinautes;	
+		// Fin ancien code
+		
+		$ids_edinautes = array();
+
+		foreach($this->getUserRewards() as $userReward)
+		{
+			if (!in_array($userReward->getUser()->getId(), $ids_edinautes))
+			{
+				$ids_edinautes[] = $userReward->getUser()->getId(); //Si l'édinaute n'est pas déjà dans la liste, on l'ajoute
+			}
+		}
+
+		return $ids_edinautes;
+	}
+	
+	
+	 /**
+     * Get Edinautes
+     *
+     * @return Array
+     */
+	 /* A réactiver si on ajoute les édinautes au projet au moment où ils investissent
+	public function getEdinautes()
+	{
 		if (!$this->edinautes) $this->setEdinautes();
 		return $this->edinautes;
 	}
+	*/
 	
 	
 	/**
      * Set Edinautes
      *
      */
+	 /*
 	public function setEdinautes()
 	{
 		$edinautes = array();
@@ -513,6 +562,7 @@ class Project
 		
 		$this->edinautes = $edinautes;
 	}
+	*/
 		
 		
 	/**
@@ -585,7 +635,7 @@ class Project
      */
 	public function getDaysLeft()
 	{
-		return $this->getEndDate()->diff(new \DateTime())->format('%d');
+		return $this->getEndDate()->diff(new \DateTime())->days;
 	}
 	
 	

@@ -33,6 +33,12 @@ class Project
     protected $rewards;
 	
     /**
+     * @ORM\OneToOne(targetEntity="Reward")
+	 * @ORM\JoinColumn(name="rewarddefault_id", referencedColumnName="id")
+     */
+    protected $rewardParDefaut;
+	
+    /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="project")
      */
     protected $comments;
@@ -832,5 +838,28 @@ class Project
     public function getMediumDescription()
     {
         return $this->mediumDescription;
+    }
+
+    /**
+     * Set rewardParDefaut
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $rewardParDefaut
+     * @return Project
+     */
+    public function setRewardParDefaut(\Witty\ProjectBundle\Entity\Reward $rewardParDefaut = null)
+    {
+        $this->rewardParDefaut = $rewardParDefaut;
+    
+        return $this;
+    }
+
+    /**
+     * Get rewardParDefaut
+     *
+     * @return Witty\ProjectBundle\Entity\Reward 
+     */
+    public function getRewardParDefaut()
+    {
+        return $this->rewardParDefaut;
     }
 }
