@@ -9,7 +9,9 @@
 			
 		{% endfor %}
 		
-		<a href="{{ path('annuler_contrepartie', {'userRewardId': userReward.id}) }}" class="annuler_contrepartie">Annuler cette contrepartie</a>
+		{% if userReward.reward.project.funded == 0 %}
+			<a href="{{ path('annuler_contrepartie', {'userRewardId': userReward.id}) }}" class="annuler_contrepartie">Annuler cette contrepartie</a>
+		{% endif %}
 	<br/>
 		<br/>
 	{% endfor %}
