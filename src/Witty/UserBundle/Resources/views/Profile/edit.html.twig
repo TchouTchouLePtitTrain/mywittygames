@@ -42,13 +42,6 @@
 		
 			{% if user.games|length > 0 %}
 		</div>
-		<div  class="paragraphe">	
-			<p class="texte_profil">Les projets que vous avez soutenus<br/>en saisons 1 et 2</p>
-			{% for game in user.games %}
-				<p class="texte_profil2">Vous avez {{ game.sharesByUserId(user.id)|length }} parts de {{game.name}}.</p>
-			{% endfor %}
-		{% endif %}
-		</div>
 		
 		<br/>
 		<div  class="paragraphe">
