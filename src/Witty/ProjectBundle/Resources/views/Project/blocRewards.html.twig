@@ -26,7 +26,7 @@
 				<p class="edinautesReward">{{ reward.userRewards|length }}</p>
 			</div>
 			<div class="caracteristiques_reward">
-				<span class="title">{{ reward.title }}</span> - {{ reward.description }}
+				<span class="title">{{ reward.title }}</span> - {{ reward.description|raw }}
 			</div>
 		</a>
 	{% endfor %}
