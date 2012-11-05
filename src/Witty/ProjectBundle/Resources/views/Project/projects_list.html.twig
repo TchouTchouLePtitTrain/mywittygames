@@ -62,10 +62,15 @@
 	{% for project in projectsFunded %}
 
 		{% set affichage = 'petit' %}
+		{% if affichage == 'petit' %}
+			{% set url_image = project.imageSecondaire %}
+		{% else %}
+			{% set url_image = project.image %}
+		{% endif %}
 
 		<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
 			class="bloc_jeu {{affichage}}">
-			<img class="img_jeu" src="{{ url_asset('project', project.id, project.image) }}" alt="Image du jeu"/>
+			<img class="img_jeu" src="{{ url_asset('project', project.id, url_image) }}" alt="Image du jeu"/>
 
 			<div class="bloc_jeu_haut">
 				<p class="titreJeu">{{ project.title }}</p>

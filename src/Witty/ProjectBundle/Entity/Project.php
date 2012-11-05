@@ -104,6 +104,13 @@ class Project
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
+	
+    /**
+     * @var string $imageSecondaire
+     *
+     * @ORM\Column(name="image_secondaire", type="string", length=255, nullable=true)
+     */
+    private $imageSecondaire;
 
     /**
      * @var string $video
@@ -861,5 +868,28 @@ class Project
     public function getRewardParDefaut()
     {
         return $this->rewardParDefaut;
+    }
+
+    /**
+     * Set imageSecondaire
+     *
+     * @param string $imageSecondaire
+     * @return Project
+     */
+    public function setImageSecondaire($imageSecondaire)
+    {
+        $this->imageSecondaire = $imageSecondaire;
+    
+        return $this;
+    }
+
+    /**
+     * Get imageSecondaire
+     *
+     * @return string 
+     */
+    public function getImageSecondaire()
+    {
+        return $this->imageSecondaire;
     }
 }

@@ -173,6 +173,7 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
 				</div>
              #}
             
+			{% set linking = (project.funded == true) %}
 			{% render "WittyProjectBundle:Project:blocRewards" with {'project': project, 'linking': project.funded}  %}
 			
         </section>

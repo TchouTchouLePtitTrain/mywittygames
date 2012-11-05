@@ -54,7 +54,7 @@ class ProjectController extends Controller
 		{
 			$edinautes[] = $em->getRepository('WittyUserBundle:User')->find($id);
 		}
-		
+
 		return $this->render('WittyProjectBundle:Project:project.html.twig', 
 			array(
 				'project' => $project, 

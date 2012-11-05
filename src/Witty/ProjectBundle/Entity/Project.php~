@@ -104,6 +104,13 @@ class Project
      * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
+	
+    /**
+     * @var string $imageSecondaire
+     *
+     * @ORM\Column(name="image_secondaire", type="string", length=255, nullable=true)
+     */
+    private $imageSecondaire;
 
     /**
      * @var string $video
@@ -838,5 +845,28 @@ class Project
     public function getMediumDescription()
     {
         return $this->mediumDescription;
+    }
+
+    /**
+     * Set rewardParDefaut
+     *
+     * @param Witty\ProjectBundle\Entity\Reward $rewardParDefaut
+     * @return Project
+     */
+    public function setRewardParDefaut(\Witty\ProjectBundle\Entity\Reward $rewardParDefaut = null)
+    {
+        $this->rewardParDefaut = $rewardParDefaut;
+    
+        return $this;
+    }
+
+    /**
+     * Get rewardParDefaut
+     *
+     * @return Witty\ProjectBundle\Entity\Reward 
+     */
+    public function getRewardParDefaut()
+    {
+        return $this->rewardParDefaut;
     }
 }
