@@ -103,7 +103,7 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
 			{# for edinaute in project.edinautes #}
 			{% for edinaute in edinautes %}
 				<div class="edinaute">
-					{% render "WittyUserBundle:Profile:avatar" %}
+					{% render "WittyUserBundle:Profile:avatar" with {'id': edinaute.id } %}
 					<p class="nom_edinaute">{{ edinaute.label }}</p>
 					<p class="texte">a soutenu {{ edinaute.projectsFunded|length }} jeux</p>
 				</div>
