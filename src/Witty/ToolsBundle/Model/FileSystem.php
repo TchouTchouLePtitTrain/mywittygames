@@ -5,7 +5,7 @@ namespace Witty\ToolsBundle\Model;
 use Gaufrette\FileSystem as BaseFileSystem;
 use Symfony\Component\HttpFoundation\File\File as File;
 
-class Filesystem extends BaseFileSystem
+class FileSystem extends BaseFileSystem
 {
 
     /**
