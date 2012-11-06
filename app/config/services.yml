@@ -1,5 +1,5 @@
 parameters:
-    witty.fs.class: Witty\ToolsBundle\Model\Filesystem
+    witty.fs.class: Witty\ToolsBundle\Model\FileSystem
     witty.s3.adapter.class: Witty\ToolsBundle\Service\Adapter\AmazonS3Adapter
     witty.s3.class: AmazonS3
 
