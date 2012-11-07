@@ -1,0 +1,23 @@
+{% extends "WittyMwgBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {% stylesheets 'bundles/wittymwg/css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block title %}{{ parent() }} - Presse{% endblock %}
+
+{% block content %}
+  
+   <div class="blocTitrePage">
+    	<p class="titrePage titrePage_faq">Presse</p>
+    </div>
+    
+    <div id="container">
+
+    </div>
+   
+   
+{% endblock %}

@@ -17,3 +17,7 @@ mwg_cgu_edinautes:
 mwg_mentionslegales:
     pattern:   /mentions-legales
     defaults:  { _controller: WittyMwgBundle:Home:mentionsLegales }
+
+mwg_presse:
+    pattern:   /presse
+    defaults:  { _controller: WittyMwgBundle:Home:presse }

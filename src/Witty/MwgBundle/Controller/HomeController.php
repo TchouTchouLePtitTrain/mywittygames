@@ -54,5 +54,13 @@ class HomeController extends Controller
     public function mentionsLegalesAction()
     {
         return $this->render('WittyMwgBundle:Home:mentions_legales.html.twig');
+    }	
+	
+    /**
+     * @Template()
+     */
+    public function presseAction()
+    {
+        return $this->render('WittyMwgBundle:Home:presse.html.twig');
     }
 }
