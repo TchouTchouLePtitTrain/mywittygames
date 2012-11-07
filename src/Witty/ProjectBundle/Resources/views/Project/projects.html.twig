@@ -9,7 +9,7 @@
 	<div class="blocTitrePage">
     	<p class="titrePage titrePage_projet">Devenez co-éditeur</p>
         <p class="descriptionPage descriptionPage_projet">Participez au financement de jeux de société et recevez des récompenses exclusives.<br/>Si un projet n'atteint pas son objectif, vous êtes remboursé sans frais.</p>
-        <p class="infosPage">Actuellement 7 jeux ont été édités grâce aux édinautes. <a href="{{ path('fos_user_security_login') }}" class="rejoignez">Rejoignez-les !</a></p>
+        <p class="infosPage">Actuellement 7 jeux ont été édités grâce aux édinautes. <a href="{{ path('fos_user_security_login') }}" class="rejoignez">Rejoignez nos {{ users|length }} membres !</a></p>
     </div>
 
 	{% render "WittyProjectBundle:Project:projectsList" with {'mode_affichage': mode_affichage} %}

@@ -13,9 +13,13 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+		$em = $this->getDoctrine()->getEntityManager();
+		$users = $em->getRepository('WittyUserBundle:User')->findAll();
+	
         return $this->render('WittyMwgBundle:Home:index.html.twig', 
 			array(
-				'mode_affichage' => $this->container->getParameter('witty.design.home.mode_affichage')
+				'mode_affichage' => $this->container->getParameter('witty.design.home.mode_affichage'),
+				'users' => $users
 			)
 		);
     }
