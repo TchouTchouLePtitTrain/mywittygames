@@ -30,4 +30,12 @@ class UserRepository extends EntityRepository
 			)->setParameter('id', $game_id)
             ->getResult();
     }
+	
+    public function getMembersNumber()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+				SELECT count(u.id) FROM WittyUserBundle:User u')
+            ->getSingleScalarResult();
+    }
 }

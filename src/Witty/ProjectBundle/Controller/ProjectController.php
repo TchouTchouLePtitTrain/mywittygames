@@ -15,9 +15,13 @@ class ProjectController extends Controller
      */
     public function indexAction($mode_affichage = 'focus_one_project')
     {
+		$em = $this->getDoctrine()->getEntityManager();
+		$members_count = $em->getRepository('WittyUserBundle:User')->getMembersNumber();
+	
 		return $this->render('WittyProjectBundle:Project:projects.html.twig', 
 			array(
-				'mode_affichage' => $this->container->getParameter('witty.design.project.list.mode_affichage')
+				'mode_affichage' => $this->container->getParameter('witty.design.project.list.mode_affichage'),
+				'members_count' => $members_count
 			)
 		);
     }
@@ -67,10 +71,9 @@ class ProjectController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$projectsFunded = $em->getRepository('WittyProjectBundle:Project')->findFundedOrderedByPriority();
 		$projectsNotFunded = $em->getRepository('WittyProjectBundle:Project')->findNotFundedOrderedByPriority();
-		$users = $em->getRepository('WittyUserBundle:User')->findAll();
 		
-		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projectsFunded' => $projectsFunded, 'projectsNotFunded' => $projectsNotFunded, 'mode_affichage' => $mode_affichage, 'users' => $users));
-    }	
+		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projectsFunded' => $projectsFunded, 'projectsNotFunded' => $projectsNotFunded, 'mode_affichage' => $mode_affichage));
+    }
 	
 	/**
      * @Secure(roles="ROLE_USER")

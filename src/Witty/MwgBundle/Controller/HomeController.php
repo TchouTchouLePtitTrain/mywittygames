@@ -14,12 +14,12 @@ class HomeController extends Controller
     public function indexAction()
     {
 		$em = $this->getDoctrine()->getEntityManager();
-		$users = $em->getRepository('WittyUserBundle:User')->findAll();
-	
+		$members_count = $em->getRepository('WittyUserBundle:User')->getMembersNumber();
+
         return $this->render('WittyMwgBundle:Home:index.html.twig', 
 			array(
 				'mode_affichage' => $this->container->getParameter('witty.design.home.mode_affichage'),
-				'users' => $users
+				'members_count' => $members_count
 			)
 		);
     }
