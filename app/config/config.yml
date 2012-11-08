@@ -25,17 +25,6 @@ services:
         class: %witty.fs.class%
         arguments:
             service: @witty.s3.adapter
-    #PDO : config pour avoir les sessions stockées en base
-    pdo:
-        class: PDO
-        arguments:
-            dsn:      "mysql:host=%database_host%;dbname=%database_name%"
-            user:     %database_user%
-            password: %database_password%
-
-    session.handler.pdo:
-        class:     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
-        arguments: [@pdo, %pdo.db_options%]
 
 framework:
     #esi:             ~
@@ -50,8 +39,7 @@ framework:
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     default_locale:  %locale%
     trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
-    session:         
-        handler_id:     session.handler.pdo
+    session:         ~
 
 # Twig Configuration
 twig:
