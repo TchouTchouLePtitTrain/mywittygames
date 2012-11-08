@@ -1,0 +1,58 @@
+/* --- Bloc jeu --- */
+
+#blocContenuPresse{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:960px;
+	height:1OO%;
+	background-color:#FFF;
+	border-radius:4px;
+	
+	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-o-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	-ms-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+	
+	border: solid 1px #b7b7b7;
+	padding:20px;	
+}
+
+.soustitre{
+	font-family: 'Karla', sans-serif;
+	font-size:1.375em;
+	color:#666;
+	margin-bottom:10px;
+}
+
+.texte{
+	font-family: 'Karla', sans-serif;
+	font-size:1em;
+	color:#666;
+	line-height: 1.5;
+	margin-bottom:10px;
+}
+
+.texte_bleu{
+	font-family: 'Karla', sans-serif;
+	font-size:1em;
+	line-height: 1.5;
+	margin-bottom:10px;
+	color:#4270be;
+}
+
+.item{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:660px;
+	height:auto;
+	float:left;
+}
+
+hr {
+    width:100%;
+    border:none;
+    border-bottom:1px dotted #666;
+	opacity:0.3;
