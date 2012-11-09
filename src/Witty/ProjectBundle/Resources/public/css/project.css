@@ -236,7 +236,7 @@ section{
 	margin-left:5px;
 }
 
-.blocComments.img_avatar{
+.blocComments .img_avatar{
 	display:block;
 	float:left;
 	margin-left:auto;
