@@ -55,4 +55,10 @@ hr {
     width:100%;
     border:none;
     border-bottom:1px dotted #666;
-	opacity:0.3;
+	opacity:0.5;
+}
+
+.lien_press:hover{
+	text-decoration:underline;
+}
+	
