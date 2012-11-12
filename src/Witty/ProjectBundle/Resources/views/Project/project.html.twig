@@ -84,7 +84,7 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
 				{% for news in project.news %}
 					<article>
 						<p class="soustitre">{{ news.title }}</p>
-						<p class="texte">{{ news.content}}</p>
+						<p class="texte">{{ news.content|raw }}</p>
 					</article>
 				{% endfor %}
 			{% else %}

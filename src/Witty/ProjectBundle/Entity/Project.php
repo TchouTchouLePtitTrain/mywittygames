@@ -111,6 +111,13 @@ class Project
      * @ORM\Column(name="image_secondaire", type="string", length=255, nullable=true)
      */
     private $imageSecondaire;
+	
+    /**
+     * @var string $imageAchat
+     *
+     * @ORM\Column(name="image_achat", type="string", length=255, nullable=true)
+     */
+    private $imageAchat;
 
     /**
      * @var string $video
@@ -891,5 +898,28 @@ class Project
     public function getImageSecondaire()
     {
         return $this->imageSecondaire;
+    }
+
+    /**
+     * Set imageAchat
+     *
+     * @param string $imageAchat
+     * @return Project
+     */
+    public function setImageAchat($imageAchat)
+    {
+        $this->imageAchat = $imageAchat;
+    
+        return $this;
+    }
+
+    /**
+     * Get imageAchat
+     *
+     * @return string 
+     */
+    public function getImageAchat()
+    {
+        return $this->imageAchat;
     }
 }

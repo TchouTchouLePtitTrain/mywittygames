@@ -266,7 +266,6 @@ class TransactionController extends Controller
      */
     public function cancelAction()
     {
-
 		return new \Symfony\Component\HttpFoundation\Response('annulation');
 	}		
 	
