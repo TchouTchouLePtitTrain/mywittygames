@@ -51,52 +51,7 @@
     
     	<section class="item">
         	{# <video class="video" src="{{ project.video }}" ></video> #}
-			<article>
-				<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/10/description/couv_grande_pirates.png" style="width:100%"/>
-				<br/>
-				<p class="soustitre">
-					Trouvez l'or des pirates
-				</p>
-				<p class="texte">
-					Menez votre équipage jusqu'au magot ! <br/>
-					Dans pirates contre pirates, vous êtes à la tête d'un équipage de gaillards aux caractères bien trempés, et vous devez les mener jusqu'à ce tas de richesses et de pièces d'or qui les fait tous baver dans leur sommeil !<br/>
-					Mais attention, tout ce qui est précieux est rare, et d'autres équipages trouvent tout à fait légitime de vous envoyer 6 pieds sous terre pour récupérer LEUR trésor.
-				</p>
-				<br/>
-				<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/10/description/illus1.png" style="width:100%"/>
-				<br/>
-				<br/>
-				<p class="soustitre">
-					Sur l'île du Crâne, après l'arbre aux pendus, compte 500 pas jusqu'au trésor ...
-				</p>
-				<br/>
-				<p class="texte">
-					Dans pirates contre pirates, vous devez mener votre équipage jusqu'au trésor et arriver le premier. 
-					<br/>
-					<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/10/description/cartes2.png" style="width:100%"/>
-					<br/><br/>
-					Mais les autres pirates vont vous mettre des bâtons dans les roues...
-					<br/>
-					Prenez garde au fier Barbe Blanche et au fourbe Pete La Limace !
-					<br/>
-					<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/10/description/equipeBleu.png" style="width:100%"/>
-					<br/><br/>
-					Les bons indices vous rapporcheront du trésor et de la richesse, mais attention aux faux ! Ils vous perdraient en pleine jungle ! <br/>
-					Dans pirates contre pirates, car tout est affaire de bluff ! <br/>
-					<br/>
-					<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/10/description/cartes1.png" style="width:100%"/>
-					<br/><br/>
-					Et comme vous n'êtes pas entouré d'enfants de coeur, faîtes attention aux équipages adverses qui auront vite fait de passer vos matelots par le fil de l'épée.
-					<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/10/description/illus2.png.png" style="width:100%"/>
-					<br/><br/>
-				</p>
-				<!--
-				<p class="soustitre">
-					Au fond du coffre
-				</p>
-				-->
-				<img src="https://s3-eu-west-1.amazonaws.com/mywittygames/project/10/description/boite_pirates.png" style="width:100%"/>
-			</article>
+			{{ project.description|raw }}
 			
 		{#<article>
             	<p class="soustitre">Description du jeu </p>
