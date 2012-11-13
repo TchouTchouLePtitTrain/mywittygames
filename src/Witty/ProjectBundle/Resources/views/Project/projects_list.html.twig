@@ -78,27 +78,6 @@
 			<p class="descriptionJeu">{{ project.shortDescription }}</p>
 		</div>
 		<div class="bloc_jeu_bas">
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
-				{% if affichage == 'grand' %}
-					<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
-				{% endif %}
-				<div class="img_user"></div>
-			</div>
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.funding }} €</p>
-				{% if affichage == 'grand' %}
-					<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandé</p>
-				{% endif %}
-				<div class="img_piggy"> </div>
-			</div>
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
-				{% if affichage == 'grand' %}					
-					<p class="style_caracteristiques">jours<br/>restants</p>
-				{% endif %}
-				<div class="img_clock"></div>
-			</div>
 			<div class="spacer"></div>
 		</div>
 		
