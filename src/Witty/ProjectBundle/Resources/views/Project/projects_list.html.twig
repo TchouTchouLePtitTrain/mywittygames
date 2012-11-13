@@ -62,18 +62,26 @@
 {% endif %}
 {% for project in projectsComingSoon %}
 
-	{% set affichage = 'mini' %}
-	{% if affichage == 'mini' %}
+	{% set affichage = 'petit' %}
+	{% if affichage == 'petit' %}
 		{% set url_image = project.imageSecondaire %}
 	{% else %}
 		{% set url_image = project.image %}
 	{% endif %}
 
-	<a class="bloc_jeu {{affichage}}">
-		<img class="img_jeu" src="{{ url_asset('project', project.id, url_image) }}" alt="Image du jeu"/>
-		
-		<div class="spacer"></div>
-	</a>
+		<a class="bloc_jeu {{affichage}}">
+			<img class="img_jeu" src="{{ url_asset('project', project.id, url_image) }}" alt="Image du jeu"/>
+
+			<div class="bloc_jeu_haut">
+				<p class="titreJeu">{{ project.title }}</p>
+				<p class="descriptionJeu">{{ project.shortDescription }}</p>
+			</div>
+			<div class="bloc_jeu_bas">
+				<div class="spacer"></div>
+			</div>
+			
+			<div class="spacer"></div>
+		</a>
 
 {% endfor %}
 
