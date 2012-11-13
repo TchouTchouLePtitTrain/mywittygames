@@ -71,8 +71,16 @@ class ProjectController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$projectsFunded = $em->getRepository('WittyProjectBundle:Project')->findFundedOrderedByPriority();
 		$projectsNotFunded = $em->getRepository('WittyProjectBundle:Project')->findNotFundedOrderedByPriority();
+		$projectsComingSoon = $em->getRepository('WittyProjectBundle:Project')->findComingSoonOrderedByPriority();
 		
-		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', array('projectsFunded' => $projectsFunded, 'projectsNotFunded' => $projectsNotFunded, 'mode_affichage' => $mode_affichage));
+		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', 
+			array(
+				'projectsFunded' => $projectsFunded, 
+				'projectsNotFunded' => $projectsNotFunded, 
+				'mode_affichage' => $mode_affichage, 
+				'projectsComingSoon' => $projectsComingSoon
+			)
+		);
     }
 	
 	/**

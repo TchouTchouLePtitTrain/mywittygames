@@ -162,6 +162,13 @@ class Project
     protected $priority = 100;
 	
     /**
+     * @var string $state
+     *
+     * @ORM\Column(name="state", type="string", length=20)
+     */
+    protected $state;	
+	
+    /**
      * non mappé
 	 * Array des UserRewards du projet
      */
