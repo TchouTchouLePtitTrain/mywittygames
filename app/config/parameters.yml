@@ -4,3 +4,8 @@ parameters:
         db_id_col:   session_id
         db_data_col: session_value
         db_time_col: session_time
+    
+    witty.distribution.amazon.ice3: http://www.amazon.fr/Witty-Editions-WIT04-Société-ICE3/dp/B007TFD3JE
+    witty.distribution.fnac.ice3: http://www4.fnac.com/Witty-Ice-3/a4107357/w-4
+    witty.distribution.joue_club.ice3: pas_encore
+    

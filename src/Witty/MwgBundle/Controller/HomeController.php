@@ -69,6 +69,14 @@ class HomeController extends Controller
      */
     public function partenairesAction()
     {
-        return array();
+		$url_amazon_ice3 = $this->container->getParameter('witty.distribution.amazon.ice3');
+		$url_fnac_ice3 = $this->container->getParameter('witty.distribution.fnac.ice3');
+		$url_joueclub_ice3 = $this->container->getParameter('witty.distribution.joue_club.ice3');
+		
+        return array(
+			'url_amazon_ice3' => $url_amazon_ice3,
+			'url_fnac_ice3' => $url_fnac_ice3,
+			'url_joueclub_ice3' => $url_joueclub_ice3
+		);
     }
 }
