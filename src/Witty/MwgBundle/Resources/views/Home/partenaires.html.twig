@@ -1,0 +1,52 @@
+{% extends "WittyMwgBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {% stylesheets 
+		'bundles/wittymwg/css/*.css'
+	filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block title %}{{ parent() }} - Partenaires{% endblock %}
+
+{% block content %}
+  
+   <div class="blocTitrePage">
+    	<p class="titrePage titrePage_faq">Nos partenaires</p>
+		<p class="descriptionPage descriptionPage_projet">Ils nous font confiance</p>
+    </div>
+    
+    <div id="container">	
+		<div class="logos_partenaires">
+			{% image '@WittyMwgBundle/Resources/public/images/partenaires/logo_joue_club.png' %}
+				<img src="{{ asset_url }}" alt="Witty Editions"/>
+			{% endimage %}
+			{% image '@WittyMwgBundle/Resources/public/images/partenaires/logo_la_grande_recre.png' %}
+				<img src="{{ asset_url }}" alt="Witty Editions"/>
+			{% endimage %}		
+			{% image '@WittyMwgBundle/Resources/public/images/partenaires/logo_picwic.png' %}
+				<img src="{{ asset_url }}" alt="Witty Editions"/>
+			{% endimage %}		
+			{% image '@WittyMwgBundle/Resources/public/images/partenaires/logo_virgin_megastore.png' %}
+				<img src="{{ asset_url }}" alt="Witty Editions"/>
+			{% endimage %}		
+			{% image '@WittyMwgBundle/Resources/public/images/partenaires/logo_fnac_com.png' %}
+				<img src="{{ asset_url }}" alt="Witty Editions" style="margin-left:200px;"/>
+			{% endimage %}		
+			{% image '@WittyMwgBundle/Resources/public/images/partenaires/logo_amazon.png' %}
+				<img src="{{ asset_url }}" alt="Witty Editions"/>
+			{% endimage %}		
+			{% image '@WittyMwgBundle/Resources/public/images/partenaires/logo_furet_du_nord.png' %}
+				<img src="{{ asset_url }}" alt="Witty Editions"/>
+			{% endimage %}
+		</div>
+		<div class="spacer"></div>
+		<div class="blocTitrePage bloc_fin">
+			<p class="descriptionPage descriptionPage_projet">Et plus de 250 boutiques spécialisées dans le jeu de société !</p>
+		</div>
+    </div>
+   
+   
+{% endblock %}

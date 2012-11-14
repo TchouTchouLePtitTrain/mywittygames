@@ -21,3 +21,7 @@ mwg_mentionslegales:
 mwg_presse:
     pattern:   /presse
     defaults:  { _controller: WittyMwgBundle:Home:presse }
+    
+mwg_partenaires:
+    pattern:   /partenaires
+    defaults:  { _controller: WittyMwgBundle:Home:partenaires }

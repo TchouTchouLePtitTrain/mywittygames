@@ -63,4 +63,12 @@ class HomeController extends Controller
     {
         return $this->render('WittyMwgBundle:Home:presse.html.twig');
     }
+	
+    /**
+     * @Template()
+     */
+    public function partenairesAction()
+    {
+        return array();
+    }
 }
