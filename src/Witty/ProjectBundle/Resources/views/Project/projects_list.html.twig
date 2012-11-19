@@ -40,10 +40,19 @@
 				<div class="img_piggy"> </div>
 			</div>
 			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
-				{% if affichage == 'grand' %}					
-					<p class="style_caracteristiques">jours<br/>restants</p>
-				{% endif %}
+				{% if project.funded %}
+					<p class="style_NBcaracteritiques">Edité</p>
+				{% else %}
+					<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
+					{% if affichage == 'grand' %}					
+						<p class="style_caracteristiques">
+							jour{% if project.daysLeft > 1 %}s{% endif %}
+							<br/>
+							restants
+						</p>
+					{% endif %}
+				{% endif %}			
+
 				<div class="img_clock"></div>
 			</div>
 			<div class="spacer"></div>

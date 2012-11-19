@@ -148,8 +148,14 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
                 </div>
                 <div class="caracteristiques">
                 	<div class="infos">
-                	<p class="styleNb">{{ project.daysLeft }}</p>
-                    <p class="styletexte">jours restants</p>
+						{% if project.funded %}
+							<p class="styleNb">Edité</p>
+						{% else %}
+							<p class="styleNb">{{ project.daysLeft }}</p>
+							<p class="styletexte">
+								jour{% if project.daysLeft > 1 %}s{% endif %} restants
+							</p>
+						{% endif %}
                     </div>
                     <a class="btn_clock"></a>
                 </div>
