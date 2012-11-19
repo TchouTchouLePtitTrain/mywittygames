@@ -306,6 +306,9 @@ section{
 	line-height: normal;
 	margin-bottom:5px;
 }
+.styleNb.edite{
+	margin-top: 10px;
+}
 
 .styletexte{
 	font-family: 'Crete Round', serif;
