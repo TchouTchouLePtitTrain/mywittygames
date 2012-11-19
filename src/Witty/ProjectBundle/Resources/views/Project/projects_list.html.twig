@@ -46,7 +46,7 @@
 					<p class="style_NBcaracteritiques">{{ project.daysLeft }}</p>
 					{% if affichage == 'grand' %}					
 						<p class="style_caracteristiques">
-							jour{% if project.daysLeft > 1 %}s{% endif %}
+							jour{% if project.funded %}s{% endif %}
 							<br/>
 							restants
 						</p>
