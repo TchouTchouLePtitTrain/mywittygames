@@ -25,7 +25,3 @@ mwg_presse:
 mwg_partenaires:
     pattern:   /partenaires
     defaults:  { _controller: WittyMwgBundle:Home:partenaires }
-
-url_historiques:
-    pattern:    /{url}
-    defaults:   { _controller: WittyMwgBundle:Home:urlHistoriques }

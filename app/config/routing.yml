@@ -47,3 +47,10 @@ _security_check:
 
 _security_logout:
     pattern:  /logout_fb
+    
+#URLs historiques (redirections 301 pour que les urls de la version précédente du site continuent de fonctionner)
+url_historiques:
+    pattern:    /{url}
+    defaults:   { _controller: WittyMwgBundle:Home:urlHistoriques }
+    requirements:
+        url: ".+"
