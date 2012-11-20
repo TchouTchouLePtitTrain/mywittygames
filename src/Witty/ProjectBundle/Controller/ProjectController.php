@@ -31,23 +31,6 @@ class ProjectController extends Controller
     {
 		$em = $this->getDoctrine()->getEntityManager();
 		
-		//Compatibilité saison 1 et 2
-		/*$jeux_saison_1_et_2 = array( "pong", "zibi", "chronos", "ice3", "temple", "jeu-du-métro", "empathy" );
-		
-		if (in_array($slug, $jeux_saison_1_et_2) )
-		{
-			$game = $em->getRepository('WittyShareBundle:Game')->findOneBySlug($slug);
-			$edinautes = $em->getRepository('WittyUserBundle:User')->findEdinautesByGameId($game->getId());
-		
-			return $this->render('WittyProjectBundle:Project:game_saison_1_et_2.html.twig', 
-				array(
-					'game' => $game, 
-					'edinautes' => $edinautes
-				));
-		}*/
-		//Fin compatibilité
-		
-		
 		if (!is_numeric($slug) == 'string')
 			$project = $em->getRepository('WittyProjectBundle:Project')->findOneBySlug($slug);
 		else
@@ -97,11 +80,12 @@ class ProjectController extends Controller
 				);
     }	
 	
-    public function blocRewardsAction($project, $linking, $rewardId = null)
+    public function blocRewardsAction($project, $rewardId = null)
     {
 		$parametres = array(
-						'project' => $project, 
-						'linking' => $linking, 
+						'project' => $project,
+						'linking' => ($project->getFunded() == 0) && ($project->getState() != 'coming_soon'),
+						'texte_contreparties' => ($project->getFunded() == 0)? 'Sélectionnez votre contrepartie' : 'Aperçu des contreparties',
 						'rewardId' => $rewardId
 					);
 

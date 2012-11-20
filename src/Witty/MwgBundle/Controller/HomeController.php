@@ -82,7 +82,7 @@ class HomeController extends Controller
 	
 	
 	
-	//Méthode pour les anciennes urls
+	//MÃ©thode pour les anciennes urls
 	public function urlHistoriquesAction($url)
 	{
 		//Jeux
@@ -91,7 +91,7 @@ class HomeController extends Controller
 		if ( ($url == 'game/view/6') || (strpos($url, 'chronos') !== false) ) return $this->redirect($this->generateUrl('project_display', array('slug' => 'chronos')), 301);
 		if ( ($url == 'game/view/8') || (strpos($url, 'ice') !== false) ) return $this->redirect($this->generateUrl('project_display', array('slug' => 'ice3')), 301);
 		if ( ($url == 'game/view/11') || (strpos($url, 'temple') !== false) ) return $this->redirect($this->generateUrl('project_display', array('slug' => 'temple')), 301);
-		if ( ($url == 'game/view/45') || (strpos($url, 'metro') !== false) ) return $this->redirect($this->generateUrl('project_display', array('slug' => 'jeu-du-métro')), 301);
+		if ( ($url == 'game/view/45') || (strpos($url, 'metro') !== false) ) return $this->redirect($this->generateUrl('project_display', array('slug' => 'jeu-du-mÃ©tro')), 301);
 		if ( ($url == 'game/view/48') || (strpos($url, 'empathy') !== false) ) return $this->redirect($this->generateUrl('project_display', array('slug' => 'empathy')), 301);
 		
 		if (strpos($url,'game') !== false) return $this->redirect($this->generateUrl('project_accueil'), 301);

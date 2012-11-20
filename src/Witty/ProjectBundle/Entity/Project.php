@@ -657,6 +657,16 @@ class Project
 	public function getDaysLeft()
 	{
 		return $this->getEndDate()->diff(new \DateTime())->days;
+	}	
+	
+	/**
+     * Get LaunchDate
+     *
+     * @return integer
+     */
+	public function getLaunchDate()
+	{
+		return strftime('%d %B', $this->getStartDate()->getTimestamp());
 	}
 	
 	
@@ -928,5 +938,28 @@ class Project
     public function getImageAchat()
     {
         return $this->imageAchat;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     * @return Project
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string 
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

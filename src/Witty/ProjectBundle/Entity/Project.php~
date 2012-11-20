@@ -162,6 +162,13 @@ class Project
     protected $priority = 100;
 	
     /**
+     * @var string $state
+     *
+     * @ORM\Column(name="state", type="string", length=20)
+     */
+    protected $state;	
+	
+    /**
      * non mappé
 	 * Array des UserRewards du projet
      */
@@ -898,5 +905,28 @@ class Project
     public function getImageSecondaire()
     {
         return $this->imageSecondaire;
+    }
+
+    /**
+     * Set imageAchat
+     *
+     * @param string $imageAchat
+     * @return Project
+     */
+    public function setImageAchat($imageAchat)
+    {
+        $this->imageAchat = $imageAchat;
+    
+        return $this;
+    }
+
+    /**
+     * Get imageAchat
+     *
+     * @return string 
+     */
+    public function getImageAchat()
+    {
+        return $this->imageAchat;
     }
 }

@@ -50,33 +50,7 @@
     <div id="blocContenuJeu">
     
     	<section class="item">
-        	{# <video class="video" src="{{ project.video }}" ></video> #}
 			{{ project.description|raw }}
-			
-		{#<article>
-            	<p class="soustitre">Description du jeu </p>
-            	<p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
-
-Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
-
-Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
-
-Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
-
-Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
-		</article>
-		<article>
-			<p class="soustitre">Description du jeu </p>
-            <p class="texte">Offre exclusive! Pour tous les édinautes qui prennent ou qui ont déjà pris des parts de Temple, un code promotionnel vous sera envoyé pour vous donner 15 euros de réduction sur Chronos!!! Vous pourrez donc recevoir chez vous Chronos pour seulement 24,90€ frais de ports inclus!
-
-Temple est l''extension de Witty Chronos et donne une nouvelle dimension à la boîte de base.
-
-Ajoutez encore plus de stratégie et de fun à votre maîtrise du temps !
-
-Temple est une extension pour les joueurs avertis qui veulent repousser les limites de la mécanique du jeu.
-
-Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur pour encore plus de fun ! Retrouvez 25 nouveaux Dieux et leurs effets spéciaux originaux, ainsi que le Temple pour acquérir de nouveaux pouvoirs durant la manche! De quoi pimenter encore plus vos prochaines parties ! </p>
-        </article> #}
         </section>
         
         <section class="item">
@@ -131,23 +105,23 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
         
         <section id="contenuJeuDroite">
         
-        	<div id="blocSoutenir">
-            	<div class="caracteristiques">
-                	<div class="infos">
-                	<p class="styleNb">{{ project.edinautes|length }}</p>
-                    <p class="styletexte">édinautes soutiennent ce jeu</p>
-                    </div>
-                    <a class="btn_user"></a>
-                </div>
-                <div class="caracteristiques">
-                	<div class="infos">
-                	<p class="styleNb">{{ project.funding }} €</p>
-                    <p class="styletexte">récolté sur {{ project.fundingGoal }} € demandé</p>
-                    </div>
-                    <a class="btn_piggy"></a>
-                </div>
-                <div class="caracteristiques">
-                	<div class="infos">
+			<div id="blocSoutenir">
+				<div class="caracteristiques">
+					<div class="infos">
+					<p class="styleNb">{{ project.edinautes|length }}</p>
+					<p class="styletexte">édinautes soutiennent ce jeu</p>
+					</div>
+					<a class="btn_user"></a>
+				</div>
+				<div class="caracteristiques">
+					<div class="infos">
+					<p class="styleNb">{{ project.funding }} €</p>
+					<p class="styletexte">récolté sur {{ project.fundingGoal }} € demandé</p>
+					</div>
+					<a class="btn_piggy"></a>
+				</div>
+				<div class="caracteristiques">
+					<div class="infos">
 						{% if project.funded %}
 							<p class="styleNb edite">Edité</p>
 						{% else %}
@@ -156,16 +130,15 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
 								jour{% if project.daysLeft > 1 %}s{% endif %} restants
 							</p>
 						{% endif %}
-                    </div>
-                    <a class="btn_clock"></a>
-                </div>
+					</div>
+					<a class="btn_clock"></a>
+				</div>
 				{% if project.funded == 0 %}
 					<a class="btn_soutenir" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}"></a>
 				{% else %}
 					<a class="btn_merci" href="#"></a>
 				{% endif %}
-            </div>
-            
+			</div>
  
             {# BLOC NON FINI D'INTEGRER ! A REVOIR QUAND ON VOUDRA LE METTRE EN LIGNE, BISOUS :)
 				<div id="blocEditeur">
@@ -179,8 +152,7 @@ Cette extension rajoute les 2 sabliers permettant de jouer avec un 6ème joueur 
 				</div>
              #}
             
-			{% set linking = (project.funded == 0) %}
-			{% render "WittyProjectBundle:Project:blocRewards" with {'project': project, 'linking': linking}  %}
+			{% render "WittyProjectBundle:Project:blocRewards" with {'project': project}  %}
 			
         </section>
         <div class="spacer"></div>
