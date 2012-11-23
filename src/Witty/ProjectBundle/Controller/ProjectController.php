@@ -41,11 +41,14 @@ class ProjectController extends Controller
 		{
 			$edinautes[] = $em->getRepository('WittyUserBundle:User')->find($id);
 		}
+		
+		$news = $em->getRepository('WittyProjectBundle:News')->findAllOrderedByCreationDate($project->getId());
 
 		return $this->render('WittyProjectBundle:Project:project.html.twig', 
 			array(
 				'project' => $project, 
-				'edinautes' => $edinautes
+				'edinautes' => $edinautes,
+				'news' => $news
 			));
     }
 	

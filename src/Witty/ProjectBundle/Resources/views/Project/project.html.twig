@@ -54,11 +54,11 @@
         </section>
         
         <section class="item">
-			{% if project.news|length > 0 %}
-				{% for news in project.news %}
+			{% if news|length > 0 %}
+				{% for new in news %}
 					<article>
-						<p class="soustitre">{{ news.title }}</p>
-						<p class="texte">{{ news.content|raw }}</p>
+						<p class="soustitre">{{ new.title }}</p>
+						<p class="texte">{{ new.content|raw }}</p>
 					</article>
 				{% endfor %}
 			{% else %}

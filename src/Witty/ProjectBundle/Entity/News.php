@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Witty\ProjectBundle\Entity\News
  *
  * @ORM\Table(name="project_news")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Witty\ProjectBundle\Repository\NewsRepository")
  */
 class News
 {
@@ -28,14 +28,18 @@ class News
     private $project;
 	
     /**
-     * @var \DateTime $createdAt
+     * @var \DateTime $creationDate
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
      */
-    private $createdAt;
+    private $creationDate;
 
     /**
-     * @var \DateTime $updatedAt
+     * @var \DateTime $updateDate
+     *
+     * @ORM\Column(name="update_date", type="datetime", nullable=true)
      */
-    private $updatedAt;	
+    private $updateDate;
 	
     /**
      * @var integer $title
@@ -128,5 +132,51 @@ class News
     public function getProject()
     {
         return $this->project;
+    }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     * @return News
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime 
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set updateDate
+     *
+     * @param \DateTime $updateDate
+     * @return News
+     */
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = $updateDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get updateDate
+     *
+     * @return \DateTime 
+     */
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
     }
 }
