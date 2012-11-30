@@ -5,7 +5,7 @@
 {% endstylesheets %}
 
 {# Pour le tracking du lead de la campagne adverline #}
-{% if app.user %}
+{% if app.user and app.user.lastLogin is null %}
 	<img src="http://adnext.fr/track.adv?track=88908,88907&event=3" height="1" width="1" border="0" alt="" style="float:left"/>
 {% endif %}
 
