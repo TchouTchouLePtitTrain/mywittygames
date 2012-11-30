@@ -126,9 +126,9 @@
 						{% if project.funded %}
 							<p class="styleNb edite">Edité</p>
 						{% else %}
-							<p class="styleNb">{{ project.daysLeft }}</p>
+							<p class="styleNb">{{ project.timeLeft }}</p>
 							<p class="styletexte">
-								jour{% if project.daysLeft > 1 %}s{% endif %} restants
+								jour{% if project.timeLeft > 1 %}s{% endif %} restant{% if project.timeLeft > 1 %}s{% endif %}
 							</p>
 						{% endif %}
 					</div>

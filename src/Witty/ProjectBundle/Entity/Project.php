@@ -650,11 +650,11 @@ class Project
 	
 	
 	/**
-     * Get DaysLeft
+     * Get TimeLeft
      *
      * @return integer
      */
-	public function getDaysLeft()
+	public function getTimeLeft()
 	{
 		return $this->getEndDate()->diff(new \DateTime())->days;
 	}	
