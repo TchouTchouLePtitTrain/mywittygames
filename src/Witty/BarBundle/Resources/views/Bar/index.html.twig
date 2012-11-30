@@ -4,6 +4,10 @@
 	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
 {% endstylesheets %}
 
+{# Pour le tracking du lead de la campagne adverline #}
+{% if app.user %}
+	<img src="http://adnext.fr/track.adv?track=88908,88907&event=3" height="1" width="1" border="0" alt="" style="float:left"/>
+{% endif %}
 
 <div id="bandeauHaut">
 	<div class="container_bandeau">
