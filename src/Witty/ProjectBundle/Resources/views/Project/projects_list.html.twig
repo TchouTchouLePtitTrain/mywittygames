@@ -24,30 +24,37 @@
 			<p class="descriptionJeu">{{ project.shortDescription }}</p>
 			<p class="texteJeu">{{ project.mediumDescription }}</p>
 		</div>
-		<div class="bloc_jeu_bas">
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
-				{% if affichage == 'grand' %}
-					<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
-				{% endif %}
-				<div class="img_user"></div>
+		
+		{% if project.id == 11 %}
+			<div class="bloc_jeu_bas">
+				<p class="texte" style="margin-top:30px; font-size:1.7em">Soutenez-le bientôt ...</p>
 			</div>
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.funding }} €</p>
-				{% if affichage == 'grand' %}
-					<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandés</p>
-				{% endif %}
-				<div class="img_piggy"> </div>
+		{% else %}
+			<div class="bloc_jeu_bas">
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
+					{% if affichage == 'grand' %}
+						<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
+					{% endif %}
+					<div class="img_user"></div>
+				</div>
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.funding }} €</p>
+					{% if affichage == 'grand' %}
+						<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandés</p>
+					{% endif %}
+					<div class="img_piggy"> </div>
+				</div>
+				<div class="bloc_caracteristiques">
+					<p class="style_NBcaracteritiques">{{ project.timeLeft }}</p>
+					{% if affichage == 'grand' %}					
+						<p class="style_caracteristiques">jours<br/>restants</p>
+					{% endif %}
+					<div class="img_clock"></div>
+				</div>
+				<div class="spacer"></div>
 			</div>
-			<div class="bloc_caracteristiques">
-				<p class="style_NBcaracteritiques">{{ project.timeLeft }}</p>
-				{% if affichage == 'grand' %}					
-					<p class="style_caracteristiques">jours<br/>restants</p>
-				{% endif %}
-				<div class="img_clock"></div>
-			</div>
-			<div class="spacer"></div>
-		</div>
+		{% endif %}
 		
 		<div class="spacer"></div>
 	</a>
