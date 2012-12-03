@@ -103,59 +103,65 @@
 				{% render "WittyProjectBundle:Project:blocComments" with {'projectId': project.id}  %}
 			</div>
         </section>
-        
-        <section id="contenuJeuDroite">
-        
-			<div id="blocSoutenir">
-				<div class="caracteristiques">
-					<div class="infos">
-					<p class="styleNb">{{ project.edinautes|length }}</p>
-					<p class="styletexte">édinautes soutiennent ce jeu</p>
+   		
+		{% if project.id == 11 %} 
+			<section id="contenuJeuDroite">
+				<p class="texte">Soutenez Chronos Conquest bientôt...</p>
+			</section>
+		{% else %}		
+			<section id="contenuJeuDroite">
+				<div id="blocSoutenir">
+					<div class="caracteristiques">
+						<div class="infos">
+						<p class="styleNb">{{ project.edinautes|length }}</p>
+						<p class="styletexte">édinautes soutiennent ce jeu</p>
+						</div>
+						<a class="btn_user"></a>
 					</div>
-					<a class="btn_user"></a>
-				</div>
-				<div class="caracteristiques">
-					<div class="infos">
-					<p class="styleNb">{{ project.funding }} €</p>
-					<p class="styletexte">récoltés sur {{ project.fundingGoal }} € demandés</p>
+					<div class="caracteristiques">
+						<div class="infos">
+						<p class="styleNb">{{ project.funding }} €</p>
+						<p class="styletexte">récoltés sur {{ project.fundingGoal }} € demandés</p>
+						</div>
+						<a class="btn_piggy"></a>
 					</div>
-					<a class="btn_piggy"></a>
-				</div>
-				<div class="caracteristiques">
-					<div class="infos">
-						{% if project.funded %}
-							<p class="styleNb edite">Edité</p>
-						{% else %}
-							<p class="styleNb">{{ project.timeLeft }}</p>
-							<p class="styletexte">
-								jour{% if project.timeLeft > 1 %}s{% endif %} restant{% if project.timeLeft > 1 %}s{% endif %}
-							</p>
-						{% endif %}
+					<div class="caracteristiques">
+						<div class="infos">
+							{% if project.funded %}
+								<p class="styleNb edite">Edité</p>
+							{% else %}
+								<p class="styleNb">{{ project.timeLeft }}</p>
+								<p class="styletexte">
+									jour{% if project.timeLeft > 1 %}s{% endif %} restant{% if project.timeLeft > 1 %}s{% endif %}
+								</p>
+							{% endif %}
+						</div>
+						<a class="btn_clock"></a>
 					</div>
-					<a class="btn_clock"></a>
+					{% if project.funded == 0 %}
+						<a class="btn_soutenir" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}"></a>
+					{% else %}
+						<a class="btn_merci" href="#"></a>
+					{% endif %}
 				</div>
-				{% if project.funded == 0 %}
-					<a class="btn_soutenir" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}"></a>
-				{% else %}
-					<a class="btn_merci" href="#"></a>
-				{% endif %}
-			</div>
  
-            {# BLOC NON FINI D'INTEGRER ! A REVOIR QUAND ON VOUDRA LE METTRE EN LIGNE, BISOUS :)
-				<div id="blocEditeur">
-					<div id="img_nom">
-						{% render "WittyUserBundle:Profile:avatar" with {'id': project.creator.id } %}
-						<p class="texte_editeur">Un jeu de<a class="nom_editeur">{{ project.creator.firstname }} {{ project.creator.lastname }}</a></p>
+				{# BLOC NON FINI D'INTEGRER ! A REVOIR QUAND ON VOUDRA LE METTRE EN LIGNE, BISOUS :)
+					<div id="blocEditeur">
+						<div id="img_nom">
+							{% render "WittyUserBundle:Profile:avatar" with {'id': project.creator.id } %}
+							<p class="texte_editeur">Un jeu de<a class="nom_editeur">{{ project.creator.firstname }} {{ project.creator.lastname }}</a></p>
+						</div>
+						<p class="texte_editeur">Adresse : <br/><br/>Téléphone :</p>
+						<p class="texte_editeur">Site :<br/><br/>Facebook : <br/><br/>Twitter :</p>
+						<div class="spacer"></div>
 					</div>
-					<p class="texte_editeur">Adresse : <br/><br/>Téléphone :</p>
-					<p class="texte_editeur">Site :<br/><br/>Facebook : <br/><br/>Twitter :</p>
-					<div class="spacer"></div>
-				</div>
-             #}
-            
-			{% render "WittyProjectBundle:Project:blocRewards" with {'project': project}  %}
+				 #}
+				
+				{% render "WittyProjectBundle:Project:blocRewards" with {'project': project}  %}
 			
-        </section>
+			</section>
+		{% endif %}
+		
         <div class="spacer"></div>
 
     
