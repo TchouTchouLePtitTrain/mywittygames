@@ -59,12 +59,19 @@ class ProjectController extends Controller
 		$projectsNotFunded = $em->getRepository('WittyProjectBundle:Project')->findNotFundedOrderedByPriority();
 		$projectsComingSoon = $em->getRepository('WittyProjectBundle:Project')->findComingSoonOrderedByPriority();
 		
+		$fundsRaised = 0;
+		foreach($projectsFunded as $project)
+		{
+			$fundsRaised += $project->getFunding();
+		}
+		
 		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', 
 			array(
 				'projectsFunded' => $projectsFunded, 
 				'projectsNotFunded' => $projectsNotFunded, 
 				'mode_affichage' => $mode_affichage, 
-				'projectsComingSoon' => $projectsComingSoon
+				'projectsComingSoon' => $projectsComingSoon,
+				'fundsRaised' => $fundsRaised
 			)
 		);
     }

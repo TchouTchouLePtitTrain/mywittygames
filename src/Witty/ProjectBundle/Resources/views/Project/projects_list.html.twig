@@ -97,8 +97,8 @@
 {# Projets déjà financés #}
 {% if mode_affichage == "all_projects_big" %} 
 
-	<p class="blocTitrePage2 titrePage titrePage_projet">Les projets déjà financés</p>
-
+	<p class="blocTitrePage_jeux_edites titrePage titrePage_projet">Les projets déjà financés</p>
+	<p class="descriptionPage descriptionPage_projet_financement">{{ fundsRaised|number_format(0, ',', ' ') }} € apportés par les édinautes pour soutenir 8 projets</p>
 	{% for project in projectsFunded %}
 
 		{% set affichage = 'petit' %}
