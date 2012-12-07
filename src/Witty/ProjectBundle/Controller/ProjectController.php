@@ -92,8 +92,12 @@ class ProjectController extends Controller
 	
     public function blocRewardsAction($project, $rewardId = null)
     {
+		$em = $this->getDoctrine()->getEntityManager();
+		$rewards = $em->getRepository('WittyProjectBundle:Reward')->findAllOrderedByCost($project->getId());
+	
 		$parametres = array(
 						'project' => $project,
+						'rewards' => $rewards,
 						'linking' => ($project->getFunded() == 0) && ($project->getState() != 'coming_soon'),
 						'texte_contreparties' => ($project->getFunded() == 0)? 'Sélectionnez votre contrepartie' : 'Aperçu des contreparties',
 						'rewardId' => $rewardId

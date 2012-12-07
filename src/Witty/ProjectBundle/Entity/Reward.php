@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Witty\ProjectBundle\Entity\Reward
  *
  * @ORM\Table(name="reward")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Witty\ProjectBundle\Repository\RewardRepository")
  */
 class Reward
 {

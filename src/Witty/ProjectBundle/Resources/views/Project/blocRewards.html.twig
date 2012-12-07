@@ -2,7 +2,7 @@
 
 	<p class="style_select">{{ texte_contreparties }}</p>
 	
-	{% for reward in project.rewards %}
+	{% for reward in rewards %}
 	
 		<a class="blocReward {% if (rewardId is defined) and (rewardId == reward.id) %}selected{% endif %}" id="lien_reward_{{ reward.id }}" {% if linking %} href="{{ path('project_confirmation', {'id': reward.id}) }}" {% endif%} >
 			<div class="titre_reward">
