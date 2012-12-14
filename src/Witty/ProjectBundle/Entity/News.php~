@@ -133,4 +133,50 @@ class News
     {
         return $this->project;
     }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     * @return News
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime 
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set updateDate
+     *
+     * @param \DateTime $updateDate
+     * @return News
+     */
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = $updateDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get updateDate
+     *
+     * @return \DateTime 
+     */
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
+    }
 }

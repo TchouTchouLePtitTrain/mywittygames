@@ -152,7 +152,7 @@ class Project
      *
      * @ORM\Column(name="slug", type="string", length=255)
      */
-    protected $slug;	
+    protected $slug;		
 	
     /**
      * @var integer $priority
@@ -167,6 +167,15 @@ class Project
      * @ORM\Column(name="state", type="string", length=20)
      */
     protected $state;	
+	
+    /**
+     * @var string $buyLink
+     *
+     * @ORM\Column(name="buy_link", type="string", length=255)
+     */
+    protected $buyLink;
+	
+	
 	
     /**
      * non mappé
@@ -961,5 +970,28 @@ class Project
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Set buyLink
+     *
+     * @param string $buyLink
+     * @return Project
+     */
+    public function setBuyLink($buyLink)
+    {
+        $this->buyLink = $buyLink;
+    
+        return $this;
+    }
+
+    /**
+     * Get buyLink
+     *
+     * @return string 
+     */
+    public function getBuyLink()
+    {
+        return $this->buyLink;
     }
 }

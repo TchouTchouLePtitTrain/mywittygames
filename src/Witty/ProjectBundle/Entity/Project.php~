@@ -152,7 +152,7 @@ class Project
      *
      * @ORM\Column(name="slug", type="string", length=255)
      */
-    protected $slug;	
+    protected $slug;		
 	
     /**
      * @var integer $priority
@@ -167,6 +167,15 @@ class Project
      * @ORM\Column(name="state", type="string", length=20)
      */
     protected $state;	
+	
+    /**
+     * @var string $buyLink
+     *
+     * @ORM\Column(name="buy_link", type="string", length=255)
+     */
+    protected $buyLink;
+	
+	
 	
     /**
      * non mappé
@@ -650,11 +659,11 @@ class Project
 	
 	
 	/**
-     * Get DaysLeft
+     * Get TimeLeft
      *
      * @return integer
      */
-	public function getDaysLeft()
+	public function getTimeLeft()
 	{
 		return $this->getEndDate()->diff(new \DateTime())->days;
 	}	
