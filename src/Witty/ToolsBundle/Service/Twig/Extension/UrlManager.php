@@ -56,6 +56,10 @@ class UrlManager extends \Twig_Extension
 				$folder = 'user/'.$id.'/avatar/';
 				$url = $this->endpointS3.$folder.$filename;
 				break;
+				
+			case 'acheter_jeu':
+				$url = $this->endpointS3.'project/'.$id.'/distribution/'.$filename;
+				break;
 		}
 
         return $url;
