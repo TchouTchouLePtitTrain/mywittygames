@@ -552,7 +552,7 @@ class Project
 
 		foreach($this->getUserRewards() as $userReward)
 		{
-			if (!in_array($userReward->getUser()->getId(), $ids_edinautes))
+			if (!in_array($userReward->getUser()->getId(), $ids_edinautes) && (!$userReward->getCancelled()))
 			{
 				$ids_edinautes[] = $userReward->getUser()->getId(); //Si l'édinaute n'est pas déjà dans la liste, on l'ajoute
 			}
