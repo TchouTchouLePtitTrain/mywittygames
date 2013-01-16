@@ -1,3 +1,8 @@
+witty_blog:
+    resource: "@WittyBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 witty_news:
     resource: "@WittyNewsBundle/Controller/"
     type:     annotation
