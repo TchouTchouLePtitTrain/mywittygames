@@ -19,7 +19,7 @@
 			<p class="delay">- Il y a {{ post.delay }}</p>
 			<div class="spacer"></div>
 			<article>
-				{{ post.content|nl2br }}
+				{{ post.content|raw|nl2br }}
 			</article>
 		</section>
 	{% endfor %}
