@@ -101,6 +101,10 @@ section{
 	line-height: 1.5;
 	margin-bottom:10px;
 }
+.tabulation{
+	margin-left: 5%;
+	display: inline-block;
+}
 
 .texte_bleu{
 	font-family: 'Karla', sans-serif;
@@ -136,6 +140,7 @@ section{
 	font-size:1.375em;
 	color:#666;
 	margin-bottom:10px;
+	display:inline-block;
 }
 
 .titre_edinautes{

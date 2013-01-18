@@ -50,7 +50,11 @@
     <div id="blocContenuJeu">
     
     	<section class="item">
-			{{ project.description|raw }}
+			<article>
+				<p class="texte">
+					{{ project.description|raw|nl2br }}
+				</p>
+			</article>
         </section>
         
         <section class="item">
