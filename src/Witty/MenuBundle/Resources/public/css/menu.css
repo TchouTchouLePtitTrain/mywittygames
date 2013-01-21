@@ -82,6 +82,25 @@
 	background-image: url(../images/btn_faq_hover.png);
 }
 
+.btn_blog{
+	display:block;
+	background-image: url(../images/btn_blog_normal.png);
+ 	background-repeat: no-repeat;
+	width: 107px;
+  	height: 70px;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	cursor:pointer;
+	float:left;
+}
+
+.btn_blog:hover{
+	display:block;
+	background-image: url(../images/btn_blog_hover.png);
+}
+
 .recherche{
 	float:left;
 	margin-left:30px;
