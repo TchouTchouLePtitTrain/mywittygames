@@ -71,7 +71,7 @@
   	height: 70px;
 	margin-top:0px;
 	margin-left:auto;
-	margin-right:auto;
+	margin-right:-1px;
 	position:relative;
 	cursor:pointer;
 	float:left;
@@ -86,7 +86,7 @@
 	display:block;
 	background-image: url(../images/btn_blog_normal.png);
  	background-repeat: no-repeat;
-	width: 107px;
+	width: 111px;
   	height: 70px;
 	margin-top:0px;
 	margin-left:auto;
