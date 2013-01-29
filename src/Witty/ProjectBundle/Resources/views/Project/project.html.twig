@@ -19,6 +19,7 @@
         <p class="descriptionPage descriptionPage_projet">{{ project.shortDescription }}</p>
     </div>
     
+    <!--
  	<nav>
 		<ul id="onglets">
 			<li class="actif">
@@ -44,11 +45,13 @@
 			</li>
 		</ul>  
 	</nav> 
+	-->
 
     <span class="flecheMenu"></span>
 
     <div id="blocContenuJeu">
     
+    <section id="contenuJeuGauche">
     	<section class="item">
 			<article>
 				<div class="texte">
@@ -57,7 +60,8 @@
 			</article>
         </section>
         
-        <section class="item">
+        <section class="item filet">
+        	<h2 class="descriptionPage">News</h2>
 			{% if news|length > 0 %}
 				{% for new in news %}
 					<article>
@@ -70,26 +74,9 @@
 				<p class="texte">Il n'y a pas encore de news sur ce jeu.</p>
 			{% endif %}
 		</section>
-        
-        <section class="item">
-            <p class="texte titre_edinautes">
-				Voici la liste des édinautes qui soutiennent ce projet. <br/>
-				{% if project.funded == 0 %}
-					Vous désirez les rejoindre ? Cliquez sur le bouton "<a class="texte_bleu" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}">Soutenir ce jeu</a>" !
-				{% endif %}
-			</p>
-			{# La bonne méthode est celle en commentaires, mais à cause d'un bug php, on doit passer par les ids des édinautes pour les récupérer. On ne peut donc pas les récupérer directement par le projet ... #}
-			{# for edinaute in project.edinautes #}
-			{% for edinaute in edinautes %}
-				<div class="edinaute">
-					{% render "WittyUserBundle:Profile:avatar" with {'id': edinaute.id } %}
-					<p class="nom_edinaute">{{ edinaute.label }}</p>
-					<p class="texte">a soutenu {{ edinaute.projectsFunded|length }} jeux</p>
-				</div>
-			{% endfor %}
-        </section>
-        
-        <section class="item">
+
+		<section class="item filet">
+			<h2 class="descriptionPage">Commentaires</h2>
             <div id="commenter">
 				{% if app.user %}
 					<p class="texte">Publiez votre commentaire</p>
@@ -106,6 +93,27 @@
 			<div class="blocComments">
 				{% render "WittyProjectBundle:Project:blocComments" with {'projectId': project.id}  %}
 			</div>
+        </section>
+        
+        <section class="item filet">
+        	<h2 class="descriptionPage">Édinautes</h2>
+            <p class="texte titre_edinautes">
+				Voici la liste des édinautes qui soutiennent ce projet. <br/>
+				{% if project.funded == 0 %}
+					Vous désirez les rejoindre ? Cliquez sur le bouton "<a class="texte_bleu" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}">Soutenir ce jeu</a>" !
+				{% endif %}
+			</p>
+			{# La bonne méthode est celle en commentaires, mais à cause d'un bug php, on doit passer par les ids des édinautes pour les récupérer. On ne peut donc pas les récupérer directement par le projet ... #}
+			{# for edinaute in project.edinautes #}
+			{% for edinaute in edinautes %}
+				<div class="edinaute">
+					{% render "WittyUserBundle:Profile:avatar" with {'id': edinaute.id } %}
+					<p class="nom_edinaute">{{ edinaute.label }}</p>
+					<p class="texte">a soutenu {{ edinaute.projectsFunded|length }} jeux</p>
+				</div>
+			{% endfor %}
+        </section>
+
         </section>
    		
 		{% if project.id == 13 %} 

@@ -1,5 +1,8 @@
 // JavaScript Document
 
+
+/*
+
 $(document).ready(function() {
 			$('#onglets li').click(function(event) {
 				
@@ -30,3 +33,6 @@ $(document).ready(function() {
 			setDisplay();
 		
 });
+
+
+*/

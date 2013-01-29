@@ -116,6 +116,36 @@ section{
 
 /* --- Colonne gauche --- */
 
+#contenuJeuGauche{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:660px;
+	height:auto;
+	float:left;
+}
+
+#blocContenuJeu #contenuJeuGauche .filet{
+	display: block;
+	border-top: solid 1px #DDDBDB;
+	padding-top: 20px;
+	margin-top: 20px;
+}
+
+#blocContenuJeu #contenuJeuGauche .item .descriptionPage{
+	display: block;
+    font-family: 'Cabin Sketch',cursive;
+    font-size: 2em;
+    line-height: 1.2;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    color: #514846;
+    margin-bottom: 20px;
+}
+
+/* --- Colonne gauche --- */
+
 .item{
 	display:block;
 	margin-left:auto;
