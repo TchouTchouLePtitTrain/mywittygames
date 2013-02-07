@@ -68,7 +68,7 @@
 				{% for new in news %}
 					<article>
 						<p class="soustitre">{{ new.title }}</p>
-						<p class="texte">{{ new.content|raw }}</p>
+						<p class="texte">{{ new.content|nl2br|raw }}</p>
 					</article>
 					<br/><br/>
 				{% endfor %}
