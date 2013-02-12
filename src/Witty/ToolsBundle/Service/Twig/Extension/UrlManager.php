@@ -62,7 +62,7 @@ class UrlManager extends \Twig_Extension
 				break;
 				
 			case 'contenu':
-				$url = $this->endpointS3.'contenu/'.$filename;
+				$url = $this->endpointS3.'content/'.$filename;
 				break;
 		}
 
