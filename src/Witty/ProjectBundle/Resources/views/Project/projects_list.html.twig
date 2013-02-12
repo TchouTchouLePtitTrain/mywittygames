@@ -65,6 +65,53 @@
 
 {% endfor %}
 
+{# Ajout des pages Qui sommes-nous, Venez commenter et La boutique. A Ameliorer si pérenne. #}
+
+	{# Page Venez commenter #}
+	
+	{% if ( (mode_affichage == 'not_funded_big') or (mode_affichage == 'all_projects_big')) and (not(mode_affichage == 'all_projects_small')) %}
+		{% set affichage = 'grand' %}
+	{% else %}
+		{% set affichage = 'petit' %}
+	{% endif %}
+
+	<a href="{{ path('blog') }}" 
+		class="bloc_jeu {{affichage}}">
+		<img class="img_jeu" src="{{ url_asset('contenu', 'venez_commenter.png') }}" alt="Venez commenter les projets"/>
+
+		<div class="bloc_jeu_haut">
+			<p class="titreJeu">Le Blog</p>
+			<p class="descriptionJeu">Venez découvrir l'actualité de My Witty Games</p>
+			<p class="texteJeu">Découvrez les dernières news sur les projets, sur le site, sur les futures fonctionnalités. Et dites-nous ce que vous en pensez ! Vous êtes aquariophile et vous aimeriez plus de poissons sur le site ?  Pour vous le nombre de projets idéal est 42 ? Vous seriez content si mywittygames était un palindrome ? Faites-nous en part !</p>
+		</div>
+
+		<div class="bloc_jeu_bas">
+			<p class="texte" style="margin-top:30px; font-size:1.7em">Venez commenter les news et les projets</p>
+		</div>
+		
+		<div class="spacer"></div>
+	</a>
+	
+	<a href="http://www.labonneambiance.com" 
+		class="bloc_jeu {{affichage}}">
+		<img class="img_jeu" src="{{ url_asset('contenu', 'labonneambiance.png') }}" alt="La Bonne Ambiance"/>
+
+		<div class="bloc_jeu_haut">
+			<p class="titreJeu">La boutique</p>
+			<p class="descriptionJeu">Une soirée? Un anniversaire? Un repas de famille ? Trouvez le bon jeu pour la bonne ambiance !</p>
+			<p class="texteJeu">Sur La Bonne Ambiance, venez découvrir le jeu qui va animer votre prochaine rencontre avec vos amis ou votre famille. Sur La Bonne Ambiance, vous trouverez les nouveautés ludiques qui vous feront passer un bon moment !</p>
+		</div>
+
+		<div class="bloc_jeu_bas">
+			<p class="texte" style="margin-top:30px; font-size:1.7em">Découvrez La Bonne Ambiance, la boutique de My Witty Games</p>
+		</div>
+		
+		<div class="spacer"></div>
+	</a>
+{# Fin de l'ajout #}
+
+
+
 <div class="spacer"></div>
 
 {# Projets à venir #}

@@ -60,6 +60,10 @@ class UrlManager extends \Twig_Extension
 			case 'acheter_jeu':
 				$url = $this->endpointS3.'project/'.$id.'/distribution/'.$filename;
 				break;
+				
+			case 'contenu':
+				$url = $this->endpointS3.'contenu/'.$filename;
+				break;
 		}
 
         return $url;
