@@ -149,7 +149,7 @@ class ProjectController extends Controller
 			}
 			else throw new \Exception("Erreur d'ajout du commentaire");
 		}
-		else throw new \Exception("Vous ne pouvez pas ajout ce commentaire");
+		else throw new \Exception("Vous ne pouvez pas ajouter ce commentaire");
     }
 	
     public function blocCommentsAction($projectId)

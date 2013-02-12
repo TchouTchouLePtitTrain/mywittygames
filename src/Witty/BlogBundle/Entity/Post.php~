@@ -143,4 +143,39 @@ class Post
     {
         return $this->comments;
     }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Post
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+	
+	//Renvoie une string : le délai entre maintenant et le moment où le commentaire a été posté
+	public function getDelay()
+	{
+		$delai = $this->getCreationDate()->diff(new \DateTime());
+
+		if ($delai->y !== 0) return $delai->format('%y an'.(($delai->y > 1)? 's' : ''));
+		elseif ($delai->m !== 0) return $delai->format('%m mois');
+		elseif ($delai->d !== 0) return $delai->format('%d jour'.(($delai->d > 1)? 's' : ''));
+		elseif ($delai->h !== 0) return $delai->format('%h heure'.(($delai->h > 1)? 's' : ''));
+		else return $delai->format('%i minute'.(($delai->i > 1)? 's' : ''));
+	}
 }

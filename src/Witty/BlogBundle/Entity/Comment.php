@@ -15,20 +15,20 @@ class Comment
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 	
     /**
 	 * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
-    private $blog;
+    private $post;
 	
     /**
-	 * @ORM\ManyToOne(targetEntity="\Witty\UserBundle\Entity\User", inversedBy="postsComments")
+	 * @ORM\ManyToOne(targetEntity="\Witty\UserBundle\Entity\User", inversedBy="postComments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -36,18 +36,22 @@ class Comment
     /**
      * @var \DateTime $creationDate
      *
-     * @ORM\Column(name="creationDate", type="datetime")
+     * @ORM\Column(name="creationDate", type="datetime", nullable=false)
      */
     private $creationDate;
 
     /**
      * @var string $content
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
     private $content;
 
-
+	public function __construct()
+	{
+		$this->creationDate = new \Datetime();
+	}
+	
     /**
      * Get id
      *
@@ -149,4 +153,39 @@ class Comment
     {
         return $this->user;
     }
+
+    /**
+     * Set post
+     *
+     * @param Witty\BlogBundle\Entity\Post $post
+     * @return Comment
+     */
+    public function setPost(\Witty\BlogBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+    
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return Witty\BlogBundle\Entity\Post 
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+		
+	//Renvoie une string : le délai entre maintenant et le moment où le commentaire a été posté
+	public function getDelay()
+	{
+		$delai = $this->getCreationDate()->diff(new \DateTime());
+
+		if ($delai->y !== 0) return $delai->format('%y an'.(($delai->y > 1)? 's' : ''));
+		elseif ($delai->m !== 0) return $delai->format('%m mois');
+		elseif ($delai->d !== 0) return $delai->format('%d jour'.(($delai->d > 1)? 's' : ''));
+		elseif ($delai->h !== 0) return $delai->format('%h heure'.(($delai->h > 1)? 's' : ''));
+		else return $delai->format('%i minute'.(($delai->i > 1)? 's' : ''));
+	}
 }

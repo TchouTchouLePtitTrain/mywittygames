@@ -81,14 +81,14 @@
 			<h2 class="descriptionPage">Commentaires</h2>
             <div id="commenter">
 				{% if app.user %}
-					<p class="texte">Publiez votre commentaire</p>
+					<p class="texte">Publiez votre commentaire :</p>
 					<div id="champs_commentaire">
 						<textarea class="commentaire"></textarea>
 					</div>
 					<a class="btn_commenter"></a>
 					<div class="spacer"></div>
 				{% else %}
-					<p class="texte">Identifiez-vous pour laisser un commentaire.</p>
+					<a href="{{ path('fos_user_security_login') }}" class="texte">Identifiez-vous pour laisser un commentaire.</a>
 				{% endif %}
             </div>
 			

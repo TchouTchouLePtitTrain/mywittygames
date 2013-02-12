@@ -41,7 +41,7 @@ class Comment
 	private $creationDate;
 
     /**
-     * @var integer $content
+     * @var string $content
      *
      * @ORM\Column(name="content", type="text", nullable=true)
      */

@@ -21,7 +21,33 @@
 			<article>
 				{{ post.content|raw|nl2br }}
 			</article>
+			
+			<section class="filet">
+				<h2 class="descriptionPage">Commentaires</h2>
+				<br/><br/><br/> <!-- TODO : A virer ! -->
+				<div id="commenter">
+					{% if app.user %}
+						<p class="texte">Publiez votre commentaire :</p>
+						<br/> <!-- TODO : A virer ! -->
+						<div id="champs_commentaire">
+							<textarea class="commentaire"></textarea>
+							<a class="btn_commenter"></a>
+							<input type="hidden" name="postId" value="{{ post.id }}"/>
+						</div>
+						<div class="spacer"></div>
+					{% else %}
+						<a href="{{ path('fos_user_security_login') }}" class="texte">Identifiez-vous pour laisser un commentaire.</a>
+					{% endif %}
+				</div>
+				
+				<div class="blocComments">
+					{% render "WittyBlogBundle:Blog:blocComments" with {'postId': post.id}  %}
+				</div>
+				<div class="spacer"></div>
+			</section>
 		</section>
+		<div class="spacer"></div>
+
 	{% endfor %}
 		
     <div class="spacer"></div>
@@ -35,4 +61,28 @@
     {% javascripts 'bundles/wittyblog/js/*.js' %}
         <script src="{{ asset_url }}" type="text/javascript"></script>
     {% endjavascripts %}
+	
+	{# Script qui gère l'ajout de commentaires #}
+	<script>
+		$(document).ready(function(){
+
+			$('a.btn_commenter').click(function(e)
+			{
+				{# Différence avec le script qui gère l ajout de commentaires sur la page du projet : il peut y avoir plusieurs posts sur une même page, il faut donc déterminer le postId #}
+				var data = {
+					content: $('textarea.commentaire').val(),
+					postId: e.target.nextElementSibling.value
+				};
+			
+				//Ajout du commentaire
+				$.post("{{ path('blog_addComment') }}", data, function(response){
+						
+					//Rechargement du bloc commentaires
+					$('.blocComments').html(response);
+				});
+				
+				$('#champs_commentaire textarea').val('');
+			});
+		});
+	</script>
 {% endblock %}

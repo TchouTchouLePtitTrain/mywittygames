@@ -1,0 +1,7 @@
+{% for comment in comments %}
+	<div class="comm">
+		<p class="nom_edinaute">{{ comment.user.label }}<time datetime="{{ comment.getCreationDate|date('Y-d-m') }}" class="date_comm">Il y a {{ comment.delay }}</time>
+		{% render "WittyUserBundle:Profile:avatar" with {'id': comment.user.id } %}
+		<p class="texte_comm">{{ comment.content|nl2br }}</p>
+	</div>
+{% endfor %}

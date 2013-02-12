@@ -47,6 +47,11 @@ class User extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
+    private $postComments;
+	
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
     private $flux;
 	
     /**
@@ -1280,5 +1285,71 @@ class User extends BaseUser
     public function getProjectComments()
     {
         return $this->project_comments;
+    }
+
+    /**
+     * Add flux
+     *
+     * @param Witty\NewsBundle\Entity\Flux $flux
+     * @return User
+     */
+    public function addFlux(\Witty\NewsBundle\Entity\Flux $flux)
+    {
+        $this->flux[] = $flux;
+    
+        return $this;
+    }
+
+    /**
+     * Remove flux
+     *
+     * @param Witty\NewsBundle\Entity\Flux $flux
+     */
+    public function removeFlux(\Witty\NewsBundle\Entity\Flux $flux)
+    {
+        $this->flux->removeElement($flux);
+    }
+
+    /**
+     * Get flux
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFlux()
+    {
+        return $this->flux;
+    }
+
+    /**
+     * Add postComments
+     *
+     * @param Witty\BlogBundle\Entity\Comment $postComments
+     * @return User
+     */
+    public function addPostComment(\Witty\BlogBundle\Entity\Comment $postComments)
+    {
+        $this->postComments[] = $postComments;
+    
+        return $this;
+    }
+
+    /**
+     * Remove postComments
+     *
+     * @param Witty\BlogBundle\Entity\Comment $postComments
+     */
+    public function removePostComment(\Witty\BlogBundle\Entity\Comment $postComments)
+    {
+        $this->postComments->removeElement($postComments);
+    }
+
+    /**
+     * Get postComments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPostComments()
+    {
+        return $this->postComments;
     }
 }

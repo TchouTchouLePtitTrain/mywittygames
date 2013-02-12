@@ -1,0 +1,129 @@
+.filet{
+	display: block;
+	border-top: solid 1px #DDDBDB;
+	padding-top: 20px;
+	margin-top: 20px;
+}
+
+.soustitre{
+	font-family: 'Karla', sans-serif;
+	font-size:1.375em;
+	color:#666;
+	/*margin-bottom:10px;*/
+	display:inline-block;
+}
+
+.titre_edinautes{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	height:60px;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:20px;	
+}
+
+.edinaute{
+	display:block;
+	margin-left:auto;
+	margin-right:20px;
+	margin-bottom:20px;
+	width:310px;
+	height:80px;
+	float:left;
+}
+
+.nom_edinaute{
+	font-family: 'Karla', sans-serif;
+	font-size:1em;
+	color:#666;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+#champs_commentaire{
+	margin-left:auto;
+	background-color:#FFF;
+	width:925px;
+	float:left;
+	margin-bottom:10px;
+}
+
+#commenter{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	/*height:230px;*/
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:20px;
+	padding-bottom:10px;
+}
+
+.commentaire{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:0.750em;
+	color:#514846;
+	font-weight:bold;
+}
+
+#champs_commentaire textarea{
+	display:block;
+	border: 10px solid #f6f6f6;
+	padding:10px;
+	margin:0 0 10px;
+	height:100px;
+	/*Modifié pour adapter au design du blog. Ancienne valeur : width:620px; width:925px; */
+	width: 95.7%;
+	background-color:#FFF;
+}
+
+.btn_commenter{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:35px;
+	width:134px;
+	background-image:url(../images/btn_commenter_normal.png);
+	float:right;
+	cursor:pointer;
+}
+
+.btn_commenter:hover{
+	background-image:url(../images/btn_commenter_hover.png);
+}
+
+.comm{
+	display:block;
+	margin-left:auto;
+	margin-bottom:20px;
+	width:660px;
+	height:auto;
+	float:left;
+	padding-bottom:20px;
+	border-bottom: solid 1px #dddbdb;
+	margin-bottom:20px;
+}
+
+.date_comm{
+	font-family: 'Karla', sans-serif;
+	font-size:0.875em;
+	color:#a6a6a6;
+	font-weight:100;
+	margin-left:5px;
+}
+
+.blocComments .img_avatar{
+	display:block;
+	float:left;
+	margin-left:auto;
+	margin-right:20px;
+	margin-top: 4px;
+	height:80px;
+	width:80px;
+	background-color:#000;
+}
+
+.blocComments {
+	width: 100%;
+	display: block;
+}
