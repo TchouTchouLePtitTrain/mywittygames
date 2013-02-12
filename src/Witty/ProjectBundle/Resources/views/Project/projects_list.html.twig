@@ -50,9 +50,13 @@
 					<div class="img_piggy"> </div>
 				</div>
 				<div class="bloc_caracteristiques">
-					<p class="style_NBcaracteritiques">{{ project.timeLeft }}</p>
-					{% if affichage == 'grand' %}					
-						<p class="style_caracteristiques">jours<br/>restants</p>
+					{% if project.isOver %}
+						<p class="style_NBcaracteritiques">Annulé</p>
+					{% else %}
+						<p class="style_NBcaracteritiques">{{ project.timeLeft }}</p>
+						{% if affichage == 'grand' %}
+							<p class="style_caracteristiques">jours<br/>restants</p>
+						{% endif %}
 					{% endif %}
 					<div class="img_clock"></div>
 				</div>

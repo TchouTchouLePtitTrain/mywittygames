@@ -666,6 +666,16 @@ class Project
 	public function getTimeLeft()
 	{
 		return $this->getEndDate()->diff(new \DateTime())->days;
+	}		
+	
+	/**
+     * Is Over
+     *
+     * @return boolean
+     */
+	public function isOver()
+	{
+		return $this->getEndDate() < new \DateTime();
 	}	
 	
 	/**
