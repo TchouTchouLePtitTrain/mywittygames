@@ -51,7 +51,7 @@
 				</div>
 				<div class="bloc_caracteristiques">
 					{% if project.isOver %}
-						<p class="style_NBcaracteritiques">Remboursé</p>
+						<p class="style_NBcaracteritiques" style="font-size:1.5em; margin-top:20px;margin-bottom:40px">Remboursé</p>
 					{% else %}
 						<p class="style_NBcaracteritiques">{{ project.timeLeft }}</p>
 						{% if affichage == 'grand' %}
