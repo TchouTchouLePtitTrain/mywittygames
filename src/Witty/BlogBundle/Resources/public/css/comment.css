@@ -1,3 +1,19 @@
+.texte {
+    color: #666666;
+    font-family: 'Karla',sans-serif;
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.texte_comm {
+    color: #888888;
+    font-family: 'Karla',sans-serif;
+    font-size: 1em;
+    line-height: 1.2;
+    margin-left: 100px;
+}
+
 .filet{
 	display: block;
 	border-top: solid 1px #DDDBDB;
