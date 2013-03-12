@@ -23,7 +23,9 @@
 		{% set url_image = project.imageSecondaire %}
 	{% endif %}
 	
- 	{% if loop.first and mode_affichage == 'focus_one_project' %} <div class="ruban"></div> {% endif %}
+ 	{% if loop.first and (mode_affichage == 'all_projects_big' or mode_affichage == 'focus_one_project') %} 
+		<div class="ruban"></div> 
+	{% endif %}
 	<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
 		class="bloc_jeu {{affichage}}">
 		<img class="img_jeu" src="{{ url_asset('project', project.id, url_image) }}" alt="{project.title}"/>
