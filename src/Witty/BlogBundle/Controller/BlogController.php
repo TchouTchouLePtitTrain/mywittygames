@@ -24,6 +24,27 @@ class BlogController extends Controller
 		return array('posts' => $posts);
     }
 	
+    /**
+     * @Route("/post/{postId}", name="blog_post")
+     * @Template()
+     */
+    public function getPostAction($postId = null)
+    {
+		$em = $this->getDoctrine()->getEntityManager();
+
+		if ($postId === null)
+			$post = $em->getRepository('WittyBlogBundle:Post')->find((int) $em->getRepository('WittyBlogBundle:Post')->findLastId()[0]);
+		else
+			$post = $em->getRepository('WittyBlogBundle:Post')->find($postId);
+
+		return $this->render('WittyBlogBundle:Blog:post.html.twig', 
+					array(
+						'post' => $post
+					)
+				);
+    }
+
+	
 	/**
      * @Route("/ajouter-commentaire", name="blog_addComment")
 	 * Ajoute le commentaire passé en POST au post
