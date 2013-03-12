@@ -126,6 +126,10 @@
 			<section id="contenuJeuDroite">
 				<p class="texte">A vos protos, prêts, créez ! Envoyez-nous vos idées à contact@mywittygames.com ! Soyez créatifs, plus votre jeu sera original, plus il retiendra notre attention.</p>
 			</section>
+		{% elseif project.isOver and not(project.funded) %}		
+			<section id="contenuJeuDroite">
+				<p class="texte">Ce projet a été remboursé et n'est plus ouvert au financement.</p>
+			</section>
 		{% else %}		
 			<section id="contenuJeuDroite">
 				<div id="blocSoutenir">
@@ -160,8 +164,6 @@
 					</div>
 					{% if project.funded == 0 %}
 						<a class="btn_soutenir" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}"></a>
-					{% elseif project.isOver %}
-						
 					{% else %}
 						<a class="btn_merci" href="#"></a>
 					{% endif %}
