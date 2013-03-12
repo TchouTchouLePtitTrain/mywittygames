@@ -160,6 +160,8 @@
 					</div>
 					{% if project.funded == 0 %}
 						<a class="btn_soutenir" href="{{ path('project_confirmation', {'id': project.rewardParDefaut.id}) }}"></a>
+					{% elseif project.isOver %}
+						
 					{% else %}
 						<a class="btn_merci" href="#"></a>
 					{% endif %}
@@ -182,7 +184,9 @@
 					</div>
 				 #}
 				
-				{% render "WittyProjectBundle:Project:blocRewards" with {'project': project}  %}
+				{% if not(project.isOver and project.funded == 0) %}
+					{% render "WittyProjectBundle:Project:blocRewards" with {'project': project}  %}
+				{% endif %}
 			
 			</section>
 		{% endif %}
