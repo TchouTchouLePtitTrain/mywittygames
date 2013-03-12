@@ -52,25 +52,39 @@ class ProjectController extends Controller
 			));
     }
 	
-    public function projectsListAction($mode_affichage = 'focus_one_project')
+    public function projectsListAction($projects_type = 'not_funded', $mode_affichage = 'focus_one_project')
     {
 		$em = $this->getDoctrine()->getEntityManager();
-		$projectsFunded = $em->getRepository('WittyProjectBundle:Project')->findFundedOrderedByPriority();
-		$projectsNotFunded = $em->getRepository('WittyProjectBundle:Project')->findNotFundedOrderedByPriority();
-		$projectsComingSoon = $em->getRepository('WittyProjectBundle:Project')->findComingSoonOrderedByPriority();
-		
 		$fundsRaised = 0;
-		foreach($projectsFunded as $project)
+		
+		switch($projects_type)
 		{
-			$fundsRaised += $project->getFunding();
+			case 'not_funded':
+				$projects = $em->getRepository('WittyProjectBundle:Project')->findNotFundedOrderedByPriority();
+				break;
+				
+			case 'funded':
+				$projects = $em->getRepository('WittyProjectBundle:Project')->findFundedOrderedByPriority();
+				foreach($projects as $project)
+				{
+					$fundsRaised += $project->getFunding();
+				}
+				break;
+				
+			case 'coming_soon':
+				$projects = $em->getRepository('WittyProjectBundle:Project')->findComingSoonOrderedByPriority();
+				break;
+				
+			default:
+				$projects = $em->getRepository('WittyProjectBundle:Project')->findNotFundedOrderedByPriority();
+				break;
 		}
 		
 		return $this->render('WittyProjectBundle:Project:projects_list.html.twig', 
 			array(
-				'projectsFunded' => $projectsFunded, 
-				'projectsNotFunded' => $projectsNotFunded, 
-				'mode_affichage' => $mode_affichage, 
-				'projectsComingSoon' => $projectsComingSoon,
+				'projects' => $projects,
+				'projects_type' => $projects_type,
+				'mode_affichage' => $mode_affichage,
 				'fundsRaised' => $fundsRaised
 			)
 		);

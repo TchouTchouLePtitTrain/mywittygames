@@ -13,13 +13,14 @@
    <div class="blocTitreHome">
     	<p class="titrePage titrePage_home">Devenez co-éditeurs</p>
         <p class="descriptionPage descriptionPage_home">Participez au financement de jeux de société et recevez des récompenses exclusives.<br/>Si un projet atteint son objectif, il est édité et vous recevez le jeu chez vous en avant-première.</p>
-        {# <p class="infosPage_home">Actuellement 8 jeux ont été édités grâce aux édinautes. <a href="{{ path('fos_user_security_login') }}" class="rejoignez_home">Rejoignez nos {{ members_count }} membres !</a></p> #}
         <p class="infosPage_home">Actuellement 8 jeux ont été édités grâce à plus de 5000 membres. <a href="{{ path('fos_user_security_login') }}" class="rejoignez_home">Créez un compte gratuit dès maintenant et accédez aux informations privilégiées sur les projets en cours !</a></p>
         <a class="btn_sinscrireNow" href="{{ path('fos_user_security_login') }}"></a>
     </div>
 	
 	<div id="container">
-		{% render "WittyProjectBundle:Project:projectsList" with {'mode_affichage': mode_affichage} %}
+		{% render "WittyProjectBundle:Project:projectsList" with {'projects_type': 'not_funded', 'mode_affichage': mode_affichage} %}
+		{% render "WittyProjectBundle:Project:projectsList" with {'projects_type': 'coming_soon', 'mode_affichage': 'petit'} %}
+		{% render "WittyProjectBundle:Project:projectsList" with {'projects_type': 'funded', 'mode_affichage': 'petit'} %}
 	</div>
    
    

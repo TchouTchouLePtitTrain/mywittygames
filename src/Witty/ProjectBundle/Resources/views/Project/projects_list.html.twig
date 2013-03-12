@@ -4,25 +4,34 @@
 
 <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch|Karla:400,400italic,700,700italic|Crete+Round' rel='stylesheet' type='text/css'>
 
+{# Titres #}
+{% if projects_type == 'coming_soon' and projects|length > 0 %}
+	<p class="blocTitrePage2 titrePage titrePage_projet">Les projets à venir</p>
+{% elseif projects_type == 'funded' %}
+	<p class="blocTitrePage_jeux_edites titrePage titrePage_projet">Les projets déjà financés</p>
+	<p class="descriptionPage descriptionPage_projet_financement">{{ fundsRaised|number_format(0, ',', ' ') }} € apportés par les édinautes pour soutenir 8 projets</p>
+{% endif %}
 
-{# Projets pas encore entièrement financés #}
-{% for project in projectsNotFunded %}
+{# Affichage des projets #}
+{% for project in projects %}
 
 	{% if ((mode_affichage == 'focus_one_project' and loop.first) or (mode_affichage == 'not_funded_big') or (mode_affichage == 'all_projects_big')) and (not(mode_affichage == 'all_projects_small')) %}
 		{% set affichage = 'grand' %}
+		{% set url_image = project.image %}
 	{% else %}
 		{% set affichage = 'petit' %}
+		{% set url_image = project.imageSecondaire %}
 	{% endif %}
- 
- 	{% if loop.first %} <div class="ruban"></div> {% endif %}
+	
+ 	{% if loop.first and mode_affichage == 'focus_one_project' %} <div class="ruban"></div> {% endif %}
 	<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
 		class="bloc_jeu {{affichage}}">
-		<img class="img_jeu" src="{{ url_asset('project', project.id, project.image) }}" alt="Image du jeu"/>
+		<img class="img_jeu" src="{{ url_asset('project', project.id, url_image) }}" alt="{project.title}"/>
 
 		<div class="bloc_jeu_haut">
 			<p class="titreJeu">{{ project.title }}</p>
 			<p class="descriptionJeu">{{ project.shortDescription }}</p>
-			<p class="texteJeu">{{ project.mediumDescription }}</p>
+			{% if mode_affichage != 'petit' %}<p class="texteJeu">{{ project.mediumDescription }}</p>{% endif %}
 		</div>
 		
 		{% if project.id == 13 %}
@@ -54,7 +63,9 @@
 					<div class="img_piggy"> </div>
 				</div>
 				<div class="bloc_caracteristiques">
-					{% if project.isOver %}
+					{% if project.funded %}
+						<p class="style_NBcaracteritiques">Edité</p>
+					{% elseif project.isOver %}
 						<p class="style_NBcaracteritiques" style="font-size:1.5em; margin-top:20px;margin-bottom:40px">Remboursé</p>
 					{% else %}
 						<p class="style_NBcaracteritiques">{{ project.timeLeft }}</p>
@@ -73,149 +84,4 @@
 
 {% endfor %}
 
-{# Ajout des pages Qui sommes-nous, Venez commenter et La boutique. A Ameliorer si pérenne. #}
-
-	{# Page Venez commenter #}
-	
-	{% if ( (mode_affichage == 'not_funded_big') or (mode_affichage == 'all_projects_big')) and (not(mode_affichage == 'all_projects_small')) %}
-		{% set affichage = 'grand' %}
-	{% else %}
-		{% set affichage = 'petit' %}
-	{% endif %}
-
-	<a href="{{ path('blog') }}" 
-		class="bloc_jeu {{affichage}}">
-		<img class="img_jeu" src="{{ url_asset('contenu', '', 'venez_commenter.png') }}" alt="Venez commenter les projets"/>
-
-		<div class="bloc_jeu_haut">
-			<p class="titreJeu">Le Blog</p>
-			<p class="descriptionJeu">Venez découvrir l'actualité de My Witty Games</p>
-			<p class="texteJeu">Découvrez les dernières news sur les projets, sur le site, sur les futures fonctionnalités. Et dites-nous ce que vous en pensez ! Vous êtes aquariophile et vous aimeriez plus de poissons sur le site ?  Pour vous le nombre de projets idéal est 42 ? Vous seriez content si mywittygames était un palindrome ? Faites-nous en part !</p>
-		</div>
-
-		<div class="bloc_jeu_bas">
-			<p class="texte" style="margin-top:30px; font-size:1.7em">Venez commenter les news et les projets</p>
-		</div>
-		
-		<div class="spacer"></div>
-	</a>
-	
-	<a href="http://www.labonneambiance.com" 
-		class="bloc_jeu {{affichage}}">
-		<img class="img_jeu" src="{{ url_asset('contenu', '', 'logo_labonneambiance.png') }}" alt="La Bonne Ambiance"/>
-
-		<div class="bloc_jeu_haut">
-			<p class="titreJeu">La boutique</p>
-			<p class="descriptionJeu">Une soirée? Un anniversaire? Un repas de famille ? Trouvez le bon jeu pour la bonne ambiance !</p>
-			<p class="texteJeu">Sur La Bonne Ambiance, venez découvrir le jeu qui va animer votre prochaine rencontre avec vos amis ou votre famille. Sur La Bonne Ambiance, vous trouverez les nouveautés ludiques qui vous feront passer un bon moment !</p>
-		</div>
-
-		<div class="bloc_jeu_bas">
-			<p class="texte" style="margin-top:30px; font-size:1.7em">Découvrez La Bonne Ambiance, la boutique de My Witty Games</p>
-		</div>
-		
-		<div class="spacer"></div>
-	</a>
-{# Fin de l'ajout #}
-
-
-
 <div class="spacer"></div>
-
-{# Projets à venir #}
-{% if projectsComingSoon|length > 0 %}
-	<p class="blocTitrePage2 titrePage titrePage_projet">Les projets à venir</p>
-{% endif %}
-{% for project in projectsComingSoon %}
-
-	{% set affichage = 'petit' %}
-	{% if affichage == 'petit' %}
-		{% set url_image = project.imageSecondaire %}
-	{% else %}
-		{% set url_image = project.image %}
-	{% endif %}
-
-		<a class="bloc_jeu {{affichage}}">
-			<img class="img_jeu" src="{{ url_asset('project', project.id, url_image) }}" alt="Image du jeu"/>
-
-			<div class="bloc_jeu_haut">
-				<p class="titreJeu">{{ project.title }}</p>
-				<p class="descriptionJeu">{{ project.shortDescription }}</p>
-			</div>
-			<div class="bloc_jeu_bas">
-				<div class="spacer"></div>
-			</div>
-			
-			<div class="spacer"></div>
-		</a>
-
-{% endfor %}
-
-<div class="spacer"></div>
-
-{# Projets déjà financés #}
-{% if mode_affichage == "all_projects_big" %} 
-
-	<p class="blocTitrePage_jeux_edites titrePage titrePage_projet">Les projets déjà financés</p>
-	<p class="descriptionPage descriptionPage_projet_financement">{{ fundsRaised|number_format(0, ',', ' ') }} € apportés par les édinautes pour soutenir 8 projets</p>
-	{% for project in projectsFunded %}
-
-		{% set affichage = 'petit' %}
-		{% if affichage == 'petit' %}
-			{% set url_image = project.imageSecondaire %}
-		{% else %}
-			{% set url_image = project.image %}
-		{% endif %}
-
-		<a href="{{ path('project_display' , {'slug': project.slug} ) }}" 
-			class="bloc_jeu {{affichage}}">
-			<img class="img_jeu" src="{{ url_asset('project', project.id, url_image) }}" alt="Image du jeu"/>
-
-			<div class="bloc_jeu_haut">
-				<p class="titreJeu">{{ project.title }}</p>
-				<p class="descriptionJeu">{{ project.shortDescription }}</p>
-			</div>
-			<div class="bloc_jeu_bas">
-				<div class="bloc_caracteristiques">
-					<p class="style_NBcaracteritiques">{{ project.edinautes|length }}</p>
-					{% if affichage == 'grand' %}
-						<p class="style_caracteristiques">édinautes<br/>soutiennent le jeu</p>
-					{% endif %}
-					<div class="img_user"></div>
-				</div>
-				<div class="bloc_caracteristiques">
-					<p class="style_NBcaracteritiques">{{ project.funding }} €</p>
-					{% if affichage == 'grand' %}
-						<p class="style_caracteristiques">sur {{ project.fundingGoal|number_format(0, ',', ' ') }} €<br/>demandés</p>
-					{% endif %}
-					<div class="img_piggy"> </div>
-				</div>
-				<div class="bloc_caracteristiques">
-					{% if project.funded %}
-						<p class="style_NBcaracteritiques">Edité</p>
-					{% else %}
-						<p class="style_NBcaracteritiques">{{ project.timeLeft }}</p>
-						{% if affichage == 'grand' %}					
-							<p class="style_caracteristiques">
-								jour{% if project.timeLeft > 1 %}s{% endif %}
-								<br/>
-								restant{% if project.timeLeft > 1 %}s{% endif %}
-							</p>
-						{% endif %}
-					{% endif %}
-					<div class="img_clock"></div>
-				</div>
-				<div class="spacer"></div>
-			</div>
-			
-			<div class="spacer"></div>
-		</a>
-
-	{% endfor %}
-	<div class="spacer"></div>
-	
-{% endif %}
-
-{% if mode_affichage == "not_funded_big" %}
-	<a href="{{ path('project_accueil') }}"><p class="texte"><span class="texte_bleu">Cliquez ici</span> pour voir tous les projets</p></a>
-{% endif %}
