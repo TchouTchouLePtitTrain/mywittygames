@@ -29,7 +29,7 @@ class ProjectRepository extends EntityRepository
     public function findNotFundedOrderedByPriority()
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT p FROM WittyProjectBundle:Project p WHERE p.funded = 0 and p.state = :state ORDER BY p.priority DESC')
+            ->createQuery('SELECT p FROM WittyProjectBundle:Project p WHERE p.funded = 0 and p.state = :state and DATE_DIFF(p.endDate, CURRENT_DATE()) >= 15 ORDER BY p.priority DESC')
 			->setParameters(array(
 				'state' => 'public'
 			))
