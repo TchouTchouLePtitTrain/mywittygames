@@ -5,6 +5,7 @@ namespace Witty\MwgBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
@@ -100,6 +101,18 @@ class HomeController extends Controller
 		if (stripos($url, 'press') !== false) return $this->redirect($this->generateUrl('mwg_presse'), 301);
 		
 		return $this->redirect($this->generateUrl('mwg_accueil'), 301);
+	}
+	    
+	/**
+     * @Route("/scroll_loading", name="blog_post")
+     * @Template()
+     */
+	public function scroll_loading()
+	{
+		$request = Request::createFromGlobals();
+		$load_number = $request->request->get('load_number');
+		
+		return BlogController::getPostByNumberAction($load_number);
 	}
 	
 }

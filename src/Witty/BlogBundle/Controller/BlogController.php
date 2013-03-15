@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Witty\BlogBundle\Entity\Comment;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/blog")
@@ -25,15 +27,15 @@ class BlogController extends Controller
     }
 	
     /**
-     * @Route("/post/{postId}", name="blog_post")
-     * @Template()
+     * @Route("/post/{postId}", requirements={"postId" = "\d+"}, name="blog_post")
+     * 
      */
     public function getPostAction($postId = null)
     {
 		$em = $this->getDoctrine()->getEntityManager();
 
 		if ($postId === null)
-			$post = $em->getRepository('WittyBlogBundle:Post')->find((int) $em->getRepository('WittyBlogBundle:Post')->findLastId()[0]);
+			$post = $em->getRepository('WittyBlogBundle:Post')->findLastPost();
 		else
 			$post = $em->getRepository('WittyBlogBundle:Post')->find($postId);
 
@@ -42,6 +44,33 @@ class BlogController extends Controller
 						'post' => $post
 					)
 				);
+    }
+	
+    /**
+     * @Route("/post/scroll_loading", name="blog_post_number")
+     * 
+     */
+    public function getPostByNumberAction()
+    {
+
+		$em = $this->getDoctrine()->getEntityManager();
+		
+		$request = Request::createFromGlobals();
+		$number = $request->request->get('load_number');
+
+		$nombre_de_posts = (int) $em->getRepository('WittyBlogBundle:Post')->countAll();
+
+		if ($number > $nombre_de_posts)
+			return new Response('end');
+		else
+		{
+			$post = $em->getRepository('WittyBlogBundle:Post')->findByNumber($number);
+			return $this->render('WittyBlogBundle:Blog:post.html.twig', 
+						array(
+							'post' => $post
+						)
+					);
+		}
     }
 
 	

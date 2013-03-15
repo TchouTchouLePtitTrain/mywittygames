@@ -9,7 +9,7 @@
 
 /* --- Blog --- */
 
-section.blog{
+section.post{
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
@@ -29,7 +29,7 @@ section.blog{
 	padding:20px;
 }
 
-section.blog h2{
+section.post h2{
 	color: #666666;
     font-family: 'Karla',sans-serif;
     font-size: 1.375em;
@@ -37,7 +37,7 @@ section.blog h2{
 	display:inline-block;
 	float:left;
 }
-section.blog .delay{
+section.post .delay{
 	color: #666666;
     font-family: 'Karla',sans-serif;
     font-size: 1em;
@@ -45,7 +45,7 @@ section.blog .delay{
 	margin-top: 7px;
 	margin-left: 1%;
 }
-section.blog article{
+section.post article{
 	color: #666666;
     font-family: 'Karla',sans-serif;
     font-size: 1em;

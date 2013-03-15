@@ -19,10 +19,24 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 	
-    public function findLastId()
+    public function findLastPost()
+    {
+        return $this->findByNumber(1);
+    }	
+	
+    public function countAll()
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT Max(p) FROM WittyBlogBundle:Post p')
-            ->getResult();
+            ->createQuery('SELECT count(p) FROM WittyBlogBundle:Post p')
+            ->getSingleScalarResult();
+    }	
+	
+    public function findByNumber($number)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT p FROM WittyBlogBundle:Post p ORDER BY p.creationDate DESC')
+			->setMaxResults(1)
+			->setFirstResult($number - 1)
+            ->getSingleResult();
     }
 }

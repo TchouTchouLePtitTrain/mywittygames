@@ -18,16 +18,21 @@
     </div>
 	
 	<div id="container">
-		<p class="blocTitrePage_jeux_edites titrePage titrePage_projet">Les dernières news</p>
-		{% render "WittyBlogBundle:Blog:getPost" with {} %}
-		<br/>
-		<a class="descriptionPage descriptionPage_projet_financement" href="{{ path('blog') }}" style="float:right;margin-right:20px">Voir toutes les news -></a>
-		<br/>
 		<p class="blocTitrePage_jeux_edites titrePage titrePage_projet">Les projets à soutenir</p>	
 		{% render "WittyProjectBundle:Project:projectsList" with {'projects_type': 'not_funded', 'mode_affichage': mode_affichage} %}
 		{% render "WittyProjectBundle:Project:projectsList" with {'projects_type': 'coming_soon', 'mode_affichage': 'petit'} %}
 		{% render "WittyProjectBundle:Project:projectsList" with {'projects_type': 'funded', 'mode_affichage': 'petit'} %}
+		
+		<p class="blocTitrePage_jeux_edites titrePage titrePage_projet">Les dernières news</p>
+		{% render "WittyBlogBundle:Blog:getPost" with {} %}
+		<br/>
 	</div>
    
    
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts 'bundles/wittymwg/js/*.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
 {% endblock %}
